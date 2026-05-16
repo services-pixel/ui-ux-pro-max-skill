@@ -151,20 +151,34 @@ const html = `<!DOCTYPE html>
       .bg-brand-navy-dark .text-white, .bg-brand-navy-dark .text-slate-100, .bg-brand-navy-dark .text-slate-200 {
         color: rgba(var(--paper), var(--emphasis-high)) !important;
       }
-      .hero-mesh .text-slate-300, .hero-mesh .text-slate-400,
-      .testi-mesh .text-slate-300, .testi-mesh .text-slate-400,
-      .hero-grain .text-slate-300, .hero-grain .text-slate-400,
-      footer .text-slate-300, footer .text-slate-400,
-      footer .text-slate-500, footer .text-slate-600, footer .text-slate-700,
-      .bg-brand-navy .text-slate-300, .bg-brand-navy .text-slate-400,
-      .bg-brand-navy-dark .text-slate-300, .bg-brand-navy-dark .text-slate-400 {
+      .hero-mesh .text-slate-300,
+      .testi-mesh .text-slate-300,
+      .hero-grain .text-slate-300,
+      footer .text-slate-300,
+      footer.text-slate-300,
+      .bg-brand-navy .text-slate-300,
+      .bg-brand-navy-dark .text-slate-300,
+      .bg-brand-navy-dark.text-slate-300 {
         color: rgba(var(--paper), var(--emphasis-medium)) !important;
       }
-      .hero-mesh .text-slate-500, .hero-mesh .text-slate-600,
-      .testi-mesh .text-slate-500, .testi-mesh .text-slate-600,
-      .hero-grain .text-slate-500, .hero-grain .text-slate-600 {
+      .hero-mesh .text-slate-400, .hero-mesh .text-slate-500, .hero-mesh .text-slate-600,
+      .testi-mesh .text-slate-400, .testi-mesh .text-slate-500, .testi-mesh .text-slate-600,
+      .hero-grain .text-slate-400, .hero-grain .text-slate-500, .hero-grain .text-slate-600,
+      footer .text-slate-400, footer .text-slate-500, footer .text-slate-600, footer .text-slate-700,
+      footer.text-slate-400,
+      .bg-brand-navy .text-slate-400, .bg-brand-navy .text-slate-500, .bg-brand-navy .text-slate-600,
+      .bg-brand-navy-dark .text-slate-400, .bg-brand-navy-dark .text-slate-500, .bg-brand-navy-dark .text-slate-600 {
         color: rgba(var(--paper), var(--emphasis-disabled)) !important;
       }
+
+      /* Footer descendants — anything WITHOUT an explicit text-* class inherits
+         from <footer class="text-slate-300">. Force all footer text to paper-medium
+         by default so paragraphs, list items and links stay readable on navy-dark. */
+      footer { color: rgba(var(--paper), var(--emphasis-medium)) !important; }
+      footer p, footer li, footer span, footer a, footer strong {
+        color: inherit;
+      }
+      footer a:hover { color: rgba(var(--paper), var(--emphasis-high)) !important; }
 
       /* Headings — Fraunces serif w/ optical sizing, anchored at 87% high emphasis */
       h1, h2, h3 {
@@ -202,6 +216,20 @@ const html = `<!DOCTYPE html>
 
       /* Brand-coloured text (text-brand-green, text-brand-orange, etc.) stays fully
          opaque on purpose — accent colors are emphatic by definition. */
+
+      /* Custom ant icon — fa-ant is FontAwesome Pro only, so we replace it with
+         an inline SVG that inherits currentColor and sizes via font-size like
+         a real FA icon. */
+      .fa-ant::before { content: '' !important; }
+      .fa-ant {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        background-color: currentColor;
+        -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 32c-17.7 0-32 14.3-32 32v8.3c-23.6 4.5-44.7 16.4-60.5 33.4L130.3 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l46.3 46.3c-4.5 11-7.3 22.9-8 35.4l-50.6 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l54.7 0c4.6 11.8 11.1 22.7 19.1 32.3l-65.3 49C68.1 354.4 64 362.9 64 372c0 17.7 14.3 32 32 32l5.3 0c10.1 0 19.6-4.7 25.6-12.8L173.3 320c11.4 5.9 23.9 9.9 37.3 11.5l0 9.2-39.4 39.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l24.4-24.4c4.6 24.2 25.9 42.5 51.5 42.5s46.9-18.3 51.5-42.5l24.4 24.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L373.3 340.7l0-9.2c13.4-1.6 25.9-5.6 37.3-11.5l46.3 71.2c6 8.1 15.5 12.8 25.6 12.8l5.3 0c17.7 0 32-14.3 32-32 0-9.1-4.1-17.6-11.5-23.3l-65.3-49c8-9.6 14.5-20.5 19.1-32.3l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-50.6 0c-.7-12.5-3.5-24.4-8-35.4l46.3-46.3c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-33.2 33.2c-15.8-17-37-28.9-60.5-33.4L320 64c0-17.7-14.3-32-32-32l-32 0z'/></svg>") no-repeat center / contain;
+                mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 32c-17.7 0-32 14.3-32 32v8.3c-23.6 4.5-44.7 16.4-60.5 33.4L130.3 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l46.3 46.3c-4.5 11-7.3 22.9-8 35.4l-50.6 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l54.7 0c4.6 11.8 11.1 22.7 19.1 32.3l-65.3 49C68.1 354.4 64 362.9 64 372c0 17.7 14.3 32 32 32l5.3 0c10.1 0 19.6-4.7 25.6-12.8L173.3 320c11.4 5.9 23.9 9.9 37.3 11.5l0 9.2-39.4 39.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l24.4-24.4c4.6 24.2 25.9 42.5 51.5 42.5s46.9-18.3 51.5-42.5l24.4 24.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L373.3 340.7l0-9.2c13.4-1.6 25.9-5.6 37.3-11.5l46.3 71.2c6 8.1 15.5 12.8 25.6 12.8l5.3 0c17.7 0 32-14.3 32-32 0-9.1-4.1-17.6-11.5-23.3l-65.3-49c8-9.6 14.5-20.5 19.1-32.3l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-50.6 0c-.7-12.5-3.5-24.4-8-35.4l46.3-46.3c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-33.2 33.2c-15.8-17-37-28.9-60.5-33.4L320 64c0-17.7-14.3-32-32-32l-32 0z'/></svg>") no-repeat center / contain;
+        vertical-align: -0.125em;
+      }
 
       /* ---------------------------------------------------------------------------
          60-30-10 COLOR PROPORTION SYSTEM
@@ -1895,19 +1923,40 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
     .bg-gradient-to-br.from-brand-green .text-white {
       color: rgba(var(--paper), var(--emphasis-high)) !important;
     }
-    .hero-grain .text-slate-300, .hero-grain .text-slate-400,
-    footer .text-slate-300, footer .text-slate-400,
-    footer .text-slate-500, footer .text-slate-600, footer .text-slate-700,
-    .bg-brand-navy .text-slate-300, .bg-brand-navy .text-slate-400,
-    .bg-brand-navy-dark .text-slate-300, .bg-brand-navy-dark .text-slate-400 {
+    .hero-grain .text-slate-300,
+    footer .text-slate-300, footer.text-slate-300,
+    .bg-brand-navy .text-slate-300,
+    .bg-brand-navy-dark .text-slate-300, .bg-brand-navy-dark.text-slate-300 {
       color: rgba(var(--paper), var(--emphasis-medium)) !important;
     }
-    .hero-grain .text-slate-500, .hero-grain .text-slate-600 {
+    .hero-grain .text-slate-400, .hero-grain .text-slate-500, .hero-grain .text-slate-600,
+    footer .text-slate-400, footer .text-slate-500, footer .text-slate-600, footer .text-slate-700,
+    footer.text-slate-400,
+    .bg-brand-navy .text-slate-400, .bg-brand-navy .text-slate-500, .bg-brand-navy .text-slate-600,
+    .bg-brand-navy-dark .text-slate-400, .bg-brand-navy-dark .text-slate-500, .bg-brand-navy-dark .text-slate-600 {
       color: rgba(var(--paper), var(--emphasis-disabled)) !important;
     }
 
+    /* Footer descendants — inherit paper-medium so paragraphs/links that don't carry
+       an explicit text-* class stay readable on navy-dark. */
+    footer { color: rgba(var(--paper), var(--emphasis-medium)) !important; }
+    footer p, footer li, footer span, footer a, footer strong { color: inherit; }
+    footer a:hover { color: rgba(var(--paper), var(--emphasis-high)) !important; }
+
     ::placeholder { color: rgba(var(--ink), var(--emphasis-disabled)); opacity: 1; }
     :disabled     { color: rgba(var(--ink), var(--emphasis-disabled)); }
+
+    /* Custom ant icon (fa-ant is FA Pro only) — inline SVG via CSS mask */
+    .fa-ant::before { content: '' !important; }
+    .fa-ant {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background-color: currentColor;
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 32c-17.7 0-32 14.3-32 32v8.3c-23.6 4.5-44.7 16.4-60.5 33.4L130.3 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l46.3 46.3c-4.5 11-7.3 22.9-8 35.4l-50.6 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l54.7 0c4.6 11.8 11.1 22.7 19.1 32.3l-65.3 49C68.1 354.4 64 362.9 64 372c0 17.7 14.3 32 32 32l5.3 0c10.1 0 19.6-4.7 25.6-12.8L173.3 320c11.4 5.9 23.9 9.9 37.3 11.5l0 9.2-39.4 39.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l24.4-24.4c4.6 24.2 25.9 42.5 51.5 42.5s46.9-18.3 51.5-42.5l24.4 24.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L373.3 340.7l0-9.2c13.4-1.6 25.9-5.6 37.3-11.5l46.3 71.2c6 8.1 15.5 12.8 25.6 12.8l5.3 0c17.7 0 32-14.3 32-32 0-9.1-4.1-17.6-11.5-23.3l-65.3-49c8-9.6 14.5-20.5 19.1-32.3l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-50.6 0c-.7-12.5-3.5-24.4-8-35.4l46.3-46.3c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-33.2 33.2c-15.8-17-37-28.9-60.5-33.4L320 64c0-17.7-14.3-32-32-32l-32 0z'/></svg>") no-repeat center / contain;
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M256 32c-17.7 0-32 14.3-32 32v8.3c-23.6 4.5-44.7 16.4-60.5 33.4L130.3 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l46.3 46.3c-4.5 11-7.3 22.9-8 35.4l-50.6 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l54.7 0c4.6 11.8 11.1 22.7 19.1 32.3l-65.3 49C68.1 354.4 64 362.9 64 372c0 17.7 14.3 32 32 32l5.3 0c10.1 0 19.6-4.7 25.6-12.8L173.3 320c11.4 5.9 23.9 9.9 37.3 11.5l0 9.2-39.4 39.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l24.4-24.4c4.6 24.2 25.9 42.5 51.5 42.5s46.9-18.3 51.5-42.5l24.4 24.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L373.3 340.7l0-9.2c13.4-1.6 25.9-5.6 37.3-11.5l46.3 71.2c6 8.1 15.5 12.8 25.6 12.8l5.3 0c17.7 0 32-14.3 32-32 0-9.1-4.1-17.6-11.5-23.3l-65.3-49c8-9.6 14.5-20.5 19.1-32.3l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-50.6 0c-.7-12.5-3.5-24.4-8-35.4l46.3-46.3c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-33.2 33.2c-15.8-17-37-28.9-60.5-33.4L320 64c0-17.7-14.3-32-32-32l-32 0z'/></svg>") no-repeat center / contain;
+      vertical-align: -0.125em;
+    }
 
     /* 60-30-10 enforcement (shared with homepage) */
     a.text-brand-green.text-sm.font-semibold { color: rgba(var(--ink), var(--emphasis-high)) !important; }
