@@ -222,42 +222,286 @@ const html = `<!DOCTYPE html>
       @keyframes ringRotate { to { transform: rotate(1turn); } }
 
       /* ---------------------------------------------------------------------------
+         ANIMATED TOP MENU
+         --------------------------------------------------------------------------- */
+
+      /* Header entrance — slides down on page load */
+      #site-header {
+        transform: translateY(-100%);
+        opacity: 0;
+        animation: navDrop .7s cubic-bezier(.22,1,.36,1) .1s forwards;
+        transition: height .35s cubic-bezier(.22,1,.36,1),
+                    background-color .35s ease,
+                    box-shadow .35s ease,
+                    backdrop-filter .35s ease;
+      }
+      @keyframes navDrop {
+        to { transform: translateY(0); opacity: 1; }
+      }
+
+      /* Scroll-aware shrink: when window.scrollY > 8 we toggle .nav-scrolled */
+      #site-header.nav-scrolled {
+        background-color: rgba(255,255,255,.96);
+        backdrop-filter: saturate(180%) blur(14px);
+        -webkit-backdrop-filter: saturate(180%) blur(14px);
+        box-shadow: 0 4px 20px -8px rgba(15,26,48,.18);
+      }
+      #site-header.nav-scrolled .nav-inner { height: 3.5rem; }
+      #site-header.nav-scrolled .nav-logo { transform: scale(.92); }
+
+      .nav-inner { transition: height .35s cubic-bezier(.22,1,.36,1); }
+
+      /* Logo — gentle hover lift + tiny tilt */
+      .nav-logo {
+        transition: transform .45s cubic-bezier(.34,1.56,.64,1), filter .35s ease;
+        transform-origin: left center;
+        will-change: transform;
+      }
+      .nav-logo:hover { transform: scale(1.04) rotate(-1.5deg); filter: drop-shadow(0 4px 12px rgba(6,113,51,.25)); }
+      .nav-logo:active { transform: scale(.98) rotate(0); }
+
+      /* Stagger entrance for nav items */
+      .nav-item {
+        opacity: 0;
+        transform: translateY(-8px);
+        animation: navItemIn .55s cubic-bezier(.22,1,.36,1) forwards;
+      }
+      .nav-item:nth-child(1) { animation-delay: .35s; }
+      .nav-item:nth-child(2) { animation-delay: .42s; }
+      .nav-item:nth-child(3) { animation-delay: .49s; }
+      .nav-item:nth-child(4) { animation-delay: .56s; }
+      .nav-item:nth-child(5) { animation-delay: .63s; }
+      @keyframes navItemIn {
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Animated underline on hover (left-to-right sweep) */
+      .nav-link {
+        position: relative;
+        padding: .35rem .15rem;
+        transition: color .25s ease;
+      }
+      .nav-link::before,
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0; right: 0;
+        bottom: -2px;
+        height: 2px;
+        border-radius: 2px;
+        background: linear-gradient(90deg, #067133, #3CA862);
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform .45s cubic-bezier(.65,.05,.36,1);
+      }
+      .nav-link::after { filter: blur(6px); opacity: .6; }
+      .nav-link:hover,
+      .nav-link:focus-visible { color: #067133; }
+      .nav-link:hover::before,
+      .nav-link:hover::after,
+      .nav-link:focus-visible::before,
+      .nav-link:focus-visible::after { transform: scaleX(1); }
+
+      /* Active section gets persistent underline + bold color */
+      .nav-link.active { color: #067133; }
+      .nav-link.active::before { transform: scaleX(1); }
+
+      /* Tiny dot floats above an active link */
+      .nav-link.active::before {
+        box-shadow: 0 0 0 3px rgba(6,113,51,.12);
+      }
+
+      /* Phone link — icon bounce + colour pulse on hover */
+      .nav-phone {
+        position: relative;
+        transition: color .25s ease, transform .35s cubic-bezier(.34,1.56,.64,1);
+      }
+      .nav-phone:hover { color: #067133; }
+      .nav-phone .nav-phone-icon {
+        display: inline-flex;
+        transition: transform .55s cubic-bezier(.34,1.56,.64,1);
+      }
+      .nav-phone:hover .nav-phone-icon { transform: rotate(-18deg) scale(1.15); }
+      .nav-phone::after {
+        content: '';
+        position: absolute;
+        left: 26px; top: 50%;
+        width: 8px; height: 8px;
+        border-radius: 999px;
+        background: rgba(6,113,51,.45);
+        transform: translate(-50%, -50%) scale(0);
+        animation: phoneRing 2.2s ease-out infinite;
+        pointer-events: none;
+      }
+      @keyframes phoneRing {
+        0% { transform: translate(-50%,-50%) scale(0); opacity: .7; }
+        60% { transform: translate(-50%,-50%) scale(2.6); opacity: 0; }
+        100% { transform: translate(-50%,-50%) scale(2.6); opacity: 0; }
+      }
+
+      /* Header CTA — shimmer sweep + arrow glide */
+      .nav-cta {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        transition: transform .35s cubic-bezier(.34,1.56,.64,1),
+                    box-shadow .35s ease,
+                    background-color .25s ease;
+      }
+      .nav-cta::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,.55) 50%, transparent 75%);
+        transform: translateX(-120%) skewX(-15deg);
+        transition: transform .9s cubic-bezier(.22,1,.36,1);
+        pointer-events: none;
+      }
+      .nav-cta:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 14px 30px -10px rgba(244,162,97,.65);
+      }
+      .nav-cta:hover::before { transform: translateX(120%) skewX(-15deg); }
+      .nav-cta:active { transform: translateY(0) scale(.97); }
+      .nav-cta .nav-cta-arrow {
+        display: inline-flex;
+        transition: transform .35s cubic-bezier(.22,1,.36,1);
+      }
+      .nav-cta:hover .nav-cta-arrow { transform: translateX(4px); }
+
+      /* CTA pulsing ring (Hover.css-style ambient glow) */
+      .nav-cta {
+        animation: ctaPulse 2.4s ease-in-out infinite;
+      }
+      @keyframes ctaPulse {
+        0%, 100% { box-shadow: 0 6px 18px -6px rgba(244,162,97,.45), 0 0 0 0 rgba(244,162,97,.45); }
+        50% { box-shadow: 0 6px 18px -6px rgba(244,162,97,.45), 0 0 0 10px rgba(244,162,97,0); }
+      }
+      .nav-cta:hover { animation: none; }
+
+      /* Mobile hamburger */
+      .nav-burger {
+        position: relative;
+        width: 28px; height: 22px;
+        display: flex; flex-direction: column; justify-content: space-between;
+        background: transparent; border: 0; padding: 0; cursor: pointer;
+      }
+      .nav-burger span {
+        display: block;
+        height: 2.5px;
+        background: #1B2A4A;
+        border-radius: 4px;
+        transform-origin: center;
+        transition: transform .4s cubic-bezier(.65,.05,.36,1),
+                    opacity .25s ease,
+                    background-color .25s ease,
+                    width .35s ease;
+      }
+      .nav-burger span:nth-child(1) { width: 100%; }
+      .nav-burger span:nth-child(2) { width: 75%; align-self: flex-end; }
+      .nav-burger span:nth-child(3) { width: 100%; }
+      .nav-burger:hover span { background: #067133; }
+      .nav-burger:hover span:nth-child(2) { width: 100%; }
+
+      .nav-burger.open span:nth-child(1) {
+        transform: translateY(9.75px) rotate(45deg);
+      }
+      .nav-burger.open span:nth-child(2) {
+        opacity: 0; transform: translateX(20px);
+      }
+      .nav-burger.open span:nth-child(3) {
+        transform: translateY(-9.75px) rotate(-45deg);
+        width: 100%;
+      }
+
+      /* Mobile dropdown panel */
+      #nav-mobile {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height .45s cubic-bezier(.22,1,.36,1),
+                    opacity .35s ease,
+                    padding .35s ease;
+      }
+      #nav-mobile.open {
+        max-height: 420px;
+        opacity: 1;
+      }
+      #nav-mobile .nav-mobile-item {
+        opacity: 0;
+        transform: translateX(-12px);
+        transition: opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1);
+      }
+      #nav-mobile.open .nav-mobile-item { opacity: 1; transform: translateX(0); }
+      #nav-mobile.open .nav-mobile-item:nth-child(1) { transition-delay: .08s; }
+      #nav-mobile.open .nav-mobile-item:nth-child(2) { transition-delay: .14s; }
+      #nav-mobile.open .nav-mobile-item:nth-child(3) { transition-delay: .20s; }
+      #nav-mobile.open .nav-mobile-item:nth-child(4) { transition-delay: .26s; }
+      #nav-mobile.open .nav-mobile-item:nth-child(5) { transition-delay: .32s; }
+      #nav-mobile.open .nav-mobile-item:nth-child(6) { transition-delay: .38s; }
+
+      /* ---------------------------------------------------------------------------
          Accessibility — respect reduced motion
          --------------------------------------------------------------------------- */
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; }
+        #site-header { transform: none; opacity: 1; animation: none; }
+        .nav-item { opacity: 1; transform: none; animation: none; }
+        .nav-cta { animation: none; }
+        .nav-phone::after { animation: none; opacity: 0; }
       }
     </style>
 </head>
 <body class="bg-white antialiased">
 
-  <!-- ============== STICKY NAV ============== -->
+  <!-- ============== STICKY NAV (animated) ============== -->
   <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur border-b border-slate-100">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3" aria-label="Castle Exterminators home">
+    <nav class="nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="nav-logo flex items-center gap-3" aria-label="Castle Exterminators home">
         <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-10 sm:h-11 w-auto" />
         <span class="sr-only">Castle Exterminators</span>
       </a>
 
       <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
-        <li><a href="#services" class="hover:text-brand-green transition">Services</a></li>
-        <li><a href="#why-us" class="hover:text-brand-green transition">Why Us</a></li>
-        <li><a href="#process" class="hover:text-brand-green transition">Process</a></li>
-        <li><a href="#reviews" class="hover:text-brand-green transition">Reviews</a></li>
-        <li><a href="#faq" class="hover:text-brand-green transition">FAQ</a></li>
+        <li class="nav-item"><a href="#services" class="nav-link" data-section="services">Services</a></li>
+        <li class="nav-item"><a href="#why-us" class="nav-link" data-section="why-us">Why Us</a></li>
+        <li class="nav-item"><a href="#process" class="nav-link" data-section="process">Process</a></li>
+        <li class="nav-item"><a href="#reviews" class="nav-link" data-section="reviews">Reviews</a></li>
+        <li class="nav-item"><a href="#faq" class="nav-link" data-section="faq">FAQ</a></li>
       </ul>
 
       <div class="flex items-center gap-3">
-        <a href="tel:+19196066866" class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy hover:text-brand-green">
-          <i class="fa-solid fa-phone-volume text-brand-green"></i>
+        <a href="tel:+19196066866" class="nav-phone hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
+          <span class="nav-phone-icon text-brand-green"><i class="fa-solid fa-phone-volume"></i></span>
           <span>(919) 606-6866</span>
         </a>
-        <a href="#contact" class="cta-elastic inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold text-sm px-4 py-2.5 rounded-lg shadow-cta">
-          Free Inspection
-          <i class="fa-solid fa-arrow-right text-xs"></i>
+        <a href="#contact" class="nav-cta inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold text-sm px-4 py-2.5 rounded-lg shadow-cta">
+          <span>Free Inspection</span>
+          <span class="nav-cta-arrow"><i class="fa-solid fa-arrow-right text-xs"></i></span>
         </a>
+        <button type="button" id="nav-burger" class="nav-burger md:hidden ml-1" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </nav>
+
+    <!-- Mobile dropdown -->
+    <div id="nav-mobile" class="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur">
+      <ul class="px-4 sm:px-6 py-3 space-y-1 text-sm font-semibold text-slate-700">
+        <li class="nav-mobile-item"><a href="#services" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Services</a></li>
+        <li class="nav-mobile-item"><a href="#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
+        <li class="nav-mobile-item"><a href="#process" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Process</a></li>
+        <li class="nav-mobile-item"><a href="#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
+        <li class="nav-mobile-item"><a href="#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
+        <li class="nav-mobile-item pt-2">
+          <a href="tel:+19196066866" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold">
+            <i class="fa-solid fa-phone-volume"></i> (919) 606-6866
+          </a>
+        </li>
+      </ul>
+    </div>
   </header>
 
   <main id="top" class="pt-16">
@@ -880,11 +1124,53 @@ const html = `<!DOCTYPE html>
     }, { threshold: 0.4 });
     document.querySelectorAll('.stat-card').forEach(el => statIO.observe(el));
 
-    // Subtle header shadow on scroll
+    // Animated header — scroll-aware shrink + shadow
     const header = document.getElementById('site-header');
-    const onScroll = () => header.classList.toggle('shadow-card', window.scrollY > 8);
+    const onScroll = () => {
+      const scrolled = window.scrollY > 8;
+      header.classList.toggle('nav-scrolled', scrolled);
+      header.classList.toggle('shadow-card', scrolled);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // Mobile menu toggle (hamburger ↔ X)
+    const burger = document.getElementById('nav-burger');
+    const mobile = document.getElementById('nav-mobile');
+    if (burger && mobile) {
+      const closeMenu = () => {
+        burger.classList.remove('open');
+        mobile.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      };
+      burger.addEventListener('click', () => {
+        const isOpen = burger.classList.toggle('open');
+        mobile.classList.toggle('open', isOpen);
+        burger.setAttribute('aria-expanded', String(isOpen));
+      });
+      // Close after tapping any link inside the mobile panel
+      mobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+      // Close on resize past breakpoint
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
+
+    // Active-section nav highlighting via IntersectionObserver
+    const navLinks = document.querySelectorAll('.nav-link[data-section]');
+    const sectionIds = Array.from(navLinks).map(l => l.getAttribute('data-section'));
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    if (sections.length) {
+      const setActive = (id) => {
+        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('data-section') === id));
+      };
+      const sectionIO = new IntersectionObserver((entries) => {
+        // Pick the entry closest to the top that is intersecting
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (visible) setActive(visible.target.id);
+      }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+      sections.forEach(s => sectionIO.observe(s));
+    }
 
     // Open the GorillaDesk contact form when our inline CTA is clicked.
     // The official GorillaDesk script (loaded below) creates a hidden popup iframe with the
@@ -1169,34 +1455,155 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
       background:
         linear-gradient(135deg, rgba(6,113,51,.92) 0%, rgba(15,26,48,.75) 60%, rgba(15,26,48,.45) 100%);
     }
+
+    /* ---- Animated top menu (same as homepage) ---- */
+    #site-header { transform: translateY(-100%); opacity: 0; animation: navDrop .7s cubic-bezier(.22,1,.36,1) .1s forwards;
+      transition: height .35s cubic-bezier(.22,1,.36,1), background-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease; }
+    @keyframes navDrop { to { transform: translateY(0); opacity: 1; } }
+    #site-header.nav-scrolled { background-color: rgba(255,255,255,.96); backdrop-filter: saturate(180%) blur(14px); box-shadow: 0 4px 20px -8px rgba(15,26,48,.18); }
+    #site-header.nav-scrolled .nav-inner { height: 3.5rem; }
+    #site-header.nav-scrolled .nav-logo { transform: scale(.92); }
+    .nav-inner { transition: height .35s cubic-bezier(.22,1,.36,1); }
+
+    .nav-logo { transition: transform .45s cubic-bezier(.34,1.56,.64,1), filter .35s ease; transform-origin: left center; }
+    .nav-logo:hover { transform: scale(1.04) rotate(-1.5deg); filter: drop-shadow(0 4px 12px rgba(6,113,51,.25)); }
+    .nav-logo:active { transform: scale(.98) rotate(0); }
+
+    .nav-item { opacity: 0; transform: translateY(-8px); animation: navItemIn .55s cubic-bezier(.22,1,.36,1) forwards; }
+    .nav-item:nth-child(1) { animation-delay: .35s; }
+    .nav-item:nth-child(2) { animation-delay: .42s; }
+    .nav-item:nth-child(3) { animation-delay: .49s; }
+    .nav-item:nth-child(4) { animation-delay: .56s; }
+    .nav-item:nth-child(5) { animation-delay: .63s; }
+    @keyframes navItemIn { to { opacity: 1; transform: translateY(0); } }
+
+    .nav-link { position: relative; padding: .35rem .15rem; transition: color .25s ease; }
+    .nav-link::before, .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, #067133, #3CA862); transform: scaleX(0); transform-origin: left center;
+      transition: transform .45s cubic-bezier(.65,.05,.36,1); }
+    .nav-link::after { filter: blur(6px); opacity: .6; }
+    .nav-link:hover, .nav-link:focus-visible { color: #067133; }
+    .nav-link:hover::before, .nav-link:hover::after, .nav-link:focus-visible::before, .nav-link:focus-visible::after { transform: scaleX(1); }
+
+    .nav-phone { position: relative; transition: color .25s ease; }
+    .nav-phone:hover { color: #067133; }
+    .nav-phone-icon { display: inline-flex; transition: transform .55s cubic-bezier(.34,1.56,.64,1); }
+    .nav-phone:hover .nav-phone-icon { transform: rotate(-18deg) scale(1.15); }
+
+    .nav-cta { position: relative; overflow: hidden; isolation: isolate;
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease, background-color .25s ease;
+      animation: ctaPulse 2.4s ease-in-out infinite; }
+    .nav-cta::before { content: ''; position: absolute; inset: 0;
+      background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,.55) 50%, transparent 75%);
+      transform: translateX(-120%) skewX(-15deg); transition: transform .9s cubic-bezier(.22,1,.36,1); pointer-events: none; }
+    .nav-cta:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 14px 30px -10px rgba(244,162,97,.65); animation: none; }
+    .nav-cta:hover::before { transform: translateX(120%) skewX(-15deg); }
+    .nav-cta:active { transform: translateY(0) scale(.97); }
+    .nav-cta-arrow { display: inline-flex; transition: transform .35s cubic-bezier(.22,1,.36,1); }
+    .nav-cta:hover .nav-cta-arrow { transform: translateX(4px); }
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 6px 18px -6px rgba(244,162,97,.45), 0 0 0 0 rgba(244,162,97,.45); }
+      50% { box-shadow: 0 6px 18px -6px rgba(244,162,97,.45), 0 0 0 10px rgba(244,162,97,0); }
+    }
+
+    .nav-burger { position: relative; width: 28px; height: 22px; display: flex; flex-direction: column; justify-content: space-between;
+      background: transparent; border: 0; padding: 0; cursor: pointer; }
+    .nav-burger span { display: block; height: 2.5px; background: #1B2A4A; border-radius: 4px; transform-origin: center;
+      transition: transform .4s cubic-bezier(.65,.05,.36,1), opacity .25s ease, background-color .25s ease, width .35s ease; }
+    .nav-burger span:nth-child(1) { width: 100%; }
+    .nav-burger span:nth-child(2) { width: 75%; align-self: flex-end; }
+    .nav-burger span:nth-child(3) { width: 100%; }
+    .nav-burger:hover span { background: #067133; }
+    .nav-burger:hover span:nth-child(2) { width: 100%; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(9.75px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: translateX(20px); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-9.75px) rotate(-45deg); width: 100%; }
+
+    #nav-mobile { max-height: 0; opacity: 0; overflow: hidden;
+      transition: max-height .45s cubic-bezier(.22,1,.36,1), opacity .35s ease, padding .35s ease; }
+    #nav-mobile.open { max-height: 420px; opacity: 1; }
+    #nav-mobile .nav-mobile-item { opacity: 0; transform: translateX(-12px);
+      transition: opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1); }
+    #nav-mobile.open .nav-mobile-item { opacity: 1; transform: translateX(0); }
+    #nav-mobile.open .nav-mobile-item:nth-child(1) { transition-delay: .08s; }
+    #nav-mobile.open .nav-mobile-item:nth-child(2) { transition-delay: .14s; }
+    #nav-mobile.open .nav-mobile-item:nth-child(3) { transition-delay: .20s; }
+    #nav-mobile.open .nav-mobile-item:nth-child(4) { transition-delay: .26s; }
+    #nav-mobile.open .nav-mobile-item:nth-child(5) { transition-delay: .32s; }
+    #nav-mobile.open .nav-mobile-item:nth-child(6) { transition-delay: .38s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; }
+      #site-header { transform: none; opacity: 1; animation: none; }
+      .nav-item { opacity: 1; transform: none; animation: none; }
+      .nav-cta { animation: none; }
+    }
   </style>
 </head>
 <body class="bg-white antialiased">
 
-  <!-- NAV -->
-  <header class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3" aria-label="Castle Exterminators home">
+  <!-- NAV (animated) -->
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="nav-logo flex items-center gap-3" aria-label="Castle Exterminators home">
         <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-10 sm:h-11 w-auto" />
       </a>
       <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
-        <li><a href="/#services" class="hover:text-brand-green transition">Services</a></li>
-        <li><a href="/#why-us" class="hover:text-brand-green transition">Why Us</a></li>
-        <li><a href="/#process" class="hover:text-brand-green transition">Process</a></li>
-        <li><a href="/#reviews" class="hover:text-brand-green transition">Reviews</a></li>
-        <li><a href="/#faq" class="hover:text-brand-green transition">FAQ</a></li>
+        <li class="nav-item"><a href="/#services" class="nav-link">Services</a></li>
+        <li class="nav-item"><a href="/#why-us" class="nav-link">Why Us</a></li>
+        <li class="nav-item"><a href="/#process" class="nav-link">Process</a></li>
+        <li class="nav-item"><a href="/#reviews" class="nav-link">Reviews</a></li>
+        <li class="nav-item"><a href="/#faq" class="nav-link">FAQ</a></li>
       </ul>
       <div class="flex items-center gap-3">
-        <a href="tel:+19196066866" class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy hover:text-brand-green">
-          <i class="fa-solid fa-phone-volume text-brand-green"></i>
+        <a href="tel:+19196066866" class="nav-phone hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
+          <span class="nav-phone-icon text-brand-green"><i class="fa-solid fa-phone-volume"></i></span>
           <span>(919) 606-6866</span>
         </a>
-        <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white text-sm font-bold px-4 py-2 rounded-lg transition shadow-card">
-          Free Inspection
+        <a href="/#contact" class="nav-cta inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white text-sm font-bold px-4 py-2 rounded-lg shadow-card">
+          <span>Free Inspection</span>
+          <span class="nav-cta-arrow"><i class="fa-solid fa-arrow-right text-xs"></i></span>
         </a>
+        <button type="button" id="nav-burger" class="nav-burger md:hidden ml-1" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </nav>
+    <div id="nav-mobile" class="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur">
+      <ul class="px-4 sm:px-6 py-3 space-y-1 text-sm font-semibold text-slate-700">
+        <li class="nav-mobile-item"><a href="/#services" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Services</a></li>
+        <li class="nav-mobile-item"><a href="/#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
+        <li class="nav-mobile-item"><a href="/#process" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Process</a></li>
+        <li class="nav-mobile-item"><a href="/#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
+        <li class="nav-mobile-item"><a href="/#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
+        <li class="nav-mobile-item pt-2">
+          <a href="tel:+19196066866" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold">
+            <i class="fa-solid fa-phone-volume"></i> (919) 606-6866
+          </a>
+        </li>
+      </ul>
+    </div>
   </header>
+
+  <script>
+    (function(){
+      var header = document.getElementById('site-header');
+      var onScroll = function(){ header.classList.toggle('nav-scrolled', window.scrollY > 8); };
+      window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+      var burger = document.getElementById('nav-burger');
+      var mobile = document.getElementById('nav-mobile');
+      if (burger && mobile) {
+        var close = function(){ burger.classList.remove('open'); mobile.classList.remove('open'); burger.setAttribute('aria-expanded','false'); };
+        burger.addEventListener('click', function(){
+          var open = burger.classList.toggle('open');
+          mobile.classList.toggle('open', open);
+          burger.setAttribute('aria-expanded', String(open));
+        });
+        mobile.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+        window.addEventListener('resize', function(){ if (window.innerWidth >= 768) close(); });
+      }
+    })();
+  </script>
 
   <!-- HERO -->
   <section class="relative pt-16">
