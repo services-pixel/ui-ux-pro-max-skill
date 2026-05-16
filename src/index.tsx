@@ -72,7 +72,7 @@ const html = `<!DOCTYPE html>
       ],
       "openingHoursSpecification": [{
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
         "opens": "08:00",
         "closes": "17:00"
       }],
@@ -1336,7 +1336,7 @@ const html = `<!DOCTYPE html>
               <h3 class="font-bold text-lg pr-4">How fast can you come out to my Durham home?</h3>
               <span class="chev w-9 h-9 rounded-full bg-brand-green/10 text-brand-green grid place-items-center transition-transform"><i class="fa-solid fa-chevron-down text-sm"></i></span>
             </summary>
-            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">For urgent infestations we do our best to offer same-day service in the Durham area if you call before noon at <a href="tel:+19196066866" class="text-brand-green font-bold">(919) 606-6866</a>. Otherwise we'll schedule your free inspection within 24–48 hours, including evening and Saturday slots.</p></div>
+            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">For urgent infestations we do our best to offer same-day service in the Durham area if you call before noon at <a href="tel:+19196066866" class="text-brand-green font-bold">(919) 606-6866</a>. Otherwise we'll schedule your free inspection within 24–48 hours, including evening slots.</p></div>
           </details>
 
           <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition">
@@ -1384,7 +1384,7 @@ const html = `<!DOCTYPE html>
             "name": "How fast can you come out to my Durham home?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "For urgent infestations we do our best to offer same-day service in the Durham area if you call before noon at (919) 606-6866. Otherwise we'll schedule your free inspection within 24–48 hours, including evening and Saturday slots."
+              "text": "For urgent infestations we do our best to offer same-day service in the Durham area if you call before noon at (919) 606-6866. Otherwise we'll schedule your free inspection within 24–48 hours, including evening slots."
             }
           },
           {
@@ -1452,7 +1452,7 @@ const html = `<!DOCTYPE html>
               <span class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center text-lg"><i class="fa-solid fa-clock"></i></span>
               <div>
                 <p class="text-xs text-slate-500 font-semibold uppercase tracking-wide">Hours</p>
-                <p class="font-bold text-brand-navy text-lg">Mon–Sat • 8am – 5pm</p>
+                <p class="font-bold text-brand-navy text-lg">Mon–Fri • 8am – 5pm</p>
               </div>
             </div>
           </div>
@@ -1547,7 +1547,7 @@ const html = `<!DOCTYPE html>
             <li><a href="tel:+19196066866" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-phone-volume text-brand-green-light"></i> (919) 606-6866</a></li>
             <li><a href="mailto:services@castleexterminators.co" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-green-light"></i> services@castleexterminators.co</a></li>
             <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-green-light"></i> Durham, NC</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-brand-green-light"></i> Mon–Sat 8am–5pm</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-brand-green-light"></i> Mon–Fri 8am–5pm</li>
           </ul>
         </div>
       </div>
