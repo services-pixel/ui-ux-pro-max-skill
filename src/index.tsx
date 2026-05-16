@@ -9,7 +9,7 @@ const html = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Castle Exterminators | Trusted Pest Control in Durham, NC | Free Inspection</title>
     <meta name="description" content="Castle Exterminators — family-owned pest control in Durham, NC. We protect homes from termites, ants, roaches, mice, mosquitoes, bed bugs & more with eco-friendly, family-safe treatments. Free inspection — call (919) 606-6866.">
-    <meta name="theme-color" content="#067133">
+    <meta name="theme-color" content="#1F6F4A">
     <link rel="canonical" href="https://www.castleexterminators.co/">
 
     <!-- Open Graph -->
@@ -24,28 +24,53 @@ const html = `<!DOCTYPE html>
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+      // NATURE / ECO palette — deep forest emerald + warm sand + terracotta CTA + ink charcoal
+      // Inspired by Coolors / Happy Hues / Khroma nature palettes
       tailwind.config = {
         theme: {
           extend: {
             colors: {
               brand: {
-                green: '#067133',
-                'green-dark': '#045724',
-                'green-light': '#3CA862',
-                navy: '#1B2A4A',
-                'navy-dark': '#0F1A30',
-                orange: '#F4A261',
-                'orange-dark': '#E08A3C',
-                cream: '#FAF7F2',
+                // Primary trust color — deep forest emerald (replaces #067133)
+                green:        '#1F6F4A',
+                'green-dark': '#13502F',
+                'green-light':'#3FA372',
+                'green-mist': '#D7EBDF',  // subtle wash for backgrounds
+
+                // Replaces "navy" — deep charcoal-ink for serious typography
+                navy:        '#1E2A24',   // mossy ink
+                'navy-dark': '#0E1612',
+
+                // CTA — warm terracotta (replaces apricot orange)
+                orange:       '#C2663B',  // terracotta
+                'orange-dark':'#A0502C',
+                'orange-soft':'#F1C9A8',  // soft warm wash
+
+                // Cream + sand — warm earthy neutrals
+                cream: '#F7F2E7',   // warm parchment
+                sand:  '#EADFC7',   // deeper sand
+                bone:  '#FBF8F1',   // brightest, near-white
+
+                // Accent — pale leaf for tags & highlights
+                leaf:  '#A7C9A4',
               }
             },
             fontFamily: {
-              display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-              body: ['Inter', 'system-ui', 'sans-serif'],
+              // Fraunces serif for display headings (warm, organic, trust)
+              // Plus Jakarta Sans for body (clean modern)
+              display: ['"Fraunces"', '"Plus Jakarta Sans"', 'system-ui', 'serif'],
+              sans:    ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+              body:    ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
             },
             boxShadow: {
-              'card': '0 10px 30px -10px rgba(27,42,74,0.15)',
-              'cta': '0 12px 30px -8px rgba(244,162,97,0.55)',
+              'card':  '0 14px 36px -14px rgba(30,42,36,0.22)',
+              'card-hover': '0 22px 50px -16px rgba(30,42,36,0.30)',
+              'cta':   '0 14px 30px -8px rgba(194,102,59,0.45)',
+              'inset-leaf': 'inset 0 0 0 1px rgba(31,111,74,0.10)',
+            },
+            backgroundImage: {
+              // Subtle leaf hero-pattern (Hero Patterns style) — encoded SVG
+              'leaf-pattern': 'url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2780%27 height=%2780%27 viewBox=%270 0 80 80%27%3E%3Cg fill=%27%231F6F4A%27 fill-opacity=%270.06%27%3E%3Cpath d=%27M40 0c5 10 0 20-10 25 5 10 0 20-10 25C25 60 35 55 40 45c5 10 15 15 20 5-10-5-15-15-10-25-10-5-15-15-10-25z%27/%3E%3C/g%3E%3C/svg%3E")',
             }
           }
         }
@@ -55,25 +80,45 @@ const html = `<!DOCTYPE html>
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
 
     <style>
       html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-      body { font-family: 'Inter', system-ui, sans-serif; color: #1B2A4A; }
-      h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; letter-spacing: -0.02em; }
+      body {
+        font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+        color: #1E2A24;                /* ink */
+        background: #FBF8F1;           /* bone */
+        font-feature-settings: 'ss01', 'cv11';
+      }
+      /* Headings — Fraunces serif w/ optical sizing tuned for display */
+      h1, h2, h3 {
+        font-family: 'Fraunces', 'Plus Jakarta Sans', Georgia, serif;
+        letter-spacing: -0.015em;
+        font-variation-settings: "opsz" 144, "SOFT" 50;
+      }
+      h4, h5, h6 {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        letter-spacing: -0.01em;
+      }
+      .font-display {
+        font-family: 'Fraunces', 'Plus Jakarta Sans', Georgia, serif;
+        font-variation-settings: "opsz" 144, "SOFT" 50;
+      }
+
+      /* Decorative serif italic accent (for highlighted words inside headings) */
+      .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
 
       /* ---------------------------------------------------------------------------
-         HERO — animated gradient mesh (Haikei-style) + floating blob shapes
+         HERO — forest emerald gradient + Haikei organic blob shapes + grain
          --------------------------------------------------------------------------- */
-      /* Hero mesh tuned warmer to match Castle Exterminators' dusk/amber aesthetic */
       .hero-mesh {
         position: relative;
         background:
-          radial-gradient(900px 600px at 15% 20%, rgba(60,168,98,0.30) 0%, transparent 60%),
-          radial-gradient(700px 500px at 85% 75%, rgba(244,162,97,0.34) 0%, transparent 60%),
-          radial-gradient(600px 400px at 60% 40%, rgba(244,162,97,0.18) 0%, transparent 65%),
-          linear-gradient(135deg, #0F1A30 0%, #1B2A4A 45%, #045724 100%);
+          radial-gradient(900px 600px at 12% 18%, rgba(63,163,114,0.40) 0%, transparent 60%),
+          radial-gradient(700px 500px at 88% 78%, rgba(194,102,59,0.30) 0%, transparent 60%),
+          radial-gradient(600px 400px at 60% 35%, rgba(167,201,164,0.22) 0%, transparent 65%),
+          linear-gradient(135deg, #0E1612 0%, #1E2A24 40%, #13502F 100%);
         background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
         animation: meshShift 22s ease-in-out infinite alternate;
       }
@@ -81,13 +126,19 @@ const html = `<!DOCTYPE html>
         0%   { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; }
         100% { background-position: 100% 50%, 0% 0%, 30% 70%, 0% 0%; }
       }
+      /* Grain overlay (Grainy Gradients style) */
+      .hero-mesh::before {
+        content: ''; position: absolute; inset: 0; pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        opacity: .35; mix-blend-mode: overlay;
+      }
       .hero-blob {
-        position: absolute; border-radius: 50%; filter: blur(70px); opacity: .35; pointer-events: none;
+        position: absolute; border-radius: 50%; filter: blur(70px); opacity: .38; pointer-events: none;
         will-change: transform;
       }
-      .hero-blob.b1 { width: 320px; height: 320px; background: #3CA862; top: -80px; left: -60px; animation: floatA 14s ease-in-out infinite; }
-      .hero-blob.b2 { width: 380px; height: 380px; background: #F4A261; bottom: -120px; right: -80px; animation: floatB 18s ease-in-out infinite; }
-      .hero-blob.b3 { width: 220px; height: 220px; background: #F4A261; top: 30%; right: 20%; opacity: .22; animation: floatA 20s ease-in-out infinite reverse; }
+      .hero-blob.b1 { width: 320px; height: 320px; background: #3FA372; top: -80px; left: -60px; animation: floatA 14s ease-in-out infinite; }
+      .hero-blob.b2 { width: 380px; height: 380px; background: #C2663B; bottom: -120px; right: -80px; animation: floatB 18s ease-in-out infinite; }
+      .hero-blob.b3 { width: 220px; height: 220px; background: #A7C9A4; top: 30%; right: 20%; opacity: .28; animation: floatA 20s ease-in-out infinite reverse; }
       @keyframes floatA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,30px) scale(1.08); } }
       @keyframes floatB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px,-40px) scale(1.12); } }
 
@@ -118,7 +169,7 @@ const html = `<!DOCTYPE html>
       }
       .cta-elastic:hover::after { left: 130%; }
 
-      @keyframes softPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(244,162,97,.55); } 50% { box-shadow: 0 0 0 18px rgba(244,162,97,0); } }
+      @keyframes softPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(194,102,59,.55); } 50% { box-shadow: 0 0 0 18px rgba(194,102,59,0); } }
       .pulse { animation: softPulse 2.6s ease-out infinite; }
 
       /* ---------------------------------------------------------------------------
@@ -127,7 +178,7 @@ const html = `<!DOCTYPE html>
       .service-card { transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease, border-color .3s ease, background .3s ease; position: relative; }
       .service-card::after {
         content: ''; position: absolute; left: 10%; right: 10%; bottom: -8px; height: 18px;
-        background: radial-gradient(ellipse at center, rgba(27,42,74,.18), transparent 70%);
+        background: radial-gradient(ellipse at center, rgba(30,42,36,.22), transparent 70%);
         opacity: 0; transition: opacity .4s ease, transform .4s ease; transform: scale(.6);
       }
       .service-card:hover { transform: translateY(-8px); }
@@ -139,13 +190,15 @@ const html = `<!DOCTYPE html>
          WHY-US CARDS — soft neumorphism on hover (Neumorphism.io style)
          --------------------------------------------------------------------------- */
       .neumo-card {
-        background: #FAF7F2;
-        box-shadow: 8px 8px 20px rgba(174,170,160,.45), -8px -8px 20px #ffffff;
-        transition: box-shadow .35s ease, transform .35s ease;
+        background: #F7F2E7;
+        border: 1px solid rgba(31,111,74,0.08);
+        box-shadow: 10px 10px 24px rgba(180,170,148,.40), -8px -8px 22px #ffffff;
+        transition: box-shadow .35s ease, transform .35s ease, border-color .25s ease;
       }
       .neumo-card:hover {
-        box-shadow: inset 6px 6px 14px rgba(174,170,160,.4), inset -6px -6px 14px #ffffff;
+        box-shadow: inset 6px 6px 16px rgba(180,170,148,.35), inset -6px -6px 16px #ffffff;
         transform: translateY(-2px);
+        border-color: rgba(31,111,74,0.22);
       }
 
       /* ---------------------------------------------------------------------------
@@ -154,23 +207,29 @@ const html = `<!DOCTYPE html>
       .process-wrap { position: relative; }
       .process-line {
         position: absolute; left: 0; right: 0; top: 36px; height: 2px;
-        background: linear-gradient(90deg, transparent, #2D6A4F 15%, #F4A261 50%, #2D6A4F 85%, transparent);
+        background: linear-gradient(90deg, transparent, #1F6F4A 15%, #C2663B 50%, #1F6F4A 85%, transparent);
         transform-origin: left center; transform: scaleX(0); transition: transform 1.4s cubic-bezier(.22,1,.36,1) .2s;
         z-index: 0;
       }
       .process-line.in { transform: scaleX(1); }
       @media (max-width: 1023px) { .process-line { display: none; } }
       .process-step { position: relative; z-index: 1; transition: transform .35s ease, box-shadow .35s ease; }
-      .process-step:hover { transform: translateY(-4px); box-shadow: 0 14px 34px -12px rgba(27,42,74,.22); }
+      .process-step:hover { transform: translateY(-4px); box-shadow: 0 14px 34px -12px rgba(30,42,36,.22); }
 
       /* ---------------------------------------------------------------------------
          TESTIMONIALS — glassmorphism cards over animated mesh backdrop
          --------------------------------------------------------------------------- */
       .testi-mesh {
+        position: relative;
         background:
-          radial-gradient(700px 500px at 20% 30%, rgba(60,168,98,.22) 0%, transparent 60%),
-          radial-gradient(600px 500px at 80% 70%, rgba(244,162,97,.22) 0%, transparent 60%),
-          linear-gradient(135deg, #0F1A30 0%, #1B2A4A 100%);
+          radial-gradient(700px 500px at 20% 30%, rgba(63,163,114,.30) 0%, transparent 60%),
+          radial-gradient(600px 500px at 80% 70%, rgba(194,102,59,.22) 0%, transparent 60%),
+          linear-gradient(135deg, #0E1612 0%, #1E2A24 100%);
+      }
+      .testi-mesh::before {
+        content: ''; position: absolute; inset: 0; pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        opacity: .4; mix-blend-mode: overlay;
       }
       .glass {
         background: rgba(255,255,255,.07);
@@ -185,7 +244,7 @@ const html = `<!DOCTYPE html>
       /* ---------------------------------------------------------------------------
          FAQ — whirl-style accordion chevron spin
          --------------------------------------------------------------------------- */
-      details[open] summary .chev { transform: rotate(180deg); background-color: rgba(45,106,79,.18); }
+      details[open] summary .chev { transform: rotate(180deg); background-color: rgba(31,111,74,.18); }
       summary .chev { transition: transform .45s cubic-bezier(.34,1.56,.64,1), background-color .25s ease; }
       summary { list-style: none; cursor: pointer; }
       summary::-webkit-details-marker { display: none; }
@@ -207,7 +266,7 @@ const html = `<!DOCTYPE html>
          STAT COUNTERS
          --------------------------------------------------------------------------- */
       .stat-num { transition: color .3s ease; }
-      .stat-card:hover .stat-num { color: #1F4F3A; }
+      .stat-card:hover .stat-num { color: #13502F; }
 
       /* ---------------------------------------------------------------------------
          FORM CTA card — soft sheen sweep on hover
@@ -215,7 +274,7 @@ const html = `<!DOCTYPE html>
       #gorilladesk-contact-form { position: relative; overflow: hidden; }
       #gorilladesk-contact-form::before {
         content: ''; position: absolute; inset: -2px;
-        background: conic-gradient(from 0deg, transparent 0deg, rgba(45,106,79,.25) 60deg, transparent 120deg, transparent 240deg, rgba(244,162,97,.25) 300deg, transparent 360deg);
+        background: conic-gradient(from 0deg, transparent 0deg, rgba(31,111,74,.30) 60deg, transparent 120deg, transparent 240deg, rgba(194,102,59,.28) 300deg, transparent 360deg);
         animation: ringRotate 16s linear infinite; z-index: 0; opacity: .35;
       }
       #gorilladesk-contact-form > * { position: relative; z-index: 1; }
@@ -233,10 +292,10 @@ const html = `<!DOCTYPE html>
 
       /* Scroll-aware shadow + tint */
       #site-header.nav-scrolled {
-        background-color: rgba(255,255,255,.96);
+        background-color: rgba(251,248,241,.96);
         backdrop-filter: saturate(180%) blur(12px);
         -webkit-backdrop-filter: saturate(180%) blur(12px);
-        box-shadow: 0 4px 20px -8px rgba(15,26,48,.18);
+        box-shadow: 0 4px 20px -8px rgba(30,42,36,.18);
       }
 
       /* Top-level links — simple color + subtle underline on hover */
@@ -252,14 +311,14 @@ const html = `<!DOCTYPE html>
         bottom: -4px;
         height: 2px;
         border-radius: 2px;
-        background: #067133;
+        background: #1F6F4A;
         transform: scaleX(0);
         transform-origin: center;
         transition: transform .35s cubic-bezier(.65,.05,.36,1);
       }
       .nav-link:hover,
       .nav-link:focus-visible,
-      .nav-link.active { color: #067133; }
+      .nav-link.active { color: #1F6F4A; }
       .nav-link:hover::after,
       .nav-link:focus-visible::after,
       .nav-link.active::after { transform: scaleX(1); }
@@ -280,9 +339,9 @@ const html = `<!DOCTYPE html>
         position: absolute;
         left: 0; right: 0;
         top: 100%;
-        background: #fff;
-        border-top: 1px solid rgba(15,26,48,.06);
-        box-shadow: 0 22px 40px -18px rgba(15,26,48,.22);
+        background: #FBF8F1;
+        border-top: 1px solid rgba(31,111,74,.10);
+        box-shadow: 0 22px 40px -18px rgba(30,42,36,.22);
         transform: translateY(-12px);
         opacity: 0;
         visibility: hidden;
@@ -322,15 +381,15 @@ const html = `<!DOCTYPE html>
       .nav-service-card:nth-child(7) { transition-delay: .35s; }
 
       .nav-service-card:hover {
-        background: #FAF7F2;
-        border-color: rgba(6,113,51,.4);
+        background: #F7F2E7;
+        border-color: rgba(31,111,74,.4);
       }
       .nav-service-card .nav-service-icon {
         transition: transform .35s cubic-bezier(.34,1.56,.64,1),
                     background-color .25s ease, color .25s ease;
       }
       .nav-service-card:hover .nav-service-icon {
-        background: #067133;
+        background: #1F6F4A;
         color: #fff;
         transform: rotate(-6deg) scale(1.08);
       }
@@ -355,13 +414,13 @@ const html = `<!DOCTYPE html>
         display: block;
         width: 100%;
         height: 2.5px;
-        background: #1B2A4A;
+        background: #1E2A24;
         border-radius: 4px;
         transition: transform .35s cubic-bezier(.65,.05,.36,1),
                     opacity .25s ease,
                     background-color .25s ease;
       }
-      .nav-burger:hover span { background: #067133; }
+      .nav-burger:hover span { background: #1F6F4A; }
       .nav-burger.open span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
       .nav-burger.open span:nth-child(2) { opacity: 0; }
       .nav-burger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
@@ -402,10 +461,10 @@ const html = `<!DOCTYPE html>
       }
     </style>
 </head>
-<body class="bg-white antialiased">
+<body class="bg-brand-bone antialiased text-brand-navy">
 
   <!-- ============== STICKY NAV — slide-out Services mega dropdown ============== -->
-  <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur border-b border-slate-100">
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-brand-bone/85 backdrop-blur border-b border-brand-green/10">
     <nav class="nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative">
       <a href="/" class="nav-logo flex items-center gap-3" aria-label="Castle Exterminators home">
         <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-10 sm:h-11 w-auto" />
@@ -575,13 +634,14 @@ const html = `<!DOCTYPE html>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-7">
-          <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-6 backdrop-blur">
-            <span class="w-2 h-2 rounded-full bg-brand-green-light animate-pulse"></span>
+          <div class="inline-flex items-center gap-2 bg-white/10 border border-brand-leaf/40 text-brand-leaf text-xs font-semibold px-3 py-1.5 rounded-full mb-6 backdrop-blur">
+            <span class="w-2 h-2 rounded-full bg-brand-leaf animate-pulse"></span>
+            <i class="fa-solid fa-leaf text-[10px]"></i>
             Family-owned in Durham, NC • Eco-friendly & family-safe
           </div>
 
-          <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6">
-            Keep your <span class="text-brand-orange">castle</span><br>
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6" style="font-weight:700;">
+            Keep your <span class="serif-italic text-brand-orange-soft">castle</span><br>
             pest-free.
           </h1>
 
@@ -639,7 +699,7 @@ const html = `<!DOCTYPE html>
       <!-- Getwaves.io-style SVG wave divider transitioning into the next section -->
       <div class="wave-divider" aria-hidden="true">
         <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,32 C240,80 480,80 720,48 C960,16 1200,16 1440,48 L1440,80 L0,80 Z" fill="#FAF7F2"/>
+          <path d="M0,32 C240,80 480,80 720,48 C960,16 1200,16 1440,48 L1440,80 L0,80 Z" fill="#FBF8F1"/>
         </svg>
       </div>
     </section>
@@ -667,7 +727,10 @@ const html = `<!DOCTYPE html>
     </section>
 
     <!-- ============== SERVICES GRID ============== -->
-    <section id="services" class="py-20 lg:py-28">
+    <section id="services" class="py-20 lg:py-28 bg-brand-bone relative">
+      <!-- Subtle leaf pattern accent -->
+      <div class="absolute inset-0 bg-leaf-pattern opacity-60 pointer-events-none"></div>
+      <div class="relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto text-center mb-14 reveal">
           <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">What We Treat in Durham</p>
@@ -782,10 +845,14 @@ const html = `<!DOCTYPE html>
           </a>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- ============== WHY US ============== -->
-    <section id="why-us" class="py-20 lg:py-28 bg-brand-cream">
+    <section id="why-us" class="py-20 lg:py-28 bg-brand-cream relative overflow-hidden">
+      <span class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-brand-green-mist blur-3xl opacity-50 pointer-events-none" aria-hidden="true"></span>
+      <span class="absolute -bottom-40 -left-40 w-[28rem] h-[28rem] rounded-full bg-brand-orange-soft/40 blur-3xl opacity-50 pointer-events-none" aria-hidden="true"></span>
+      <div class="relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-12 gap-12 items-center">
           <div class="lg:col-span-5 reveal">
@@ -822,10 +889,11 @@ const html = `<!DOCTYPE html>
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- ============== PROCESS ============== -->
-    <section id="process" class="py-20 lg:py-28">
+    <section id="process" class="py-20 lg:py-28 bg-brand-bone">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto text-center mb-14 reveal">
           <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">How It Works</p>
@@ -921,7 +989,7 @@ const html = `<!DOCTYPE html>
     </section>
 
     <!-- ============== FAQ ============== -->
-    <section id="faq" class="py-20 lg:py-28">
+    <section id="faq" class="py-20 lg:py-28 bg-brand-sand/40">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12 reveal">
           <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">Common Questions</p>
@@ -973,7 +1041,7 @@ const html = `<!DOCTYPE html>
     </section>
 
     <!-- ============== CONTACT / FINAL CTA ============== -->
-    <section id="contact" class="py-20 lg:py-28 bg-gradient-to-b from-brand-cream to-white">
+    <section id="contact" class="py-20 lg:py-28 bg-gradient-to-b from-brand-cream via-brand-bone to-brand-bone">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 items-start">
 
         <!-- Left: messaging + contact info -->
@@ -1525,7 +1593,7 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${s.name} in Durham, NC | Castle Exterminators</title>
   <meta name="description" content="${s.tagline} Castle Exterminators — Durham's family-owned pest control. Free inspection, licensed & insured, 5.0 on Google & Yelp." />
-  <meta name="theme-color" content="#067133" />
+  <meta name="theme-color" content="#1F6F4A" />
   <link rel="icon" href="/static/castle-logo.png" />
   <meta property="og:title" content="${s.name} | Castle Exterminators Durham NC" />
   <meta property="og:description" content="${s.tagline}" />
@@ -1533,50 +1601,75 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
   <meta property="og:type" content="website" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script>
+    // Nature / Eco palette — must mirror homepage tokens
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { display: ['"Plus Jakarta Sans"', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+          fontFamily: {
+            display: ['"Fraunces"', '"Plus Jakarta Sans"', 'Georgia', 'serif'],
+            sans:    ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+          },
           colors: {
             brand: {
-              green: '#067133', 'green-dark': '#045724', 'green-light': '#3CA862',
-              navy: '#1B2A4A', 'navy-dark': '#0F1A30',
-              orange: '#F4A261', 'orange-dark': '#E08A3C',
-              cream: '#FAF7F2'
+              green:        '#1F6F4A',
+              'green-dark': '#13502F',
+              'green-light':'#3FA372',
+              'green-mist': '#D7EBDF',
+              navy:        '#1E2A24',
+              'navy-dark': '#0E1612',
+              orange:       '#C2663B',
+              'orange-dark':'#A0502C',
+              'orange-soft':'#F1C9A8',
+              cream: '#F7F2E7',
+              sand:  '#EADFC7',
+              bone:  '#FBF8F1',
+              leaf:  '#A7C9A4',
             }
           },
-          boxShadow: { card: '0 10px 30px -10px rgba(15,26,48,.15)' }
+          boxShadow: {
+            card:  '0 14px 36px -14px rgba(30,42,36,0.22)',
+            'card-hover': '0 22px 50px -16px rgba(30,42,36,0.30)',
+            cta:   '0 14px 30px -8px rgba(194,102,59,0.45)',
+          }
         }
       }
     }
   </script>
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: Inter, sans-serif; color: #1B2A4A; }
-    .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; color: #1E2A24; background: #FBF8F1; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.015em; font-variation-settings: "opsz" 144, "SOFT" 50; }
+    .font-display { font-family: 'Fraunces', 'Plus Jakarta Sans', Georgia, serif; font-variation-settings: "opsz" 144, "SOFT" 50; }
+    .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
     .hero-overlay {
       background:
-        linear-gradient(135deg, rgba(6,113,51,.92) 0%, rgba(15,26,48,.75) 60%, rgba(15,26,48,.45) 100%);
+        linear-gradient(135deg, rgba(31,111,74,.92) 0%, rgba(14,22,18,.78) 55%, rgba(14,22,18,.45) 100%);
+    }
+    /* Grain noise on hero */
+    .hero-grain::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: .35; mix-blend-mode: overlay;
     }
 
     /* ---- Top menu — minimal animations + Services slide-out dropdown (matches homepage) ---- */
     #site-header { transition: background-color .3s ease, box-shadow .3s ease, backdrop-filter .3s ease; }
-    #site-header.nav-scrolled { background-color: rgba(255,255,255,.96); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); box-shadow: 0 4px 20px -8px rgba(15,26,48,.18); }
+    #site-header.nav-scrolled { background-color: rgba(251,248,241,.96); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); box-shadow: 0 4px 20px -8px rgba(30,42,36,.18); }
 
     .nav-link { position: relative; padding: .35rem 0; transition: color .25s ease; }
     .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; border-radius: 2px;
-      background: #067133; transform: scaleX(0); transform-origin: center; transition: transform .35s cubic-bezier(.65,.05,.36,1); }
-    .nav-link:hover, .nav-link:focus-visible, .nav-link.active { color: #067133; }
+      background: #1F6F4A; transform: scaleX(0); transform-origin: center; transition: transform .35s cubic-bezier(.65,.05,.36,1); }
+    .nav-link:hover, .nav-link:focus-visible, .nav-link.active { color: #1F6F4A; }
     .nav-link:hover::after, .nav-link:focus-visible::after, .nav-link.active::after { transform: scaleX(1); }
 
     .nav-services { position: static; }
     .nav-services .nav-link i.fa-chevron-down { transition: transform .35s cubic-bezier(.22,1,.36,1); }
     .nav-services[data-open="true"] .nav-link i.fa-chevron-down { transform: rotate(180deg); }
 
-    #services-dropdown { position: absolute; left: 0; right: 0; top: 100%; background: #fff;
-      border-top: 1px solid rgba(15,26,48,.06); box-shadow: 0 22px 40px -18px rgba(15,26,48,.22);
+    #services-dropdown { position: absolute; left: 0; right: 0; top: 100%; background: #FBF8F1;
+      border-top: 1px solid rgba(31,111,74,.10); box-shadow: 0 22px 40px -18px rgba(30,42,36,.22);
       transform: translateY(-12px); opacity: 0; visibility: hidden; pointer-events: none;
       transition: transform .4s cubic-bezier(.22,1,.36,1), opacity .3s ease, visibility 0s linear .3s; }
     .nav-services[data-open="true"] #services-dropdown, #services-dropdown[data-open="true"] {
@@ -1593,17 +1686,17 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
     .nav-service-card:nth-child(5) { transition-delay: .25s; }
     .nav-service-card:nth-child(6) { transition-delay: .30s; }
     .nav-service-card:nth-child(7) { transition-delay: .35s; }
-    .nav-service-card:hover { background: #FAF7F2; border-color: rgba(6,113,51,.4); }
+    .nav-service-card:hover { background: #F7F2E7; border-color: rgba(31,111,74,.4); }
     .nav-service-icon { transition: transform .35s cubic-bezier(.34,1.56,.64,1), background-color .25s ease, color .25s ease; }
-    .nav-service-card:hover .nav-service-icon { background: #067133; color: #fff; transform: rotate(-6deg) scale(1.08); }
+    .nav-service-card:hover .nav-service-icon { background: #1F6F4A; color: #fff; transform: rotate(-6deg) scale(1.08); }
     .nav-service-arrow { transition: transform .3s cubic-bezier(.22,1,.36,1), opacity .25s ease; opacity: 0; transform: translateX(-4px); }
     .nav-service-card:hover .nav-service-arrow { opacity: 1; transform: translateX(0); }
 
     .nav-burger { position: relative; width: 26px; height: 20px; display: flex; flex-direction: column; justify-content: space-between;
       background: transparent; border: 0; padding: 0; cursor: pointer; }
-    .nav-burger span { display: block; width: 100%; height: 2.5px; background: #1B2A4A; border-radius: 4px;
+    .nav-burger span { display: block; width: 100%; height: 2.5px; background: #1E2A24; border-radius: 4px;
       transition: transform .35s cubic-bezier(.65,.05,.36,1), opacity .25s ease, background-color .25s ease; }
-    .nav-burger:hover span { background: #067133; }
+    .nav-burger:hover span { background: #1F6F4A; }
     .nav-burger.open span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
     .nav-burger.open span:nth-child(2) { opacity: 0; }
     .nav-burger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
@@ -1620,10 +1713,10 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
     }
   </style>
 </head>
-<body class="bg-white antialiased">
+<body class="bg-brand-bone antialiased text-brand-navy">
 
   <!-- NAV — slide-out Services mega dropdown (matches homepage) -->
-  <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-brand-bone/90 backdrop-blur border-b border-brand-green/10">
     <nav class="nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative">
       <a href="/" class="nav-logo flex items-center gap-3" aria-label="Castle Exterminators home">
         <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-10 sm:h-11 w-auto" />
@@ -1784,7 +1877,7 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
 
   <!-- HERO -->
   <section class="relative pt-16">
-    <div class="relative h-[42vh] min-h-[340px] max-h-[520px] overflow-hidden bg-brand-navy">
+    <div class="hero-grain relative h-[42vh] min-h-[340px] max-h-[520px] overflow-hidden bg-brand-navy-dark">
       <img src="${s.hero}" alt="${s.name}" class="absolute inset-0 w-full h-full object-cover opacity-60" />
       <div class="absolute inset-0 hero-overlay"></div>
       <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-10 text-white">

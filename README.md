@@ -161,7 +161,49 @@ pm2 delete webapp
 
 ## Deployment
 - **Platform**: Cloudflare Pages (configured via `wrangler.jsonc`)
-- **Build output**: `dist/_worker.js` (~83 kB)
+- **Build output**: `dist/_worker.js` (~154 kB)
 - **Status**: ❌ Not deployed to Cloudflare yet (sandbox preview only)
-- **Tech Stack**: Hono + TypeScript + Tailwind CSS (CDN) + GorillaDesk widget
+- **Tech Stack**: Hono + TypeScript + Tailwind CSS (CDN) + Fraunces serif + Plus Jakarta Sans + GorillaDesk widget
 - **Last Updated**: 2026-05-16
+
+## Recent design refresh — Nature / Eco direction
+Swapped the old corporate green + navy + apricot palette for a warmer,
+more earthy nature-led system inspired by Coolors / Happy Hues / Khroma.
+
+**Palette tokens** (`brand.*`):
+| Token | Hex | Use |
+|-------|------|-----|
+| `green` | `#1F6F4A` | Primary trust color (forest emerald) |
+| `green-dark` | `#13502F` | Pressed / hover states |
+| `green-light` | `#3FA372` | Hero blob, accents |
+| `green-mist` | `#D7EBDF` | Subtle background washes |
+| `navy` | `#1E2A24` | Body text (mossy ink) |
+| `navy-dark` | `#0E1612` | Deepest background |
+| `orange` | `#C2663B` | Terracotta CTA (replaces apricot) |
+| `orange-dark` | `#A0502C` | CTA hover |
+| `orange-soft` | `#F1C9A8` | Soft warm wash |
+| `cream` | `#F7F2E7` | Warm parchment section bg |
+| `sand` | `#EADFC7` | Deeper earthy neutral |
+| `bone` | `#FBF8F1` | Near-white page background |
+| `leaf` | `#A7C9A4` | Pale leaf accent for badges |
+
+**Typography**:
+- Display: `Fraunces` (variable serif, optical-sizing 144, SOFT axis 50)
+- Body: `Plus Jakarta Sans` (400 / 500 / 600 / 700 / 800)
+- `.serif-italic` helper for accenting words inline in headings
+
+**New visual touches**:
+- Hero now uses a forest-emerald → ink-charcoal gradient with grainy
+  fractal noise overlay (mix-blend-mode: overlay) for a "grainy
+  gradient" film texture.
+- Subtle SVG leaf pattern overlay on the Services section
+  (`bg-leaf-pattern` Tailwind utility, encoded inline).
+- Two large blurred radial accents on the "Why Us" section
+  (green-mist + orange-soft) for soft eco mood.
+- Section backgrounds now alternate `bone → cream → bone → sand/40`
+  for a calm, natural rhythm.
+- Neumo cards updated with warmer parchment + leaf-tinted border.
+- Testimonials mesh kept dark but recoloured to forest/terracotta and
+  got a matching grain overlay.
+- Pulse / sheen / dropdown / nav-underline all retuned to the new
+  emerald & terracotta tokens.
