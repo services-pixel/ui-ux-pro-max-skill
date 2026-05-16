@@ -872,12 +872,12 @@ const html = `<!DOCTYPE html>
           </div>
 
           <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6" style="font-weight:700;">
-            Keep your <span class="serif-italic text-brand-orange-soft">castle</span><br>
-            pest-free.
+            Protecting What <span class="serif-italic text-brand-orange-soft">Matters Most</span><br>
+            Your Home &amp; Family
           </h1>
 
           <p class="text-lg sm:text-xl text-slate-100/90 max-w-xl mb-8 leading-relaxed">
-            Castle Exterminators is Durham's trusted local pest control. Our certified technicians protect your family from termites, ants, roaches, mice, mosquitoes and more — with eco-friendly treatments safe for kids, pets, and our beautiful NC environment.
+            Protect your home from unwanted pests with Castle Exterminators, your trusted local pest control experts in Durham, NC. We provide effective, safe, and lasting solutions for a pest-free home.
           </p>
 
           <div class="flex flex-wrap gap-3 mb-10">
@@ -908,7 +908,7 @@ const html = `<!DOCTYPE html>
                 <i class="fa-solid fa-bolt-lightning"></i>
               </span>
               <div>
-                <p class="font-bold text-lg leading-tight">Free Durham quote in 60 seconds</p>
+                <p class="font-bold text-lg leading-tight">Book now</p>
                 <p class="text-slate-500 text-sm">We'll call you back within 2 business hours</p>
               </div>
             </div>
