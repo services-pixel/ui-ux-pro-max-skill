@@ -536,45 +536,50 @@ const html = `<!DOCTYPE html>
             </div>
             <p class="text-slate-600 mb-6">Fill out the form and we'll contact you within 2 business hours. No obligation, no pressure.</p>
 
-            <!-- GorillaDesk Inline Form (iframe embed) -->
-            <div id="gorilladesk-contact-form" class="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-50" style="min-height: 640px;">
-              <!-- Loading placeholder (shown until iframe paints) -->
-              <div id="gd-form-loading" class="absolute inset-0 grid place-items-center text-slate-500 text-sm">
-                <div class="flex flex-col items-center gap-3">
-                  <i class="fa-solid fa-circle-notch fa-spin text-2xl text-brand-green"></i>
-                  <span>Loading inspection form…</span>
-                </div>
-              </div>
-              <!--
-                NOTE on account_id:
-                The portal hex key "0d73a25092e5c1c9769a9f3255caa65a" is NOT what the iframe expects.
-                GorillaDesk's loader script resolves it to a numeric owner_id via a POST to
-                https://api-portal-v3.gorilladesk.com/company/settings — for this account that
-                returns account_id "2147" (business: Castle Exterminators).
-                If the business ever changes accounts, refresh this value by running:
-                  curl -X POST https://api-portal-v3.gorilladesk.com/company/settings \\
-                    -H "Content-Type: application/json" \\
-                    -d '{"account_id":"<hex-key-here>"}'
-                and copying the returned "account_id" into the URL below.
-              -->
-              <iframe
-                id="gd-form-iframe"
-                title="Request your free pest control inspection"
-                src="https://portal-embed-v3.gorilladesk.com/?screen=contact&account_id=2147&embed_form=true&embed_web_code=true&embed_form_type=portal"
-                loading="lazy"
-                allow="clipboard-write"
-                style="width:100%; height:640px; border:0; display:block; background:transparent;"
-                onload="(function(){var l=document.getElementById('gd-form-loading'); if(l) l.style.display='none';})()"
-              ></iframe>
-            </div>
+            <!--
+              GorillaDesk contact form integration:
+              The official GorillaDesk embed is a *floating button + popup* widget (it injects a
+              chat-bubble onto the page that opens an iframe form). It does NOT support being
+              rendered inline. So instead of trying to force it inline, we:
+                1. Load GorillaDesk's official loader script (further down at end of <body>)
+                   which creates two hidden elements: #gorilladesk-portal-button-contact
+                   (the floating chat bubble) and #gorilladesk-portal-widget-contact (the popup).
+                2. Render a beautiful inline "Open the inspection form" CTA right here, and on
+                   click we send the same postMessage the chat bubble sends, which makes the
+                   GorillaDesk popup slide open with the actual contact form inside.
 
-            <!-- Fallback: if iframe is blocked or doesn't load, give users a way to reach us -->
-            <noscript>
-              <p class="mt-4 text-sm text-slate-600">
-                The form requires JavaScript. Please call <a class="text-brand-green font-bold" href="tel:+1XXXXXXXXXX">(XXX) XXX-XXXX</a>
-                or email <a class="text-brand-green font-bold" href="mailto:info@yourcompany.com">info@yourcompany.com</a>.
+              This gives the visitor the same prominent inline call-to-action we designed, while
+              correctly using GorillaDesk's intended UX pattern (button → modal form).
+            -->
+            <div id="gorilladesk-contact-form" class="rounded-2xl border border-dashed border-brand-green/40 bg-gradient-to-br from-brand-green/5 to-brand-orange/10 p-8 sm:p-10 text-center">
+              <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-green text-white grid place-items-center text-2xl mb-4 shadow-card">
+                <i class="fa-solid fa-clipboard-check"></i>
+              </div>
+              <h4 class="font-display font-extrabold text-xl sm:text-2xl mb-2">Start your free inspection request</h4>
+              <p class="text-slate-600 mb-6 max-w-md mx-auto text-sm sm:text-base">
+                Click below to open the secure inspection form. It takes about 60 seconds — we'll get back to you within 2 business hours.
               </p>
-            </noscript>
+              <button
+                type="button"
+                id="open-gd-form"
+                class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold px-7 py-4 rounded-xl shadow-cta transition text-base"
+              >
+                <i class="fa-solid fa-pen-to-square"></i>
+                Open Inspection Form
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+
+              <div class="mt-6 grid sm:grid-cols-2 gap-3 max-w-md mx-auto text-left">
+                <a href="tel:+1XXXXXXXXXX" class="flex items-center gap-2 bg-white rounded-xl px-4 py-3 border border-slate-200 hover:border-brand-green/40 transition text-sm">
+                  <i class="fa-solid fa-phone-volume text-brand-green"></i>
+                  <span class="font-semibold text-brand-navy">Prefer to call?</span>
+                </a>
+                <a href="mailto:info@yourcompany.com" class="flex items-center gap-2 bg-white rounded-xl px-4 py-3 border border-slate-200 hover:border-brand-green/40 transition text-sm">
+                  <i class="fa-solid fa-envelope text-brand-green"></i>
+                  <span class="font-semibold text-brand-navy">Or email us</span>
+                </a>
+              </div>
+            </div>
 
             <p class="text-xs text-slate-500 mt-6 flex items-start gap-2">
               <i class="fa-solid fa-shield-halved text-brand-green mt-0.5"></i>
@@ -651,21 +656,38 @@ const html = `<!DOCTYPE html>
     const onScroll = () => header.classList.toggle('shadow-card', window.scrollY > 8);
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // Open the GorillaDesk contact form when our inline CTA is clicked.
+    // The official GorillaDesk script (loaded below) creates a hidden popup iframe with the
+    // form inside it. We trigger it by posting the same message its own chat bubble sends.
+    function openGorillaDeskForm() {
+      const widget = document.getElementById('gorilladesk-portal-widget-contact');
+      const btn = document.getElementById('open-gd-form');
+      if (!widget) {
+        // Script hasn't finished loading yet — try again in a moment.
+        if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Loading form…'; }
+        setTimeout(openGorillaDeskForm, 400);
+        return;
+      }
+      // Restore button label in case we changed it during a retry.
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Open Inspection Form <i class="fa-solid fa-arrow-right text-xs"></i>';
+      }
+      widget.style.setProperty('display', 'block', 'important');
+      try {
+        widget.contentWindow && widget.contentWindow.postMessage({ type: 'send-open-contact' }, '*');
+      } catch (e) { /* no-op */ }
+    }
+    const openBtn = document.getElementById('open-gd-form');
+    if (openBtn) openBtn.addEventListener('click', openGorillaDeskForm);
   </script>
 
   <!--
-    GorillaDesk integration notes:
-    -----------------------------
-    The provided contact.js script (https://portal-embed-v3.gorilladesk.com/js/contact/contact.js)
-    renders a *floating chat-bubble widget* attached to <body>, NOT an inline form into a target div.
-    Since we already have a strong inline form section, we embed GorillaDesk's contact form directly
-    as an iframe inside #gorilladesk-contact-form above. That uses the same backend and submits to
-    the same GorillaDesk account (account_id 0d73a25092e5c1c9769a9f3255caa65a).
-
-    If you ALSO want the floating chat bubble in addition to the inline form, uncomment the
-    snippet below — it will add a second contact button in the bottom-right corner.
+    GorillaDesk loader — creates a hidden popup iframe (#gorilladesk-portal-widget-contact)
+    plus a floating chat bubble (#gorilladesk-portal-button-contact). Our inline CTA button
+    above opens the same popup by posting a 'send-open-contact' message.
   -->
-  <!--
   <script type="text/javascript">
       var _gorilla = _gorilla || {};
       _gorilla.account_id = '0d73a25092e5c1c9769a9f3255caa65a';
@@ -679,12 +701,11 @@ const html = `<!DOCTYPE html>
           b.parentNode.insertBefore(a, b);
       };
       window.addEventListener
-        ? window.addEventListener('load', _gorillaInitPortal, !1)
-        : window.attachEvent
-        ? window.attachEvent('onload', _gorillaInitPortal)
-        : (window.onload = _gorillaInitPortal);
+          ? window.addEventListener('load', _gorillaInitPortal, !1)
+          : window.attachEvent
+          ? window.attachEvent('onload', _gorillaInitPortal)
+          : (window.onload = _gorillaInitPortal);
   </script>
-  -->
 </body>
 </html>`
 
