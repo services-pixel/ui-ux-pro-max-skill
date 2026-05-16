@@ -389,7 +389,7 @@ const html = `<!DOCTYPE html>
 
           <a href="/services/roaches" class="service-card reveal reveal-delay-1 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
             <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
-              <img src="https://sspark.genspark.ai/cfimages?u1=sCwdDk2QCJj2qYF2NHAVtZcIvc0zw00fAC8GiSERDwMrCXC8IKb%2Bq7z6Ify6ubUYLiuj90CIja%2FER7%2FN2o6Tka1RTgPoROeKMAByU1YPb7TrlW%2FJYxz8825S1LVQoZqsgFhBdAMhQwI%3D&u2=ENGys%2BvOZcyPmLar&width=2560" alt="Cockroach in a kitchen" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <img src="https://sspark.genspark.ai/cfimages?u1=8B19bfklzQPiNKn%2F4fTUCPvR9rZHch%2FyOrnqI9kZPun%2FSP0AsaO%2Bd8zuXZQobT%2B%2FZ3zvc%2F4Zlt86tDTNVfwBBj4D5Cu5sNSLY6lmmiH3KIG74jDa41Zls%2Bu7qsY250HxUNVro%2FJEonJ3fWSfB1jHXBfRid2ioPdezL2RZn8cHNRZGjdA&u2=cqr0oXT0M3zkRymX&width=2560" alt="German cockroach close-up" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
               <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
                 <i class="fa-solid fa-bugs"></i>
               </div>
@@ -415,21 +415,7 @@ const html = `<!DOCTYPE html>
             </div>
           </a>
 
-          <a href="/services/silverfish" class="service-card reveal reveal-delay-3 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
-            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
-              <img src="https://sspark.genspark.ai/cfimages?u1=4%2BZqQTgfTGkO8NvT6gnIoI3X0qgP3Ht2F82Y6THHTj8N08x0yjvxRL%2BpGCTTtZsv9ZLRHdhYHTLcswwmDKahncLvyROmC7Wu7cgF1QD1GirE5qcGfxFhntBvCQ%3D%3D&u2=j8A%2Bq0ESyl2DRq2E&width=2560" alt="Silverfish insect close up" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-              <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
-                <i class="fa-solid fa-fish-fins"></i>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition">Silverfish</h3>
-              <p class="text-sm text-slate-600">Targeted treatment of basements, bathrooms, and attics to eliminate moisture-loving silverfish for good.</p>
-              <span class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-brand-green opacity-0 group-hover:opacity-100 transition">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
-            </div>
-          </a>
-
-          <a href="/services/ants" class="service-card reveal group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+          <a href="/services/ants" class="service-card reveal reveal-delay-3 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
             <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
               <img src="https://sspark.genspark.ai/cfimages?u1=qm%2FbCGJIPU%2FGBlt8Tvk9Aly%2FJC1HamnheEa6sH%2BQiteah4P%2FprkM%2BIeK%2BK2yIvFoyXeI5mNW7VntUOUksv67BZWjoUE%2BJiIuAlKVp%2B%2FaNdGxTVux2CNTXrsn&u2=h0b%2FuYAvf36IDnqM&width=2560" alt="Ants on a trail in a home" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
               <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
@@ -443,7 +429,7 @@ const html = `<!DOCTYPE html>
             </div>
           </a>
 
-          <a href="/services/mosquitoes" class="service-card reveal reveal-delay-1 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+          <a href="/services/mosquitoes" class="service-card reveal group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
             <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
               <img src="https://sspark.genspark.ai/cfimages?u1=HjaObNyOAEJSsbM5jQAjwbt7x8oMl%2BwIFIkN5DaF7PjThs8GiBpcZWb%2FmY8NG9MDQQkzDovk%2BM4dDx1VfwwL2QAhZ7y2FgN0wHsuovq62Jhfpi7R28iO2cHdXkYfiOA7Qg75tAMdzm8%2Bo3l8MEGqbow2erSbNLtWipB%2BKodmOOHCeKAMDyhELQ0YcxQyxAX%2F2Q%3D%3D&u2=0HMg%2BwOwbPe4%2Fm0D&width=2560" alt="Backyard with mosquito control" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
               <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
@@ -457,9 +443,9 @@ const html = `<!DOCTYPE html>
             </div>
           </a>
 
-          <a href="/services/general-pest-control" class="service-card reveal reveal-delay-2 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+          <a href="/services/general-pest-control" class="service-card reveal reveal-delay-1 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
             <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
-              <img src="https://sspark.genspark.ai/cfimages?u1=2lrK2yS8GFpzBAlcepIP33DzHE2fNIgIo5%2BQKvd4MIrqCkxboLlOeidU%2Fp9BNn83HKgbboMIZIGDnla71%2FyZv2RxQtzw8rV2Lv8GcO4q%2Btg6toHnNCrHBKFpSWZDDk1ampG06Dxz0Vm6irV32Au9d9Afm%2FNPdUH5AusL9sj47GOILdLf%2FAnCROcaMUuFDdWoNuVyHEMqAKk%2FPDp2tg%3D%3D&u2=1DlYFG3n5MyLuHOk&width=2560" alt="Pest control technician treating a home" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <img src="https://sspark.genspark.ai/cfimages?u1=ByHod32hmtjKIqV0gihyyaSUxRNNhdn5pBqUCplZTs5kchrIoVOZ8FMWcyPSUTyAhwRKv2GYIqVvHwhY0z16xAo%2Bs%2BsvSZRWfEhMdVJSHFni%2FtXyjUgfoRgPE%2FGoPY%2F%2BQKxAW8eY1Y4nirpJqA%2BSIt7jPMX0q%2BwQdEafKqsdKhqSbydJdWCVN2XLm0uI3X31Rzs2&u2=sAT4OFzVQzYtXJ2H&width=2560" alt="Pest control exterminator inspecting a home" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
               <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
                 <i class="fa-solid fa-shield-halved"></i>
               </div>
@@ -471,7 +457,7 @@ const html = `<!DOCTYPE html>
             </div>
           </a>
 
-          <a href="/services/crawl-space-encapsulation" class="service-card reveal reveal-delay-3 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+          <a href="/services/crawl-space-encapsulation" class="service-card reveal reveal-delay-2 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
             <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
               <img src="https://sspark.genspark.ai/cfimages?u1=UJZ99GM%2F5geIohvakjJrI5XC0VLe7gJKACnCCo6T7pygPutQgZ65UFOJdaLCk88I%2FwAL2TI6EdrLXuTkvc6kFtsB7lbv0cdDyyIxovRxGqeAwLsiuyfsRIMdIN8v%2BPOghobk3dJG1%2BsY47RVFf%2F%2FzIEXn5BZHq0BPbTffMbZFbFrIKEFnPU%3D&u2=10oN2nzZAPoFIdni&width=2560" alt="Crawl space vapor barrier encapsulation under a house" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
               <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
@@ -999,7 +985,7 @@ const services: ServiceDetail[] = [
     slug: 'roaches',
     name: 'Roach Extermination',
     icon: 'fa-bugs',
-    hero: 'https://sspark.genspark.ai/cfimages?u1=sCwdDk2QCJj2qYF2NHAVtZcIvc0zw00fAC8GiSERDwMrCXC8IKb%2Bq7z6Ify6ubUYLiuj90CIja%2FER7%2FN2o6Tka1RTgPoROeKMAByU1YPb7TrlW%2FJYxz8825S1LVQoZqsgFhBdAMhQwI%3D&u2=ENGys%2BvOZcyPmLar&width=2560',
+    hero: 'https://sspark.genspark.ai/cfimages?u1=8B19bfklzQPiNKn%2F4fTUCPvR9rZHch%2FyOrnqI9kZPun%2FSP0AsaO%2Bd8zuXZQobT%2B%2FZ3zvc%2F4Zlt86tDTNVfwBBj4D5Cu5sNSLY6lmmiH3KIG74jDa41Zls%2Bu7qsY250HxUNVro%2FJEonJ3fWSfB1jHXBfRid2ioPdezL2RZn8cHNRZGjdA&u2=cqr0oXT0M3zkRymX&width=2560',
     tagline: 'Wipe out every roach — colony and all.',
     intro: "Roaches reproduce fast, hide in walls, and trigger allergies and asthma. Sprays from the hardware store almost always make the problem worse by scattering colonies. Castle Exterminators uses targeted gel bait, IGRs, and crack-and-crevice treatments that hit the entire population at its source.",
     signs: [
@@ -1041,30 +1027,6 @@ const services: ServiceDetail[] = [
     faq: [
       { q: 'Are bait stations safe around pets?', a: 'Yes — we use tamper-resistant stations placed in attics, crawl spaces, or along the exterior perimeter where pets cannot reach.' },
       { q: 'How long until they are gone?', a: 'Most rodent issues are fully resolved within 2–4 weeks, depending on the size of the population.' }
-    ]
-  },
-  {
-    slug: 'silverfish',
-    name: 'Silverfish Treatment',
-    icon: 'fa-fish-fins',
-    hero: 'https://sspark.genspark.ai/cfimages?u1=4%2BZqQTgfTGkO8NvT6gnIoI3X0qgP3Ht2F82Y6THHTj8N08x0yjvxRL%2BpGCTTtZsv9ZLRHdhYHTLcswwmDKahncLvyROmC7Wu7cgF1QD1GirE5qcGfxFhntBvCQ%3D%3D&u2=j8A%2Bq0ESyl2DRq2E&width=2560',
-    tagline: 'Eliminate the moisture-loving pest hiding in your bathrooms and basements.',
-    intro: "Silverfish thrive in Durham's humid basements, bathrooms, and attics. They feed on paper, glue, cardboard, and clothing — quietly destroying books, photos, and stored fabrics. We treat the harborage points and tackle the moisture that lets them flourish.",
-    signs: [
-      'Small silvery, fish-shaped insects scurrying when you flip a light on',
-      'Yellow staining or tiny holes on paper, cardboard, and book bindings',
-      'Pepper-like droppings on bathroom or basement shelves',
-      'Shed skins behind storage boxes',
-      'Damage to stored clothing or linens'
-    ],
-    approach: [
-      { title: 'Identify moisture sources', body: 'Silverfish need humidity above 50%. We pinpoint plumbing leaks, poor ventilation, and crawl space moisture that feeds the infestation.' },
-      { title: 'Targeted residual treatment', body: 'We apply low-odor residual insecticide along baseboards, in attic eaves, and behind appliances where silverfish hide and travel.' },
-      { title: 'Long-term moisture plan', body: 'For severe cases we recommend crawl space encapsulation or dehumidification — the lasting fix that prevents return.' }
-    ],
-    faq: [
-      { q: 'Are silverfish dangerous?', a: 'They do not bite humans, but they damage paper goods, fabrics, and stored food and can trigger allergies.' },
-      { q: 'How quickly will I see results?', a: 'Activity typically drops within 1–2 weeks. Full elimination usually requires addressing the underlying moisture.' }
     ]
   },
   {
@@ -1119,9 +1081,9 @@ const services: ServiceDetail[] = [
     slug: 'general-pest-control',
     name: 'General Pest Control',
     icon: 'fa-shield-halved',
-    hero: 'https://sspark.genspark.ai/cfimages?u1=2lrK2yS8GFpzBAlcepIP33DzHE2fNIgIo5%2BQKvd4MIrqCkxboLlOeidU%2Fp9BNn83HKgbboMIZIGDnla71%2FyZv2RxQtzw8rV2Lv8GcO4q%2Btg6toHnNCrHBKFpSWZDDk1ampG06Dxz0Vm6irV32Au9d9Afm%2FNPdUH5AusL9sj47GOILdLf%2FAnCROcaMUuFDdWoNuVyHEMqAKk%2FPDp2tg%3D%3D&u2=1DlYFG3n5MyLuHOk&width=2560',
+    hero: 'https://sspark.genspark.ai/cfimages?u1=ByHod32hmtjKIqV0gihyyaSUxRNNhdn5pBqUCplZTs5kchrIoVOZ8FMWcyPSUTyAhwRKv2GYIqVvHwhY0z16xAo%2Bs%2BsvSZRWfEhMdVJSHFni%2FtXyjUgfoRgPE%2FGoPY%2F%2BQKxAW8eY1Y4nirpJqA%2BSIt7jPMX0q%2BwQdEafKqsdKhqSbydJdWCVN2XLm0uI3X31Rzs2&u2=sAT4OFzVQzYtXJ2H&width=2560',
     tagline: 'Quarterly protection that keeps your home pest-free year-round.',
-    intro: "Most pest problems are best solved before they start. Our quarterly general pest control program is the most popular service for Durham homeowners — a single recurring treatment covers ants, roaches, spiders, earwigs, silverfish, ticks, and more.",
+    intro: "Most pest problems are best solved before they start. Our quarterly general pest control program is the most popular service for Durham homeowners — a single recurring treatment covers ants, roaches, spiders, earwigs, ticks, and more.",
     signs: [
       'Recurring seasonal pests (spring ants, fall spiders, winter rodents)',
       'A property near woods, fields, or water',
@@ -1136,7 +1098,7 @@ const services: ServiceDetail[] = [
     ],
     faq: [
       { q: 'Do I have to sign a long contract?', a: 'No. Our quarterly program is month-to-month — cancel anytime, no penalty.' },
-      { q: 'What pests are included?', a: 'Over 30 common pests including ants, roaches, spiders, silverfish, earwigs, crickets, ticks, wasps, and millipedes. Termites, rodents, mosquitoes, and bed bugs are handled by separate specialty programs.' }
+      { q: 'What pests are included?', a: 'Over 30 common pests including ants, roaches, spiders, earwigs, crickets, ticks, wasps, and millipedes. Termites, rodents, mosquitoes, and crawl space encapsulation are handled by separate specialty programs.' }
     ]
   },
   {

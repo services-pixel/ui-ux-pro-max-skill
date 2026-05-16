@@ -30,7 +30,6 @@
 | `GET`  | `/services/termites` | Termite control & inspection detail page |
 | `GET`  | `/services/roaches` | Roach extermination detail page |
 | `GET`  | `/services/rodents` | Rodent removal & exclusion detail page |
-| `GET`  | `/services/silverfish` | Silverfish treatment detail page |
 | `GET`  | `/services/ants` | Ant control detail page |
 | `GET`  | `/services/mosquitoes` | Mosquito reduction detail page |
 | `GET`  | `/services/general-pest-control` | General quarterly pest control detail page |
@@ -45,7 +44,7 @@ The only third-party integration is the **GorillaDesk** embed (`account_id: 0d73
 1. **Sticky navigation** — Castle wordmark with chess-rook icon, anchor links (Services / Why Us / Process / Reviews / FAQ), phone, primary CTA
 2. **Hero** — animated gradient mesh + warm amber floating blobs, headline "Keep your castle pest-free.", dual CTA, trust strip (5.0★, Licensed & Insured in NC, Family-owned since 2017)
 3. **Trust stat bar** — 8+ Years serving Durham · 1,000+ Durham homes protected · 5.0★ Google & Yelp · 2 hr response
-4. **Services grid** — 8 service cards, each with a real photo, hover-zoom, and link to its own detail page (termites, roaches, rodents, silverfish, ants, mosquitoes, general pest control, **full crawl space encapsulation**)
+4. **Services grid** — 7 service cards, each with a real photo, hover-zoom, and link to its own detail page (termites, roaches, rodents, ants, mosquitoes, general pest control, **full crawl space encapsulation**)
 5. **Why Us** — Local & Family-Owned · Eco-Friendly Treatments · Satisfaction Guaranteed · Licensed & Certified
 6. **Process** — 4-step Durham-localized flow with phone in step 1
 7. **Testimonials** — Real customer quotes from Sarah J., Michael P., and Emily R. (sourced from the existing Castle Exterminators site)
@@ -113,12 +112,17 @@ The only third-party integration is the **GorillaDesk** embed (`account_id: 0d73
 - [x] Why-Us, Process, FAQ, Contact all localized to Durham, NC
 - [x] Hero mesh blobs warmed to amber/dusk palette matching Castle's aesthetic
 
-### Real Logo & Service Pages (latest)
+### Real Logo & Service Pages
 - [x] **Real Castle Exterminators logo** integrated at `/static/castle-logo.png` — replaces the chess-rook glyph in nav, footer, and OG image
-- [x] **Services list updated to 8 services**: removed "Fleas & Bed Bugs", replaced "Spiders & More" with **Full Crawl Space Encapsulation**, added a "General Pest Control" quarterly card
-- [x] **Service cards now show photos**: every service card on the landing page has a CC-licensed photo with hover-zoom and a floating icon badge
-- [x] **8 individual service detail pages** at `/services/<slug>` — each with hero image, breadcrumbs, signs/symptoms checklist, 3-step approach, FAQ accordion, and a sticky CTA sidebar (phone + free inspection)
-- [x] Each service page cross-links to 6 other services + has its own SEO meta + OG image
+- [x] **Service cards show photos**: every service card on the landing page has a CC-licensed photo with hover-zoom and a floating icon badge
+- [x] **Individual service detail pages** at `/services/<slug>` — each with hero image, breadcrumbs, signs/symptoms checklist, 3-step approach, FAQ accordion, and a sticky CTA sidebar (phone + free inspection)
+- [x] Each service page cross-links to other services + has its own SEO meta + OG image
+
+### Latest updates
+- [x] **Updated logo asset** — refreshed `/static/castle-logo.png` with the cleaner two-row Castle Exterminators wordmark
+- [x] **New Roaches image** — swapped to a clearer German cockroach macro photo (landing card + detail page hero)
+- [x] **New General Pest Control image** — swapped to an exterminator-inspection photo that better represents the recurring service (landing card + detail page hero)
+- [x] **Removed Silverfish service** — card, route (`/services/silverfish`), and detail page eliminated; services list now totals **7**: termites, roaches, rodents, ants, mosquitoes, general pest control, full crawl space encapsulation
 
 ## Not Yet Implemented
 - [ ] Cloudflare Pages production deployment (needs Cloudflare API key in Deploy tab)
