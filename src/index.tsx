@@ -85,26 +85,93 @@ const html = `<!DOCTYPE html>
 
     <style>
       html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+      /* ---------------------------------------------------------------------------
+         MATERIAL TEXT EMPHASIS SYSTEM
+         All on-light text is layered as rgba(ink, alpha) so the page reads with
+         a clear visual hierarchy.
+           87% — High emphasis (body, headings, primary copy)
+           60% — Medium emphasis (secondary, captions, helper text)
+           38% — Disabled / lowest emphasis (placeholders, fine print)
+         Reference ink color: #1E2A24 (brand.navy / mossy ink).
+         --------------------------------------------------------------------------- */
+      :root {
+        --ink: 30, 42, 36;             /* #1E2A24 as RGB triplet  */
+        --paper: 251, 248, 241;         /* #FBF8F1 (bone) for inverse */
+        --emphasis-high:     0.87;
+        --emphasis-medium:   0.60;
+        --emphasis-disabled: 0.38;
+      }
+
       body {
         font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
-        color: #1E2A24;                /* ink */
-        background: #FBF8F1;           /* bone */
+        color: rgba(var(--ink), var(--emphasis-high));  /* 87% — High emphasis baseline */
+        background: #FBF8F1;
         font-feature-settings: 'ss01', 'cv11';
       }
-      /* Headings — Fraunces serif w/ optical sizing tuned for display */
+
+      /* Semantic emphasis helpers (work on any background by recomposing the ink color) */
+      .text-emphasis-high     { color: rgba(var(--ink), var(--emphasis-high))     !important; }
+      .text-emphasis-medium   { color: rgba(var(--ink), var(--emphasis-medium))   !important; }
+      .text-emphasis-disabled { color: rgba(var(--ink), var(--emphasis-disabled)) !important; }
+      /* Inverse (for dark backgrounds — hero, testimonials, footer) */
+      .text-emphasis-high-inv     { color: rgba(var(--paper), var(--emphasis-high))     !important; }
+      .text-emphasis-medium-inv   { color: rgba(var(--paper), var(--emphasis-medium))   !important; }
+      .text-emphasis-disabled-inv { color: rgba(var(--paper), var(--emphasis-disabled)) !important; }
+
+      /* Map common Tailwind grayscale utilities to the emphasis system so existing
+         markup adopts the new hierarchy without a sweep through 90+ tags. */
+      .text-slate-700, .text-slate-800, .text-slate-900,
+      .text-gray-700,  .text-gray-800,  .text-gray-900   { color: rgba(var(--ink), var(--emphasis-high))     !important; }
+      .text-slate-500, .text-slate-600,
+      .text-gray-500,  .text-gray-600                    { color: rgba(var(--ink), var(--emphasis-medium))   !important; }
+      .text-slate-300, .text-slate-400,
+      .text-gray-300,  .text-gray-400                    { color: rgba(var(--ink), var(--emphasis-disabled)) !important; }
+
+      /* On dark hero/testi-mesh/footer surfaces, white/slate-100/slate-200/slate-300
+         map to the inverse emphasis ladder. We scope by ancestor so light-bg usage
+         of text-white (e.g. inside .bg-brand-green pills) is untouched. */
+      .hero-mesh .text-white,
+      .testi-mesh .text-white,
+      footer .text-white                                  { color: rgba(var(--paper), var(--emphasis-high))     !important; }
+      .hero-mesh .text-slate-100, .hero-mesh .text-slate-200,
+      .testi-mesh .text-slate-100, .testi-mesh .text-slate-200,
+      footer .text-slate-100, footer .text-slate-200,
+      .hero-mesh .text-slate-100\/90,
+      .hero-mesh .text-slate-100\/80                      { color: rgba(var(--paper), var(--emphasis-medium))   !important; }
+      .hero-mesh .text-slate-300, .hero-mesh .text-slate-400,
+      .testi-mesh .text-slate-300, .testi-mesh .text-slate-400,
+      footer .text-slate-300, footer .text-slate-400      { color: rgba(var(--paper), var(--emphasis-disabled)) !important; }
+
+      /* Headings — Fraunces serif w/ optical sizing, anchored at 87% high emphasis */
       h1, h2, h3 {
         font-family: 'Fraunces', 'Plus Jakarta Sans', Georgia, serif;
         letter-spacing: -0.015em;
         font-variation-settings: "opsz" 144, "SOFT" 50;
+        color: rgba(var(--ink), var(--emphasis-high));
       }
       h4, h5, h6 {
         font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
         letter-spacing: -0.01em;
+        color: rgba(var(--ink), var(--emphasis-high));
       }
+      /* Hero / dark-bg heading inversion */
+      .hero-mesh h1, .hero-mesh h2, .hero-mesh h3,
+      .testi-mesh h1, .testi-mesh h2, .testi-mesh h3 {
+        color: rgba(var(--paper), var(--emphasis-high));
+      }
+
       .font-display {
         font-family: 'Fraunces', 'Plus Jakarta Sans', Georgia, serif;
         font-variation-settings: "opsz" 144, "SOFT" 50;
       }
+
+      /* Placeholders + disabled form elements automatically pick up the 38% layer */
+      ::placeholder { color: rgba(var(--ink), var(--emphasis-disabled)); opacity: 1; }
+      :disabled     { color: rgba(var(--ink), var(--emphasis-disabled)); }
+
+      /* Brand-coloured text (text-brand-green, text-brand-orange, etc.) stays fully
+         opaque on purpose — accent colors are emphatic by definition. */
 
       /* Decorative serif italic accent (for highlighted words inside headings) */
       .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
@@ -1639,10 +1706,43 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
   </script>
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; color: #1E2A24; background: #FBF8F1; }
-    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.015em; font-variation-settings: "opsz" 144, "SOFT" 50; }
+
+    /* Material text-emphasis system (shared with homepage) */
+    :root {
+      --ink: 30, 42, 36;
+      --paper: 251, 248, 241;
+      --emphasis-high: 0.87;
+      --emphasis-medium: 0.60;
+      --emphasis-disabled: 0.38;
+    }
+    body { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; color: rgba(var(--ink), var(--emphasis-high)); background: #FBF8F1; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.015em; font-variation-settings: "opsz" 144, "SOFT" 50; color: rgba(var(--ink), var(--emphasis-high)); }
     .font-display { font-family: 'Fraunces', 'Plus Jakarta Sans', Georgia, serif; font-variation-settings: "opsz" 144, "SOFT" 50; }
     .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
+
+    .text-emphasis-high     { color: rgba(var(--ink), var(--emphasis-high))     !important; }
+    .text-emphasis-medium   { color: rgba(var(--ink), var(--emphasis-medium))   !important; }
+    .text-emphasis-disabled { color: rgba(var(--ink), var(--emphasis-disabled)) !important; }
+    .text-emphasis-high-inv     { color: rgba(var(--paper), var(--emphasis-high))     !important; }
+    .text-emphasis-medium-inv   { color: rgba(var(--paper), var(--emphasis-medium))   !important; }
+    .text-emphasis-disabled-inv { color: rgba(var(--paper), var(--emphasis-disabled)) !important; }
+
+    /* Auto-map Tailwind grayscale utilities to emphasis ladder */
+    .text-slate-700, .text-slate-800, .text-slate-900,
+    .text-gray-700,  .text-gray-800,  .text-gray-900   { color: rgba(var(--ink), var(--emphasis-high))     !important; }
+    .text-slate-500, .text-slate-600,
+    .text-gray-500,  .text-gray-600                    { color: rgba(var(--ink), var(--emphasis-medium))   !important; }
+    .text-slate-300, .text-slate-400,
+    .text-gray-300,  .text-gray-400                    { color: rgba(var(--ink), var(--emphasis-disabled)) !important; }
+
+    /* Hero (dark) ladder */
+    .hero-grain .text-white,
+    section.relative.pt-16 .text-white                 { color: rgba(var(--paper), var(--emphasis-high))     !important; }
+    .hero-grain .text-slate-100, .hero-grain .text-slate-200,
+    section.relative.pt-16 .opacity-95                 { color: rgba(var(--paper), var(--emphasis-medium))   !important; }
+
+    ::placeholder { color: rgba(var(--ink), var(--emphasis-disabled)); opacity: 1; }
+    :disabled     { color: rgba(var(--ink), var(--emphasis-disabled)); }
     .hero-overlay {
       background:
         linear-gradient(135deg, rgba(31,111,74,.92) 0%, rgba(14,22,18,.78) 55%, rgba(14,22,18,.45) 100%);
