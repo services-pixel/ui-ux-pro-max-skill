@@ -119,8 +119,19 @@ const html = `<!DOCTYPE html>
       .text-emphasis-medium-inv   { color: rgba(var(--paper), var(--emphasis-medium))   !important; }
       .text-emphasis-disabled-inv { color: rgba(var(--paper), var(--emphasis-disabled)) !important; }
 
-      /* Map common Tailwind grayscale utilities to the emphasis system so existing
-         markup adopts the new hierarchy without a sweep through 90+ tags. */
+      /* Map Tailwind grayscale utilities to the emphasis ladder ONLY on light
+         surfaces — :not() excludes any descendant of a dark surface so footer,
+         hero, testimonials and dark cards keep readable inverse colors. */
+      :not(.hero-mesh):not(.testi-mesh):not(footer):not(.bg-brand-navy):not(.bg-brand-navy-dark):not(.hero-grain) > .text-slate-700,
+      :not(.hero-mesh):not(.testi-mesh):not(footer):not(.bg-brand-navy):not(.bg-brand-navy-dark):not(.hero-grain) > .text-slate-800,
+      :not(.hero-mesh):not(.testi-mesh):not(footer):not(.bg-brand-navy):not(.bg-brand-navy-dark):not(.hero-grain) > .text-slate-900,
+      :not(.hero-mesh):not(.testi-mesh):not(footer):not(.bg-brand-navy):not(.bg-brand-navy-dark):not(.hero-grain) > .text-gray-700,
+      :not(.hero-mesh):not(.testi-mesh):not(footer):not(.bg-brand-navy):not(.bg-brand-navy-dark):not(.hero-grain) > .text-gray-800,
+      :not(.hero-mesh):not(.testi-mesh):not(footer):not(.bg-brand-navy):not(.bg-brand-navy-dark):not(.hero-grain) > .text-gray-900 {
+        color: rgba(var(--ink), var(--emphasis-high)) !important;
+      }
+      /* Simpler fallback: tag-level rules that apply globally but get OVERRIDDEN
+         by the dark-surface rules below. Tailwind's specificity makes this work. */
       .text-slate-700, .text-slate-800, .text-slate-900,
       .text-gray-700,  .text-gray-800,  .text-gray-900   { color: rgba(var(--ink), var(--emphasis-high))     !important; }
       .text-slate-500, .text-slate-600,
@@ -128,20 +139,32 @@ const html = `<!DOCTYPE html>
       .text-slate-300, .text-slate-400,
       .text-gray-300,  .text-gray-400                    { color: rgba(var(--ink), var(--emphasis-disabled)) !important; }
 
-      /* On dark hero/testi-mesh/footer surfaces, white/slate-100/slate-200/slate-300
-         map to the inverse emphasis ladder. We scope by ancestor so light-bg usage
-         of text-white (e.g. inside .bg-brand-green pills) is untouched. */
-      .hero-mesh .text-white,
-      .testi-mesh .text-white,
-      footer .text-white                                  { color: rgba(var(--paper), var(--emphasis-high))     !important; }
-      .hero-mesh .text-slate-100, .hero-mesh .text-slate-200,
-      .testi-mesh .text-slate-100, .testi-mesh .text-slate-200,
-      footer .text-slate-100, footer .text-slate-200,
-      .hero-mesh .text-slate-100\/90,
-      .hero-mesh .text-slate-100\/80                      { color: rgba(var(--paper), var(--emphasis-medium))   !important; }
+      /* DARK-SURFACE OVERRIDES — these win on specificity because they include
+         an ancestor selector. Inside hero / testimonials / footer / navy bgs,
+         the grayscale utilities flip to the inverse paper ladder so text stays
+         readable on dark backgrounds. */
+      .hero-mesh .text-white, .hero-mesh .text-slate-100, .hero-mesh .text-slate-200,
+      .testi-mesh .text-white, .testi-mesh .text-slate-100, .testi-mesh .text-slate-200,
+      .hero-grain .text-white, .hero-grain .text-slate-100, .hero-grain .text-slate-200,
+      footer .text-white,
+      .bg-brand-navy .text-white, .bg-brand-navy .text-slate-100, .bg-brand-navy .text-slate-200,
+      .bg-brand-navy-dark .text-white, .bg-brand-navy-dark .text-slate-100, .bg-brand-navy-dark .text-slate-200 {
+        color: rgba(var(--paper), var(--emphasis-high)) !important;
+      }
       .hero-mesh .text-slate-300, .hero-mesh .text-slate-400,
       .testi-mesh .text-slate-300, .testi-mesh .text-slate-400,
-      footer .text-slate-300, footer .text-slate-400      { color: rgba(var(--paper), var(--emphasis-disabled)) !important; }
+      .hero-grain .text-slate-300, .hero-grain .text-slate-400,
+      footer .text-slate-300, footer .text-slate-400,
+      footer .text-slate-500, footer .text-slate-600, footer .text-slate-700,
+      .bg-brand-navy .text-slate-300, .bg-brand-navy .text-slate-400,
+      .bg-brand-navy-dark .text-slate-300, .bg-brand-navy-dark .text-slate-400 {
+        color: rgba(var(--paper), var(--emphasis-medium)) !important;
+      }
+      .hero-mesh .text-slate-500, .hero-mesh .text-slate-600,
+      .testi-mesh .text-slate-500, .testi-mesh .text-slate-600,
+      .hero-grain .text-slate-500, .hero-grain .text-slate-600 {
+        color: rgba(var(--paper), var(--emphasis-disabled)) !important;
+      }
 
       /* Headings — Fraunces serif w/ optical sizing, anchored at 87% high emphasis */
       h1, h2, h3 {
@@ -155,10 +178,17 @@ const html = `<!DOCTYPE html>
         letter-spacing: -0.01em;
         color: rgba(var(--ink), var(--emphasis-high));
       }
-      /* Hero / dark-bg heading inversion */
+      /* Hero / dark-bg heading inversion — keep headings readable on dark surfaces */
       .hero-mesh h1, .hero-mesh h2, .hero-mesh h3,
-      .testi-mesh h1, .testi-mesh h2, .testi-mesh h3 {
-        color: rgba(var(--paper), var(--emphasis-high));
+      .testi-mesh h1, .testi-mesh h2, .testi-mesh h3,
+      .hero-grain h1, .hero-grain h2, .hero-grain h3,
+      .bg-brand-navy h1, .bg-brand-navy h2, .bg-brand-navy h3,
+      .bg-brand-navy-dark h1, .bg-brand-navy-dark h2, .bg-brand-navy-dark h3,
+      .bg-gradient-to-br.from-brand-green h1,
+      .bg-gradient-to-br.from-brand-green h2,
+      .bg-gradient-to-br.from-brand-green h3,
+      footer h1, footer h2, footer h3, footer h4, footer h5 {
+        color: rgba(var(--paper), var(--emphasis-high)) !important;
       }
 
       .font-display {
@@ -1823,6 +1853,22 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
     }
     body { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; color: rgba(var(--ink), var(--emphasis-high)); background: #FBF8F1; }
     h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.015em; font-variation-settings: "opsz" 144, "SOFT" 50; color: rgba(var(--ink), var(--emphasis-high)); }
+    /* Invert headings on dark surfaces so the hero h1 + footer headings stay readable */
+    .hero-grain h1, .hero-grain h2, .hero-grain h3,
+    .bg-brand-navy h1, .bg-brand-navy h2, .bg-brand-navy h3,
+    .bg-brand-navy-dark h1, .bg-brand-navy-dark h2, .bg-brand-navy-dark h3,
+    .bg-gradient-to-br.from-brand-green h1,
+    .bg-gradient-to-br.from-brand-green h2,
+    .bg-gradient-to-br.from-brand-green h3,
+    footer h1, footer h2, footer h3, footer h4, footer h5 {
+      color: rgba(var(--paper), var(--emphasis-high)) !important;
+    }
+    /* Also force any white-text wrapper on the service-detail hero to stay white
+       for its <p> tagline (inherits color from parent .text-white wrapper) */
+    .hero-grain .text-white { color: rgba(var(--paper), var(--emphasis-high)) !important; }
+    /* Make sure breadcrumb anchors stay visible on the dark hero */
+    .hero-grain a { color: rgba(var(--paper), var(--emphasis-medium)); }
+    .hero-grain a:hover { color: rgba(var(--paper), var(--emphasis-high)); }
     .font-display { font-family: 'Fraunces', 'Plus Jakarta Sans', Georgia, serif; font-variation-settings: "opsz" 144, "SOFT" 50; }
     .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
 
@@ -1833,7 +1879,7 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
     .text-emphasis-medium-inv   { color: rgba(var(--paper), var(--emphasis-medium))   !important; }
     .text-emphasis-disabled-inv { color: rgba(var(--paper), var(--emphasis-disabled)) !important; }
 
-    /* Auto-map Tailwind grayscale utilities to emphasis ladder */
+    /* Auto-map Tailwind grayscale utilities to emphasis ladder (light surfaces) */
     .text-slate-700, .text-slate-800, .text-slate-900,
     .text-gray-700,  .text-gray-800,  .text-gray-900   { color: rgba(var(--ink), var(--emphasis-high))     !important; }
     .text-slate-500, .text-slate-600,
@@ -1841,11 +1887,24 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
     .text-slate-300, .text-slate-400,
     .text-gray-300,  .text-gray-400                    { color: rgba(var(--ink), var(--emphasis-disabled)) !important; }
 
-    /* Hero (dark) ladder */
-    .hero-grain .text-white,
-    section.relative.pt-16 .text-white                 { color: rgba(var(--paper), var(--emphasis-high))     !important; }
-    .hero-grain .text-slate-100, .hero-grain .text-slate-200,
-    section.relative.pt-16 .opacity-95                 { color: rgba(var(--paper), var(--emphasis-medium))   !important; }
+    /* DARK-SURFACE OVERRIDES — keep text readable on hero, footer & navy panels */
+    .hero-grain .text-white, .hero-grain .text-slate-100, .hero-grain .text-slate-200,
+    footer .text-white,
+    .bg-brand-navy .text-white, .bg-brand-navy .text-slate-100, .bg-brand-navy .text-slate-200,
+    .bg-brand-navy-dark .text-white, .bg-brand-navy-dark .text-slate-100, .bg-brand-navy-dark .text-slate-200,
+    .bg-gradient-to-br.from-brand-green .text-white {
+      color: rgba(var(--paper), var(--emphasis-high)) !important;
+    }
+    .hero-grain .text-slate-300, .hero-grain .text-slate-400,
+    footer .text-slate-300, footer .text-slate-400,
+    footer .text-slate-500, footer .text-slate-600, footer .text-slate-700,
+    .bg-brand-navy .text-slate-300, .bg-brand-navy .text-slate-400,
+    .bg-brand-navy-dark .text-slate-300, .bg-brand-navy-dark .text-slate-400 {
+      color: rgba(var(--paper), var(--emphasis-medium)) !important;
+    }
+    .hero-grain .text-slate-500, .hero-grain .text-slate-600 {
+      color: rgba(var(--paper), var(--emphasis-disabled)) !important;
+    }
 
     ::placeholder { color: rgba(var(--ink), var(--emphasis-disabled)); opacity: 1; }
     :disabled     { color: rgba(var(--ink), var(--emphasis-disabled)); }
