@@ -27,6 +27,17 @@
 | Method | Path | Description |
 |--------|------|-------------|
 | `GET`  | `/`  | Renders the full landing page (nav, hero, trust bar, services, why-us, process, reviews, FAQ, contact, footer) |
+| `GET`  | `/services/termites` | Termite control & inspection detail page |
+| `GET`  | `/services/roaches` | Roach extermination detail page |
+| `GET`  | `/services/rodents` | Rodent removal & exclusion detail page |
+| `GET`  | `/services/silverfish` | Silverfish treatment detail page |
+| `GET`  | `/services/ants` | Ant control detail page |
+| `GET`  | `/services/mosquitoes` | Mosquito reduction detail page |
+| `GET`  | `/services/general-pest-control` | General quarterly pest control detail page |
+| `GET`  | `/services/crawl-space-encapsulation` | Full crawl space encapsulation detail page |
+| `GET`  | `/static/castle-logo.png` | Real Castle Exterminators logo (PNG) |
+
+Each service detail page includes: SEO-optimized title & meta, hero image with breadcrumbs, signs/symptoms checklist, 3-step approach, FAQ accordion, a sticky CTA sidebar with phone + free-inspection button, and cross-links to other services.
 
 The only third-party integration is the **GorillaDesk** embed (`account_id: 0d73a25092e5c1c9769a9f3255caa65a`), loaded client-side from `https://portal-embed-v3.gorilladesk.com/js/contact/contact.js`. The widget renders as a floating chat-bubble; an inline CTA button (`#open-gd-form`) triggers it via `postMessage({type: 'send-open-contact'})` to `#gorilladesk-portal-widget-contact`.
 
@@ -34,7 +45,7 @@ The only third-party integration is the **GorillaDesk** embed (`account_id: 0d73
 1. **Sticky navigation** — Castle wordmark with chess-rook icon, anchor links (Services / Why Us / Process / Reviews / FAQ), phone, primary CTA
 2. **Hero** — animated gradient mesh + warm amber floating blobs, headline "Keep your castle pest-free.", dual CTA, trust strip (5.0★, Licensed & Insured in NC, Family-owned since 2017)
 3. **Trust stat bar** — 8+ Years serving Durham · 1,000+ Durham homes protected · 5.0★ Google & Yelp · 2 hr response
-4. **Services grid** — 9 actual Castle services (termites, roaches, rodents, **silverfish**, ants, mosquitoes, **fleas & bed bugs**, spiders & more)
+4. **Services grid** — 8 service cards, each with a real photo, hover-zoom, and link to its own detail page (termites, roaches, rodents, silverfish, ants, mosquitoes, general pest control, **full crawl space encapsulation**)
 5. **Why Us** — Local & Family-Owned · Eco-Friendly Treatments · Satisfaction Guaranteed · Licensed & Certified
 6. **Process** — 4-step Durham-localized flow with phone in step 1
 7. **Testimonials** — Real customer quotes from Sarah J., Michael P., and Emily R. (sourced from the existing Castle Exterminators site)
@@ -58,7 +69,7 @@ The only third-party integration is the **GorillaDesk** embed (`account_id: 0d73
 - **Display font**: Plus Jakarta Sans (extrabold for headings)
 - **Body font**: Inter
 - **Icons**: Font Awesome 6.4
-- **Logo**: Real Castle Exterminators logo (hosted on GorillaDesk CDN) used in OG image; chess-rook glyph used in nav/footer wordmark
+- **Logo**: Real Castle Exterminators logo (`/static/castle-logo.png`) used in nav, footer, and OG image — boxed-letter wordmark
 
 ## Data Architecture
 - **Data Models**: None server-side. Lead form submissions are owned and stored by **GorillaDesk**.
@@ -95,16 +106,19 @@ The only third-party integration is the **GorillaDesk** embed (`account_id: 0d73
 - [x] **Form CTA card** — animated conic-gradient ring
 - [x] **Accessibility** — `prefers-reduced-motion` disables all animations
 
-### Castle Exterminators Rebrand (latest)
+### Castle Exterminators Rebrand
 - [x] Brand color swap to real `#067133` (was `#2D6A4F`)
 - [x] All contact info localized: (919) 606-6866 · info@castleexterminators.co · Durham, NC
-- [x] Castle wordmark with chess-rook icon in nav & footer
-- [x] Hero rewritten with Durham-specific copy & 8+ year history
-- [x] 9 services aligned to Castle's actual offering (silverfish, fleas)
 - [x] Real customer testimonials (Sarah J., Michael P., Emily R.)
 - [x] Why-Us, Process, FAQ, Contact all localized to Durham, NC
 - [x] Hero mesh blobs warmed to amber/dusk palette matching Castle's aesthetic
-- [x] SEO title/description and OG image updated for Castle Exterminators
+
+### Real Logo & Service Pages (latest)
+- [x] **Real Castle Exterminators logo** integrated at `/static/castle-logo.png` — replaces the chess-rook glyph in nav, footer, and OG image
+- [x] **Services list updated to 8 services**: removed "Fleas & Bed Bugs", replaced "Spiders & More" with **Full Crawl Space Encapsulation**, added a "General Pest Control" quarterly card
+- [x] **Service cards now show photos**: every service card on the landing page has a CC-licensed photo with hover-zoom and a floating icon badge
+- [x] **8 individual service detail pages** at `/services/<slug>` — each with hero image, breadcrumbs, signs/symptoms checklist, 3-step approach, FAQ accordion, and a sticky CTA sidebar (phone + free inspection)
+- [x] Each service page cross-links to 6 other services + has its own SEO meta + OG image
 
 ## Not Yet Implemented
 - [ ] Cloudflare Pages production deployment (needs Cloudflare API key in Deploy tab)

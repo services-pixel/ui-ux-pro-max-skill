@@ -16,7 +16,7 @@ const html = `<!DOCTYPE html>
     <meta property="og:title" content="Castle Exterminators | Pest Control in Durham, NC">
     <meta property="og:description" content="Family-owned, eco-friendly pest control in Durham, NC. Free inspection. Call (919) 606-6866.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://d10lkxv225q7z2.cloudfront.net/large/logos/origin/eea00f08349c88d623c4ce20d8ba0008.jpg">
+    <meta property="og:image" content="/static/castle-logo.png">
     <meta property="og:locale" content="en_US">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏰</text></svg>">
@@ -234,14 +234,9 @@ const html = `<!DOCTYPE html>
   <!-- ============== STICKY NAV ============== -->
   <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur border-b border-slate-100">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="#top" class="flex items-center gap-2.5 font-display font-extrabold text-brand-navy text-lg" aria-label="Castle Exterminators home">
-        <span class="w-10 h-10 rounded-xl bg-brand-green text-white grid place-items-center shadow-card">
-          <i class="fa-solid fa-chess-rook text-lg"></i>
-        </span>
-        <span class="leading-none">
-          <span class="block tracking-tight">Castle</span>
-          <span class="block text-[10px] tracking-[0.18em] font-bold text-brand-green uppercase mt-0.5">Exterminators</span>
-        </span>
+      <a href="/" class="flex items-center gap-3" aria-label="Castle Exterminators home">
+        <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-10 sm:h-11 w-auto" />
+        <span class="sr-only">Castle Exterminators</span>
       </a>
 
       <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
@@ -378,69 +373,117 @@ const html = `<!DOCTYPE html>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <article class="service-card reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
-            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
-              <i class="fa-solid fa-bug text-xl"></i>
+          <a href="/services/termites" class="service-card reveal group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <img src="https://sspark.genspark.ai/cfimages?u1=cNC82WKkBNjF6Fmsrsh%2BhIU363ff1RUR00YeUbRamr4zRm1390kDGGX2X1P34xWW0oRl%2BV1OqliS21HTjN9y1TqxGOstXVSnsRrNyW%2BHu4IPPQ3U%2FOzjGhpXQ8fZKa1EYo44b70uqZlIseyBxgczUeWa%2B6wf&u2=kjNqgFm1vrTya5Cr&width=2560" alt="Termite damage in wood" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
+                <i class="fa-solid fa-bug"></i>
+              </div>
             </div>
-            <h3 class="font-bold text-lg mb-2">Termites</h3>
-            <p class="text-sm text-slate-600">Save your home from costly structural damage with proactive termite detection and elimination.</p>
-          </article>
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition">Termites</h3>
+              <p class="text-sm text-slate-600">Save your home from costly structural damage with proactive termite detection and elimination.</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-brand-green opacity-0 group-hover:opacity-100 transition">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+            </div>
+          </a>
 
-          <article class="service-card reveal reveal-delay-1 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
-            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
-              <i class="fa-solid fa-bugs text-xl"></i>
+          <a href="/services/roaches" class="service-card reveal reveal-delay-1 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <img src="https://sspark.genspark.ai/cfimages?u1=sCwdDk2QCJj2qYF2NHAVtZcIvc0zw00fAC8GiSERDwMrCXC8IKb%2Bq7z6Ify6ubUYLiuj90CIja%2FER7%2FN2o6Tka1RTgPoROeKMAByU1YPb7TrlW%2FJYxz8825S1LVQoZqsgFhBdAMhQwI%3D&u2=ENGys%2BvOZcyPmLar&width=2560" alt="Cockroach in a kitchen" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
+                <i class="fa-solid fa-bugs"></i>
+              </div>
             </div>
-            <h3 class="font-bold text-lg mb-2">Roaches</h3>
-            <p class="text-sm text-slate-600">Targeted gel and bait treatments that wipe out colonies — including German and American roaches.</p>
-          </article>
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition">Roaches</h3>
+              <p class="text-sm text-slate-600">Targeted gel and bait treatments that wipe out colonies — including German and American roaches.</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-brand-green opacity-0 group-hover:opacity-100 transition">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+            </div>
+          </a>
 
-          <article class="service-card reveal reveal-delay-2 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
-            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
-              <i class="fa-solid fa-house-chimney-crack text-xl"></i>
+          <a href="/services/rodents" class="service-card reveal reveal-delay-2 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <img src="https://sspark.genspark.ai/cfimages?u1=G54sk51bVyPHYaaAnu7upw479ZRuP%2B37rqo4xyetn2hWfso8ZbZwf0IN7JHysYdaxt4gtKZou4RbuE%2FpI4HFJMUzyEn649Wy%2BXFyxjQNmDKT5KCyFRe2eruDEPEorr00qwMFDuxmDQs4gWSWzxj8vC3kvAp3TifFn7c67oc0I7QbeX23UzmUS6WdVVbqGplOh2k12ZvdwO95ZZzj4QKGPK2fJzhmO5MDX0DM0szf6A%3D%3D&u2=HFC2A2x74rx7wycB&width=2560" alt="Mouse in an attic" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
+                <i class="fa-solid fa-house-chimney-crack"></i>
+              </div>
             </div>
-            <h3 class="font-bold text-lg mb-2">Rodents</h3>
-            <p class="text-sm text-slate-600">Humane removal of mice and rats, plus entry-point sealing so they don't come back.</p>
-          </article>
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition">Rodents</h3>
+              <p class="text-sm text-slate-600">Humane removal of mice and rats, plus entry-point sealing so they don't come back.</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-brand-green opacity-0 group-hover:opacity-100 transition">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+            </div>
+          </a>
 
-          <article class="service-card reveal reveal-delay-3 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
-            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
-              <i class="fa-solid fa-fish-fins text-xl"></i>
+          <a href="/services/silverfish" class="service-card reveal reveal-delay-3 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <img src="https://sspark.genspark.ai/cfimages?u1=4%2BZqQTgfTGkO8NvT6gnIoI3X0qgP3Ht2F82Y6THHTj8N08x0yjvxRL%2BpGCTTtZsv9ZLRHdhYHTLcswwmDKahncLvyROmC7Wu7cgF1QD1GirE5qcGfxFhntBvCQ%3D%3D&u2=j8A%2Bq0ESyl2DRq2E&width=2560" alt="Silverfish insect close up" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
+                <i class="fa-solid fa-fish-fins"></i>
+              </div>
             </div>
-            <h3 class="font-bold text-lg mb-2">Silverfish</h3>
-            <p class="text-sm text-slate-600">Targeted treatment of basements, bathrooms, and attics to eliminate moisture-loving silverfish for good.</p>
-          </article>
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition">Silverfish</h3>
+              <p class="text-sm text-slate-600">Targeted treatment of basements, bathrooms, and attics to eliminate moisture-loving silverfish for good.</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-brand-green opacity-0 group-hover:opacity-100 transition">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+            </div>
+          </a>
 
-          <article class="service-card reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
-            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
-              <i class="fa-solid fa-ant text-xl"></i>
+          <a href="/services/ants" class="service-card reveal group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <img src="https://sspark.genspark.ai/cfimages?u1=qm%2FbCGJIPU%2FGBlt8Tvk9Aly%2FJC1HamnheEa6sH%2BQiteah4P%2FprkM%2BIeK%2BK2yIvFoyXeI5mNW7VntUOUksv67BZWjoUE%2BJiIuAlKVp%2B%2FaNdGxTVux2CNTXrsn&u2=h0b%2FuYAvf36IDnqM&width=2560" alt="Ants on a trail in a home" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
+                <i class="fa-solid fa-ant"></i>
+              </div>
             </div>
-            <h3 class="font-bold text-lg mb-2">Ants</h3>
-            <p class="text-sm text-slate-600">Carpenter, fire, sugar, and odorous house ants — eliminated colony and all.</p>
-          </article>
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition">Ants</h3>
+              <p class="text-sm text-slate-600">Carpenter, fire, sugar, and odorous house ants — eliminated colony and all.</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-brand-green opacity-0 group-hover:opacity-100 transition">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+            </div>
+          </a>
 
-          <article class="service-card reveal reveal-delay-1 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
-            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
-              <i class="fa-solid fa-mosquito text-xl"></i>
+          <a href="/services/mosquitoes" class="service-card reveal reveal-delay-1 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <img src="https://sspark.genspark.ai/cfimages?u1=HjaObNyOAEJSsbM5jQAjwbt7x8oMl%2BwIFIkN5DaF7PjThs8GiBpcZWb%2FmY8NG9MDQQkzDovk%2BM4dDx1VfwwL2QAhZ7y2FgN0wHsuovq62Jhfpi7R28iO2cHdXkYfiOA7Qg75tAMdzm8%2Bo3l8MEGqbow2erSbNLtWipB%2BKodmOOHCeKAMDyhELQ0YcxQyxAX%2F2Q%3D%3D&u2=0HMg%2BwOwbPe4%2Fm0D&width=2560" alt="Backyard with mosquito control" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
+                <i class="fa-solid fa-mosquito"></i>
+              </div>
             </div>
-            <h3 class="font-bold text-lg mb-2">Mosquitoes</h3>
-            <p class="text-sm text-slate-600">Reclaim your yard with our seasonal mosquito misting and breeding-site treatment.</p>
-          </article>
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition">Mosquitoes</h3>
+              <p class="text-sm text-slate-600">Reclaim your yard with our seasonal mosquito misting and breeding-site treatment.</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-brand-green opacity-0 group-hover:opacity-100 transition">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+            </div>
+          </a>
 
-          <article class="service-card reveal reveal-delay-2 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
-            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
-              <i class="fa-solid fa-bed text-xl"></i>
+          <a href="/services/general-pest-control" class="service-card reveal reveal-delay-2 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <img src="https://sspark.genspark.ai/cfimages?u1=2lrK2yS8GFpzBAlcepIP33DzHE2fNIgIo5%2BQKvd4MIrqCkxboLlOeidU%2Fp9BNn83HKgbboMIZIGDnla71%2FyZv2RxQtzw8rV2Lv8GcO4q%2Btg6toHnNCrHBKFpSWZDDk1ampG06Dxz0Vm6irV32Au9d9Afm%2FNPdUH5AusL9sj47GOILdLf%2FAnCROcaMUuFDdWoNuVyHEMqAKk%2FPDp2tg%3D%3D&u2=1DlYFG3n5MyLuHOk&width=2560" alt="Pest control technician treating a home" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
             </div>
-            <h3 class="font-bold text-lg mb-2">Fleas & Bed Bugs</h3>
-            <p class="text-sm text-slate-600">Heat and chemical treatments that eradicate every life stage — adults, nymphs, and eggs — protecting your home and pets.</p>
-          </article>
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition">General Pest Control</h3>
+              <p class="text-sm text-slate-600">Quarterly preventive treatments that keep ants, roaches, earwigs, ticks and more out year-round.</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-brand-green opacity-0 group-hover:opacity-100 transition">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+            </div>
+          </a>
 
-          <article class="service-card reveal reveal-delay-3 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
-            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
-              <i class="fa-solid fa-spider text-xl"></i>
+          <a href="/services/crawl-space-encapsulation" class="service-card reveal reveal-delay-3 group bg-white border border-slate-100 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden block">
+            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <img src="https://sspark.genspark.ai/cfimages?u1=UJZ99GM%2F5geIohvakjJrI5XC0VLe7gJKACnCCo6T7pygPutQgZ65UFOJdaLCk88I%2FwAL2TI6EdrLXuTkvc6kFtsB7lbv0cdDyyIxovRxGqeAwLsiuyfsRIMdIN8v%2BPOghobk3dJG1%2BsY47RVFf%2F%2FzIEXn5BZHq0BPbTffMbZFbFrIKEFnPU%3D&u2=10oN2nzZAPoFIdni&width=2560" alt="Crawl space vapor barrier encapsulation under a house" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute top-3 left-3 service-icon w-10 h-10 rounded-xl bg-white/95 backdrop-blur text-brand-green grid place-items-center shadow-card group-hover:bg-brand-green group-hover:text-white">
+                <i class="fa-solid fa-house-flag"></i>
+              </div>
             </div>
-            <h3 class="font-bold text-lg mb-2">Spiders & More</h3>
-            <p class="text-sm text-slate-600">Black widows, brown recluses, silverfish, earwigs, fleas, ticks — we handle the lot.</p>
-          </article>
+            <div class="p-6">
+              <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition">Full Crawl Space Encapsulation</h3>
+              <p class="text-sm text-slate-600">Complete vapor barrier, sealing, and moisture control under your Durham home — healthier air, lower bills, fewer pests.</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-brand-green opacity-0 group-hover:opacity-100 transition">Learn more <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+            </div>
+          </a>
         </div>
 
         <div class="text-center mt-12 reveal">
@@ -754,12 +797,11 @@ const html = `<!DOCTYPE html>
     <footer class="bg-brand-navy-dark text-slate-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-4 gap-8">
         <div class="md:col-span-2">
-          <a href="#top" class="inline-flex items-center gap-2.5 font-display font-extrabold text-white text-lg mb-4">
-            <span class="w-10 h-10 rounded-xl bg-brand-green text-white grid place-items-center"><i class="fa-solid fa-chess-rook text-lg"></i></span>
-            <span class="leading-none">
-              <span class="block tracking-tight">Castle</span>
-              <span class="block text-[10px] tracking-[0.18em] font-bold text-brand-green-light uppercase mt-0.5">Exterminators</span>
+          <a href="/" class="inline-flex items-center gap-2.5 mb-4">
+            <span class="inline-block bg-white rounded-xl p-2 shadow-card">
+              <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 w-auto" />
             </span>
+            <span class="sr-only">Castle Exterminators</span>
           </a>
           <p class="text-sm leading-relaxed max-w-md">Durham's family-owned pest control. Protecting homes across Durham, NC and surrounding communities since 2017 — with eco-friendly, family-safe treatments and certified, neighborly service.</p>
           <p class="text-xs text-slate-400 mt-4">Keep your <strong class="text-brand-orange">castle</strong> pest-free.</p>
@@ -911,5 +953,429 @@ const html = `<!DOCTYPE html>
 </html>`
 
 app.get('/', (c) => c.html(html))
+
+// ============================================================================
+// SERVICE DETAIL PAGES
+// ============================================================================
+
+type ServiceDetail = {
+  slug: string
+  name: string
+  icon: string
+  hero: string
+  tagline: string
+  intro: string
+  signs: string[]
+  approach: { title: string; body: string }[]
+  faq: { q: string; a: string }[]
+}
+
+const services: ServiceDetail[] = [
+  {
+    slug: 'termites',
+    name: 'Termite Control & Inspection',
+    icon: 'fa-bug',
+    hero: 'https://sspark.genspark.ai/cfimages?u1=cNC82WKkBNjF6Fmsrsh%2BhIU363ff1RUR00YeUbRamr4zRm1390kDGGX2X1P34xWW0oRl%2BV1OqliS21HTjN9y1TqxGOstXVSnsRrNyW%2BHu4IPPQ3U%2FOzjGhpXQ8fZKa1EYo44b70uqZlIseyBxgczUeWa%2B6wf&u2=kjNqgFm1vrTya5Cr&width=2560',
+    tagline: 'Stop costly structural damage before it spreads.',
+    intro: "Termites silently chew through more than $5 billion in U.S. homes every year — and Durham's humid climate is prime termite territory. Castle Exterminators uses proven inspection, baiting, and liquid soil treatments to wipe out colonies and protect your home year after year.",
+    signs: [
+      'Mud tubes running up your foundation or crawl space walls',
+      'Soft, hollow-sounding wood around windows and door frames',
+      'Discarded wings near interior light sources after a swarm',
+      'Tiny piles of pellet-like frass (termite droppings) near wood',
+      'Bubbling or uneven paint that looks like water damage'
+    ],
+    approach: [
+      { title: 'Free 60-minute inspection', body: 'Our certified tech walks your full property — interior, exterior, crawl space, and attic — looking for active termites, conducive conditions, and prior damage.' },
+      { title: 'Custom treatment plan', body: 'Depending on what we find, we recommend a liquid termiticide barrier, in-ground bait stations, or a combination. You always get a clear written quote before we begin.' },
+      { title: 'Annual re-inspection & warranty', body: 'Every termite job comes with an annual re-inspection so you stay protected — and stay ahead of any new colony activity.' }
+    ],
+    faq: [
+      { q: 'Are your termite treatments safe for kids and pets?', a: 'Yes. We use EPA-registered termiticides applied below ground level or inside bait stations, so there is no exposure to your family or pets inside the home.' },
+      { q: 'How long does a treatment take?', a: 'Most Durham homes are treated in a single visit lasting 2–4 hours. You can stay home during the appointment.' }
+    ]
+  },
+  {
+    slug: 'roaches',
+    name: 'Roach Extermination',
+    icon: 'fa-bugs',
+    hero: 'https://sspark.genspark.ai/cfimages?u1=sCwdDk2QCJj2qYF2NHAVtZcIvc0zw00fAC8GiSERDwMrCXC8IKb%2Bq7z6Ify6ubUYLiuj90CIja%2FER7%2FN2o6Tka1RTgPoROeKMAByU1YPb7TrlW%2FJYxz8825S1LVQoZqsgFhBdAMhQwI%3D&u2=ENGys%2BvOZcyPmLar&width=2560',
+    tagline: 'Wipe out every roach — colony and all.',
+    intro: "Roaches reproduce fast, hide in walls, and trigger allergies and asthma. Sprays from the hardware store almost always make the problem worse by scattering colonies. Castle Exterminators uses targeted gel bait, IGRs, and crack-and-crevice treatments that hit the entire population at its source.",
+    signs: [
+      'Roach droppings (look like ground coffee or pepper) in cabinets',
+      'A musty, oily odor in the kitchen or pantry',
+      'Egg casings (oothecae) tucked behind appliances',
+      'Live roaches darting away when you turn on the lights at night',
+      'Smear marks along baseboards or behind the fridge'
+    ],
+    approach: [
+      { title: 'Identify the species', body: 'German, American, Oriental, and Smoky Brown roaches each behave differently. Correct ID is the difference between a one-visit fix and a recurring problem.' },
+      { title: 'Targeted gel + IGR treatment', body: 'We apply professional-grade gel bait inside harborage points, plus an insect growth regulator that stops eggs from hatching — collapsing the population in 2–3 weeks.' },
+      { title: 'Follow-up & sanitation tips', body: 'We come back to verify zero activity and walk you through small changes that keep them from coming back.' }
+    ],
+    faq: [
+      { q: 'Do I have to leave the house during treatment?', a: 'No. Gel bait is applied in cracks and crevices where pets and kids cannot reach, so you can stay home throughout.' },
+      { q: 'How fast will I see results?', a: 'Most clients see a major drop in activity within 72 hours and full elimination within 2–3 weeks.' }
+    ]
+  },
+  {
+    slug: 'rodents',
+    name: 'Rodent Removal & Exclusion',
+    icon: 'fa-house-chimney-crack',
+    hero: 'https://sspark.genspark.ai/cfimages?u1=G54sk51bVyPHYaaAnu7upw479ZRuP%2B37rqo4xyetn2hWfso8ZbZwf0IN7JHysYdaxt4gtKZou4RbuE%2FpI4HFJMUzyEn649Wy%2BXFyxjQNmDKT5KCyFRe2eruDEPEorr00qwMFDuxmDQs4gWSWzxj8vC3kvAp3TifFn7c67oc0I7QbeX23UzmUS6WdVVbqGplOh2k12ZvdwO95ZZzj4QKGPK2fJzhmO5MDX0DM0szf6A%3D%3D&u2=HFC2A2x74rx7wycB&width=2560',
+    tagline: 'Get the mice out — and keep them out.',
+    intro: "Mice and rats damage insulation, chew wiring, and contaminate food. Worse, a single breeding pair can become 60+ rodents in a year. Castle Exterminators trap, remove, and seal entry points — a true exclusion program, not just bait stations.",
+    signs: [
+      'Droppings in the pantry, attic, garage, or crawl space',
+      'Gnaw marks on baseboards, food packaging, or wiring',
+      'Scratching or scurrying sounds in walls or ceilings at night',
+      'Greasy rub marks along baseboards and entry points',
+      'Nests built from shredded paper, insulation, or fabric'
+    ],
+    approach: [
+      { title: 'Full property inspection', body: 'We map every entry point — gaps as small as a dime are enough — and identify nesting and travel routes.' },
+      { title: 'Trapping & removal', body: 'Snap traps and tamper-resistant bait stations placed strategically (never in living areas with children or pets) to rapidly knock the population down.' },
+      { title: 'Exclusion sealing', body: 'We seal every entry with steel mesh, hardware cloth, and weather-resistant sealant so rodents physically cannot get back in.' }
+    ],
+    faq: [
+      { q: 'Are bait stations safe around pets?', a: 'Yes — we use tamper-resistant stations placed in attics, crawl spaces, or along the exterior perimeter where pets cannot reach.' },
+      { q: 'How long until they are gone?', a: 'Most rodent issues are fully resolved within 2–4 weeks, depending on the size of the population.' }
+    ]
+  },
+  {
+    slug: 'silverfish',
+    name: 'Silverfish Treatment',
+    icon: 'fa-fish-fins',
+    hero: 'https://sspark.genspark.ai/cfimages?u1=4%2BZqQTgfTGkO8NvT6gnIoI3X0qgP3Ht2F82Y6THHTj8N08x0yjvxRL%2BpGCTTtZsv9ZLRHdhYHTLcswwmDKahncLvyROmC7Wu7cgF1QD1GirE5qcGfxFhntBvCQ%3D%3D&u2=j8A%2Bq0ESyl2DRq2E&width=2560',
+    tagline: 'Eliminate the moisture-loving pest hiding in your bathrooms and basements.',
+    intro: "Silverfish thrive in Durham's humid basements, bathrooms, and attics. They feed on paper, glue, cardboard, and clothing — quietly destroying books, photos, and stored fabrics. We treat the harborage points and tackle the moisture that lets them flourish.",
+    signs: [
+      'Small silvery, fish-shaped insects scurrying when you flip a light on',
+      'Yellow staining or tiny holes on paper, cardboard, and book bindings',
+      'Pepper-like droppings on bathroom or basement shelves',
+      'Shed skins behind storage boxes',
+      'Damage to stored clothing or linens'
+    ],
+    approach: [
+      { title: 'Identify moisture sources', body: 'Silverfish need humidity above 50%. We pinpoint plumbing leaks, poor ventilation, and crawl space moisture that feeds the infestation.' },
+      { title: 'Targeted residual treatment', body: 'We apply low-odor residual insecticide along baseboards, in attic eaves, and behind appliances where silverfish hide and travel.' },
+      { title: 'Long-term moisture plan', body: 'For severe cases we recommend crawl space encapsulation or dehumidification — the lasting fix that prevents return.' }
+    ],
+    faq: [
+      { q: 'Are silverfish dangerous?', a: 'They do not bite humans, but they damage paper goods, fabrics, and stored food and can trigger allergies.' },
+      { q: 'How quickly will I see results?', a: 'Activity typically drops within 1–2 weeks. Full elimination usually requires addressing the underlying moisture.' }
+    ]
+  },
+  {
+    slug: 'ants',
+    name: 'Ant Control',
+    icon: 'fa-ant',
+    hero: 'https://sspark.genspark.ai/cfimages?u1=qm%2FbCGJIPU%2FGBlt8Tvk9Aly%2FJC1HamnheEa6sH%2BQiteah4P%2FprkM%2BIeK%2BK2yIvFoyXeI5mNW7VntUOUksv67BZWjoUE%2BJiIuAlKVp%2B%2FaNdGxTVux2CNTXrsn&u2=h0b%2FuYAvf36IDnqM&width=2560',
+    tagline: 'Eliminate the colony — not just the trail you can see.',
+    intro: "Spraying a visible ant trail kills 1% of the colony. Castle Exterminators uses non-repellent baits and perimeter treatments that workers carry back to the queen, collapsing the entire colony. We handle carpenter, fire, sugar, pavement, and odorous house ants common in the Durham area.",
+    signs: [
+      'Trails of ants leading to food, water, or pet bowls',
+      'Small piles of sawdust or wood shavings (carpenter ants)',
+      'Visible mounds in your yard, driveway cracks, or patio',
+      'Winged ants ("alates") inside the home in spring',
+      'Bites or stings near outdoor mounds (fire ants)'
+    ],
+    approach: [
+      { title: 'Species ID + colony mapping', body: 'Different ant species require very different treatments. We confirm the species and trace activity back to the nest.' },
+      { title: 'Non-repellent bait transfer', body: 'Workers carry our slow-acting bait back to the queen and brood — wiping out the entire colony in 7–14 days without scattering it.' },
+      { title: 'Exterior perimeter barrier', body: 'A perimeter treatment around the foundation, eaves, and entry points keeps new colonies from re-invading.' }
+    ],
+    faq: [
+      { q: 'Why did spraying make my ant problem worse?', a: 'Repellent sprays cause colonies to "bud" — splitting into multiple smaller colonies. We use non-repellent products that ants carry home instead.' },
+      { q: 'Do you treat fire ant mounds outside?', a: 'Yes — we use targeted mound drenches and broadcast bait treatments for yard-wide control.' }
+    ]
+  },
+  {
+    slug: 'mosquitoes',
+    name: 'Mosquito Reduction',
+    icon: 'fa-mosquito',
+    hero: 'https://sspark.genspark.ai/cfimages?u1=HjaObNyOAEJSsbM5jQAjwbt7x8oMl%2BwIFIkN5DaF7PjThs8GiBpcZWb%2FmY8NG9MDQQkzDovk%2BM4dDx1VfwwL2QAhZ7y2FgN0wHsuovq62Jhfpi7R28iO2cHdXkYfiOA7Qg75tAMdzm8%2Bo3l8MEGqbow2erSbNLtWipB%2BKodmOOHCeKAMDyhELQ0YcxQyxAX%2F2Q%3D%3D&u2=0HMg%2BwOwbPe4%2Fm0D&width=2560',
+    tagline: 'Reclaim your Durham backyard — all season long.',
+    intro: "Durham summers belong outside, not swatting mosquitoes on the deck. Our seasonal mosquito program treats foliage, shaded resting areas, and standing-water breeding sites for up to 90% reduction in mosquito activity in your yard.",
+    signs: [
+      'Bites every time you step outside, even briefly',
+      'Standing water in gutters, planters, birdbaths, or low spots',
+      'Heavy mosquito activity at dawn and dusk',
+      'Mosquitoes resting in shaded shrubs and tall grass',
+      'Tiger or Asian mosquitoes (white-striped) common in NC'
+    ],
+    approach: [
+      { title: 'Yard assessment', body: 'We walk your property to identify breeding sites, resting areas, and high-activity zones.' },
+      { title: 'Monthly barrier treatment', body: 'Backpack misting of shrubs, foliage undersides, and resting harborage from April through October knocks down adult mosquitoes and stops them from re-establishing.' },
+      { title: 'Larvicide for standing water', body: 'For drainage areas, fountains, and ponds we use mosquito-specific larvicides that are safe for fish and beneficial insects.' }
+    ],
+    faq: [
+      { q: 'Is the spray safe for kids, pets, and pollinators?', a: 'Yes. We apply treatments to foliage where mosquitoes rest, not flowers, and the spray dries within 20 minutes. We avoid blooming plants and pollinator zones.' },
+      { q: 'How often do you treat?', a: 'Monthly from April through October — that is the Durham mosquito season.' }
+    ]
+  },
+  {
+    slug: 'general-pest-control',
+    name: 'General Pest Control',
+    icon: 'fa-shield-halved',
+    hero: 'https://sspark.genspark.ai/cfimages?u1=2lrK2yS8GFpzBAlcepIP33DzHE2fNIgIo5%2BQKvd4MIrqCkxboLlOeidU%2Fp9BNn83HKgbboMIZIGDnla71%2FyZv2RxQtzw8rV2Lv8GcO4q%2Btg6toHnNCrHBKFpSWZDDk1ampG06Dxz0Vm6irV32Au9d9Afm%2FNPdUH5AusL9sj47GOILdLf%2FAnCROcaMUuFDdWoNuVyHEMqAKk%2FPDp2tg%3D%3D&u2=1DlYFG3n5MyLuHOk&width=2560',
+    tagline: 'Quarterly protection that keeps your home pest-free year-round.',
+    intro: "Most pest problems are best solved before they start. Our quarterly general pest control program is the most popular service for Durham homeowners — a single recurring treatment covers ants, roaches, spiders, earwigs, silverfish, ticks, and more.",
+    signs: [
+      'Recurring seasonal pests (spring ants, fall spiders, winter rodents)',
+      'A property near woods, fields, or water',
+      'A previous DIY approach that has not held',
+      'Children, pets, or family members with allergies',
+      'A home you want to protect long-term, not just react to'
+    ],
+    approach: [
+      { title: 'Initial deep-clean treatment', body: 'A thorough first visit eliminates current activity inside and around the home — baseboards, eaves, garage, perimeter, and entry points.' },
+      { title: 'Quarterly maintenance visits', body: 'Once every 90 days we return to refresh the exterior barrier and check for any new activity. Most visits do not require any interior access.' },
+      { title: 'Free re-treatments', body: 'See pests between scheduled visits? We come back free of charge — that is our satisfaction guarantee.' }
+    ],
+    faq: [
+      { q: 'Do I have to sign a long contract?', a: 'No. Our quarterly program is month-to-month — cancel anytime, no penalty.' },
+      { q: 'What pests are included?', a: 'Over 30 common pests including ants, roaches, spiders, silverfish, earwigs, crickets, ticks, wasps, and millipedes. Termites, rodents, mosquitoes, and bed bugs are handled by separate specialty programs.' }
+    ]
+  },
+  {
+    slug: 'crawl-space-encapsulation',
+    name: 'Full Crawl Space Encapsulation',
+    icon: 'fa-house-flag',
+    hero: 'https://sspark.genspark.ai/cfimages?u1=UJZ99GM%2F5geIohvakjJrI5XC0VLe7gJKACnCCo6T7pygPutQgZ65UFOJdaLCk88I%2FwAL2TI6EdrLXuTkvc6kFtsB7lbv0cdDyyIxovRxGqeAwLsiuyfsRIMdIN8v%2BPOghobk3dJG1%2BsY47RVFf%2F%2FzIEXn5BZHq0BPbTffMbZFbFrIKEFnPU%3D&u2=10oN2nzZAPoFIdni&width=2560',
+    tagline: 'A healthier home, lower energy bills, and zero pest highway underneath.',
+    intro: "Up to 50% of the air you breathe upstairs comes from your crawl space. A damp, vented crawl breeds mold, attracts pests, and drives up your power bill. Full encapsulation seals it off — and it is one of the highest-ROI upgrades a Durham homeowner can make.",
+    signs: [
+      'Musty smells on the first floor or near floor vents',
+      'Sagging floors or buckled hardwood',
+      'High humidity in the home, especially in summer',
+      'Visible moisture, standing water, or efflorescence on crawl walls',
+      'Recurring pest problems despite treatment'
+    ],
+    approach: [
+      { title: 'Clean-out & repair', body: 'We remove old vapor barrier, debris, and damaged insulation and address any drainage or grading issues.' },
+      { title: '20-mil reinforced vapor barrier', body: 'Heavy-duty white poly liner sealed to the walls and piers — overlapping seams taped, edges mechanically fastened. No gaps, no shortcuts.' },
+      { title: 'Seal vents + dehumidifier', body: 'We seal foundation vents and install a crawl-rated dehumidifier so the space stays under 55% relative humidity year-round.' }
+    ],
+    faq: [
+      { q: 'How long does encapsulation take?', a: 'Most Durham crawl spaces are completed in 2–4 days depending on size and prep required.' },
+      { q: 'What is the typical ROI?', a: 'Homeowners commonly see 15–25% lower heating and cooling bills, plus eliminated mold and pest issues. Resale value improvement is significant — appraisers recognize encapsulation as a structural upgrade.' }
+    ]
+  },
+]
+
+const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${s.name} in Durham, NC | Castle Exterminators</title>
+  <meta name="description" content="${s.tagline} Castle Exterminators — Durham's family-owned pest control. Free inspection, licensed & insured, 5.0 on Google & Yelp." />
+  <meta name="theme-color" content="#067133" />
+  <link rel="icon" href="/static/castle-logo.png" />
+  <meta property="og:title" content="${s.name} | Castle Exterminators Durham NC" />
+  <meta property="og:description" content="${s.tagline}" />
+  <meta property="og:image" content="${s.hero}" />
+  <meta property="og:type" content="website" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { display: ['"Plus Jakarta Sans"', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: {
+              green: '#067133', 'green-dark': '#045724', 'green-light': '#3CA862',
+              navy: '#1B2A4A', 'navy-dark': '#0F1A30',
+              orange: '#F4A261', 'orange-dark': '#E08A3C',
+              cream: '#FAF7F2'
+            }
+          },
+          boxShadow: { card: '0 10px 30px -10px rgba(15,26,48,.15)' }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, sans-serif; color: #1B2A4A; }
+    .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .hero-overlay {
+      background:
+        linear-gradient(135deg, rgba(6,113,51,.92) 0%, rgba(15,26,48,.75) 60%, rgba(15,26,48,.45) 100%);
+    }
+  </style>
+</head>
+<body class="bg-white antialiased">
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3" aria-label="Castle Exterminators home">
+        <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-10 sm:h-11 w-auto" />
+      </a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+        <li><a href="/#services" class="hover:text-brand-green transition">Services</a></li>
+        <li><a href="/#why-us" class="hover:text-brand-green transition">Why Us</a></li>
+        <li><a href="/#process" class="hover:text-brand-green transition">Process</a></li>
+        <li><a href="/#reviews" class="hover:text-brand-green transition">Reviews</a></li>
+        <li><a href="/#faq" class="hover:text-brand-green transition">FAQ</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <a href="tel:+19196066866" class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy hover:text-brand-green">
+          <i class="fa-solid fa-phone-volume text-brand-green"></i>
+          <span>(919) 606-6866</span>
+        </a>
+        <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white text-sm font-bold px-4 py-2 rounded-lg transition shadow-card">
+          Free Inspection
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative pt-16">
+    <div class="relative h-[42vh] min-h-[340px] max-h-[520px] overflow-hidden bg-brand-navy">
+      <img src="${s.hero}" alt="${s.name}" class="absolute inset-0 w-full h-full object-cover opacity-60" />
+      <div class="absolute inset-0 hero-overlay"></div>
+      <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-10 text-white">
+        <nav class="text-xs sm:text-sm font-semibold mb-4 opacity-90">
+          <a href="/" class="hover:text-brand-orange transition">Home</a>
+          <i class="fa-solid fa-chevron-right text-[10px] mx-2 opacity-60"></i>
+          <a href="/#services" class="hover:text-brand-orange transition">Services</a>
+          <i class="fa-solid fa-chevron-right text-[10px] mx-2 opacity-60"></i>
+          <span class="text-brand-orange">${s.name}</span>
+        </nav>
+        <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur border border-white/25 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider mb-4 w-fit">
+          <i class="fa-solid ${s.icon}"></i> Castle Exterminators · Durham, NC
+        </div>
+        <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl max-w-3xl leading-tight">${s.name}</h1>
+        <p class="mt-3 text-lg sm:text-xl max-w-2xl opacity-95">${s.tagline}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+    <div class="grid lg:grid-cols-3 gap-12">
+
+      <article class="lg:col-span-2 space-y-12">
+
+        <section>
+          <p class="text-lg leading-relaxed text-slate-700">${s.intro}</p>
+        </section>
+
+        <section>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl mb-6">Common signs you need help</h2>
+          <ul class="grid sm:grid-cols-2 gap-3">
+            ${s.signs.map(item => `<li class="flex items-start gap-3 bg-brand-cream/60 border border-slate-100 rounded-xl p-4">
+              <span class="mt-0.5 w-6 h-6 rounded-full bg-brand-green text-white grid place-items-center text-[11px] flex-shrink-0"><i class="fa-solid fa-check"></i></span>
+              <span class="text-sm text-slate-700">${item}</span>
+            </li>`).join('')}
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl mb-6">How Castle Exterminators handles it</h2>
+          <div class="space-y-4">
+            ${s.approach.map((step, i) => `<div class="flex gap-5 bg-white border border-slate-100 hover:border-brand-green/40 rounded-2xl p-5 transition shadow-sm hover:shadow-card">
+              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-brand-green text-white grid place-items-center font-display font-extrabold text-lg">${i + 1}</div>
+              <div>
+                <h3 class="font-bold text-lg mb-1">${step.title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">${step.body}</p>
+              </div>
+            </div>`).join('')}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl mb-6">Frequently asked questions</h2>
+          <div class="space-y-3">
+            ${s.faq.map(item => `<details class="group bg-white border border-slate-100 rounded-xl p-5 transition hover:border-brand-green/40">
+              <summary class="flex items-start justify-between gap-4 cursor-pointer font-bold text-brand-navy">
+                <span>${item.q}</span>
+                <i class="fa-solid fa-chevron-down text-brand-green transition group-open:rotate-180 mt-1"></i>
+              </summary>
+              <p class="mt-3 text-sm text-slate-600 leading-relaxed">${item.a}</p>
+            </details>`).join('')}
+          </div>
+        </section>
+
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside class="space-y-6">
+        <div class="bg-gradient-to-br from-brand-green to-brand-green-dark text-white rounded-2xl p-6 shadow-card sticky top-24">
+          <p class="text-xs font-bold uppercase tracking-wider opacity-80 mb-2">Free inspection</p>
+          <h3 class="font-display font-extrabold text-2xl mb-3">Get rid of ${s.name.toLowerCase()} for good.</h3>
+          <p class="text-sm opacity-90 mb-5">Same-day service available across Durham, NC. Licensed, insured, and family-owned since 2017.</p>
+          <a href="/#contact" class="block text-center bg-brand-orange hover:bg-brand-orange-dark text-white font-bold py-3 px-4 rounded-xl transition shadow-card mb-3">
+            <i class="fa-solid fa-calendar-check mr-2"></i> Request Free Inspection
+          </a>
+          <a href="tel:+19196066866" class="block text-center bg-white/15 hover:bg-white/25 text-white font-bold py-3 px-4 rounded-xl transition backdrop-blur border border-white/25">
+            <i class="fa-solid fa-phone-volume mr-2"></i> (919) 606-6866
+          </a>
+          <div class="mt-5 pt-5 border-t border-white/20 grid grid-cols-2 gap-3 text-center">
+            <div><div class="font-display font-extrabold text-xl">5.0<i class="fa-solid fa-star text-brand-orange text-sm ml-1"></i></div><div class="text-[11px] opacity-80">Google & Yelp</div></div>
+            <div><div class="font-display font-extrabold text-xl">8+</div><div class="text-[11px] opacity-80">Years in Durham</div></div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+          <h4 class="font-bold mb-4">Other services</h4>
+          <ul class="space-y-2 text-sm">
+            ${allServices.filter(o => o.slug !== s.slug).slice(0, 6).map(o => `<li><a href="/services/${o.slug}" class="flex items-center gap-2 text-slate-600 hover:text-brand-green transition"><i class="fa-solid ${o.icon} text-brand-green w-4"></i> ${o.name}</a></li>`).join('')}
+          </ul>
+          <a href="/#services" class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-brand-green hover:text-brand-green-dark">View all services <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-navy-dark text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8">
+      <div class="md:col-span-2">
+        <span class="inline-block bg-white rounded-xl p-2 shadow-card mb-4">
+          <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 w-auto" />
+        </span>
+        <p class="text-sm leading-relaxed max-w-md">Durham's family-owned pest control. Protecting homes across Durham, NC and surrounding communities since 2017 — with eco-friendly, family-safe treatments.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Services</h4>
+        <ul class="space-y-2 text-sm">
+          ${allServices.slice(0, 6).map(o => `<li><a href="/services/${o.slug}" class="hover:text-white">${o.name}</a></li>`).join('')}
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Contact</h4>
+        <ul class="space-y-2 text-sm">
+          <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196066866" class="hover:text-white">(919) 606-6866</a></li>
+          <li><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:info@castleexterminators.co" class="hover:text-white">info@castleexterminators.co</a></li>
+          <li><i class="fa-solid fa-location-dot mr-2"></i> Durham, NC</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-slate-400 flex flex-col sm:flex-row justify-between gap-3">
+        <span>© ${new Date().getFullYear()} Castle Exterminators. All rights reserved.</span>
+        <span>Licensed & Insured in North Carolina</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="tel:+19196066866" class="md:hidden fixed bottom-5 right-5 z-50 bg-brand-orange hover:bg-brand-orange-dark text-white w-14 h-14 rounded-full grid place-items-center shadow-card">
+    <i class="fa-solid fa-phone-volume text-xl"></i>
+  </a>
+</body>
+</html>`
+
+services.forEach(s => {
+  app.get(`/services/${s.slug}`, (c) => c.html(renderServicePage(s, services)))
+})
 
 export default app
