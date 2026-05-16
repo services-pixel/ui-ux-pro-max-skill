@@ -200,7 +200,8 @@ const html = `<!DOCTYPE html>
         background: rgba(167,201,164,.20);
       }
 
-      /* Section eyebrows — uniform high-emphasis green, tracked & uppercase */
+      /* Section eyebrows — uniform high-emphasis green, tracked & uppercase
+         These ARE the deliberate 30% identity moments — keep saturated. */
       .section-eyebrow {
         color: #1F6F4A;
         font-weight: 700;
@@ -208,6 +209,74 @@ const html = `<!DOCTYPE html>
         letter-spacing: 0.16em;
         font-size: 0.75rem;
         font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      }
+
+      /* ---------------------------------------------------------------------------
+         60-30-10 ENFORCEMENT — demote secondary green usages to neutral ink
+         A previous pass painted nearly every icon, arrow, check & inline link
+         green. That tips the page to ~64% green and breaks the proportion rule.
+         These overrides surgically demote decorative greens to the warmer ink so
+         the eye sees identity green only in eyebrows, icons-on-cards, key
+         hover states, and primary brand elements. Terracotta stays rare,
+         and where green WAS dominant we now use ink + terracotta highlights.
+         --------------------------------------------------------------------------- */
+
+      /* Inline decorative arrows / chevrons / bullet markers — demote to ink.
+         They were green for flair; the 60-30-10 rule says they should recede. */
+      .service-card .fa-arrow-right,
+      .service-card .fa-chevron-right,
+      .nav-service-arrow,
+      .stat-card .stat-num + p,
+      summary .fa-chevron-down,
+      details .fa-chevron-down {
+        color: rgba(var(--ink), var(--emphasis-medium)) !important;
+      }
+
+      /* "View all" style secondary links — slate-ink rather than competing green */
+      a.text-brand-green.text-sm.font-semibold {
+        color: rgba(var(--ink), var(--emphasis-high)) !important;
+      }
+      a.text-brand-green.text-sm.font-semibold:hover {
+        color: #C2663B !important;   /* terracotta on hover = "you can click me" */
+      }
+
+      /* Decorative service-card hint arrows on hover — switch to terracotta so the
+         hover signal is the accent, not more green */
+      .service-card:hover .fa-arrow-right,
+      .nav-service-card:hover .nav-service-arrow {
+        color: #C2663B !important;
+      }
+
+      /* Check-mark bullets in "signs" lists — keep green but only at 60% so it
+         feels like an accent rather than a primary message */
+      .bg-brand-cream\/60 .fa-check,
+      ul .text-brand-green-light .fa-check {
+        opacity: 0.7;
+      }
+
+      /* FAQ chevron — neutralize to ink, accent green only when open */
+      summary .chev { color: rgba(var(--ink), var(--emphasis-medium)); }
+      details[open] summary .chev { color: #1F6F4A; }
+
+      /* Hover state for nav-link — fade to ink-on-orange-underline so the link
+         itself doesn't go FULL green */
+      .nav-link:hover { color: rgba(var(--ink), var(--emphasis-high)); }
+      .nav-link.active { color: #1F6F4A; }      /* Active stays green = identity */
+      .nav-link::after { background: #C2663B; }  /* Underline accent = terracotta */
+      .nav-link.active::after { background: #1F6F4A; }
+
+      /* "5.0" review numbers / star ratings — terracotta is the accent here */
+      .stars-terracotta i.fa-star { color: #C2663B; }
+
+      /* Active section indicator next to the nav link (subtle dot) */
+      .nav-link.active::before {
+        content: '';
+        position: absolute;
+        left: -10px; top: 50%;
+        width: 5px; height: 5px;
+        border-radius: 50%;
+        background: #C2663B;
+        transform: translateY(-50%);
       }
 
       /* Decorative serif italic accent (for highlighted words inside headings) */
@@ -1780,6 +1849,17 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
 
     ::placeholder { color: rgba(var(--ink), var(--emphasis-disabled)); opacity: 1; }
     :disabled     { color: rgba(var(--ink), var(--emphasis-disabled)); }
+
+    /* 60-30-10 enforcement (shared with homepage) */
+    a.text-brand-green.text-sm.font-semibold { color: rgba(var(--ink), var(--emphasis-high)) !important; }
+    a.text-brand-green.text-sm.font-semibold:hover { color: #C2663B !important; }
+    .nav-service-arrow { color: rgba(var(--ink), var(--emphasis-medium)) !important; }
+    .nav-service-card:hover .nav-service-arrow { color: #C2663B !important; }
+    .nav-link:hover { color: rgba(var(--ink), var(--emphasis-high)); }
+    .nav-link.active { color: #1F6F4A; }
+    .nav-link::after { background: #C2663B; }
+    .nav-link.active::after { background: #1F6F4A; }
+
     .hero-overlay {
       background:
         linear-gradient(135deg, rgba(31,111,74,.92) 0%, rgba(14,22,18,.78) 55%, rgba(14,22,18,.45) 100%);
