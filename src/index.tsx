@@ -43,7 +43,7 @@ const html = `<!DOCTYPE html>
       "description": "Family-owned local pest control company serving Durham, NC and surrounding communities. Eco-friendly, family-safe treatments for termites, ants, roaches, rodents, mosquitoes and more.",
       "url": "https://castleexterminators.co/",
       "telephone": "+1-919-606-6866",
-      "email": "info@castleexterminators.co",
+      "email": "services@castleexterminators.co",
       "image": "https://castleexterminators.co/static/castle-logo.png",
       "logo": "https://castleexterminators.co/static/castle-logo.png",
       "priceRange": "$$",
@@ -73,8 +73,8 @@ const html = `<!DOCTYPE html>
       "openingHoursSpecification": [{
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-        "opens": "07:00",
-        "closes": "19:00"
+        "opens": "08:00",
+        "closes": "17:00"
       }],
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -1434,11 +1434,11 @@ const html = `<!DOCTYPE html>
                 <p class="font-bold text-brand-navy text-lg">(919) 606-6866</p>
               </div>
             </a>
-            <a href="mailto:info@castleexterminators.co" class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
+            <a href="mailto:services@castleexterminators.co" class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
               <span class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center text-lg"><i class="fa-solid fa-envelope"></i></span>
               <div>
                 <p class="text-xs text-slate-500 font-semibold uppercase tracking-wide">Email us</p>
-                <p class="font-bold text-brand-navy text-lg break-all">info@castleexterminators.co</p>
+                <p class="font-bold text-brand-navy text-lg break-all">services@castleexterminators.co</p>
               </div>
             </a>
             <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200">
@@ -1452,7 +1452,7 @@ const html = `<!DOCTYPE html>
               <span class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center text-lg"><i class="fa-solid fa-clock"></i></span>
               <div>
                 <p class="text-xs text-slate-500 font-semibold uppercase tracking-wide">Hours</p>
-                <p class="font-bold text-brand-navy text-lg">Mon–Sat • 7am – 7pm</p>
+                <p class="font-bold text-brand-navy text-lg">Mon–Sat • 8am – 5pm</p>
               </div>
             </div>
           </div>
@@ -1545,9 +1545,9 @@ const html = `<!DOCTYPE html>
           <h4 class="text-white font-bold mb-4">Get in Touch</h4>
           <ul class="space-y-2 text-sm">
             <li><a href="tel:+19196066866" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-phone-volume text-brand-green-light"></i> (919) 606-6866</a></li>
-            <li><a href="mailto:info@castleexterminators.co" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-green-light"></i> info@castleexterminators.co</a></li>
+            <li><a href="mailto:services@castleexterminators.co" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-green-light"></i> services@castleexterminators.co</a></li>
             <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-green-light"></i> Durham, NC</li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-brand-green-light"></i> Mon–Sat 7am–7pm</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-brand-green-light"></i> Mon–Sat 8am–5pm</li>
           </ul>
         </div>
       </div>
@@ -2530,7 +2530,7 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
         <h4 class="text-white font-bold mb-4">Contact</h4>
         <ul class="space-y-2 text-sm">
           <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196066866" class="hover:text-white">(919) 606-6866</a></li>
-          <li><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:info@castleexterminators.co" class="hover:text-white">info@castleexterminators.co</a></li>
+          <li><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:services@castleexterminators.co" class="hover:text-white">services@castleexterminators.co</a></li>
           <li><i class="fa-solid fa-location-dot mr-2"></i> Durham, NC</li>
         </ul>
       </div>
