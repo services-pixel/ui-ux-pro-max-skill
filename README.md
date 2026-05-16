@@ -1,15 +1,9 @@
-# Pest Control Landing Page
+# Pest Control Landing Page (ShieldPest)
 
 ## Project Overview
-- **Name**: Professional Pest Control Services Landing Page
-- **Goal**: A clean, conversion-focused single-page site that drives visitors to request a free pest inspection via an embedded GorillaDesk contact form.
-- **Features**:
-  - Gradient hero section with a single, strong call-to-action
-  - Contact info card (phone, email, service area) ready to be filled in with real business details
-  - Embedded **GorillaDesk** contact form (account `0d73a25092e5c1c9769a9f3255caa65a`) for lead capture
-  - Smooth-scroll anchor from CTA to the contact form
-  - Mobile-responsive (uses `clamp()` typography and a single-column layout)
-  - SEO meta description and inline SVG favicon
+- **Name**: ShieldPest — Professional Pest Control Services Landing Page
+- **Goal**: A conversion-optimized single-page site that drives qualified leads into the embedded GorillaDesk contact form.
+- **Stack**: Hono (Cloudflare Pages) · Tailwind CSS (CDN) · Font Awesome · Google Fonts (Plus Jakarta Sans + Inter)
 
 ## URLs
 - **GitHub**: https://github.com/services-pixel/ui-ux-pro-max-skill
@@ -19,49 +13,84 @@
 ## Functional Entry Points
 | Method | Path | Description |
 |--------|------|-------------|
-| `GET`  | `/`  | Renders the full landing page (hero + contact section + GorillaDesk form) |
+| `GET`  | `/`  | Renders the full landing page (nav, hero, trust bar, services, why-us, process, reviews, FAQ, contact, footer) |
 
-No backend API routes — the only third-party integration is the GorillaDesk embed script, which loads client-side from `https://portal-embed-v3.gorilladesk.com/js/contact/contact.js` and renders into `<div id="gorilladesk-contact-form">` on `window.load`.
+The only third-party integration is the **GorillaDesk** embed (`account_id: 0d73a25092e5c1c9769a9f3255caa65a`), loaded client-side from `https://portal-embed-v3.gorilladesk.com/js/contact/contact.js` and rendered into `<div id="gorilladesk-contact-form">` on `window.load`.
+
+## Page Sections (in order)
+1. **Sticky navigation** — logo, anchor links (Services / Why Us / Process / Reviews / FAQ), phone number, primary CTA
+2. **Hero** — gradient background, headline + subhead, dual CTA (form + phone), trust strip (rating, licensed, eco-friendly), and a hero side-card listing key promises
+3. **Trust stat bar** — 4 quick stats (years, treatments, rating, response time)
+4. **Services grid** — 8 pest-type cards (termites, roaches, rodents, wasps, ants, mosquitoes, bed bugs, spiders & more)
+5. **Why Us** — 4 benefit cards (licensed, safe, guarantee, same-day) + CTA
+6. **Process** — numbered 4-step flow (contact → inspect → treat → protect)
+7. **Testimonials** — 3 5-star reviews on a dark navy backdrop with overall rating
+8. **FAQ** — 5 expandable accordion items (safety, speed, cost, guarantee, in-home requirements)
+9. **Contact** — contact info cards (phone, email, area, hours) + the GorillaDesk form
+10. **Footer** — quick links, contact info, copyright
+11. **Floating call button** — mobile-only, fixed bottom-right
+
+## UX / Interaction Details
+- Smooth scroll between anchors (`scroll-behavior: smooth` + 80px scroll-padding to clear sticky header)
+- `IntersectionObserver`-powered scroll reveal on every major block (`.reveal` → `.in`)
+- Sticky header gains a soft shadow once the page is scrolled past 8px
+- Soft pulse animation on primary CTAs (hero + floating mobile button)
+- Hover states: service cards lift their border + icon color flips to filled green
+- FAQ uses native `<details>`/`<summary>` with a rotating chevron — no JS needed for accordion logic
+
+## Design System
+| Token | Value | Use |
+|-------|-------|-----|
+| `brand.green` | `#2D6A4F` | Primary brand color |
+| `brand.green-dark` | `#1F4F3A` | Hover for green CTAs |
+| `brand.green-light` | `#52B788` | Accents on dark backgrounds |
+| `brand.navy` | `#1B2A4A` | Text, hero gradient, footer |
+| `brand.navy-dark` | `#0F1A30` | Deep footer |
+| `brand.orange` | `#F4A261` | Primary CTA color |
+| `brand.orange-dark` | `#E08A3C` | CTA hover |
+| `brand.cream` | `#FAF7F2` | Section dividers (warm beige) |
+
+- **Display font**: Plus Jakarta Sans (extrabold for headings)
+- **Body font**: Inter
+- **Icons**: Font Awesome 6.4
 
 ## Data Architecture
 - **Data Models**: None server-side. Lead form submissions are owned and stored by **GorillaDesk** (the embedded form posts directly to their service).
 - **Storage Services**: None on Cloudflare. All form data lives in the GorillaDesk account.
-- **Data Flow**: Visitor → clicks CTA → scrolls to `#contact` → fills GorillaDesk form → submission goes directly to GorillaDesk → business is notified inside the GorillaDesk dashboard.
-
-## Tech Stack
-- **Framework**: Hono (running on Cloudflare Pages / Workers runtime)
-- **Build**: Vite (`@hono/vite-cloudflare-pages`)
-- **Language**: TypeScript (TSX)
-- **Styling**: Inline CSS (no framework) — palette `#2D6A4F` green, `#1B2A4A` navy, `#F4A261` orange
-- **Process manager (dev)**: PM2 + `wrangler pages dev`
+- **Data Flow**: Visitor → clicks CTA → smooth-scrolls to `#contact` → fills GorillaDesk form → submission goes directly to GorillaDesk → business is notified inside the GorillaDesk dashboard.
 
 ## Completed Features
-- [x] Hero section with gradient, heading, subhead, and CTA button
-- [x] Contact info card with phone / email / service area placeholders
+- [x] Full marketing landing page with 10 distinct sections
+- [x] Sticky navigation with anchor links and dual CTAs
+- [x] Tailwind-based design system with custom brand palette
+- [x] 8-pest services grid with icons and hover states
+- [x] Trust stats, testimonials, and 4-step process visualization
+- [x] Native HTML accordion FAQ (5 items, no JS dependency for behavior)
+- [x] Scroll-reveal animations + smooth scroll
+- [x] Mobile-friendly with floating tap-to-call button
 - [x] GorillaDesk form embed wired with the provided `account_id`
-- [x] Mobile-responsive layout
-- [x] SEO meta description and favicon
-- [x] Smooth-scroll behavior from CTA to form
+- [x] SEO meta description, OG tags, theme-color, favicon
 - [x] Pushed to GitHub `main`
 
 ## Not Yet Implemented
-- [ ] Real business details filled in (phone number, email, service-area city, company name in `<title>`)
+- [ ] Real business details filled in (phone number, email, service-area city, real company name — currently uses "ShieldPest" as a placeholder brand)
 - [ ] Cloudflare Pages production deployment (needs Cloudflare API key configured in the Deploy tab)
-- [ ] Trust signals — testimonials, reviews, license / certification badges, "X years in business"
-- [ ] Service breakdown section (termites, roaches, rodents, etc. as individual cards)
-- [ ] Pricing or "Free Inspection" guarantee block
-- [ ] Service-area map / list of cities served
-- [ ] Analytics (e.g. Google Analytics, GA4, or Cloudflare Web Analytics)
-- [ ] OG / Twitter social-share preview meta tags
+- [ ] Service-area map (e.g. Google Maps embed or a styled list of zip codes/cities)
+- [ ] Pricing or plan tiers (one-time / quarterly / annual)
+- [ ] Real customer photos / logos / certification badges
+- [ ] Privacy Policy and Terms pages (footer links currently `#`)
+- [ ] Analytics (Cloudflare Web Analytics, GA4, or Plausible)
+- [ ] Production-grade Tailwind build (currently uses the CDN script — fine for a landing page but emits a console warning)
+- [ ] Localization / Spanish version
 
 ## Recommended Next Steps
-1. **Fill in the placeholders** in `src/index.tsx`: phone (`(XXX) XXX-XXXX` and `tel:+1XXXXXXXXXX`), email, `[Your City]`, and the page `<title>`.
-2. **Configure Cloudflare API key** in the Deploy tab, then deploy to `pages.dev` with `npx wrangler pages deploy dist --project-name <name>`.
-3. **Add trust content** — a "Why choose us" row with 3–4 icons (licensed, insured, family-owned, X reviews) usually doubles conversion on pest-control pages.
-4. **Add a services grid** below the hero with one card per pest type, each with an icon and one-sentence description.
-5. **Add Google Analytics or Cloudflare Web Analytics** to measure CTA clicks and form submissions.
-6. **Add OG meta tags** so the page previews nicely when shared on Facebook / iMessage / WhatsApp.
-7. **Lock down the GorillaDesk embed** — verify the form actually renders by opening the live URL and scrolling to the contact section; if it stays empty, the GorillaDesk portal may need the contact form enabled in account settings.
+1. **Fill in the placeholders** in `src/index.tsx`: replace every `(XXX) XXX-XXXX`, `+1XXXXXXXXXX`, `info@yourcompany.com`, `[Your City]`, and the `ShieldPest` brand name with the real business details.
+2. **Deploy to Cloudflare Pages** — configure the Cloudflare API key in the Deploy tab, then run `npx wrangler pages deploy dist --project-name <your-name>` for a permanent `*.pages.dev` URL.
+3. **Verify the GorillaDesk form actually renders** on the live URL by scrolling to the contact section. If it stays empty, log into the GorillaDesk portal and confirm the contact form is enabled for account `0d73a25092e5c1c9769a9f3255caa65a`.
+4. **Swap testimonial avatars/names** for real customer initials once you have permission, and link the dark testimonial section to a "see all reviews on Google" CTA.
+5. **Add analytics + conversion tracking** so you can measure CTA clicks vs. form submissions.
+6. **Move Tailwind to a build step** (or switch to UnoCSS / static CSS) to remove the CDN warning and shave the page weight.
+7. **Add Privacy Policy & Terms pages** at `/privacy` and `/terms` and link them from the footer.
 
 ## Local Development
 ```bash
@@ -74,11 +103,15 @@ pm2 start ecosystem.config.cjs
 # Tail logs (non-blocking)
 pm2 logs webapp --nostream
 
+# Restart after src changes
+npm run build && pm2 restart webapp
+
 # Stop
 pm2 delete webapp
 ```
 
 ## Deployment
 - **Platform**: Cloudflare Pages (configured via `wrangler.jsonc`)
+- **Build output**: `dist/_worker.js` (~64 kB)
 - **Status**: ❌ Not deployed to Cloudflare yet (sandbox preview only)
 - **Last Updated**: 2026-05-16
