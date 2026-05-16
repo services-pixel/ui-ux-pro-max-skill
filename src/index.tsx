@@ -173,6 +173,43 @@ const html = `<!DOCTYPE html>
       /* Brand-coloured text (text-brand-green, text-brand-orange, etc.) stays fully
          opaque on purpose — accent colors are emphatic by definition. */
 
+      /* ---------------------------------------------------------------------------
+         60-30-10 COLOR PROPORTION SYSTEM
+         The site's color balance is intentionally tuned to:
+           60% — Dominant neutrals   (bone #FBF8F1 + cream #F7F2E7 + sand)
+                                      page backgrounds, cards, large surfaces
+           30% — Secondary brand     (forest emerald #1F6F4A + mossy ink #1E2A24)
+                                      headings, nav links, icons, eyebrows, dark sections
+           10% — Accent (rare!)      (terracotta #C2663B + leaf #A7C9A4)
+                                      ONLY on CTAs (Free Inspection, phone FAB, form submit),
+                                      review stars, single hero-word accent.
+                                      Decorative orange icons have been demoted to leaf-green.
+         --------------------------------------------------------------------------- */
+
+      /* Pure terracotta accent is reserved for primary CTAs + 5-star ratings only.
+         To enforce this and make rule-violations easy to spot, we give every
+         direct usage of .bg-brand-orange a built-in CTA shadow + sheen. */
+      .bg-brand-orange {
+        box-shadow: 0 8px 24px -10px rgba(194,102,59,.5);
+      }
+      .bg-brand-orange:hover { box-shadow: 0 14px 30px -8px rgba(194,102,59,.6); }
+
+      /* Decorative leaf accent — for soft secondary highlights (10% slot) */
+      .accent-leaf {
+        color: rgba(31,111,74, var(--emphasis-high));
+        background: rgba(167,201,164,.20);
+      }
+
+      /* Section eyebrows — uniform high-emphasis green, tracked & uppercase */
+      .section-eyebrow {
+        color: #1F6F4A;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.75rem;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      }
+
       /* Decorative serif italic accent (for highlighted words inside headings) */
       .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
 
@@ -934,22 +971,22 @@ const html = `<!DOCTYPE html>
 
           <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6">
             <div class="neumo-card reveal rounded-2xl p-6">
-              <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-house-chimney text-lg"></i></div>
+              <div class="w-11 h-11 rounded-xl bg-brand-green-mist text-brand-green-dark grid place-items-center mb-4"><i class="fa-solid fa-house-chimney text-lg"></i></div>
               <h3 class="font-bold text-lg mb-2">Local & Family-Owned</h3>
               <p class="text-sm text-slate-600">Born and rooted in Durham, NC. We know our community — and the pests that show up here.</p>
             </div>
             <div class="neumo-card reveal reveal-delay-1 rounded-2xl p-6">
-              <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-leaf text-lg"></i></div>
+              <div class="w-11 h-11 rounded-xl bg-brand-green-mist text-brand-green-dark grid place-items-center mb-4"><i class="fa-solid fa-leaf text-lg"></i></div>
               <h3 class="font-bold text-lg mb-2">Eco-Friendly Treatments</h3>
               <p class="text-sm text-slate-600">Low-toxicity, family-safe products applied precisely where pests live — safe for kids, pets, and the NC ecosystem.</p>
             </div>
             <div class="neumo-card reveal reveal-delay-2 rounded-2xl p-6">
-              <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-handshake text-lg"></i></div>
+              <div class="w-11 h-11 rounded-xl bg-brand-green-mist text-brand-green-dark grid place-items-center mb-4"><i class="fa-solid fa-handshake text-lg"></i></div>
               <h3 class="font-bold text-lg mb-2">Satisfaction Guaranteed</h3>
               <p class="text-sm text-slate-600">Pests come back between visits? We come back too — at no extra charge. Your peace of mind is our promise.</p>
             </div>
             <div class="neumo-card reveal reveal-delay-3 rounded-2xl p-6">
-              <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-medal text-lg"></i></div>
+              <div class="w-11 h-11 rounded-xl bg-brand-green-mist text-brand-green-dark grid place-items-center mb-4"><i class="fa-solid fa-medal text-lg"></i></div>
               <h3 class="font-bold text-lg mb-2">Licensed & Certified</h3>
               <p class="text-sm text-slate-600">Fully state-licensed NC technicians, highly trained and fully insured — protected on every job.</p>
             </div>
@@ -1006,7 +1043,7 @@ const html = `<!DOCTYPE html>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto text-center mb-14 reveal">
-          <p class="text-brand-orange font-bold uppercase tracking-wider text-sm mb-3">What Durham Homeowners Say</p>
+          <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">What Durham Homeowners Say</p>
           <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">Real reviews from real Durham neighbors</h2>
           <div class="flex items-center justify-center gap-2 text-brand-orange text-xl">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
@@ -1158,7 +1195,7 @@ const html = `<!DOCTYPE html>
         <div class="lg:col-span-7 reveal">
           <div class="bg-white rounded-3xl shadow-card border border-slate-100 p-6 sm:p-10">
             <div class="flex items-center gap-3 mb-2">
-              <span class="w-10 h-10 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center"><i class="fa-solid fa-clipboard-check"></i></span>
+              <span class="w-10 h-10 rounded-xl bg-brand-green-mist text-brand-green-dark grid place-items-center"><i class="fa-solid fa-clipboard-check"></i></span>
               <h3 class="font-extrabold text-2xl">Request Your Free Durham Inspection</h3>
             </div>
             <p class="text-slate-600 mb-6">Fill out the form and a Castle Exterminators specialist will contact you within 2 business hours. No obligation, no pressure — just a friendly local quote.</p>
@@ -1228,7 +1265,7 @@ const html = `<!DOCTYPE html>
             <span class="sr-only">Castle Exterminators</span>
           </a>
           <p class="text-sm leading-relaxed max-w-md">Durham's family-owned pest control. Protecting homes across Durham, NC and surrounding communities since 2017 — with eco-friendly, family-safe treatments and certified, neighborly service.</p>
-          <p class="text-xs text-slate-400 mt-4">Keep your <strong class="text-brand-orange">castle</strong> pest-free.</p>
+          <p class="text-xs text-slate-400 mt-4">Keep your <strong class="serif-italic text-brand-leaf font-medium">castle</strong> pest-free.</p>
         </div>
 
         <div>
@@ -1982,11 +2019,11 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
       <div class="absolute inset-0 hero-overlay"></div>
       <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-10 text-white">
         <nav class="text-xs sm:text-sm font-semibold mb-4 opacity-90">
-          <a href="/" class="hover:text-brand-orange transition">Home</a>
+          <a href="/" class="hover:text-brand-green-light transition">Home</a>
           <i class="fa-solid fa-chevron-right text-[10px] mx-2 opacity-60"></i>
-          <a href="/#services" class="hover:text-brand-orange transition">Services</a>
+          <a href="/#services" class="hover:text-brand-green-light transition">Services</a>
           <i class="fa-solid fa-chevron-right text-[10px] mx-2 opacity-60"></i>
-          <span class="text-brand-orange">${s.name}</span>
+          <span class="text-brand-leaf">${s.name}</span>
         </nav>
         <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur border border-white/25 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider mb-4 w-fit">
           <i class="fa-solid ${s.icon}"></i> Castle Exterminators · Durham, NC
