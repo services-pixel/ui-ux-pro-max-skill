@@ -873,7 +873,7 @@ const html = `<!DOCTYPE html>
 
           <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6" style="font-weight:700;">
             Protecting What <span class="serif-italic text-brand-orange-soft">Matters Most</span><br>
-            Your Home &amp; Family
+            <span class="block text-2xl sm:text-3xl lg:text-4xl font-medium text-white/60 mt-2 tracking-tight">Your Home &amp; Family</span>
           </h1>
 
           <p class="text-lg sm:text-xl text-slate-100/90 max-w-xl mb-8 leading-relaxed">
