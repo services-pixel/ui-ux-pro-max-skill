@@ -76,12 +76,9 @@ const html = `<!DOCTYPE html>
       @keyframes softPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(244,162,97,.6); } 50% { box-shadow: 0 0 0 16px rgba(244,162,97,0); } }
       .pulse { animation: softPulse 2.4s ease-out infinite; }
 
-      /* GorillaDesk form polish */
-      #gorilladesk-contact-form input,
-      #gorilladesk-contact-form textarea,
-      #gorilladesk-contact-form select {
-        border-radius: 10px !important;
-      }
+      /* GorillaDesk form wrapper polish (form itself lives inside an iframe) */
+      #gorilladesk-contact-form { transition: opacity .3s ease; }
+      #gd-form-iframe { display: block; }
 
       /* Accordion */
       details[open] summary .chev { transform: rotate(180deg); }
@@ -539,8 +536,45 @@ const html = `<!DOCTYPE html>
             </div>
             <p class="text-slate-600 mb-6">Fill out the form and we'll contact you within 2 business hours. No obligation, no pressure.</p>
 
-            <!-- GorillaDesk Form Container -->
-            <div id="gorilladesk-contact-form"></div>
+            <!-- GorillaDesk Inline Form (iframe embed) -->
+            <div id="gorilladesk-contact-form" class="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-50" style="min-height: 640px;">
+              <!-- Loading placeholder (shown until iframe paints) -->
+              <div id="gd-form-loading" class="absolute inset-0 grid place-items-center text-slate-500 text-sm">
+                <div class="flex flex-col items-center gap-3">
+                  <i class="fa-solid fa-circle-notch fa-spin text-2xl text-brand-green"></i>
+                  <span>Loading inspection form…</span>
+                </div>
+              </div>
+              <!--
+                NOTE on account_id:
+                The portal hex key "0d73a25092e5c1c9769a9f3255caa65a" is NOT what the iframe expects.
+                GorillaDesk's loader script resolves it to a numeric owner_id via a POST to
+                https://api-portal-v3.gorilladesk.com/company/settings — for this account that
+                returns account_id "2147" (business: Castle Exterminators).
+                If the business ever changes accounts, refresh this value by running:
+                  curl -X POST https://api-portal-v3.gorilladesk.com/company/settings \\
+                    -H "Content-Type: application/json" \\
+                    -d '{"account_id":"<hex-key-here>"}'
+                and copying the returned "account_id" into the URL below.
+              -->
+              <iframe
+                id="gd-form-iframe"
+                title="Request your free pest control inspection"
+                src="https://portal-embed-v3.gorilladesk.com/?screen=contact&account_id=2147&embed_form=true&embed_web_code=true&embed_form_type=portal"
+                loading="lazy"
+                allow="clipboard-write"
+                style="width:100%; height:640px; border:0; display:block; background:transparent;"
+                onload="(function(){var l=document.getElementById('gd-form-loading'); if(l) l.style.display='none';})()"
+              ></iframe>
+            </div>
+
+            <!-- Fallback: if iframe is blocked or doesn't load, give users a way to reach us -->
+            <noscript>
+              <p class="mt-4 text-sm text-slate-600">
+                The form requires JavaScript. Please call <a class="text-brand-green font-bold" href="tel:+1XXXXXXXXXX">(XXX) XXX-XXXX</a>
+                or email <a class="text-brand-green font-bold" href="mailto:info@yourcompany.com">info@yourcompany.com</a>.
+              </p>
+            </noscript>
 
             <p class="text-xs text-slate-500 mt-6 flex items-start gap-2">
               <i class="fa-solid fa-shield-halved text-brand-green mt-0.5"></i>
@@ -619,7 +653,19 @@ const html = `<!DOCTYPE html>
     onScroll();
   </script>
 
-  <!-- GorillaDesk Script (unchanged behavior, preserved) -->
+  <!--
+    GorillaDesk integration notes:
+    -----------------------------
+    The provided contact.js script (https://portal-embed-v3.gorilladesk.com/js/contact/contact.js)
+    renders a *floating chat-bubble widget* attached to <body>, NOT an inline form into a target div.
+    Since we already have a strong inline form section, we embed GorillaDesk's contact form directly
+    as an iframe inside #gorilladesk-contact-form above. That uses the same backend and submits to
+    the same GorillaDesk account (account_id 0d73a25092e5c1c9769a9f3255caa65a).
+
+    If you ALSO want the floating chat bubble in addition to the inline form, uncomment the
+    snippet below — it will add a second contact button in the bottom-right corner.
+  -->
+  <!--
   <script type="text/javascript">
       var _gorilla = _gorilla || {};
       _gorilla.account_id = '0d73a25092e5c1c9769a9f3255caa65a';
@@ -632,9 +678,13 @@ const html = `<!DOCTYPE html>
           var b = document.getElementsByTagName('script')[0];
           b.parentNode.insertBefore(a, b);
       };
-      window.addEventListener ? window.addEventListener('load', _gorillaInitPortal, !1) :
-      window.attachEvent ? window.attachEvent('onload', _gorillaInitPortal) : (window.onload = _gorillaInitPortal);
+      window.addEventListener
+        ? window.addEventListener('load', _gorillaInitPortal, !1)
+        : window.attachEvent
+        ? window.attachEvent('onload', _gorillaInitPortal)
+        : (window.onload = _gorillaInitPortal);
   </script>
+  -->
 </body>
 </html>`
 
