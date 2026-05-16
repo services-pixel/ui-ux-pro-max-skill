@@ -222,252 +222,207 @@ const html = `<!DOCTYPE html>
       @keyframes ringRotate { to { transform: rotate(1turn); } }
 
       /* ---------------------------------------------------------------------------
-         ANIMATED TOP MENU
+         TOP MENU — minimal animations + Services slide-out mega dropdown
          --------------------------------------------------------------------------- */
 
-      /* Header entrance — slides down on page load */
       #site-header {
-        transform: translateY(-100%);
-        opacity: 0;
-        animation: navDrop .7s cubic-bezier(.22,1,.36,1) .1s forwards;
-        transition: height .35s cubic-bezier(.22,1,.36,1),
-                    background-color .35s ease,
-                    box-shadow .35s ease,
-                    backdrop-filter .35s ease;
-      }
-      @keyframes navDrop {
-        to { transform: translateY(0); opacity: 1; }
+        transition: background-color .3s ease,
+                    box-shadow .3s ease,
+                    backdrop-filter .3s ease;
       }
 
-      /* Scroll-aware shrink: when window.scrollY > 8 we toggle .nav-scrolled */
+      /* Scroll-aware shadow + tint */
       #site-header.nav-scrolled {
         background-color: rgba(255,255,255,.96);
-        backdrop-filter: saturate(180%) blur(14px);
-        -webkit-backdrop-filter: saturate(180%) blur(14px);
+        backdrop-filter: saturate(180%) blur(12px);
+        -webkit-backdrop-filter: saturate(180%) blur(12px);
         box-shadow: 0 4px 20px -8px rgba(15,26,48,.18);
       }
-      #site-header.nav-scrolled .nav-inner { height: 3.5rem; }
-      #site-header.nav-scrolled .nav-logo { transform: scale(.92); }
 
-      .nav-inner { transition: height .35s cubic-bezier(.22,1,.36,1); }
-
-      /* Logo — gentle hover lift + tiny tilt */
-      .nav-logo {
-        transition: transform .45s cubic-bezier(.34,1.56,.64,1), filter .35s ease;
-        transform-origin: left center;
-        will-change: transform;
-      }
-      .nav-logo:hover { transform: scale(1.04) rotate(-1.5deg); filter: drop-shadow(0 4px 12px rgba(6,113,51,.25)); }
-      .nav-logo:active { transform: scale(.98) rotate(0); }
-
-      /* Stagger entrance for nav items */
-      .nav-item {
-        opacity: 0;
-        transform: translateY(-8px);
-        animation: navItemIn .55s cubic-bezier(.22,1,.36,1) forwards;
-      }
-      .nav-item:nth-child(1) { animation-delay: .35s; }
-      .nav-item:nth-child(2) { animation-delay: .42s; }
-      .nav-item:nth-child(3) { animation-delay: .49s; }
-      .nav-item:nth-child(4) { animation-delay: .56s; }
-      .nav-item:nth-child(5) { animation-delay: .63s; }
-      @keyframes navItemIn {
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      /* Animated underline on hover (left-to-right sweep) */
+      /* Top-level links — simple color + subtle underline on hover */
       .nav-link {
         position: relative;
-        padding: .35rem .15rem;
+        padding: .35rem 0;
         transition: color .25s ease;
       }
-      .nav-link::before,
       .nav-link::after {
         content: '';
         position: absolute;
         left: 0; right: 0;
-        bottom: -2px;
+        bottom: -4px;
         height: 2px;
         border-radius: 2px;
-        background: linear-gradient(90deg, #067133, #3CA862);
+        background: #067133;
         transform: scaleX(0);
-        transform-origin: left center;
-        transition: transform .45s cubic-bezier(.65,.05,.36,1);
+        transform-origin: center;
+        transition: transform .35s cubic-bezier(.65,.05,.36,1);
       }
-      .nav-link::after { filter: blur(6px); opacity: .6; }
       .nav-link:hover,
-      .nav-link:focus-visible { color: #067133; }
-      .nav-link:hover::before,
-      .nav-link:hover::after,
-      .nav-link:focus-visible::before,
-      .nav-link:focus-visible::after { transform: scaleX(1); }
-
-      /* Active section gets persistent underline + bold color */
+      .nav-link:focus-visible,
       .nav-link.active { color: #067133; }
-      .nav-link.active::before { transform: scaleX(1); }
+      .nav-link:hover::after,
+      .nav-link:focus-visible::after,
+      .nav-link.active::after { transform: scaleX(1); }
 
-      /* Tiny dot floats above an active link */
-      .nav-link.active::before {
-        box-shadow: 0 0 0 3px rgba(6,113,51,.12);
+      /* ---- Services mega-dropdown ---- */
+      .nav-services {
+        /* the trigger <li> — hover anywhere here keeps the panel open */
+        position: static;
       }
-
-      /* Phone link — icon bounce + colour pulse on hover */
-      .nav-phone {
-        position: relative;
-        transition: color .25s ease, transform .35s cubic-bezier(.34,1.56,.64,1);
-      }
-      .nav-phone:hover { color: #067133; }
-      .nav-phone .nav-phone-icon {
-        display: inline-flex;
-        transition: transform .55s cubic-bezier(.34,1.56,.64,1);
-      }
-      .nav-phone:hover .nav-phone-icon { transform: rotate(-18deg) scale(1.15); }
-      .nav-phone::after {
-        content: '';
-        position: absolute;
-        left: 26px; top: 50%;
-        width: 8px; height: 8px;
-        border-radius: 999px;
-        background: rgba(6,113,51,.45);
-        transform: translate(-50%, -50%) scale(0);
-        animation: phoneRing 2.2s ease-out infinite;
-        pointer-events: none;
-      }
-      @keyframes phoneRing {
-        0% { transform: translate(-50%,-50%) scale(0); opacity: .7; }
-        60% { transform: translate(-50%,-50%) scale(2.6); opacity: 0; }
-        100% { transform: translate(-50%,-50%) scale(2.6); opacity: 0; }
-      }
-
-      /* Header CTA — shimmer sweep + arrow glide */
-      .nav-cta {
-        position: relative;
-        overflow: hidden;
-        isolation: isolate;
-        transition: transform .35s cubic-bezier(.34,1.56,.64,1),
-                    box-shadow .35s ease,
-                    background-color .25s ease;
-      }
-      .nav-cta::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,.55) 50%, transparent 75%);
-        transform: translateX(-120%) skewX(-15deg);
-        transition: transform .9s cubic-bezier(.22,1,.36,1);
-        pointer-events: none;
-      }
-      .nav-cta:hover {
-        transform: translateY(-2px) scale(1.03);
-        box-shadow: 0 14px 30px -10px rgba(244,162,97,.65);
-      }
-      .nav-cta:hover::before { transform: translateX(120%) skewX(-15deg); }
-      .nav-cta:active { transform: translateY(0) scale(.97); }
-      .nav-cta .nav-cta-arrow {
-        display: inline-flex;
+      .nav-services .nav-link i.fa-chevron-down {
         transition: transform .35s cubic-bezier(.22,1,.36,1);
       }
-      .nav-cta:hover .nav-cta-arrow { transform: translateX(4px); }
+      .nav-services[data-open="true"] .nav-link i.fa-chevron-down {
+        transform: rotate(180deg);
+      }
 
-      /* CTA pulsing ring (Hover.css-style ambient glow) */
-      .nav-cta {
-        animation: ctaPulse 2.4s ease-in-out infinite;
+      #services-dropdown {
+        position: absolute;
+        left: 0; right: 0;
+        top: 100%;
+        background: #fff;
+        border-top: 1px solid rgba(15,26,48,.06);
+        box-shadow: 0 22px 40px -18px rgba(15,26,48,.22);
+        transform: translateY(-12px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: transform .4s cubic-bezier(.22,1,.36,1),
+                    opacity .3s ease,
+                    visibility 0s linear .3s;
       }
-      @keyframes ctaPulse {
-        0%, 100% { box-shadow: 0 6px 18px -6px rgba(244,162,97,.45), 0 0 0 0 rgba(244,162,97,.45); }
-        50% { box-shadow: 0 6px 18px -6px rgba(244,162,97,.45), 0 0 0 10px rgba(244,162,97,0); }
+      .nav-services[data-open="true"] #services-dropdown,
+      #services-dropdown[data-open="true"] {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: transform .45s cubic-bezier(.22,1,.36,1),
+                    opacity .3s ease,
+                    visibility 0s linear 0s;
       }
-      .nav-cta:hover { animation: none; }
+
+      .nav-service-card {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity .4s ease, transform .45s cubic-bezier(.22,1,.36,1),
+                    border-color .25s ease, background-color .25s ease;
+      }
+      .nav-services[data-open="true"] .nav-service-card,
+      #services-dropdown[data-open="true"] .nav-service-card {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .nav-service-card:nth-child(1) { transition-delay: .05s; }
+      .nav-service-card:nth-child(2) { transition-delay: .10s; }
+      .nav-service-card:nth-child(3) { transition-delay: .15s; }
+      .nav-service-card:nth-child(4) { transition-delay: .20s; }
+      .nav-service-card:nth-child(5) { transition-delay: .25s; }
+      .nav-service-card:nth-child(6) { transition-delay: .30s; }
+      .nav-service-card:nth-child(7) { transition-delay: .35s; }
+
+      .nav-service-card:hover {
+        background: #FAF7F2;
+        border-color: rgba(6,113,51,.4);
+      }
+      .nav-service-card .nav-service-icon {
+        transition: transform .35s cubic-bezier(.34,1.56,.64,1),
+                    background-color .25s ease, color .25s ease;
+      }
+      .nav-service-card:hover .nav-service-icon {
+        background: #067133;
+        color: #fff;
+        transform: rotate(-6deg) scale(1.08);
+      }
+      .nav-service-card .nav-service-arrow {
+        transition: transform .3s cubic-bezier(.22,1,.36,1), opacity .25s ease;
+        opacity: 0;
+        transform: translateX(-4px);
+      }
+      .nav-service-card:hover .nav-service-arrow {
+        opacity: 1;
+        transform: translateX(0);
+      }
 
       /* Mobile hamburger */
       .nav-burger {
         position: relative;
-        width: 28px; height: 22px;
+        width: 26px; height: 20px;
         display: flex; flex-direction: column; justify-content: space-between;
         background: transparent; border: 0; padding: 0; cursor: pointer;
       }
       .nav-burger span {
         display: block;
+        width: 100%;
         height: 2.5px;
         background: #1B2A4A;
         border-radius: 4px;
-        transform-origin: center;
-        transition: transform .4s cubic-bezier(.65,.05,.36,1),
+        transition: transform .35s cubic-bezier(.65,.05,.36,1),
                     opacity .25s ease,
-                    background-color .25s ease,
-                    width .35s ease;
+                    background-color .25s ease;
       }
-      .nav-burger span:nth-child(1) { width: 100%; }
-      .nav-burger span:nth-child(2) { width: 75%; align-self: flex-end; }
-      .nav-burger span:nth-child(3) { width: 100%; }
       .nav-burger:hover span { background: #067133; }
-      .nav-burger:hover span:nth-child(2) { width: 100%; }
-
-      .nav-burger.open span:nth-child(1) {
-        transform: translateY(9.75px) rotate(45deg);
-      }
-      .nav-burger.open span:nth-child(2) {
-        opacity: 0; transform: translateX(20px);
-      }
-      .nav-burger.open span:nth-child(3) {
-        transform: translateY(-9.75px) rotate(-45deg);
-        width: 100%;
-      }
+      .nav-burger.open span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+      .nav-burger.open span:nth-child(2) { opacity: 0; }
+      .nav-burger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
 
       /* Mobile dropdown panel */
       #nav-mobile {
         max-height: 0;
         opacity: 0;
         overflow: hidden;
-        transition: max-height .45s cubic-bezier(.22,1,.36,1),
-                    opacity .35s ease,
-                    padding .35s ease;
+        transition: max-height .4s cubic-bezier(.22,1,.36,1), opacity .3s ease;
       }
       #nav-mobile.open {
-        max-height: 420px;
+        max-height: 720px;
         opacity: 1;
       }
-      #nav-mobile .nav-mobile-item {
-        opacity: 0;
-        transform: translateX(-12px);
-        transition: opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1);
+
+      /* Mobile services sub-list slides open */
+      #nav-mobile-services-list {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .4s cubic-bezier(.22,1,.36,1);
       }
-      #nav-mobile.open .nav-mobile-item { opacity: 1; transform: translateX(0); }
-      #nav-mobile.open .nav-mobile-item:nth-child(1) { transition-delay: .08s; }
-      #nav-mobile.open .nav-mobile-item:nth-child(2) { transition-delay: .14s; }
-      #nav-mobile.open .nav-mobile-item:nth-child(3) { transition-delay: .20s; }
-      #nav-mobile.open .nav-mobile-item:nth-child(4) { transition-delay: .26s; }
-      #nav-mobile.open .nav-mobile-item:nth-child(5) { transition-delay: .32s; }
-      #nav-mobile.open .nav-mobile-item:nth-child(6) { transition-delay: .38s; }
+      #nav-mobile-services-toggle[aria-expanded="true"] + #nav-mobile-services-list {
+        max-height: 600px;
+      }
+      #nav-mobile-services-toggle i.fa-chevron-down {
+        transition: transform .35s ease;
+      }
+      #nav-mobile-services-toggle[aria-expanded="true"] i.fa-chevron-down {
+        transform: rotate(180deg);
+      }
 
       /* ---------------------------------------------------------------------------
          Accessibility — respect reduced motion
          --------------------------------------------------------------------------- */
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; }
-        #site-header { transform: none; opacity: 1; animation: none; }
-        .nav-item { opacity: 1; transform: none; animation: none; }
-        .nav-cta { animation: none; }
-        .nav-phone::after { animation: none; opacity: 0; }
       }
     </style>
 </head>
 <body class="bg-white antialiased">
 
-  <!-- ============== STICKY NAV (animated) ============== -->
+  <!-- ============== STICKY NAV — slide-out Services mega dropdown ============== -->
   <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur border-b border-slate-100">
-    <nav class="nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <nav class="nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative">
       <a href="/" class="nav-logo flex items-center gap-3" aria-label="Castle Exterminators home">
         <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-10 sm:h-11 w-auto" />
         <span class="sr-only">Castle Exterminators</span>
       </a>
 
       <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
-        <li class="nav-item"><a href="#services" class="nav-link" data-section="services">Services</a></li>
-        <li class="nav-item"><a href="#why-us" class="nav-link" data-section="why-us">Why Us</a></li>
-        <li class="nav-item"><a href="#process" class="nav-link" data-section="process">Process</a></li>
-        <li class="nav-item"><a href="#reviews" class="nav-link" data-section="reviews">Reviews</a></li>
-        <li class="nav-item"><a href="#faq" class="nav-link" data-section="faq">FAQ</a></li>
+        <li class="nav-services" data-open="false">
+          <a href="#services" class="nav-link inline-flex items-center gap-1.5" data-section="services" aria-haspopup="true" aria-expanded="false" aria-controls="services-dropdown">
+            Services
+            <i class="fa-solid fa-chevron-down text-[10px] opacity-70" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li><a href="#why-us" class="nav-link" data-section="why-us">Why Us</a></li>
+        <li><a href="#process" class="nav-link" data-section="process">Process</a></li>
+        <li><a href="#reviews" class="nav-link" data-section="reviews">Reviews</a></li>
+        <li><a href="#faq" class="nav-link" data-section="faq">FAQ</a></li>
       </ul>
 
       <div class="flex items-center gap-3">
@@ -475,7 +430,7 @@ const html = `<!DOCTYPE html>
           <span class="nav-phone-icon text-brand-green"><i class="fa-solid fa-phone-volume"></i></span>
           <span>(919) 606-6866</span>
         </a>
-        <a href="#contact" class="nav-cta inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold text-sm px-4 py-2.5 rounded-lg shadow-cta">
+        <a href="#contact" class="nav-cta inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold text-sm px-4 py-2.5 rounded-lg shadow-cta transition-transform duration-300 hover:-translate-y-0.5">
           <span>Free Inspection</span>
           <span class="nav-cta-arrow"><i class="fa-solid fa-arrow-right text-xs"></i></span>
         </a>
@@ -485,17 +440,121 @@ const html = `<!DOCTYPE html>
           <span></span>
         </button>
       </div>
+
+      <!-- Services mega-dropdown panel (desktop) -->
+      <div id="services-dropdown" role="menu" aria-label="Services" data-open="false" class="hidden md:block">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div class="flex items-center justify-between mb-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.18em] text-brand-green">Our Services</p>
+              <h3 class="font-display font-extrabold text-xl text-brand-navy mt-1">Pest control across Durham, NC</h3>
+            </div>
+            <a href="#services" class="text-sm font-semibold text-brand-green hover:text-brand-green-dark inline-flex items-center gap-1.5">
+              View all on home <i class="fa-solid fa-arrow-right text-[11px]"></i>
+            </a>
+          </div>
+
+          <ul class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <li><a href="/services/termites" class="nav-service-card group flex items-start gap-3 p-4 rounded-xl border border-slate-100 bg-white" role="menuitem">
+              <span class="nav-service-icon w-10 h-10 rounded-lg bg-brand-green/10 text-brand-green grid place-items-center flex-shrink-0"><i class="fa-solid fa-bug"></i></span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-sm font-bold text-brand-navy">Termite Control</span>
+                <span class="block text-xs text-slate-500 leading-snug mt-0.5">Stop structural damage early.</span>
+              </span>
+              <i class="nav-service-arrow fa-solid fa-arrow-right text-xs text-brand-green mt-3"></i>
+            </a></li>
+
+            <li><a href="/services/roaches" class="nav-service-card group flex items-start gap-3 p-4 rounded-xl border border-slate-100 bg-white" role="menuitem">
+              <span class="nav-service-icon w-10 h-10 rounded-lg bg-brand-green/10 text-brand-green grid place-items-center flex-shrink-0"><i class="fa-solid fa-bugs"></i></span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-sm font-bold text-brand-navy">Roach Extermination</span>
+                <span class="block text-xs text-slate-500 leading-snug mt-0.5">Wipe out the entire colony.</span>
+              </span>
+              <i class="nav-service-arrow fa-solid fa-arrow-right text-xs text-brand-green mt-3"></i>
+            </a></li>
+
+            <li><a href="/services/rodents" class="nav-service-card group flex items-start gap-3 p-4 rounded-xl border border-slate-100 bg-white" role="menuitem">
+              <span class="nav-service-icon w-10 h-10 rounded-lg bg-brand-green/10 text-brand-green grid place-items-center flex-shrink-0"><i class="fa-solid fa-house-chimney-crack"></i></span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-sm font-bold text-brand-navy">Rodent Removal</span>
+                <span class="block text-xs text-slate-500 leading-snug mt-0.5">Mice & rats out — and sealed out.</span>
+              </span>
+              <i class="nav-service-arrow fa-solid fa-arrow-right text-xs text-brand-green mt-3"></i>
+            </a></li>
+
+            <li><a href="/services/ants" class="nav-service-card group flex items-start gap-3 p-4 rounded-xl border border-slate-100 bg-white" role="menuitem">
+              <span class="nav-service-icon w-10 h-10 rounded-lg bg-brand-green/10 text-brand-green grid place-items-center flex-shrink-0"><i class="fa-solid fa-ant"></i></span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-sm font-bold text-brand-navy">Ant Control</span>
+                <span class="block text-xs text-slate-500 leading-snug mt-0.5">Eliminate the colony at the source.</span>
+              </span>
+              <i class="nav-service-arrow fa-solid fa-arrow-right text-xs text-brand-green mt-3"></i>
+            </a></li>
+
+            <li><a href="/services/mosquitoes" class="nav-service-card group flex items-start gap-3 p-4 rounded-xl border border-slate-100 bg-white" role="menuitem">
+              <span class="nav-service-icon w-10 h-10 rounded-lg bg-brand-green/10 text-brand-green grid place-items-center flex-shrink-0"><i class="fa-solid fa-mosquito"></i></span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-sm font-bold text-brand-navy">Mosquito Reduction</span>
+                <span class="block text-xs text-slate-500 leading-snug mt-0.5">Reclaim your backyard all season.</span>
+              </span>
+              <i class="nav-service-arrow fa-solid fa-arrow-right text-xs text-brand-green mt-3"></i>
+            </a></li>
+
+            <li><a href="/services/general-pest-control" class="nav-service-card group flex items-start gap-3 p-4 rounded-xl border border-slate-100 bg-white" role="menuitem">
+              <span class="nav-service-icon w-10 h-10 rounded-lg bg-brand-green/10 text-brand-green grid place-items-center flex-shrink-0"><i class="fa-solid fa-shield-halved"></i></span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-sm font-bold text-brand-navy">General Pest Control</span>
+                <span class="block text-xs text-slate-500 leading-snug mt-0.5">Quarterly year-round protection.</span>
+              </span>
+              <i class="nav-service-arrow fa-solid fa-arrow-right text-xs text-brand-green mt-3"></i>
+            </a></li>
+
+            <li><a href="/services/crawl-space-encapsulation" class="nav-service-card group flex items-start gap-3 p-4 rounded-xl border border-slate-100 bg-white" role="menuitem">
+              <span class="nav-service-icon w-10 h-10 rounded-lg bg-brand-green/10 text-brand-green grid place-items-center flex-shrink-0"><i class="fa-solid fa-house-flag"></i></span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-sm font-bold text-brand-navy">Crawl Space Encapsulation</span>
+                <span class="block text-xs text-slate-500 leading-snug mt-0.5">Seal out moisture, mold & pests.</span>
+              </span>
+              <i class="nav-service-arrow fa-solid fa-arrow-right text-xs text-brand-green mt-3"></i>
+            </a></li>
+
+            <li><a href="#contact" class="nav-service-card group flex items-start gap-3 p-4 rounded-xl border border-brand-orange/40 bg-brand-orange/10" role="menuitem">
+              <span class="nav-service-icon w-10 h-10 rounded-lg bg-brand-orange text-white grid place-items-center flex-shrink-0"><i class="fa-solid fa-phone-volume"></i></span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-sm font-bold text-brand-navy">Free Inspection</span>
+                <span class="block text-xs text-slate-600 leading-snug mt-0.5">Talk to a Durham specialist.</span>
+              </span>
+              <i class="nav-service-arrow fa-solid fa-arrow-right text-xs text-brand-orange mt-3"></i>
+            </a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
     <!-- Mobile dropdown -->
     <div id="nav-mobile" class="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur">
       <ul class="px-4 sm:px-6 py-3 space-y-1 text-sm font-semibold text-slate-700">
-        <li class="nav-mobile-item"><a href="#services" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Services</a></li>
-        <li class="nav-mobile-item"><a href="#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
-        <li class="nav-mobile-item"><a href="#process" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Process</a></li>
-        <li class="nav-mobile-item"><a href="#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
-        <li class="nav-mobile-item"><a href="#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
-        <li class="nav-mobile-item pt-2">
+        <li>
+          <button type="button" id="nav-mobile-services-toggle" aria-expanded="false" aria-controls="nav-mobile-services-list"
+                  class="w-full flex items-center justify-between px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">
+            <span>Services</span>
+            <i class="fa-solid fa-chevron-down text-[11px] opacity-70"></i>
+          </button>
+          <ul id="nav-mobile-services-list" class="pl-2 mt-1 space-y-1">
+            <li><a href="/services/termites" class="flex items-center gap-2.5 px-2 py-2 text-sm rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition"><i class="fa-solid fa-bug w-4 text-brand-green"></i> Termite Control</a></li>
+            <li><a href="/services/roaches" class="flex items-center gap-2.5 px-2 py-2 text-sm rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition"><i class="fa-solid fa-bugs w-4 text-brand-green"></i> Roach Extermination</a></li>
+            <li><a href="/services/rodents" class="flex items-center gap-2.5 px-2 py-2 text-sm rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition"><i class="fa-solid fa-house-chimney-crack w-4 text-brand-green"></i> Rodent Removal</a></li>
+            <li><a href="/services/ants" class="flex items-center gap-2.5 px-2 py-2 text-sm rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition"><i class="fa-solid fa-ant w-4 text-brand-green"></i> Ant Control</a></li>
+            <li><a href="/services/mosquitoes" class="flex items-center gap-2.5 px-2 py-2 text-sm rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition"><i class="fa-solid fa-mosquito w-4 text-brand-green"></i> Mosquito Reduction</a></li>
+            <li><a href="/services/general-pest-control" class="flex items-center gap-2.5 px-2 py-2 text-sm rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition"><i class="fa-solid fa-shield-halved w-4 text-brand-green"></i> General Pest Control</a></li>
+            <li><a href="/services/crawl-space-encapsulation" class="flex items-center gap-2.5 px-2 py-2 text-sm rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition"><i class="fa-solid fa-house-flag w-4 text-brand-green"></i> Crawl Space Encapsulation</a></li>
+          </ul>
+        </li>
+        <li><a href="#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
+        <li><a href="#process" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Process</a></li>
+        <li><a href="#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
+        <li><a href="#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
+        <li class="pt-2">
           <a href="tel:+19196066866" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold">
             <i class="fa-solid fa-phone-volume"></i> (919) 606-6866
           </a>
@@ -1124,15 +1183,52 @@ const html = `<!DOCTYPE html>
     }, { threshold: 0.4 });
     document.querySelectorAll('.stat-card').forEach(el => statIO.observe(el));
 
-    // Animated header — scroll-aware shrink + shadow
+    // Header — scroll-aware shadow/tint
     const header = document.getElementById('site-header');
     const onScroll = () => {
-      const scrolled = window.scrollY > 8;
-      header.classList.toggle('nav-scrolled', scrolled);
-      header.classList.toggle('shadow-card', scrolled);
+      header.classList.toggle('nav-scrolled', window.scrollY > 8);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // ---- Services mega-dropdown (desktop): hover-open + click-toggle ----
+    const navServices = document.querySelector('.nav-services');
+    const servicesTrigger = navServices ? navServices.querySelector('.nav-link') : null;
+    const servicesDropdown = document.getElementById('services-dropdown');
+    if (navServices && servicesTrigger && servicesDropdown) {
+      let closeTimer = null;
+      const setOpen = (open) => {
+        navServices.setAttribute('data-open', String(open));
+        servicesDropdown.setAttribute('data-open', String(open));
+        servicesTrigger.setAttribute('aria-expanded', String(open));
+      };
+      const openNow = () => { if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; } setOpen(true); };
+      const closeSoon = () => { if (closeTimer) clearTimeout(closeTimer); closeTimer = setTimeout(() => setOpen(false), 140); };
+      const closeNow = () => { if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; } setOpen(false); };
+
+      // Hover on the trigger or the panel keeps it open
+      navServices.addEventListener('mouseenter', openNow);
+      navServices.addEventListener('mouseleave', closeSoon);
+      servicesDropdown.addEventListener('mouseenter', openNow);
+      servicesDropdown.addEventListener('mouseleave', closeSoon);
+
+      // Click toggles (and prevents jumping to #services so the user can see the panel)
+      servicesTrigger.addEventListener('click', (e) => {
+        if (window.innerWidth < 768) return; // mobile uses its own accordion
+        e.preventDefault();
+        const isOpen = navServices.getAttribute('data-open') === 'true';
+        if (isOpen) closeNow(); else openNow();
+      });
+
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        if (!navServices.contains(e.target) && !servicesDropdown.contains(e.target)) closeNow();
+      });
+      // Close on Escape
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeNow(); });
+      // Close when any service card is clicked (so smooth-scroll feels natural for /#contact)
+      servicesDropdown.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNow));
+    }
 
     // Mobile menu toggle (hamburger ↔ X)
     const burger = document.getElementById('nav-burger');
@@ -1148,10 +1244,19 @@ const html = `<!DOCTYPE html>
         mobile.classList.toggle('open', isOpen);
         burger.setAttribute('aria-expanded', String(isOpen));
       });
-      // Close after tapping any link inside the mobile panel
+      // Close after tapping any actual link inside the mobile panel (but NOT the services toggle button)
       mobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
       // Close on resize past breakpoint
       window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+    }
+
+    // Mobile services accordion
+    const mobileServicesToggle = document.getElementById('nav-mobile-services-toggle');
+    if (mobileServicesToggle) {
+      mobileServicesToggle.addEventListener('click', () => {
+        const expanded = mobileServicesToggle.getAttribute('aria-expanded') === 'true';
+        mobileServicesToggle.setAttribute('aria-expanded', String(!expanded));
+      });
     }
 
     // Active-section nav highlighting via IntersectionObserver
@@ -1456,111 +1561,91 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
         linear-gradient(135deg, rgba(6,113,51,.92) 0%, rgba(15,26,48,.75) 60%, rgba(15,26,48,.45) 100%);
     }
 
-    /* ---- Animated top menu (same as homepage) ---- */
-    #site-header { transform: translateY(-100%); opacity: 0; animation: navDrop .7s cubic-bezier(.22,1,.36,1) .1s forwards;
-      transition: height .35s cubic-bezier(.22,1,.36,1), background-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease; }
-    @keyframes navDrop { to { transform: translateY(0); opacity: 1; } }
-    #site-header.nav-scrolled { background-color: rgba(255,255,255,.96); backdrop-filter: saturate(180%) blur(14px); box-shadow: 0 4px 20px -8px rgba(15,26,48,.18); }
-    #site-header.nav-scrolled .nav-inner { height: 3.5rem; }
-    #site-header.nav-scrolled .nav-logo { transform: scale(.92); }
-    .nav-inner { transition: height .35s cubic-bezier(.22,1,.36,1); }
+    /* ---- Top menu — minimal animations + Services slide-out dropdown (matches homepage) ---- */
+    #site-header { transition: background-color .3s ease, box-shadow .3s ease, backdrop-filter .3s ease; }
+    #site-header.nav-scrolled { background-color: rgba(255,255,255,.96); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); box-shadow: 0 4px 20px -8px rgba(15,26,48,.18); }
 
-    .nav-logo { transition: transform .45s cubic-bezier(.34,1.56,.64,1), filter .35s ease; transform-origin: left center; }
-    .nav-logo:hover { transform: scale(1.04) rotate(-1.5deg); filter: drop-shadow(0 4px 12px rgba(6,113,51,.25)); }
-    .nav-logo:active { transform: scale(.98) rotate(0); }
+    .nav-link { position: relative; padding: .35rem 0; transition: color .25s ease; }
+    .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; border-radius: 2px;
+      background: #067133; transform: scaleX(0); transform-origin: center; transition: transform .35s cubic-bezier(.65,.05,.36,1); }
+    .nav-link:hover, .nav-link:focus-visible, .nav-link.active { color: #067133; }
+    .nav-link:hover::after, .nav-link:focus-visible::after, .nav-link.active::after { transform: scaleX(1); }
 
-    .nav-item { opacity: 0; transform: translateY(-8px); animation: navItemIn .55s cubic-bezier(.22,1,.36,1) forwards; }
-    .nav-item:nth-child(1) { animation-delay: .35s; }
-    .nav-item:nth-child(2) { animation-delay: .42s; }
-    .nav-item:nth-child(3) { animation-delay: .49s; }
-    .nav-item:nth-child(4) { animation-delay: .56s; }
-    .nav-item:nth-child(5) { animation-delay: .63s; }
-    @keyframes navItemIn { to { opacity: 1; transform: translateY(0); } }
+    .nav-services { position: static; }
+    .nav-services .nav-link i.fa-chevron-down { transition: transform .35s cubic-bezier(.22,1,.36,1); }
+    .nav-services[data-open="true"] .nav-link i.fa-chevron-down { transform: rotate(180deg); }
 
-    .nav-link { position: relative; padding: .35rem .15rem; transition: color .25s ease; }
-    .nav-link::before, .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; border-radius: 2px;
-      background: linear-gradient(90deg, #067133, #3CA862); transform: scaleX(0); transform-origin: left center;
-      transition: transform .45s cubic-bezier(.65,.05,.36,1); }
-    .nav-link::after { filter: blur(6px); opacity: .6; }
-    .nav-link:hover, .nav-link:focus-visible { color: #067133; }
-    .nav-link:hover::before, .nav-link:hover::after, .nav-link:focus-visible::before, .nav-link:focus-visible::after { transform: scaleX(1); }
+    #services-dropdown { position: absolute; left: 0; right: 0; top: 100%; background: #fff;
+      border-top: 1px solid rgba(15,26,48,.06); box-shadow: 0 22px 40px -18px rgba(15,26,48,.22);
+      transform: translateY(-12px); opacity: 0; visibility: hidden; pointer-events: none;
+      transition: transform .4s cubic-bezier(.22,1,.36,1), opacity .3s ease, visibility 0s linear .3s; }
+    .nav-services[data-open="true"] #services-dropdown, #services-dropdown[data-open="true"] {
+      transform: translateY(0); opacity: 1; visibility: visible; pointer-events: auto;
+      transition: transform .45s cubic-bezier(.22,1,.36,1), opacity .3s ease, visibility 0s linear 0s; }
 
-    .nav-phone { position: relative; transition: color .25s ease; }
-    .nav-phone:hover { color: #067133; }
-    .nav-phone-icon { display: inline-flex; transition: transform .55s cubic-bezier(.34,1.56,.64,1); }
-    .nav-phone:hover .nav-phone-icon { transform: rotate(-18deg) scale(1.15); }
+    .nav-service-card { opacity: 0; transform: translateY(10px);
+      transition: opacity .4s ease, transform .45s cubic-bezier(.22,1,.36,1), border-color .25s ease, background-color .25s ease; }
+    .nav-services[data-open="true"] .nav-service-card, #services-dropdown[data-open="true"] .nav-service-card { opacity: 1; transform: translateY(0); }
+    .nav-service-card:nth-child(1) { transition-delay: .05s; }
+    .nav-service-card:nth-child(2) { transition-delay: .10s; }
+    .nav-service-card:nth-child(3) { transition-delay: .15s; }
+    .nav-service-card:nth-child(4) { transition-delay: .20s; }
+    .nav-service-card:nth-child(5) { transition-delay: .25s; }
+    .nav-service-card:nth-child(6) { transition-delay: .30s; }
+    .nav-service-card:nth-child(7) { transition-delay: .35s; }
+    .nav-service-card:hover { background: #FAF7F2; border-color: rgba(6,113,51,.4); }
+    .nav-service-icon { transition: transform .35s cubic-bezier(.34,1.56,.64,1), background-color .25s ease, color .25s ease; }
+    .nav-service-card:hover .nav-service-icon { background: #067133; color: #fff; transform: rotate(-6deg) scale(1.08); }
+    .nav-service-arrow { transition: transform .3s cubic-bezier(.22,1,.36,1), opacity .25s ease; opacity: 0; transform: translateX(-4px); }
+    .nav-service-card:hover .nav-service-arrow { opacity: 1; transform: translateX(0); }
 
-    .nav-cta { position: relative; overflow: hidden; isolation: isolate;
-      transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease, background-color .25s ease;
-      animation: ctaPulse 2.4s ease-in-out infinite; }
-    .nav-cta::before { content: ''; position: absolute; inset: 0;
-      background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,.55) 50%, transparent 75%);
-      transform: translateX(-120%) skewX(-15deg); transition: transform .9s cubic-bezier(.22,1,.36,1); pointer-events: none; }
-    .nav-cta:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 14px 30px -10px rgba(244,162,97,.65); animation: none; }
-    .nav-cta:hover::before { transform: translateX(120%) skewX(-15deg); }
-    .nav-cta:active { transform: translateY(0) scale(.97); }
-    .nav-cta-arrow { display: inline-flex; transition: transform .35s cubic-bezier(.22,1,.36,1); }
-    .nav-cta:hover .nav-cta-arrow { transform: translateX(4px); }
-    @keyframes ctaPulse {
-      0%, 100% { box-shadow: 0 6px 18px -6px rgba(244,162,97,.45), 0 0 0 0 rgba(244,162,97,.45); }
-      50% { box-shadow: 0 6px 18px -6px rgba(244,162,97,.45), 0 0 0 10px rgba(244,162,97,0); }
-    }
-
-    .nav-burger { position: relative; width: 28px; height: 22px; display: flex; flex-direction: column; justify-content: space-between;
+    .nav-burger { position: relative; width: 26px; height: 20px; display: flex; flex-direction: column; justify-content: space-between;
       background: transparent; border: 0; padding: 0; cursor: pointer; }
-    .nav-burger span { display: block; height: 2.5px; background: #1B2A4A; border-radius: 4px; transform-origin: center;
-      transition: transform .4s cubic-bezier(.65,.05,.36,1), opacity .25s ease, background-color .25s ease, width .35s ease; }
-    .nav-burger span:nth-child(1) { width: 100%; }
-    .nav-burger span:nth-child(2) { width: 75%; align-self: flex-end; }
-    .nav-burger span:nth-child(3) { width: 100%; }
+    .nav-burger span { display: block; width: 100%; height: 2.5px; background: #1B2A4A; border-radius: 4px;
+      transition: transform .35s cubic-bezier(.65,.05,.36,1), opacity .25s ease, background-color .25s ease; }
     .nav-burger:hover span { background: #067133; }
-    .nav-burger:hover span:nth-child(2) { width: 100%; }
-    .nav-burger.open span:nth-child(1) { transform: translateY(9.75px) rotate(45deg); }
-    .nav-burger.open span:nth-child(2) { opacity: 0; transform: translateX(20px); }
-    .nav-burger.open span:nth-child(3) { transform: translateY(-9.75px) rotate(-45deg); width: 100%; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
 
-    #nav-mobile { max-height: 0; opacity: 0; overflow: hidden;
-      transition: max-height .45s cubic-bezier(.22,1,.36,1), opacity .35s ease, padding .35s ease; }
-    #nav-mobile.open { max-height: 420px; opacity: 1; }
-    #nav-mobile .nav-mobile-item { opacity: 0; transform: translateX(-12px);
-      transition: opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1); }
-    #nav-mobile.open .nav-mobile-item { opacity: 1; transform: translateX(0); }
-    #nav-mobile.open .nav-mobile-item:nth-child(1) { transition-delay: .08s; }
-    #nav-mobile.open .nav-mobile-item:nth-child(2) { transition-delay: .14s; }
-    #nav-mobile.open .nav-mobile-item:nth-child(3) { transition-delay: .20s; }
-    #nav-mobile.open .nav-mobile-item:nth-child(4) { transition-delay: .26s; }
-    #nav-mobile.open .nav-mobile-item:nth-child(5) { transition-delay: .32s; }
-    #nav-mobile.open .nav-mobile-item:nth-child(6) { transition-delay: .38s; }
+    #nav-mobile { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.22,1,.36,1), opacity .3s ease; }
+    #nav-mobile.open { max-height: 720px; opacity: 1; }
+    #nav-mobile-services-list { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.22,1,.36,1); }
+    #nav-mobile-services-toggle[aria-expanded="true"] + #nav-mobile-services-list { max-height: 600px; }
+    #nav-mobile-services-toggle i.fa-chevron-down { transition: transform .35s ease; }
+    #nav-mobile-services-toggle[aria-expanded="true"] i.fa-chevron-down { transform: rotate(180deg); }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; }
-      #site-header { transform: none; opacity: 1; animation: none; }
-      .nav-item { opacity: 1; transform: none; animation: none; }
-      .nav-cta { animation: none; }
     }
   </style>
 </head>
 <body class="bg-white antialiased">
 
-  <!-- NAV (animated) -->
+  <!-- NAV — slide-out Services mega dropdown (matches homepage) -->
   <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-slate-100">
-    <nav class="nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <nav class="nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative">
       <a href="/" class="nav-logo flex items-center gap-3" aria-label="Castle Exterminators home">
         <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-10 sm:h-11 w-auto" />
       </a>
       <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
-        <li class="nav-item"><a href="/#services" class="nav-link">Services</a></li>
-        <li class="nav-item"><a href="/#why-us" class="nav-link">Why Us</a></li>
-        <li class="nav-item"><a href="/#process" class="nav-link">Process</a></li>
-        <li class="nav-item"><a href="/#reviews" class="nav-link">Reviews</a></li>
-        <li class="nav-item"><a href="/#faq" class="nav-link">FAQ</a></li>
+        <li class="nav-services" data-open="false">
+          <a href="/#services" class="nav-link active inline-flex items-center gap-1.5" aria-haspopup="true" aria-expanded="false" aria-controls="services-dropdown">
+            Services
+            <i class="fa-solid fa-chevron-down text-[10px] opacity-70" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li><a href="/#why-us" class="nav-link">Why Us</a></li>
+        <li><a href="/#process" class="nav-link">Process</a></li>
+        <li><a href="/#reviews" class="nav-link">Reviews</a></li>
+        <li><a href="/#faq" class="nav-link">FAQ</a></li>
       </ul>
       <div class="flex items-center gap-3">
         <a href="tel:+19196066866" class="nav-phone hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
           <span class="nav-phone-icon text-brand-green"><i class="fa-solid fa-phone-volume"></i></span>
           <span>(919) 606-6866</span>
         </a>
-        <a href="/#contact" class="nav-cta inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white text-sm font-bold px-4 py-2 rounded-lg shadow-card">
+        <a href="/#contact" class="nav-cta inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white text-sm font-bold px-4 py-2 rounded-lg shadow-card transition-transform duration-300 hover:-translate-y-0.5">
           <span>Free Inspection</span>
           <span class="nav-cta-arrow"><i class="fa-solid fa-arrow-right text-xs"></i></span>
         </a>
@@ -1568,15 +1653,65 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
           <span></span><span></span><span></span>
         </button>
       </div>
+
+      <!-- Services mega-dropdown panel -->
+      <div id="services-dropdown" role="menu" aria-label="Services" data-open="false" class="hidden md:block">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div class="flex items-center justify-between mb-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.18em] text-brand-green">Our Services</p>
+              <h3 class="font-display font-extrabold text-xl text-brand-navy mt-1">Pest control across Durham, NC</h3>
+            </div>
+            <a href="/#services" class="text-sm font-semibold text-brand-green hover:text-brand-green-dark inline-flex items-center gap-1.5">
+              View all on home <i class="fa-solid fa-arrow-right text-[11px]"></i>
+            </a>
+          </div>
+          <ul class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            ${allServices.map(svc => {
+              const isCurrent = svc.slug === s.slug;
+              const cardCls = isCurrent
+                ? 'nav-service-card flex items-start gap-3 p-4 rounded-xl border-2 border-brand-green bg-brand-green/5'
+                : 'nav-service-card flex items-start gap-3 p-4 rounded-xl border border-slate-100 bg-white';
+              return `<li><a href="/services/${svc.slug}" class="${cardCls}" role="menuitem">
+                <span class="nav-service-icon w-10 h-10 rounded-lg ${isCurrent ? 'bg-brand-green text-white' : 'bg-brand-green/10 text-brand-green'} grid place-items-center flex-shrink-0"><i class="fa-solid ${svc.icon}"></i></span>
+                <span class="flex-1 min-w-0">
+                  <span class="block text-sm font-bold text-brand-navy">${svc.name}</span>
+                  <span class="block text-xs text-slate-500 leading-snug mt-0.5">${isCurrent ? 'You are here' : svc.tagline}</span>
+                </span>
+                <i class="nav-service-arrow fa-solid fa-arrow-right text-xs text-brand-green mt-3"></i>
+              </a></li>`;
+            }).join('')}
+            <li><a href="/#contact" class="nav-service-card flex items-start gap-3 p-4 rounded-xl border border-brand-orange/40 bg-brand-orange/10" role="menuitem">
+              <span class="nav-service-icon w-10 h-10 rounded-lg bg-brand-orange text-white grid place-items-center flex-shrink-0"><i class="fa-solid fa-phone-volume"></i></span>
+              <span class="flex-1 min-w-0">
+                <span class="block text-sm font-bold text-brand-navy">Free Inspection</span>
+                <span class="block text-xs text-slate-600 leading-snug mt-0.5">Talk to a Durham specialist.</span>
+              </span>
+              <i class="nav-service-arrow fa-solid fa-arrow-right text-xs text-brand-orange mt-3"></i>
+            </a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
+
+    <!-- Mobile dropdown -->
     <div id="nav-mobile" class="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur">
       <ul class="px-4 sm:px-6 py-3 space-y-1 text-sm font-semibold text-slate-700">
-        <li class="nav-mobile-item"><a href="/#services" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Services</a></li>
-        <li class="nav-mobile-item"><a href="/#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
-        <li class="nav-mobile-item"><a href="/#process" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Process</a></li>
-        <li class="nav-mobile-item"><a href="/#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
-        <li class="nav-mobile-item"><a href="/#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
-        <li class="nav-mobile-item pt-2">
+        <li>
+          <button type="button" id="nav-mobile-services-toggle" aria-expanded="true" aria-controls="nav-mobile-services-list"
+                  class="w-full flex items-center justify-between px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition text-brand-green">
+            <span>Services</span>
+            <i class="fa-solid fa-chevron-down text-[11px] opacity-70"></i>
+          </button>
+          <ul id="nav-mobile-services-list" class="pl-2 mt-1 space-y-1">
+            ${allServices.map(svc => `<li><a href="/services/${svc.slug}" class="flex items-center gap-2.5 px-2 py-2 text-sm rounded-lg ${svc.slug === s.slug ? 'bg-brand-green/10 text-brand-green' : 'hover:bg-brand-green/10 hover:text-brand-green'} transition"><i class="fa-solid ${svc.icon} w-4 text-brand-green"></i> ${svc.name}</a></li>`).join('')}
+          </ul>
+        </li>
+        <li><a href="/#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
+        <li><a href="/#process" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Process</a></li>
+        <li><a href="/#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
+        <li><a href="/#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
+        <li class="pt-2">
           <a href="tel:+19196066866" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold">
             <i class="fa-solid fa-phone-volume"></i> (919) 606-6866
           </a>
@@ -1590,6 +1725,39 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
       var header = document.getElementById('site-header');
       var onScroll = function(){ header.classList.toggle('nav-scrolled', window.scrollY > 8); };
       window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+      // Desktop: Services mega-dropdown — hover + click
+      var navServices = document.querySelector('.nav-services');
+      var servicesTrigger = navServices ? navServices.querySelector('.nav-link') : null;
+      var servicesDropdown = document.getElementById('services-dropdown');
+      if (navServices && servicesTrigger && servicesDropdown) {
+        var closeTimer = null;
+        var setOpen = function(open){
+          navServices.setAttribute('data-open', String(open));
+          servicesDropdown.setAttribute('data-open', String(open));
+          servicesTrigger.setAttribute('aria-expanded', String(open));
+        };
+        var openNow = function(){ if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; } setOpen(true); };
+        var closeSoon = function(){ if (closeTimer) clearTimeout(closeTimer); closeTimer = setTimeout(function(){ setOpen(false); }, 140); };
+        var closeNow = function(){ if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; } setOpen(false); };
+        navServices.addEventListener('mouseenter', openNow);
+        navServices.addEventListener('mouseleave', closeSoon);
+        servicesDropdown.addEventListener('mouseenter', openNow);
+        servicesDropdown.addEventListener('mouseleave', closeSoon);
+        servicesTrigger.addEventListener('click', function(e){
+          if (window.innerWidth < 768) return;
+          e.preventDefault();
+          var isOpen = navServices.getAttribute('data-open') === 'true';
+          if (isOpen) closeNow(); else openNow();
+        });
+        document.addEventListener('click', function(e){
+          if (!navServices.contains(e.target) && !servicesDropdown.contains(e.target)) closeNow();
+        });
+        document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNow(); });
+        servicesDropdown.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeNow); });
+      }
+
+      // Mobile menu hamburger
       var burger = document.getElementById('nav-burger');
       var mobile = document.getElementById('nav-mobile');
       if (burger && mobile) {
@@ -1601,6 +1769,15 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
         });
         mobile.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
         window.addEventListener('resize', function(){ if (window.innerWidth >= 768) close(); });
+      }
+
+      // Mobile services accordion
+      var mobileServicesToggle = document.getElementById('nav-mobile-services-toggle');
+      if (mobileServicesToggle) {
+        mobileServicesToggle.addEventListener('click', function(){
+          var expanded = mobileServicesToggle.getAttribute('aria-expanded') === 'true';
+          mobileServicesToggle.setAttribute('aria-expanded', String(!expanded));
+        });
       }
     })();
   </script>
