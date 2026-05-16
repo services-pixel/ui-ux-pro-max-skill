@@ -7,16 +7,19 @@ const html = `<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Pest Control Services | Free Inspection & Same-Day Service</title>
-    <meta name="description" content="Licensed, insured pest control. Eliminate termites, roaches, rodents, wasps, ants, mosquitoes & bed bugs. Free inspection, 100% satisfaction guarantee, family & pet safe treatments.">
-    <meta name="theme-color" content="#1B2A4A">
+    <title>Castle Exterminators | Trusted Pest Control in Durham, NC | Free Inspection</title>
+    <meta name="description" content="Castle Exterminators — family-owned pest control in Durham, NC. We protect homes from termites, ants, roaches, mice, mosquitoes, bed bugs & more with eco-friendly, family-safe treatments. Free inspection — call (919) 606-6866.">
+    <meta name="theme-color" content="#067133">
+    <link rel="canonical" href="https://www.castleexterminators.co/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Professional Pest Control Services | Free Inspection">
-    <meta property="og:description" content="Licensed pest control protecting families and homes. Get your free inspection today.">
+    <meta property="og:title" content="Castle Exterminators | Pest Control in Durham, NC">
+    <meta property="og:description" content="Family-owned, eco-friendly pest control in Durham, NC. Free inspection. Call (919) 606-6866.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://d10lkxv225q7z2.cloudfront.net/large/logos/origin/eea00f08349c88d623c4ce20d8ba0008.jpg">
+    <meta property="og:locale" content="en_US">
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏰</text></svg>">
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,9 +29,9 @@ const html = `<!DOCTYPE html>
           extend: {
             colors: {
               brand: {
-                green: '#2D6A4F',
-                'green-dark': '#1F4F3A',
-                'green-light': '#52B788',
+                green: '#067133',
+                'green-dark': '#045724',
+                'green-light': '#3CA862',
                 navy: '#1B2A4A',
                 'navy-dark': '#0F1A30',
                 orange: '#F4A261',
@@ -63,13 +66,14 @@ const html = `<!DOCTYPE html>
       /* ---------------------------------------------------------------------------
          HERO — animated gradient mesh (Haikei-style) + floating blob shapes
          --------------------------------------------------------------------------- */
+      /* Hero mesh tuned warmer to match Castle Exterminators' dusk/amber aesthetic */
       .hero-mesh {
         position: relative;
         background:
-          radial-gradient(900px 600px at 15% 20%, rgba(82,183,136,0.32) 0%, transparent 60%),
-          radial-gradient(700px 500px at 85% 75%, rgba(244,162,97,0.28) 0%, transparent 60%),
-          radial-gradient(600px 400px at 60% 40%, rgba(82,183,136,0.18) 0%, transparent 65%),
-          linear-gradient(135deg, #0F1A30 0%, #1B2A4A 45%, #1F4F3A 100%);
+          radial-gradient(900px 600px at 15% 20%, rgba(60,168,98,0.30) 0%, transparent 60%),
+          radial-gradient(700px 500px at 85% 75%, rgba(244,162,97,0.34) 0%, transparent 60%),
+          radial-gradient(600px 400px at 60% 40%, rgba(244,162,97,0.18) 0%, transparent 65%),
+          linear-gradient(135deg, #0F1A30 0%, #1B2A4A 45%, #045724 100%);
         background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
         animation: meshShift 22s ease-in-out infinite alternate;
       }
@@ -81,9 +85,9 @@ const html = `<!DOCTYPE html>
         position: absolute; border-radius: 50%; filter: blur(70px); opacity: .35; pointer-events: none;
         will-change: transform;
       }
-      .hero-blob.b1 { width: 320px; height: 320px; background: #52B788; top: -80px; left: -60px; animation: floatA 14s ease-in-out infinite; }
+      .hero-blob.b1 { width: 320px; height: 320px; background: #3CA862; top: -80px; left: -60px; animation: floatA 14s ease-in-out infinite; }
       .hero-blob.b2 { width: 380px; height: 380px; background: #F4A261; bottom: -120px; right: -80px; animation: floatB 18s ease-in-out infinite; }
-      .hero-blob.b3 { width: 220px; height: 220px; background: #52B788; top: 30%; right: 20%; opacity: .2; animation: floatA 20s ease-in-out infinite reverse; }
+      .hero-blob.b3 { width: 220px; height: 220px; background: #F4A261; top: 30%; right: 20%; opacity: .22; animation: floatA 20s ease-in-out infinite reverse; }
       @keyframes floatA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,30px) scale(1.08); } }
       @keyframes floatB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px,-40px) scale(1.12); } }
 
@@ -164,8 +168,8 @@ const html = `<!DOCTYPE html>
          --------------------------------------------------------------------------- */
       .testi-mesh {
         background:
-          radial-gradient(700px 500px at 20% 30%, rgba(82,183,136,.22) 0%, transparent 60%),
-          radial-gradient(600px 500px at 80% 70%, rgba(244,162,97,.18) 0%, transparent 60%),
+          radial-gradient(700px 500px at 20% 30%, rgba(60,168,98,.22) 0%, transparent 60%),
+          radial-gradient(600px 500px at 80% 70%, rgba(244,162,97,.22) 0%, transparent 60%),
           linear-gradient(135deg, #0F1A30 0%, #1B2A4A 100%);
       }
       .glass {
@@ -230,11 +234,14 @@ const html = `<!DOCTYPE html>
   <!-- ============== STICKY NAV ============== -->
   <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur border-b border-slate-100">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="#top" class="flex items-center gap-2 font-display font-extrabold text-brand-navy text-lg">
-        <span class="w-9 h-9 rounded-xl bg-brand-green text-white grid place-items-center shadow-card">
-          <i class="fa-solid fa-shield-virus"></i>
+      <a href="#top" class="flex items-center gap-2.5 font-display font-extrabold text-brand-navy text-lg" aria-label="Castle Exterminators home">
+        <span class="w-10 h-10 rounded-xl bg-brand-green text-white grid place-items-center shadow-card">
+          <i class="fa-solid fa-chess-rook text-lg"></i>
         </span>
-        <span>ShieldPest<span class="text-brand-orange">.</span></span>
+        <span class="leading-none">
+          <span class="block tracking-tight">Castle</span>
+          <span class="block text-[10px] tracking-[0.18em] font-bold text-brand-green uppercase mt-0.5">Exterminators</span>
+        </span>
       </a>
 
       <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
@@ -246,9 +253,9 @@ const html = `<!DOCTYPE html>
       </ul>
 
       <div class="flex items-center gap-3">
-        <a href="tel:+1XXXXXXXXXX" class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy hover:text-brand-green">
+        <a href="tel:+19196066866" class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy hover:text-brand-green">
           <i class="fa-solid fa-phone-volume text-brand-green"></i>
-          <span>(XXX) XXX-XXXX</span>
+          <span>(919) 606-6866</span>
         </a>
         <a href="#contact" class="cta-elastic inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold text-sm px-4 py-2.5 rounded-lg shadow-cta">
           Free Inspection
@@ -272,16 +279,16 @@ const html = `<!DOCTYPE html>
         <div class="lg:col-span-7">
           <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-6 backdrop-blur">
             <span class="w-2 h-2 rounded-full bg-brand-green-light animate-pulse"></span>
-            Same-day service available • Family & pet safe
+            Family-owned in Durham, NC • Eco-friendly & family-safe
           </div>
 
           <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6">
-            Pests gone for good.<br>
-            <span class="text-brand-orange">Peace of mind</span> guaranteed.
+            Keep your <span class="text-brand-orange">castle</span><br>
+            pest-free.
           </h1>
 
           <p class="text-lg sm:text-xl text-slate-100/90 max-w-xl mb-8 leading-relaxed">
-            Licensed and insured technicians protecting your family from termites, roaches, rodents, wasps, ants, mosquitoes, and more — with treatments that are tough on pests and safe for kids and pets.
+            Castle Exterminators is Durham's trusted local pest control. Our certified technicians protect your family from termites, ants, roaches, mice, mosquitoes and more — with eco-friendly treatments safe for kids, pets, and our beautiful NC environment.
           </p>
 
           <div class="flex flex-wrap gap-3 mb-10">
@@ -289,17 +296,18 @@ const html = `<!DOCTYPE html>
               <i class="fa-solid fa-clipboard-check"></i>
               Get Free Inspection
             </a>
-            <a href="tel:+1XXXXXXXXXX" class="cta-elastic inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold px-7 py-4 rounded-xl text-base backdrop-blur">
+            <a href="tel:+19196066866" class="cta-elastic inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold px-7 py-4 rounded-xl text-base backdrop-blur">
               <i class="fa-solid fa-phone-volume"></i>
-              Call (XXX) XXX-XXXX
+              Call (919) 606-6866
             </a>
           </div>
 
           <!-- Trust strip -->
           <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-100/90">
-            <div class="flex items-center gap-2"><i class="fa-solid fa-star text-brand-orange"></i><strong class="text-white">4.9/5</strong> from 500+ reviews</div>
-            <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-brand-green-light"></i> Licensed & Insured</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-star text-brand-orange"></i><strong class="text-white">5.0★</strong> on Google & Yelp</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-brand-green-light"></i> Licensed & Insured in NC</div>
             <div class="flex items-center gap-2"><i class="fa-solid fa-leaf text-brand-green-light"></i> Eco-friendly options</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-people-roof text-brand-green-light"></i> Family-owned since 2017</div>
           </div>
         </div>
 
@@ -311,7 +319,7 @@ const html = `<!DOCTYPE html>
                 <i class="fa-solid fa-bolt-lightning"></i>
               </span>
               <div>
-                <p class="font-bold text-lg leading-tight">Quick Quote in 60 seconds</p>
+                <p class="font-bold text-lg leading-tight">Free Durham quote in 60 seconds</p>
                 <p class="text-slate-500 text-sm">We'll call you back within 2 business hours</p>
               </div>
             </div>
@@ -319,8 +327,8 @@ const html = `<!DOCTYPE html>
             <ul class="space-y-3 text-sm mb-6">
               <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-brand-green mt-1"></i><span><strong>Free, no-obligation</strong> on-site inspection</span></li>
               <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-brand-green mt-1"></i><span><strong>100% satisfaction</strong> — we'll re-treat for free</span></li>
-              <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-brand-green mt-1"></i><span><strong>Transparent pricing</strong> — no hidden fees</span></li>
-              <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-brand-green mt-1"></i><span><strong>EPA-approved</strong> treatments, kid & pet safe</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-brand-green mt-1"></i><span><strong>Family-safe</strong> treatments — gentle on kids & pets</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-brand-green mt-1"></i><span><strong>Local Durham techs</strong> — not a national franchise</span></li>
             </ul>
 
             <a href="#contact" class="cta-elastic block w-full text-center bg-brand-navy hover:bg-brand-navy-dark text-white font-bold py-3.5 rounded-xl">
@@ -342,16 +350,16 @@ const html = `<!DOCTYPE html>
     <section class="bg-brand-cream">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div class="stat-card reveal">
-          <p class="font-display font-extrabold text-4xl md:text-5xl text-brand-green stat-num" data-count="15" data-suffix="+">0+</p>
-          <p class="text-sm text-slate-600 font-semibold mt-1">Years protecting homes</p>
+          <p class="font-display font-extrabold text-4xl md:text-5xl text-brand-green stat-num" data-count="8" data-suffix="+">0+</p>
+          <p class="text-sm text-slate-600 font-semibold mt-1">Years serving Durham</p>
         </div>
         <div class="stat-card reveal reveal-delay-1">
-          <p class="font-display font-extrabold text-4xl md:text-5xl text-brand-green stat-num" data-count="10000" data-suffix="+">0+</p>
-          <p class="text-sm text-slate-600 font-semibold mt-1">Treatments completed</p>
+          <p class="font-display font-extrabold text-4xl md:text-5xl text-brand-green stat-num" data-count="1000" data-suffix="+">0+</p>
+          <p class="text-sm text-slate-600 font-semibold mt-1">Durham homes protected</p>
         </div>
         <div class="stat-card reveal reveal-delay-2">
-          <p class="font-display font-extrabold text-4xl md:text-5xl text-brand-green stat-num" data-count="4.9" data-suffix="★" data-decimals="1">0★</p>
-          <p class="text-sm text-slate-600 font-semibold mt-1">Average customer rating</p>
+          <p class="font-display font-extrabold text-4xl md:text-5xl text-brand-green stat-num" data-count="5.0" data-suffix="★" data-decimals="1">0★</p>
+          <p class="text-sm text-slate-600 font-semibold mt-1">Google & Yelp rating</p>
         </div>
         <div class="stat-card reveal reveal-delay-3">
           <p class="font-display font-extrabold text-4xl md:text-5xl text-brand-green stat-num" data-count="2" data-suffix=" hr">0 hr</p>
@@ -364,9 +372,9 @@ const html = `<!DOCTYPE html>
     <section id="services" class="py-20 lg:py-28">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto text-center mb-14 reveal">
-          <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">What We Treat</p>
-          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">Complete protection from every common pest</h2>
-          <p class="text-lg text-slate-600">One call handles it all. Our certified technicians eliminate infestations at the source and prevent them from coming back.</p>
+          <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">What We Treat in Durham</p>
+          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">Every common North Carolina pest — handled.</h2>
+          <p class="text-lg text-slate-600">From persistent termites to nuisance mosquitoes, Castle Exterminators' certified technicians eliminate infestations at the source and keep them from coming back — using treatments that are tough on pests and gentle on your family.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -396,10 +404,10 @@ const html = `<!DOCTYPE html>
 
           <article class="service-card reveal reveal-delay-3 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
             <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
-              <i class="fa-solid fa-bee text-xl"></i>
+              <i class="fa-solid fa-fish-fins text-xl"></i>
             </div>
-            <h3 class="font-bold text-lg mb-2">Wasps & Hornets</h3>
-            <p class="text-sm text-slate-600">Safe nest removal and perimeter spray to keep stinging insects off your property.</p>
+            <h3 class="font-bold text-lg mb-2">Silverfish</h3>
+            <p class="text-sm text-slate-600">Targeted treatment of basements, bathrooms, and attics to eliminate moisture-loving silverfish for good.</p>
           </article>
 
           <article class="service-card reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
@@ -422,8 +430,8 @@ const html = `<!DOCTYPE html>
             <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
               <i class="fa-solid fa-bed text-xl"></i>
             </div>
-            <h3 class="font-bold text-lg mb-2">Bed Bugs</h3>
-            <p class="text-sm text-slate-600">Heat and chemical treatments that eradicate every life stage — adults, nymphs, and eggs.</p>
+            <h3 class="font-bold text-lg mb-2">Fleas & Bed Bugs</h3>
+            <p class="text-sm text-slate-600">Heat and chemical treatments that eradicate every life stage — adults, nymphs, and eggs — protecting your home and pets.</p>
           </article>
 
           <article class="service-card reveal reveal-delay-3 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
@@ -437,7 +445,7 @@ const html = `<!DOCTYPE html>
 
         <div class="text-center mt-12 reveal">
           <a href="#contact" class="inline-flex items-center gap-2 text-brand-green font-bold hover:text-brand-green-dark">
-            Don't see your pest? We probably handle it.
+            Don't see your pest? Call (919) 606-6866 — we probably handle it.
             <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
@@ -449,9 +457,9 @@ const html = `<!DOCTYPE html>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-12 gap-12 items-center">
           <div class="lg:col-span-5 reveal">
-            <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">Why Choose Us</p>
-            <h2 class="text-4xl lg:text-5xl font-extrabold mb-6">Local experts your neighbors already trust</h2>
-            <p class="text-lg text-slate-600 mb-8">We're not a national franchise reading a script. We're licensed local technicians who treat every home like it's our own — and we stand behind every job.</p>
+            <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">Why Castle Exterminators</p>
+            <h2 class="text-4xl lg:text-5xl font-extrabold mb-6">Durham's family-owned pest control</h2>
+            <p class="text-lg text-slate-600 mb-8">We're not a national franchise reading from a script — we're your Durham neighbors. Every home gets the same care we'd give our own, with eco-friendly treatments and certified, courteous technicians.</p>
             <a href="#contact" class="cta-elastic inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white font-bold px-6 py-3.5 rounded-xl">
               Schedule Inspection
               <i class="fa-solid fa-arrow-right text-sm"></i>
@@ -460,24 +468,24 @@ const html = `<!DOCTYPE html>
 
           <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6">
             <div class="neumo-card reveal rounded-2xl p-6">
-              <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-medal text-lg"></i></div>
-              <h3 class="font-bold text-lg mb-2">Licensed & Insured</h3>
-              <p class="text-sm text-slate-600">Fully state-licensed technicians and $2M liability coverage — protected on every job.</p>
+              <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-house-chimney text-lg"></i></div>
+              <h3 class="font-bold text-lg mb-2">Local & Family-Owned</h3>
+              <p class="text-sm text-slate-600">Born and rooted in Durham, NC. We know our community — and the pests that show up here.</p>
             </div>
             <div class="neumo-card reveal reveal-delay-1 rounded-2xl p-6">
               <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-leaf text-lg"></i></div>
-              <h3 class="font-bold text-lg mb-2">Family & Pet Safe</h3>
-              <p class="text-sm text-slate-600">EPA-approved, low-toxicity products applied precisely where they're needed.</p>
+              <h3 class="font-bold text-lg mb-2">Eco-Friendly Treatments</h3>
+              <p class="text-sm text-slate-600">Low-toxicity, family-safe products applied precisely where pests live — safe for kids, pets, and the NC ecosystem.</p>
             </div>
             <div class="neumo-card reveal reveal-delay-2 rounded-2xl p-6">
               <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-handshake text-lg"></i></div>
-              <h3 class="font-bold text-lg mb-2">Satisfaction Guarantee</h3>
-              <p class="text-sm text-slate-600">Pests come back between visits? We come back too — at no extra charge.</p>
+              <h3 class="font-bold text-lg mb-2">Satisfaction Guaranteed</h3>
+              <p class="text-sm text-slate-600">Pests come back between visits? We come back too — at no extra charge. Your peace of mind is our promise.</p>
             </div>
             <div class="neumo-card reveal reveal-delay-3 rounded-2xl p-6">
-              <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-clock text-lg"></i></div>
-              <h3 class="font-bold text-lg mb-2">Same-Day Service</h3>
-              <p class="text-sm text-slate-600">Call before noon for same-day treatment, plus evening and weekend appointments.</p>
+              <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-medal text-lg"></i></div>
+              <h3 class="font-bold text-lg mb-2">Licensed & Certified</h3>
+              <p class="text-sm text-slate-600">Fully state-licensed NC technicians, highly trained and fully insured — protected on every job.</p>
             </div>
           </div>
         </div>
@@ -490,7 +498,7 @@ const html = `<!DOCTYPE html>
         <div class="max-w-3xl mx-auto text-center mb-14 reveal">
           <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">How It Works</p>
           <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">A simple 4-step process</h2>
-          <p class="text-lg text-slate-600">From your first call to long-term protection — here's exactly what to expect.</p>
+          <p class="text-lg text-slate-600">From your first call to long-term protection of your Durham home — here's exactly what to expect.</p>
         </div>
 
         <ol class="process-wrap grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5 relative">
@@ -499,25 +507,25 @@ const html = `<!DOCTYPE html>
             <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">1</div>
             <i class="fa-solid fa-phone-volume text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Contact us</h3>
-            <p class="text-sm text-slate-600">Call, text, or fill out the form. We'll get back to you within 2 business hours.</p>
+            <p class="text-sm text-slate-600">Call (919) 606-6866, text, or fill out the form. We'll get back to you within 2 business hours.</p>
           </li>
           <li class="process-step reveal reveal-delay-1 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
             <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">2</div>
             <i class="fa-solid fa-magnifying-glass text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Free inspection</h3>
-            <p class="text-sm text-slate-600">A licensed tech inspects your property and identifies the pest, source, and severity — no charge.</p>
+            <p class="text-sm text-slate-600">A certified Castle tech inspects your home and identifies the pest, source, and severity — no charge, no obligation.</p>
           </li>
           <li class="process-step reveal reveal-delay-2 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
             <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">3</div>
             <i class="fa-solid fa-spray-can-sparkles text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Custom treatment</h3>
-            <p class="text-sm text-slate-600">We apply a tailored, pet-safe treatment plan with transparent, upfront pricing.</p>
+            <p class="text-sm text-slate-600">A tailored, family-safe treatment plan with transparent flat-fee pricing — no surprises.</p>
           </li>
           <li class="process-step reveal reveal-delay-3 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
             <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">4</div>
             <i class="fa-solid fa-shield-halved text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Ongoing protection</h3>
-            <p class="text-sm text-slate-600">Optional quarterly visits keep your home pest-free year-round — cancel anytime.</p>
+            <p class="text-sm text-slate-600">Optional quarterly visits keep your castle pest-free year-round through NC's changing seasons — cancel anytime.</p>
           </li>
         </ol>
       </div>
@@ -531,48 +539,48 @@ const html = `<!DOCTYPE html>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto text-center mb-14 reveal">
-          <p class="text-brand-orange font-bold uppercase tracking-wider text-sm mb-3">What Customers Say</p>
-          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">Real reviews from real neighbors</h2>
+          <p class="text-brand-orange font-bold uppercase tracking-wider text-sm mb-3">What Durham Homeowners Say</p>
+          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">Real reviews from real Durham neighbors</h2>
           <div class="flex items-center justify-center gap-2 text-brand-orange text-xl">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            <span class="ml-2 text-white font-bold">4.9 / 5</span>
-            <span class="text-slate-300 text-base">(500+ reviews)</span>
+            <span class="ml-2 text-white font-bold">5.0 / 5</span>
+            <span class="text-slate-300 text-base">on Google & Yelp</span>
           </div>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6">
           <figure class="glass reveal rounded-2xl p-7">
             <div class="text-brand-orange mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            <blockquote class="text-slate-100 leading-relaxed mb-5">"They showed up the same day I called, found a roach issue under the dishwasher I didn't even know about, and treated the whole house. Two weeks pest-free and counting."</blockquote>
+            <blockquote class="text-slate-100 leading-relaxed mb-5">"We had a really annoying ant problem in our kitchen here in Durham, and Castle Exterminators came to the rescue so fast! The technician arrived on time, was super friendly, and explained everything clearly. Our home is now ant-free — highly recommend!"</blockquote>
             <figcaption class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-brand-green-light text-brand-navy font-bold grid place-items-center">SM</div>
+              <div class="w-10 h-10 rounded-full bg-brand-green-light text-brand-navy font-bold grid place-items-center">SJ</div>
               <div>
-                <p class="font-bold">Sarah M.</p>
-                <p class="text-xs text-slate-300">Homeowner • Verified Google review</p>
+                <p class="font-bold">Sarah J.</p>
+                <p class="text-xs text-slate-300">Homeowner • Durham, NC</p>
               </div>
             </figcaption>
           </figure>
 
           <figure class="glass reveal reveal-delay-1 rounded-2xl p-7">
             <div class="text-brand-orange mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            <blockquote class="text-slate-100 leading-relaxed mb-5">"We had termites in the garage and were panicking. The tech walked us through everything, the pricing was fair, and they came back twice to make sure they got them all. Excellent service."</blockquote>
+            <blockquote class="text-slate-100 leading-relaxed mb-5">"When you invite someone into your home, trust is a big deal. The team at Castle Exterminators truly impressed us — professional, knowledgeable, and very respectful of our property. They took their time and inspected every corner. Fantastic job!"</blockquote>
             <figcaption class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-brand-orange text-brand-navy font-bold grid place-items-center">DR</div>
+              <div class="w-10 h-10 rounded-full bg-brand-orange text-brand-navy font-bold grid place-items-center">MP</div>
               <div>
-                <p class="font-bold">David R.</p>
-                <p class="text-xs text-slate-300">Homeowner • Verified Google review</p>
+                <p class="font-bold">Michael P.</p>
+                <p class="text-xs text-slate-300">Homeowner • Durham, NC</p>
               </div>
             </figcaption>
           </figure>
 
           <figure class="glass reveal reveal-delay-2 rounded-2xl p-7">
             <div class="text-brand-orange mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-            <blockquote class="text-slate-100 leading-relaxed mb-5">"Mosquitoes used to ruin our backyard every summer. After their seasonal treatment we can actually use the patio again. Worth every penny — and safe for our dogs."</blockquote>
+            <blockquote class="text-slate-100 leading-relaxed mb-5">"We were dealing with persistent spiders and I was dreading the process. But Castle Exterminators made it so easy! Got the job done quickly and the results have been fantastic — no more spiders. For reliable, lasting pest solutions, they're the ones to call!"</blockquote>
             <figcaption class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-brand-green-light text-brand-navy font-bold grid place-items-center">JL</div>
+              <div class="w-10 h-10 rounded-full bg-brand-green-light text-brand-navy font-bold grid place-items-center">ER</div>
               <div>
-                <p class="font-bold">Jessica L.</p>
-                <p class="text-xs text-slate-300">Homeowner • Verified Google review</p>
+                <p class="font-bold">Emily R.</p>
+                <p class="text-xs text-slate-300">Homeowner • Durham, NC</p>
               </div>
             </figcaption>
           </figure>
@@ -585,7 +593,7 @@ const html = `<!DOCTYPE html>
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12 reveal">
           <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">Common Questions</p>
-          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">Frequently asked</h2>
+          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">Frequently asked by our Durham neighbors</h2>
         </div>
 
         <div class="space-y-3">
@@ -599,10 +607,10 @@ const html = `<!DOCTYPE html>
 
           <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition">
             <summary class="flex items-center justify-between gap-4">
-              <h3 class="font-bold text-lg pr-4">How fast can you come out?</h3>
+              <h3 class="font-bold text-lg pr-4">How fast can you come out to my Durham home?</h3>
               <span class="chev w-9 h-9 rounded-full bg-brand-green/10 text-brand-green grid place-items-center transition-transform"><i class="fa-solid fa-chevron-down text-sm"></i></span>
             </summary>
-            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">For urgent infestations we offer same-day service if you call before noon. Otherwise we'll schedule your free inspection within 24–48 hours, including evening and Saturday slots.</p></div>
+            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">For urgent infestations we do our best to offer same-day service in the Durham area if you call before noon at <a href="tel:+19196066866" class="text-brand-green font-bold">(919) 606-6866</a>. Otherwise we'll schedule your free inspection within 24–48 hours, including evening and Saturday slots.</p></div>
           </details>
 
           <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition">
@@ -610,15 +618,15 @@ const html = `<!DOCTYPE html>
               <h3 class="font-bold text-lg pr-4">How much does it cost?</h3>
               <span class="chev w-9 h-9 rounded-full bg-brand-green/10 text-brand-green grid place-items-center transition-transform"><i class="fa-solid fa-chevron-down text-sm"></i></span>
             </summary>
-            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">It depends on the pest, the property size, and the severity — which is why the on-site inspection is free. You'll get a transparent flat-fee quote before any work begins, with no hidden charges and no obligation to proceed.</p></div>
+            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">It depends on the pest, your home's size, and the severity — which is exactly why our on-site inspection is free. You'll get a transparent flat-fee quote before any work begins, with no hidden charges and zero obligation to proceed.</p></div>
           </details>
 
           <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition">
             <summary class="flex items-center justify-between gap-4">
-              <h3 class="font-bold text-lg pr-4">Do you offer a guarantee?</h3>
+              <h3 class="font-bold text-lg pr-4">Do you guarantee your work?</h3>
               <span class="chev w-9 h-9 rounded-full bg-brand-green/10 text-brand-green grid place-items-center transition-transform"><i class="fa-solid fa-chevron-down text-sm"></i></span>
             </summary>
-            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">Absolutely. If pests return between scheduled visits on any of our recurring plans, we come back and re-treat at no charge. Your satisfaction is the only thing that matters to us.</p></div>
+            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">Absolutely. If pests return between scheduled visits on any of our recurring plans, we come back and re-treat at no charge. We're family-owned in Durham — your satisfaction is the only thing that matters to us.</p></div>
           </details>
 
           <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition">
@@ -638,30 +646,30 @@ const html = `<!DOCTYPE html>
 
         <!-- Left: messaging + contact info -->
         <div class="lg:col-span-5 reveal">
-          <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">Get Started</p>
-          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5 leading-tight">Ready to take back your home?</h2>
-          <p class="text-lg text-slate-600 mb-8">Tell us a bit about your pest problem and we'll be in touch within <strong>2 business hours</strong> to schedule your free inspection.</p>
+          <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">Get Your Free Quote</p>
+          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5 leading-tight">Ready to take back your castle?</h2>
+          <p class="text-lg text-slate-600 mb-8">Tell us a bit about your pest problem and a friendly Castle Exterminators expert will get back to you within <strong>2 business hours</strong> to schedule your free inspection — anywhere in Durham, NC and surrounding communities.</p>
 
           <div class="space-y-4 mb-8">
-            <a href="tel:+1XXXXXXXXXX" class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
+            <a href="tel:+19196066866" class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
               <span class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center text-lg"><i class="fa-solid fa-phone-volume"></i></span>
               <div>
                 <p class="text-xs text-slate-500 font-semibold uppercase tracking-wide">Call or text</p>
-                <p class="font-bold text-brand-navy text-lg">(XXX) XXX-XXXX</p>
+                <p class="font-bold text-brand-navy text-lg">(919) 606-6866</p>
               </div>
             </a>
-            <a href="mailto:info@yourcompany.com" class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
+            <a href="mailto:info@castleexterminators.co" class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
               <span class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center text-lg"><i class="fa-solid fa-envelope"></i></span>
               <div>
                 <p class="text-xs text-slate-500 font-semibold uppercase tracking-wide">Email us</p>
-                <p class="font-bold text-brand-navy text-lg break-all">info@yourcompany.com</p>
+                <p class="font-bold text-brand-navy text-lg break-all">info@castleexterminators.co</p>
               </div>
             </a>
             <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200">
               <span class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center text-lg"><i class="fa-solid fa-location-dot"></i></span>
               <div>
                 <p class="text-xs text-slate-500 font-semibold uppercase tracking-wide">Service area</p>
-                <p class="font-bold text-brand-navy text-lg">[Your City] & Surrounding Areas</p>
+                <p class="font-bold text-brand-navy text-lg">Durham, NC & surrounding NC communities</p>
               </div>
             </div>
             <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200">
@@ -684,9 +692,9 @@ const html = `<!DOCTYPE html>
           <div class="bg-white rounded-3xl shadow-card border border-slate-100 p-6 sm:p-10">
             <div class="flex items-center gap-3 mb-2">
               <span class="w-10 h-10 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center"><i class="fa-solid fa-clipboard-check"></i></span>
-              <h3 class="font-extrabold text-2xl">Request Your Free Inspection</h3>
+              <h3 class="font-extrabold text-2xl">Request Your Free Durham Inspection</h3>
             </div>
-            <p class="text-slate-600 mb-6">Fill out the form and we'll contact you within 2 business hours. No obligation, no pressure.</p>
+            <p class="text-slate-600 mb-6">Fill out the form and a Castle Exterminators specialist will contact you within 2 business hours. No obligation, no pressure — just a friendly local quote.</p>
 
             <!--
               GorillaDesk contact form integration:
@@ -707,9 +715,9 @@ const html = `<!DOCTYPE html>
               <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-green text-white grid place-items-center text-2xl mb-4 shadow-card">
                 <i class="fa-solid fa-clipboard-check"></i>
               </div>
-              <h4 class="font-display font-extrabold text-xl sm:text-2xl mb-2">Start your free inspection request</h4>
+              <h4 class="font-display font-extrabold text-xl sm:text-2xl mb-2">Start your free Durham inspection request</h4>
               <p class="text-slate-600 mb-6 max-w-md mx-auto text-sm sm:text-base">
-                Click below to open the secure inspection form. It takes about 60 seconds — we'll get back to you within 2 business hours.
+                Click below to open our secure inspection form. It takes about 60 seconds — we'll be in touch within 2 business hours.
               </p>
               <button
                 type="button"
@@ -722,11 +730,11 @@ const html = `<!DOCTYPE html>
               </button>
 
               <div class="mt-6 grid sm:grid-cols-2 gap-3 max-w-md mx-auto text-left">
-                <a href="tel:+1XXXXXXXXXX" class="flex items-center gap-2 bg-white rounded-xl px-4 py-3 border border-slate-200 hover:border-brand-green/40 transition text-sm">
+                <a href="tel:+19196066866" class="flex items-center gap-2 bg-white rounded-xl px-4 py-3 border border-slate-200 hover:border-brand-green/40 transition text-sm">
                   <i class="fa-solid fa-phone-volume text-brand-green"></i>
                   <span class="font-semibold text-brand-navy">Prefer to call?</span>
                 </a>
-                <a href="mailto:info@yourcompany.com" class="flex items-center gap-2 bg-white rounded-xl px-4 py-3 border border-slate-200 hover:border-brand-green/40 transition text-sm">
+                <a href="mailto:info@castleexterminators.co" class="flex items-center gap-2 bg-white rounded-xl px-4 py-3 border border-slate-200 hover:border-brand-green/40 transition text-sm">
                   <i class="fa-solid fa-envelope text-brand-green"></i>
                   <span class="font-semibold text-brand-navy">Or email us</span>
                 </a>
@@ -746,11 +754,15 @@ const html = `<!DOCTYPE html>
     <footer class="bg-brand-navy-dark text-slate-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-4 gap-8">
         <div class="md:col-span-2">
-          <a href="#top" class="flex items-center gap-2 font-display font-extrabold text-white text-lg mb-4">
-            <span class="w-9 h-9 rounded-xl bg-brand-green text-white grid place-items-center"><i class="fa-solid fa-shield-virus"></i></span>
-            ShieldPest<span class="text-brand-orange">.</span>
+          <a href="#top" class="inline-flex items-center gap-2.5 font-display font-extrabold text-white text-lg mb-4">
+            <span class="w-10 h-10 rounded-xl bg-brand-green text-white grid place-items-center"><i class="fa-solid fa-chess-rook text-lg"></i></span>
+            <span class="leading-none">
+              <span class="block tracking-tight">Castle</span>
+              <span class="block text-[10px] tracking-[0.18em] font-bold text-brand-green-light uppercase mt-0.5">Exterminators</span>
+            </span>
           </a>
-          <p class="text-sm leading-relaxed max-w-md">Licensed, insured, and locally trusted pest control. Protecting families and homes from termites, roaches, rodents, and more — with treatments that are safe for the people and pets you love.</p>
+          <p class="text-sm leading-relaxed max-w-md">Durham's family-owned pest control. Protecting homes across Durham, NC and surrounding communities since 2017 — with eco-friendly, family-safe treatments and certified, neighborly service.</p>
+          <p class="text-xs text-slate-400 mt-4">Keep your <strong class="text-brand-orange">castle</strong> pest-free.</p>
         </div>
 
         <div>
@@ -767,9 +779,9 @@ const html = `<!DOCTYPE html>
         <div>
           <h4 class="text-white font-bold mb-4">Get in Touch</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="tel:+1XXXXXXXXXX" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-phone-volume text-brand-green-light"></i> (XXX) XXX-XXXX</a></li>
-            <li><a href="mailto:info@yourcompany.com" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-green-light"></i> info@yourcompany.com</a></li>
-            <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-green-light"></i> [Your City]</li>
+            <li><a href="tel:+19196066866" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-phone-volume text-brand-green-light"></i> (919) 606-6866</a></li>
+            <li><a href="mailto:info@castleexterminators.co" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-green-light"></i> info@castleexterminators.co</a></li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-green-light"></i> Durham, NC</li>
             <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-brand-green-light"></i> Mon–Sat 7am–7pm</li>
           </ul>
         </div>
@@ -777,7 +789,7 @@ const html = `<!DOCTYPE html>
 
       <div class="border-t border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row gap-3 items-center justify-between text-xs text-slate-400">
-          <p>© <span id="year"></span> ShieldPest. All rights reserved. Licensed & insured.</p>
+          <p>© <span id="year"></span> Castle Exterminators. Family-owned and operated in Durham, NC. Licensed & insured.</p>
           <p class="flex items-center gap-4">
             <a href="#" class="hover:text-white">Privacy Policy</a>
             <a href="#" class="hover:text-white">Terms of Service</a>
@@ -788,7 +800,7 @@ const html = `<!DOCTYPE html>
   </main>
 
   <!-- Floating call button (mobile) -->
-  <a href="tel:+1XXXXXXXXXX" aria-label="Call us now" class="lg:hidden fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-brand-orange text-brand-navy grid place-items-center shadow-cta pulse">
+  <a href="tel:+19196066866" aria-label="Call us now" class="lg:hidden fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-brand-orange text-brand-navy grid place-items-center shadow-cta pulse">
     <i class="fa-solid fa-phone-volume text-xl"></i>
   </a>
 

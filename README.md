@@ -1,109 +1,127 @@
-# Pest Control Landing Page (ShieldPest)
+# Castle Exterminators — Pest Control Landing Page
 
 ## Project Overview
-- **Name**: ShieldPest — Professional Pest Control Services Landing Page
-- **Goal**: A conversion-optimized single-page site that drives qualified leads into the embedded GorillaDesk contact form.
+- **Name**: Castle Exterminators — Trusted Pest Control in Durham, NC
+- **Goal**: A conversion-optimized single-page site that drives qualified leads in Durham, NC and surrounding communities into the embedded GorillaDesk contact form.
 - **Stack**: Hono (Cloudflare Pages) · Tailwind CSS (CDN) · Font Awesome · Google Fonts (Plus Jakarta Sans + Inter)
 
 ## URLs
 - **GitHub**: https://github.com/services-pixel/ui-ux-pro-max-skill
 - **Sandbox preview**: https://3000-i7866we87fl5j98k5v65j-0e616f0a.sandbox.novita.ai
 - **Production (Cloudflare Pages)**: ⏳ Not deployed yet — pending Cloudflare API key setup in the Deploy tab
+- **Reference site (original)**: https://castleexterminators.gorilladesksites.com/
+
+## Business Details (live in the site)
+| Item | Value |
+|------|-------|
+| Business name | Castle Exterminators |
+| Location | Durham, NC & surrounding NC communities |
+| Phone | (919) 606-6866 |
+| Email | info@castleexterminators.co |
+| Years in business | 8+ |
+| Homes protected | 1,000+ |
+| Rating | 5.0★ on Google & Yelp |
+| Family-owned since | 2017 |
 
 ## Functional Entry Points
 | Method | Path | Description |
 |--------|------|-------------|
 | `GET`  | `/`  | Renders the full landing page (nav, hero, trust bar, services, why-us, process, reviews, FAQ, contact, footer) |
 
-The only third-party integration is the **GorillaDesk** embed (`account_id: 0d73a25092e5c1c9769a9f3255caa65a`), loaded client-side from `https://portal-embed-v3.gorilladesk.com/js/contact/contact.js` and rendered into `<div id="gorilladesk-contact-form">` on `window.load`.
+The only third-party integration is the **GorillaDesk** embed (`account_id: 0d73a25092e5c1c9769a9f3255caa65a`), loaded client-side from `https://portal-embed-v3.gorilladesk.com/js/contact/contact.js`. The widget renders as a floating chat-bubble; an inline CTA button (`#open-gd-form`) triggers it via `postMessage({type: 'send-open-contact'})` to `#gorilladesk-portal-widget-contact`.
 
 ## Page Sections (in order)
-1. **Sticky navigation** — logo, anchor links (Services / Why Us / Process / Reviews / FAQ), phone number, primary CTA
-2. **Hero** — gradient background, headline + subhead, dual CTA (form + phone), trust strip (rating, licensed, eco-friendly), and a hero side-card listing key promises
-3. **Trust stat bar** — 4 quick stats (years, treatments, rating, response time)
-4. **Services grid** — 8 pest-type cards (termites, roaches, rodents, wasps, ants, mosquitoes, bed bugs, spiders & more)
-5. **Why Us** — 4 benefit cards (licensed, safe, guarantee, same-day) + CTA
-6. **Process** — numbered 4-step flow (contact → inspect → treat → protect)
-7. **Testimonials** — 3 5-star reviews on a dark navy backdrop with overall rating
-8. **FAQ** — 5 expandable accordion items (safety, speed, cost, guarantee, in-home requirements)
-9. **Contact** — contact info cards (phone, email, area, hours) + the GorillaDesk form
-10. **Footer** — quick links, contact info, copyright
-11. **Floating call button** — mobile-only, fixed bottom-right
-
-## UX / Interaction Details
-- Smooth scroll between anchors (`scroll-behavior: smooth` + 80px scroll-padding to clear sticky header)
-- `IntersectionObserver`-powered scroll reveal on every major block (`.reveal` → `.in`)
-- Sticky header gains a soft shadow once the page is scrolled past 8px
-- Soft pulse animation on primary CTAs (hero + floating mobile button)
-- Hover states: service cards lift their border + icon color flips to filled green
-- FAQ uses native `<details>`/`<summary>` with a rotating chevron — no JS needed for accordion logic
+1. **Sticky navigation** — Castle wordmark with chess-rook icon, anchor links (Services / Why Us / Process / Reviews / FAQ), phone, primary CTA
+2. **Hero** — animated gradient mesh + warm amber floating blobs, headline "Keep your castle pest-free.", dual CTA, trust strip (5.0★, Licensed & Insured in NC, Family-owned since 2017)
+3. **Trust stat bar** — 8+ Years serving Durham · 1,000+ Durham homes protected · 5.0★ Google & Yelp · 2 hr response
+4. **Services grid** — 9 actual Castle services (termites, roaches, rodents, **silverfish**, ants, mosquitoes, **fleas & bed bugs**, spiders & more)
+5. **Why Us** — Local & Family-Owned · Eco-Friendly Treatments · Satisfaction Guaranteed · Licensed & Certified
+6. **Process** — 4-step Durham-localized flow with phone in step 1
+7. **Testimonials** — Real customer quotes from Sarah J., Michael P., and Emily R. (sourced from the existing Castle Exterminators site)
+8. **FAQ** — 5 Durham-localized accordion items (treatment safety, response time, pricing, guarantee, indoor requirements)
+9. **Contact** — "Ready to take back your castle?" + GorillaDesk inline CTA + direct phone / email / area / hours cards
+10. **Footer** — Castle Exterminators brand, quick links, contact info, copyright
+11. **Floating call button** — mobile-only tap-to-call
 
 ## Design System
 | Token | Value | Use |
 |-------|-------|-----|
-| `brand.green` | `#2D6A4F` | Primary brand color |
-| `brand.green-dark` | `#1F4F3A` | Hover for green CTAs |
-| `brand.green-light` | `#52B788` | Accents on dark backgrounds |
+| `brand.green` | `#067133` | Castle Exterminators primary brand color |
+| `brand.green-dark` | `#045724` | Hover for green CTAs |
+| `brand.green-light` | `#3CA862` | Accents on dark backgrounds |
 | `brand.navy` | `#1B2A4A` | Text, hero gradient, footer |
 | `brand.navy-dark` | `#0F1A30` | Deep footer |
-| `brand.orange` | `#F4A261` | Primary CTA color |
+| `brand.orange` | `#F4A261` | Primary CTA + hero mesh blob accent |
 | `brand.orange-dark` | `#E08A3C` | CTA hover |
 | `brand.cream` | `#FAF7F2` | Section dividers (warm beige) |
 
 - **Display font**: Plus Jakarta Sans (extrabold for headings)
 - **Body font**: Inter
 - **Icons**: Font Awesome 6.4
+- **Logo**: Real Castle Exterminators logo (hosted on GorillaDesk CDN) used in OG image; chess-rook glyph used in nav/footer wordmark
 
 ## Data Architecture
-- **Data Models**: None server-side. Lead form submissions are owned and stored by **GorillaDesk** (the embedded form posts directly to their service).
-- **Storage Services**: None on Cloudflare. All form data lives in the GorillaDesk account.
-- **Data Flow**: Visitor → clicks CTA → smooth-scrolls to `#contact` → fills GorillaDesk form → submission goes directly to GorillaDesk → business is notified inside the GorillaDesk dashboard.
+- **Data Models**: None server-side. Lead form submissions are owned and stored by **GorillaDesk**.
+- **Storage Services**: None on Cloudflare. All form data lives in the Castle Exterminators GorillaDesk account (numeric `owner_id: 2147`).
+- **Data Flow**: Durham visitor → clicks "Get Free Inspection" → GorillaDesk popup opens → fills form → submission goes directly to GorillaDesk → Castle Exterminators is notified inside the GorillaDesk dashboard.
+
+## User Guide
+1. Visit the live site.
+2. Either tap the **"Get Free Inspection"** CTA (opens the GorillaDesk popup) or tap the phone number to call Castle Exterminators directly at (919) 606-6866.
+3. Fill in name, contact info, pest issue and submit — Castle Exterminators receives it inside GorillaDesk and follows up (typically within 2 hours during business hours).
 
 ## Completed Features
 - [x] Full marketing landing page with 10 distinct sections
 - [x] Sticky navigation with anchor links and dual CTAs
-- [x] Tailwind-based design system with custom brand palette
-- [x] 8-pest services grid with icons and hover states
-- [x] Trust stats, testimonials, and 4-step process visualization
-- [x] Native HTML accordion FAQ (5 items, smooth height animation)
+- [x] Tailwind-based design system with **real Castle brand color `#067133`**
+- [x] 9-pest services grid matching Castle's actual service list (incl. silverfish, fleas & bed bugs)
+- [x] Trust stats, real testimonials (Sarah J., Michael P., Emily R.), and 4-step process visualization
+- [x] Native HTML accordion FAQ (5 items, Durham-localized)
 - [x] Scroll-reveal animations with staggered delays + smooth scroll
 - [x] Mobile-friendly with floating tap-to-call button
 - [x] GorillaDesk widget integration (inline CTA opens popup form via postMessage)
-- [x] SEO meta description, OG tags, theme-color, favicon
+- [x] SEO meta description, OG tags, theme-color `#067133`, 🏰 favicon
 - [x] Pushed to GitHub `main`
 
-### Visual Polish Pass (inspired by the referenced design libraries)
-- [x] **Hero** — animated gradient mesh background + 3 floating blob shapes (Haikei-style) + SVG wave divider into the next section (Getwaves)
-- [x] **Trust stats** — count-up animation on scroll into view, with `easeOutCubic` interpolation (Animista)
-- [x] **Service cards** — Hover.css "Float Shadow" lift + icon rotate-scale on hover, plus a soft ground shadow that fades in
-- [x] **Why-Us cards** — soft neumorphism (Neumorphism.io) with inset shadow on hover
-- [x] **Process steps** — animated gradient connector line that draws across the row on scroll (Codrops-style)
-- [x] **Testimonials** — true glassmorphism cards (`backdrop-blur` + saturated transparency) over an animated mesh backdrop (Glassmorphism.com)
-- [x] **FAQ** — smooth `max-height` transition on open/close, chevron with cubic-bezier overshoot (Whirl)
-- [x] **CTAs** — CSSFX-style elastic hover scaling, active-state press, and a diagonal sheen-sweep on hover
-- [x] **Form CTA card** — animated conic-gradient ring orbiting the card edge for premium feel
-- [x] **Form button retry spinner** — pure-CSS ring loader using `conic-gradient` mask (css-loaders.com pattern)
-- [x] **Accessibility** — `prefers-reduced-motion` media query disables all animations for users who request it
+### Visual Polish Pass
+- [x] **Hero** — animated gradient mesh + warmer amber/green floating blobs + SVG wave divider
+- [x] **Trust stats** — count-up animation on scroll-in (`easeOutCubic`)
+- [x] **Service cards** — Float-Shadow lift + icon rotate-scale on hover
+- [x] **Why-Us cards** — soft neumorphism with inset shadow on hover
+- [x] **Process steps** — animated gradient connector line draws across on scroll
+- [x] **Testimonials** — glassmorphism cards (`backdrop-blur`) over animated mesh
+- [x] **FAQ** — smooth `max-height` transition with cubic-bezier chevron
+- [x] **CTAs** — elastic hover scaling + diagonal sheen-sweep
+- [x] **Form CTA card** — animated conic-gradient ring
+- [x] **Accessibility** — `prefers-reduced-motion` disables all animations
+
+### Castle Exterminators Rebrand (latest)
+- [x] Brand color swap to real `#067133` (was `#2D6A4F`)
+- [x] All contact info localized: (919) 606-6866 · info@castleexterminators.co · Durham, NC
+- [x] Castle wordmark with chess-rook icon in nav & footer
+- [x] Hero rewritten with Durham-specific copy & 8+ year history
+- [x] 9 services aligned to Castle's actual offering (silverfish, fleas)
+- [x] Real customer testimonials (Sarah J., Michael P., Emily R.)
+- [x] Why-Us, Process, FAQ, Contact all localized to Durham, NC
+- [x] Hero mesh blobs warmed to amber/dusk palette matching Castle's aesthetic
+- [x] SEO title/description and OG image updated for Castle Exterminators
 
 ## Not Yet Implemented
-- [ ] Real business details filled in (phone number, email, service-area city, real company name — currently uses "ShieldPest" as a placeholder brand)
-- [ ] Cloudflare Pages production deployment (needs Cloudflare API key configured in the Deploy tab)
-- [ ] Service-area map (e.g. Google Maps embed or a styled list of zip codes/cities)
-- [ ] Pricing or plan tiers (one-time / quarterly / annual)
-- [ ] Real customer photos / logos / certification badges
+- [ ] Cloudflare Pages production deployment (needs Cloudflare API key in Deploy tab)
+- [ ] Service-area map (Google Maps embed of the Durham/Raleigh/Chapel Hill triangle)
+- [ ] Pricing or plan tiers
 - [ ] Privacy Policy and Terms pages (footer links currently `#`)
 - [ ] Analytics (Cloudflare Web Analytics, GA4, or Plausible)
-- [ ] Production-grade Tailwind build (currently uses the CDN script — fine for a landing page but emits a console warning)
-- [ ] Localization / Spanish version
+- [ ] Production-grade Tailwind build (currently uses CDN — emits a console warning)
+- [ ] Spanish version
 
 ## Recommended Next Steps
-1. **Fill in the placeholders** in `src/index.tsx`: replace every `(XXX) XXX-XXXX`, `+1XXXXXXXXXX`, `info@yourcompany.com`, `[Your City]`, and the `ShieldPest` brand name with the real business details.
-2. **Deploy to Cloudflare Pages** — configure the Cloudflare API key in the Deploy tab, then run `npx wrangler pages deploy dist --project-name <your-name>` for a permanent `*.pages.dev` URL.
-3. **Verify the GorillaDesk form actually renders** on the live URL by scrolling to the contact section. If it stays empty, log into the GorillaDesk portal and confirm the contact form is enabled for account `0d73a25092e5c1c9769a9f3255caa65a`.
-4. **Swap testimonial avatars/names** for real customer initials once you have permission, and link the dark testimonial section to a "see all reviews on Google" CTA.
-5. **Add analytics + conversion tracking** so you can measure CTA clicks vs. form submissions.
-6. **Move Tailwind to a build step** (or switch to UnoCSS / static CSS) to remove the CDN warning and shave the page weight.
-7. **Add Privacy Policy & Terms pages** at `/privacy` and `/terms` and link them from the footer.
+1. **Deploy to Cloudflare Pages** — configure the Cloudflare API key in the Deploy tab, then run `npx wrangler pages deploy dist --project-name castle-exterminators` for a permanent `*.pages.dev` URL.
+2. **Verify the GorillaDesk form** by clicking "Get Free Inspection" on the live URL and submitting a test lead.
+3. **Add analytics + conversion tracking** to measure CTA clicks vs. form submissions.
+4. **Add a Durham service-area map** to reinforce local presence.
+5. **Move Tailwind to a build step** (or switch to UnoCSS / static CSS) to remove the CDN warning.
+6. **Add Privacy Policy & Terms pages** at `/privacy` and `/terms` and link them from the footer.
 
 ## Local Development
 ```bash
@@ -125,6 +143,7 @@ pm2 delete webapp
 
 ## Deployment
 - **Platform**: Cloudflare Pages (configured via `wrangler.jsonc`)
-- **Build output**: `dist/_worker.js` (~64 kB)
+- **Build output**: `dist/_worker.js` (~83 kB)
 - **Status**: ❌ Not deployed to Cloudflare yet (sandbox preview only)
+- **Tech Stack**: Hono + TypeScript + Tailwind CSS (CDN) + GorillaDesk widget
 - **Last Updated**: 2026-05-16
