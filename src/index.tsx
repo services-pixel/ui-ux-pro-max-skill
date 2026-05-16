@@ -1505,16 +1505,6 @@ const html = `<!DOCTYPE html>
                 <i class="fa-solid fa-arrow-right text-xs"></i>
               </button>
 
-              <div class="mt-6 grid sm:grid-cols-2 gap-3 max-w-md mx-auto text-left">
-                <a href="tel:+19196066866" class="flex items-center gap-2 bg-white rounded-xl px-4 py-3 border border-slate-200 hover:border-brand-green/40 transition text-sm">
-                  <i class="fa-solid fa-phone-volume text-brand-green"></i>
-                  <span class="font-semibold text-brand-navy">Prefer to call?</span>
-                </a>
-                <a href="mailto:info@castleexterminators.co" class="flex items-center gap-2 bg-white rounded-xl px-4 py-3 border border-slate-200 hover:border-brand-green/40 transition text-sm">
-                  <i class="fa-solid fa-envelope text-brand-green"></i>
-                  <span class="font-semibold text-brand-navy">Or email us</span>
-                </a>
-              </div>
             </div>
 
             <p class="text-xs text-slate-500 mt-6 flex items-start gap-2">
