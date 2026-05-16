@@ -60,30 +60,169 @@ const html = `<!DOCTYPE html>
       body { font-family: 'Inter', system-ui, sans-serif; color: #1B2A4A; }
       h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; letter-spacing: -0.02em; }
 
-      /* Hero background pattern */
-      .hero-pattern {
-        background-image:
-          radial-gradient(circle at 20% 30%, rgba(82,183,136,0.18) 0, transparent 40%),
-          radial-gradient(circle at 80% 70%, rgba(244,162,97,0.15) 0, transparent 40%),
-          linear-gradient(135deg, #1B2A4A 0%, #2D6A4F 100%);
+      /* ---------------------------------------------------------------------------
+         HERO — animated gradient mesh (Haikei-style) + floating blob shapes
+         --------------------------------------------------------------------------- */
+      .hero-mesh {
+        position: relative;
+        background:
+          radial-gradient(900px 600px at 15% 20%, rgba(82,183,136,0.32) 0%, transparent 60%),
+          radial-gradient(700px 500px at 85% 75%, rgba(244,162,97,0.28) 0%, transparent 60%),
+          radial-gradient(600px 400px at 60% 40%, rgba(82,183,136,0.18) 0%, transparent 65%),
+          linear-gradient(135deg, #0F1A30 0%, #1B2A4A 45%, #1F4F3A 100%);
+        background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
+        animation: meshShift 22s ease-in-out infinite alternate;
+      }
+      @keyframes meshShift {
+        0%   { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; }
+        100% { background-position: 100% 50%, 0% 0%, 30% 70%, 0% 0%; }
+      }
+      .hero-blob {
+        position: absolute; border-radius: 50%; filter: blur(70px); opacity: .35; pointer-events: none;
+        will-change: transform;
+      }
+      .hero-blob.b1 { width: 320px; height: 320px; background: #52B788; top: -80px; left: -60px; animation: floatA 14s ease-in-out infinite; }
+      .hero-blob.b2 { width: 380px; height: 380px; background: #F4A261; bottom: -120px; right: -80px; animation: floatB 18s ease-in-out infinite; }
+      .hero-blob.b3 { width: 220px; height: 220px; background: #52B788; top: 30%; right: 20%; opacity: .2; animation: floatA 20s ease-in-out infinite reverse; }
+      @keyframes floatA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,30px) scale(1.08); } }
+      @keyframes floatB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px,-40px) scale(1.12); } }
+
+      /* SVG wave divider sits at the bottom of the hero */
+      .wave-divider { position: absolute; left: 0; right: 0; bottom: -1px; line-height: 0; }
+      .wave-divider svg { display: block; width: 100%; height: 80px; }
+
+      /* ---------------------------------------------------------------------------
+         GLOBAL — scroll reveal
+         --------------------------------------------------------------------------- */
+      .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
+      .reveal.in { opacity: 1; transform: none; }
+      .reveal-delay-1 { transition-delay: .08s; }
+      .reveal-delay-2 { transition-delay: .16s; }
+      .reveal-delay-3 { transition-delay: .24s; }
+      .reveal-delay-4 { transition-delay: .32s; }
+
+      /* ---------------------------------------------------------------------------
+         CTA / BUTTONS — CSSFX-style elastic hover, sheen sweep, soft pulse
+         --------------------------------------------------------------------------- */
+      .cta-elastic { position: relative; overflow: hidden; transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease; }
+      .cta-elastic:hover { transform: translateY(-3px) scale(1.02); }
+      .cta-elastic:active { transform: translateY(0) scale(.98); transition-duration: .1s; }
+      .cta-elastic::after {
+        content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,.45), transparent);
+        transform: skewX(-20deg); transition: left .7s ease;
+      }
+      .cta-elastic:hover::after { left: 130%; }
+
+      @keyframes softPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(244,162,97,.55); } 50% { box-shadow: 0 0 0 18px rgba(244,162,97,0); } }
+      .pulse { animation: softPulse 2.6s ease-out infinite; }
+
+      /* ---------------------------------------------------------------------------
+         SERVICE CARDS — Hover.css "Float Shadow" + subtle glassmorphism on hover
+         --------------------------------------------------------------------------- */
+      .service-card { transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease, border-color .3s ease, background .3s ease; position: relative; }
+      .service-card::after {
+        content: ''; position: absolute; left: 10%; right: 10%; bottom: -8px; height: 18px;
+        background: radial-gradient(ellipse at center, rgba(27,42,74,.18), transparent 70%);
+        opacity: 0; transition: opacity .4s ease, transform .4s ease; transform: scale(.6);
+      }
+      .service-card:hover { transform: translateY(-8px); }
+      .service-card:hover::after { opacity: 1; transform: scale(1); }
+      .service-icon { transition: transform .5s cubic-bezier(.34,1.56,.64,1), background-color .3s ease, color .3s ease; }
+      .service-card:hover .service-icon { transform: rotate(-6deg) scale(1.08); }
+
+      /* ---------------------------------------------------------------------------
+         WHY-US CARDS — soft neumorphism on hover (Neumorphism.io style)
+         --------------------------------------------------------------------------- */
+      .neumo-card {
+        background: #FAF7F2;
+        box-shadow: 8px 8px 20px rgba(174,170,160,.45), -8px -8px 20px #ffffff;
+        transition: box-shadow .35s ease, transform .35s ease;
+      }
+      .neumo-card:hover {
+        box-shadow: inset 6px 6px 14px rgba(174,170,160,.4), inset -6px -6px 14px #ffffff;
+        transform: translateY(-2px);
       }
 
-      /* Scroll reveal */
-      .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-      .reveal.in { opacity: 1; transform: none; }
+      /* ---------------------------------------------------------------------------
+         PROCESS — animated connector line (Codrops style)
+         --------------------------------------------------------------------------- */
+      .process-wrap { position: relative; }
+      .process-line {
+        position: absolute; left: 0; right: 0; top: 36px; height: 2px;
+        background: linear-gradient(90deg, transparent, #2D6A4F 15%, #F4A261 50%, #2D6A4F 85%, transparent);
+        transform-origin: left center; transform: scaleX(0); transition: transform 1.4s cubic-bezier(.22,1,.36,1) .2s;
+        z-index: 0;
+      }
+      .process-line.in { transform: scaleX(1); }
+      @media (max-width: 1023px) { .process-line { display: none; } }
+      .process-step { position: relative; z-index: 1; transition: transform .35s ease, box-shadow .35s ease; }
+      .process-step:hover { transform: translateY(-4px); box-shadow: 0 14px 34px -12px rgba(27,42,74,.22); }
 
-      /* CTA pulse */
-      @keyframes softPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(244,162,97,.6); } 50% { box-shadow: 0 0 0 16px rgba(244,162,97,0); } }
-      .pulse { animation: softPulse 2.4s ease-out infinite; }
+      /* ---------------------------------------------------------------------------
+         TESTIMONIALS — glassmorphism cards over animated mesh backdrop
+         --------------------------------------------------------------------------- */
+      .testi-mesh {
+        background:
+          radial-gradient(700px 500px at 20% 30%, rgba(82,183,136,.22) 0%, transparent 60%),
+          radial-gradient(600px 500px at 80% 70%, rgba(244,162,97,.18) 0%, transparent 60%),
+          linear-gradient(135deg, #0F1A30 0%, #1B2A4A 100%);
+      }
+      .glass {
+        background: rgba(255,255,255,.07);
+        backdrop-filter: blur(14px) saturate(140%);
+        -webkit-backdrop-filter: blur(14px) saturate(140%);
+        border: 1px solid rgba(255,255,255,.14);
+        box-shadow: 0 10px 40px -10px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);
+        transition: transform .4s ease, box-shadow .4s ease, background .4s ease;
+      }
+      .glass:hover { transform: translateY(-4px); background: rgba(255,255,255,.1); }
 
-      /* GorillaDesk form wrapper polish (form itself lives inside an iframe) */
-      #gorilladesk-contact-form { transition: opacity .3s ease; }
-      #gd-form-iframe { display: block; }
-
-      /* Accordion */
-      details[open] summary .chev { transform: rotate(180deg); }
+      /* ---------------------------------------------------------------------------
+         FAQ — whirl-style accordion chevron spin
+         --------------------------------------------------------------------------- */
+      details[open] summary .chev { transform: rotate(180deg); background-color: rgba(45,106,79,.18); }
+      summary .chev { transition: transform .45s cubic-bezier(.34,1.56,.64,1), background-color .25s ease; }
       summary { list-style: none; cursor: pointer; }
       summary::-webkit-details-marker { display: none; }
+      details > div.faq-body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .35s ease, opacity .25s ease .05s; }
+      details[open] > div.faq-body { max-height: 400px; opacity: 1; }
+
+      /* ---------------------------------------------------------------------------
+         CSS LOADERS — fancy ring for form button retry (css-loaders.com inspired)
+         --------------------------------------------------------------------------- */
+      .ring-loader { width: 18px; height: 18px; border-radius: 50%; display: inline-block; position: relative; vertical-align: -3px;
+        background: conic-gradient(from 90deg, transparent 0 270deg, currentColor 270deg 360deg);
+        -webkit-mask: radial-gradient(closest-side, transparent 60%, #000 62%);
+                mask: radial-gradient(closest-side, transparent 60%, #000 62%);
+        animation: ringSpin .9s linear infinite;
+      }
+      @keyframes ringSpin { to { transform: rotate(1turn); } }
+
+      /* ---------------------------------------------------------------------------
+         STAT COUNTERS
+         --------------------------------------------------------------------------- */
+      .stat-num { transition: color .3s ease; }
+      .stat-card:hover .stat-num { color: #1F4F3A; }
+
+      /* ---------------------------------------------------------------------------
+         FORM CTA card — soft sheen sweep on hover
+         --------------------------------------------------------------------------- */
+      #gorilladesk-contact-form { position: relative; overflow: hidden; }
+      #gorilladesk-contact-form::before {
+        content: ''; position: absolute; inset: -2px;
+        background: conic-gradient(from 0deg, transparent 0deg, rgba(45,106,79,.25) 60deg, transparent 120deg, transparent 240deg, rgba(244,162,97,.25) 300deg, transparent 360deg);
+        animation: ringRotate 16s linear infinite; z-index: 0; opacity: .35;
+      }
+      #gorilladesk-contact-form > * { position: relative; z-index: 1; }
+      @keyframes ringRotate { to { transform: rotate(1turn); } }
+
+      /* ---------------------------------------------------------------------------
+         Accessibility — respect reduced motion
+         --------------------------------------------------------------------------- */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; }
+      }
     </style>
 </head>
 <body class="bg-white antialiased">
@@ -111,7 +250,7 @@ const html = `<!DOCTYPE html>
           <i class="fa-solid fa-phone-volume text-brand-green"></i>
           <span>(XXX) XXX-XXXX</span>
         </a>
-        <a href="#contact" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold text-sm px-4 py-2.5 rounded-lg shadow-cta transition">
+        <a href="#contact" class="cta-elastic inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold text-sm px-4 py-2.5 rounded-lg shadow-cta">
           Free Inspection
           <i class="fa-solid fa-arrow-right text-xs"></i>
         </a>
@@ -122,7 +261,11 @@ const html = `<!DOCTYPE html>
   <main id="top" class="pt-16">
 
     <!-- ============== HERO ============== -->
-    <section class="hero-pattern text-white relative overflow-hidden">
+    <section class="hero-mesh text-white relative overflow-hidden">
+      <!-- Floating mesh blobs (Haikei-style) -->
+      <span class="hero-blob b1" aria-hidden="true"></span>
+      <span class="hero-blob b2" aria-hidden="true"></span>
+      <span class="hero-blob b3" aria-hidden="true"></span>
       <div class="absolute inset-0 opacity-[0.04]" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;);"></div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-12 gap-12 items-center">
@@ -142,11 +285,11 @@ const html = `<!DOCTYPE html>
           </p>
 
           <div class="flex flex-wrap gap-3 mb-10">
-            <a href="#contact" class="pulse inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold px-7 py-4 rounded-xl shadow-cta transition text-base">
+            <a href="#contact" class="cta-elastic pulse inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold px-7 py-4 rounded-xl shadow-cta text-base">
               <i class="fa-solid fa-clipboard-check"></i>
               Get Free Inspection
             </a>
-            <a href="tel:+1XXXXXXXXXX" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold px-7 py-4 rounded-xl transition text-base">
+            <a href="tel:+1XXXXXXXXXX" class="cta-elastic inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold px-7 py-4 rounded-xl text-base backdrop-blur">
               <i class="fa-solid fa-phone-volume"></i>
               Call (XXX) XXX-XXXX
             </a>
@@ -162,7 +305,7 @@ const html = `<!DOCTYPE html>
 
         <!-- Hero card -->
         <aside class="lg:col-span-5">
-          <div class="bg-white text-brand-navy rounded-2xl shadow-2xl p-6 sm:p-8 border border-white/40">
+          <div class="bg-white/95 text-brand-navy rounded-2xl shadow-2xl p-6 sm:p-8 border border-white/60 backdrop-blur-sm">
             <div class="flex items-center gap-3 mb-5">
               <span class="w-10 h-10 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center">
                 <i class="fa-solid fa-bolt-lightning"></i>
@@ -180,32 +323,39 @@ const html = `<!DOCTYPE html>
               <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-brand-green mt-1"></i><span><strong>EPA-approved</strong> treatments, kid & pet safe</span></li>
             </ul>
 
-            <a href="#contact" class="block w-full text-center bg-brand-navy hover:bg-brand-navy-dark text-white font-bold py-3.5 rounded-xl transition">
+            <a href="#contact" class="cta-elastic block w-full text-center bg-brand-navy hover:bg-brand-navy-dark text-white font-bold py-3.5 rounded-xl">
               Request My Free Inspection →
             </a>
           </div>
         </aside>
       </div>
+
+      <!-- Getwaves.io-style SVG wave divider transitioning into the next section -->
+      <div class="wave-divider" aria-hidden="true">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,32 C240,80 480,80 720,48 C960,16 1200,16 1440,48 L1440,80 L0,80 Z" fill="#FAF7F2"/>
+        </svg>
+      </div>
     </section>
 
     <!-- ============== TRUST BAR ============== -->
-    <section class="bg-brand-cream border-y border-slate-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div>
-          <p class="font-display font-extrabold text-3xl text-brand-green">15+</p>
-          <p class="text-sm text-slate-600 font-semibold">Years protecting homes</p>
+    <section class="bg-brand-cream">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="stat-card reveal">
+          <p class="font-display font-extrabold text-4xl md:text-5xl text-brand-green stat-num" data-count="15" data-suffix="+">0+</p>
+          <p class="text-sm text-slate-600 font-semibold mt-1">Years protecting homes</p>
         </div>
-        <div>
-          <p class="font-display font-extrabold text-3xl text-brand-green">10,000+</p>
-          <p class="text-sm text-slate-600 font-semibold">Treatments completed</p>
+        <div class="stat-card reveal reveal-delay-1">
+          <p class="font-display font-extrabold text-4xl md:text-5xl text-brand-green stat-num" data-count="10000" data-suffix="+">0+</p>
+          <p class="text-sm text-slate-600 font-semibold mt-1">Treatments completed</p>
         </div>
-        <div>
-          <p class="font-display font-extrabold text-3xl text-brand-green">4.9★</p>
-          <p class="text-sm text-slate-600 font-semibold">Average customer rating</p>
+        <div class="stat-card reveal reveal-delay-2">
+          <p class="font-display font-extrabold text-4xl md:text-5xl text-brand-green stat-num" data-count="4.9" data-suffix="★" data-decimals="1">0★</p>
+          <p class="text-sm text-slate-600 font-semibold mt-1">Average customer rating</p>
         </div>
-        <div>
-          <p class="font-display font-extrabold text-3xl text-brand-green">2 hr</p>
-          <p class="text-sm text-slate-600 font-semibold">Average response time</p>
+        <div class="stat-card reveal reveal-delay-3">
+          <p class="font-display font-extrabold text-4xl md:text-5xl text-brand-green stat-num" data-count="2" data-suffix=" hr">0 hr</p>
+          <p class="text-sm text-slate-600 font-semibold mt-1">Average response time</p>
         </div>
       </div>
     </section>
@@ -220,65 +370,64 @@ const html = `<!DOCTYPE html>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Card template repeated -->
-          <article class="reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6 transition">
-            <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white transition">
+          <article class="service-card reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
+            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
               <i class="fa-solid fa-bug text-xl"></i>
             </div>
             <h3 class="font-bold text-lg mb-2">Termites</h3>
             <p class="text-sm text-slate-600">Save your home from costly structural damage with proactive termite detection and elimination.</p>
           </article>
 
-          <article class="reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6 transition">
-            <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white transition">
+          <article class="service-card reveal reveal-delay-1 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
+            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
               <i class="fa-solid fa-bugs text-xl"></i>
             </div>
             <h3 class="font-bold text-lg mb-2">Roaches</h3>
             <p class="text-sm text-slate-600">Targeted gel and bait treatments that wipe out colonies — including German and American roaches.</p>
           </article>
 
-          <article class="reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6 transition">
-            <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white transition">
+          <article class="service-card reveal reveal-delay-2 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
+            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
               <i class="fa-solid fa-house-chimney-crack text-xl"></i>
             </div>
             <h3 class="font-bold text-lg mb-2">Rodents</h3>
             <p class="text-sm text-slate-600">Humane removal of mice and rats, plus entry-point sealing so they don't come back.</p>
           </article>
 
-          <article class="reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6 transition">
-            <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white transition">
+          <article class="service-card reveal reveal-delay-3 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
+            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
               <i class="fa-solid fa-bee text-xl"></i>
             </div>
             <h3 class="font-bold text-lg mb-2">Wasps & Hornets</h3>
             <p class="text-sm text-slate-600">Safe nest removal and perimeter spray to keep stinging insects off your property.</p>
           </article>
 
-          <article class="reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6 transition">
-            <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white transition">
+          <article class="service-card reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
+            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
               <i class="fa-solid fa-ant text-xl"></i>
             </div>
             <h3 class="font-bold text-lg mb-2">Ants</h3>
             <p class="text-sm text-slate-600">Carpenter, fire, sugar, and odorous house ants — eliminated colony and all.</p>
           </article>
 
-          <article class="reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6 transition">
-            <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white transition">
+          <article class="service-card reveal reveal-delay-1 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
+            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
               <i class="fa-solid fa-mosquito text-xl"></i>
             </div>
             <h3 class="font-bold text-lg mb-2">Mosquitoes</h3>
             <p class="text-sm text-slate-600">Reclaim your yard with our seasonal mosquito misting and breeding-site treatment.</p>
           </article>
 
-          <article class="reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6 transition">
-            <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white transition">
+          <article class="service-card reveal reveal-delay-2 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
+            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
               <i class="fa-solid fa-bed text-xl"></i>
             </div>
             <h3 class="font-bold text-lg mb-2">Bed Bugs</h3>
             <p class="text-sm text-slate-600">Heat and chemical treatments that eradicate every life stage — adults, nymphs, and eggs.</p>
           </article>
 
-          <article class="reveal group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6 transition">
-            <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white transition">
+          <article class="service-card reveal reveal-delay-3 group bg-white border border-slate-100 hover:border-brand-green/30 hover:shadow-card rounded-2xl p-6">
+            <div class="service-icon w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4 group-hover:bg-brand-green group-hover:text-white">
               <i class="fa-solid fa-spider text-xl"></i>
             </div>
             <h3 class="font-bold text-lg mb-2">Spiders & More</h3>
@@ -303,29 +452,29 @@ const html = `<!DOCTYPE html>
             <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">Why Choose Us</p>
             <h2 class="text-4xl lg:text-5xl font-extrabold mb-6">Local experts your neighbors already trust</h2>
             <p class="text-lg text-slate-600 mb-8">We're not a national franchise reading a script. We're licensed local technicians who treat every home like it's our own — and we stand behind every job.</p>
-            <a href="#contact" class="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white font-bold px-6 py-3.5 rounded-xl transition">
+            <a href="#contact" class="cta-elastic inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white font-bold px-6 py-3.5 rounded-xl">
               Schedule Inspection
               <i class="fa-solid fa-arrow-right text-sm"></i>
             </a>
           </div>
 
-          <div class="lg:col-span-7 grid sm:grid-cols-2 gap-5">
-            <div class="reveal bg-white rounded-2xl p-6 shadow-card border border-white">
+          <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6">
+            <div class="neumo-card reveal rounded-2xl p-6">
               <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-medal text-lg"></i></div>
               <h3 class="font-bold text-lg mb-2">Licensed & Insured</h3>
               <p class="text-sm text-slate-600">Fully state-licensed technicians and $2M liability coverage — protected on every job.</p>
             </div>
-            <div class="reveal bg-white rounded-2xl p-6 shadow-card border border-white">
+            <div class="neumo-card reveal reveal-delay-1 rounded-2xl p-6">
               <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-leaf text-lg"></i></div>
               <h3 class="font-bold text-lg mb-2">Family & Pet Safe</h3>
               <p class="text-sm text-slate-600">EPA-approved, low-toxicity products applied precisely where they're needed.</p>
             </div>
-            <div class="reveal bg-white rounded-2xl p-6 shadow-card border border-white">
+            <div class="neumo-card reveal reveal-delay-2 rounded-2xl p-6">
               <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-handshake text-lg"></i></div>
               <h3 class="font-bold text-lg mb-2">Satisfaction Guarantee</h3>
               <p class="text-sm text-slate-600">Pests come back between visits? We come back too — at no extra charge.</p>
             </div>
-            <div class="reveal bg-white rounded-2xl p-6 shadow-card border border-white">
+            <div class="neumo-card reveal reveal-delay-3 rounded-2xl p-6">
               <div class="w-11 h-11 rounded-xl bg-brand-orange/15 text-brand-orange-dark grid place-items-center mb-4"><i class="fa-solid fa-clock text-lg"></i></div>
               <h3 class="font-bold text-lg mb-2">Same-Day Service</h3>
               <p class="text-sm text-slate-600">Call before noon for same-day treatment, plus evening and weekend appointments.</p>
@@ -344,26 +493,27 @@ const html = `<!DOCTYPE html>
           <p class="text-lg text-slate-600">From your first call to long-term protection — here's exactly what to expect.</p>
         </div>
 
-        <ol class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 relative">
-          <li class="reveal relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
+        <ol class="process-wrap grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5 relative">
+          <span class="process-line" aria-hidden="true"></span>
+          <li class="process-step reveal relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
             <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">1</div>
             <i class="fa-solid fa-phone-volume text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Contact us</h3>
             <p class="text-sm text-slate-600">Call, text, or fill out the form. We'll get back to you within 2 business hours.</p>
           </li>
-          <li class="reveal relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
+          <li class="process-step reveal reveal-delay-1 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
             <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">2</div>
             <i class="fa-solid fa-magnifying-glass text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Free inspection</h3>
             <p class="text-sm text-slate-600">A licensed tech inspects your property and identifies the pest, source, and severity — no charge.</p>
           </li>
-          <li class="reveal relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
+          <li class="process-step reveal reveal-delay-2 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
             <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">3</div>
             <i class="fa-solid fa-spray-can-sparkles text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Custom treatment</h3>
             <p class="text-sm text-slate-600">We apply a tailored, pet-safe treatment plan with transparent, upfront pricing.</p>
           </li>
-          <li class="reveal relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
+          <li class="process-step reveal reveal-delay-3 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
             <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">4</div>
             <i class="fa-solid fa-shield-halved text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Ongoing protection</h3>
@@ -374,8 +524,10 @@ const html = `<!DOCTYPE html>
     </section>
 
     <!-- ============== TESTIMONIALS ============== -->
-    <section id="reviews" class="py-20 lg:py-28 bg-brand-navy text-white relative overflow-hidden">
-      <div class="absolute inset-0 opacity-[0.05]" style="background-image: radial-gradient(circle at 30% 20%, #52B788 0, transparent 50%), radial-gradient(circle at 70% 80%, #F4A261 0, transparent 50%);"></div>
+    <section id="reviews" class="testi-mesh py-20 lg:py-28 text-white relative overflow-hidden">
+      <!-- Decorative blobs -->
+      <span class="hero-blob b1" style="opacity:.25" aria-hidden="true"></span>
+      <span class="hero-blob b2" style="opacity:.25" aria-hidden="true"></span>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto text-center mb-14 reveal">
@@ -389,7 +541,7 @@ const html = `<!DOCTYPE html>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6">
-          <figure class="reveal bg-white/5 border border-white/10 rounded-2xl p-7 backdrop-blur">
+          <figure class="glass reveal rounded-2xl p-7">
             <div class="text-brand-orange mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             <blockquote class="text-slate-100 leading-relaxed mb-5">"They showed up the same day I called, found a roach issue under the dishwasher I didn't even know about, and treated the whole house. Two weeks pest-free and counting."</blockquote>
             <figcaption class="flex items-center gap-3">
@@ -401,7 +553,7 @@ const html = `<!DOCTYPE html>
             </figcaption>
           </figure>
 
-          <figure class="reveal bg-white/5 border border-white/10 rounded-2xl p-7 backdrop-blur">
+          <figure class="glass reveal reveal-delay-1 rounded-2xl p-7">
             <div class="text-brand-orange mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             <blockquote class="text-slate-100 leading-relaxed mb-5">"We had termites in the garage and were panicking. The tech walked us through everything, the pricing was fair, and they came back twice to make sure they got them all. Excellent service."</blockquote>
             <figcaption class="flex items-center gap-3">
@@ -413,7 +565,7 @@ const html = `<!DOCTYPE html>
             </figcaption>
           </figure>
 
-          <figure class="reveal bg-white/5 border border-white/10 rounded-2xl p-7 backdrop-blur">
+          <figure class="glass reveal reveal-delay-2 rounded-2xl p-7">
             <div class="text-brand-orange mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
             <blockquote class="text-slate-100 leading-relaxed mb-5">"Mosquitoes used to ruin our backyard every summer. After their seasonal treatment we can actually use the patio again. Worth every penny — and safe for our dogs."</blockquote>
             <figcaption class="flex items-center gap-3">
@@ -437,12 +589,12 @@ const html = `<!DOCTYPE html>
         </div>
 
         <div class="space-y-3">
-          <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition" open>
+          <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition" open="">
             <summary class="flex items-center justify-between gap-4">
               <h3 class="font-bold text-lg pr-4">Is your treatment safe for kids and pets?</h3>
               <span class="chev w-9 h-9 rounded-full bg-brand-green/10 text-brand-green grid place-items-center transition-transform"><i class="fa-solid fa-chevron-down text-sm"></i></span>
             </summary>
-            <p class="mt-4 text-slate-600 leading-relaxed">Yes. We use EPA-approved, low-toxicity products applied precisely where pests live and travel — typically along baseboards, under sinks, and outdoor entry points. Most treatments are dry within an hour, after which kids and pets can return to those areas safely.</p>
+            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">Yes. We use EPA-approved, low-toxicity products applied precisely where pests live and travel — typically along baseboards, under sinks, and outdoor entry points. Most treatments are dry within an hour, after which kids and pets can return to those areas safely.</p></div>
           </details>
 
           <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition">
@@ -450,7 +602,7 @@ const html = `<!DOCTYPE html>
               <h3 class="font-bold text-lg pr-4">How fast can you come out?</h3>
               <span class="chev w-9 h-9 rounded-full bg-brand-green/10 text-brand-green grid place-items-center transition-transform"><i class="fa-solid fa-chevron-down text-sm"></i></span>
             </summary>
-            <p class="mt-4 text-slate-600 leading-relaxed">For urgent infestations we offer same-day service if you call before noon. Otherwise we'll schedule your free inspection within 24–48 hours, including evening and Saturday slots.</p>
+            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">For urgent infestations we offer same-day service if you call before noon. Otherwise we'll schedule your free inspection within 24–48 hours, including evening and Saturday slots.</p></div>
           </details>
 
           <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition">
@@ -458,7 +610,7 @@ const html = `<!DOCTYPE html>
               <h3 class="font-bold text-lg pr-4">How much does it cost?</h3>
               <span class="chev w-9 h-9 rounded-full bg-brand-green/10 text-brand-green grid place-items-center transition-transform"><i class="fa-solid fa-chevron-down text-sm"></i></span>
             </summary>
-            <p class="mt-4 text-slate-600 leading-relaxed">It depends on the pest, the property size, and the severity — which is why the on-site inspection is free. You'll get a transparent flat-fee quote before any work begins, with no hidden charges and no obligation to proceed.</p>
+            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">It depends on the pest, the property size, and the severity — which is why the on-site inspection is free. You'll get a transparent flat-fee quote before any work begins, with no hidden charges and no obligation to proceed.</p></div>
           </details>
 
           <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition">
@@ -466,7 +618,7 @@ const html = `<!DOCTYPE html>
               <h3 class="font-bold text-lg pr-4">Do you offer a guarantee?</h3>
               <span class="chev w-9 h-9 rounded-full bg-brand-green/10 text-brand-green grid place-items-center transition-transform"><i class="fa-solid fa-chevron-down text-sm"></i></span>
             </summary>
-            <p class="mt-4 text-slate-600 leading-relaxed">Absolutely. If pests return between scheduled visits on any of our recurring plans, we come back and re-treat at no charge. Your satisfaction is the only thing that matters to us.</p>
+            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">Absolutely. If pests return between scheduled visits on any of our recurring plans, we come back and re-treat at no charge. Your satisfaction is the only thing that matters to us.</p></div>
           </details>
 
           <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition">
@@ -474,7 +626,7 @@ const html = `<!DOCTYPE html>
               <h3 class="font-bold text-lg pr-4">Do I need to leave the house during treatment?</h3>
               <span class="chev w-9 h-9 rounded-full bg-brand-green/10 text-brand-green grid place-items-center transition-transform"><i class="fa-solid fa-chevron-down text-sm"></i></span>
             </summary>
-            <p class="mt-4 text-slate-600 leading-relaxed">For most general pest treatments — no. You can stay in the home; we'll just ask you to keep pets out of treated rooms until products dry (usually 30–60 minutes). For specialty treatments like bed bug heat or fumigation, we'll give you specific instructions in advance.</p>
+            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">For most general pest treatments — no. You can stay in the home; we'll just ask you to keep pets out of treated rooms until products dry (usually 30–60 minutes). For specialty treatments like bed bug heat or fumigation, we'll give you specific instructions in advance.</p></div>
           </details>
         </div>
       </div>
@@ -562,7 +714,7 @@ const html = `<!DOCTYPE html>
               <button
                 type="button"
                 id="open-gd-form"
-                class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold px-7 py-4 rounded-xl shadow-cta transition text-base"
+                class="cta-elastic inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold px-7 py-4 rounded-xl shadow-cta text-base"
               >
                 <i class="fa-solid fa-pen-to-square"></i>
                 Open Inspection Form
@@ -645,11 +797,48 @@ const html = `<!DOCTYPE html>
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Scroll reveal
+    // Scroll reveal — adds .in class to anything with .reveal once visible
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Animated process connector line — triggers when process section enters view
+    const processLine = document.querySelector('.process-line');
+    if (processLine) {
+      const lineIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); lineIO.unobserve(e.target); } });
+      }, { threshold: 0.3 });
+      lineIO.observe(processLine);
+    }
+
+    // Animista-style count-up for the trust stat numbers
+    function animateCount(el) {
+      const target = parseFloat(el.dataset.count);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1600;
+      const start = performance.now();
+      function step(now) {
+        const t = Math.min((now - start) / duration, 1);
+        // easeOutCubic
+        const eased = 1 - Math.pow(1 - t, 3);
+        const value = target * eased;
+        el.textContent = (decimals > 0 ? value.toFixed(decimals) : Math.round(value).toLocaleString()) + suffix;
+        if (t < 1) requestAnimationFrame(step);
+        else el.textContent = (decimals > 0 ? target.toFixed(decimals) : Math.round(target).toLocaleString()) + suffix;
+      }
+      requestAnimationFrame(step);
+    }
+    const statIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.stat-num').forEach(animateCount);
+          statIO.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.stat-card').forEach(el => statIO.observe(el));
 
     // Subtle header shadow on scroll
     const header = document.getElementById('site-header');
@@ -665,7 +854,7 @@ const html = `<!DOCTYPE html>
       const btn = document.getElementById('open-gd-form');
       if (!widget) {
         // Script hasn't finished loading yet — try again in a moment.
-        if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Loading form…'; }
+        if (btn) { btn.disabled = true; btn.innerHTML = '<span class="ring-loader"></span> Loading form…'; }
         setTimeout(openGorillaDeskForm, 400);
         return;
       }

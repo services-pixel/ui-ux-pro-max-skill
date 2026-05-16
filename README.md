@@ -65,12 +65,25 @@ The only third-party integration is the **GorillaDesk** embed (`account_id: 0d73
 - [x] Tailwind-based design system with custom brand palette
 - [x] 8-pest services grid with icons and hover states
 - [x] Trust stats, testimonials, and 4-step process visualization
-- [x] Native HTML accordion FAQ (5 items, no JS dependency for behavior)
-- [x] Scroll-reveal animations + smooth scroll
+- [x] Native HTML accordion FAQ (5 items, smooth height animation)
+- [x] Scroll-reveal animations with staggered delays + smooth scroll
 - [x] Mobile-friendly with floating tap-to-call button
-- [x] GorillaDesk form embed wired with the provided `account_id`
+- [x] GorillaDesk widget integration (inline CTA opens popup form via postMessage)
 - [x] SEO meta description, OG tags, theme-color, favicon
 - [x] Pushed to GitHub `main`
+
+### Visual Polish Pass (inspired by the referenced design libraries)
+- [x] **Hero** — animated gradient mesh background + 3 floating blob shapes (Haikei-style) + SVG wave divider into the next section (Getwaves)
+- [x] **Trust stats** — count-up animation on scroll into view, with `easeOutCubic` interpolation (Animista)
+- [x] **Service cards** — Hover.css "Float Shadow" lift + icon rotate-scale on hover, plus a soft ground shadow that fades in
+- [x] **Why-Us cards** — soft neumorphism (Neumorphism.io) with inset shadow on hover
+- [x] **Process steps** — animated gradient connector line that draws across the row on scroll (Codrops-style)
+- [x] **Testimonials** — true glassmorphism cards (`backdrop-blur` + saturated transparency) over an animated mesh backdrop (Glassmorphism.com)
+- [x] **FAQ** — smooth `max-height` transition on open/close, chevron with cubic-bezier overshoot (Whirl)
+- [x] **CTAs** — CSSFX-style elastic hover scaling, active-state press, and a diagonal sheen-sweep on hover
+- [x] **Form CTA card** — animated conic-gradient ring orbiting the card edge for premium feel
+- [x] **Form button retry spinner** — pure-CSS ring loader using `conic-gradient` mask (css-loaders.com pattern)
+- [x] **Accessibility** — `prefers-reduced-motion` media query disables all animations for users who request it
 
 ## Not Yet Implemented
 - [ ] Real business details filled in (phone number, email, service-area city, real company name — currently uses "ShieldPest" as a placeholder brand)
