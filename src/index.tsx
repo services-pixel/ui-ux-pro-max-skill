@@ -7,17 +7,112 @@ const html = `<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Castle Exterminators | Trusted Pest Control in Durham, NC | Free Inspection</title>
-    <meta name="description" content="Castle Exterminators — family-owned pest control in Durham, NC. We protect homes from termites, ants, roaches, mice, mosquitoes, bed bugs & more with eco-friendly, family-safe treatments. Free inspection — call (919) 606-6866.">
+    <title>Pest Control Durham NC | Castle Exterminators — Termites, Ants, Roaches & Mosquitoes</title>
+    <meta name="description" content="Local pest control in Durham, NC. Castle Exterminators eliminates termites, ants, roaches, mice, mosquitoes & more with eco-friendly, family-safe treatments. Free inspection · 5.0★ on Google · Licensed & insured. Call (919) 606-6866.">
+    <meta name="keywords" content="pest control Durham NC, exterminator Durham, termite control Durham, ant control Durham, roach exterminator Durham, mosquito control Durham, rodent removal Durham, eco-friendly pest control, family-safe pest control">
     <meta name="theme-color" content="#1F6F4A">
-    <link rel="canonical" href="https://www.castleexterminators.co/">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="Castle Exterminators">
+    <meta name="geo.region" content="US-NC">
+    <meta name="geo.placename" content="Durham, North Carolina">
+    <link rel="canonical" href="https://castleexterminators.co/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Castle Exterminators | Pest Control in Durham, NC">
-    <meta property="og:description" content="Family-owned, eco-friendly pest control in Durham, NC. Free inspection. Call (919) 606-6866.">
+    <meta property="og:site_name" content="Castle Exterminators">
+    <meta property="og:title" content="Pest Control Durham NC | Castle Exterminators">
+    <meta property="og:description" content="Family-owned, eco-friendly pest control in Durham, NC. Termites, ants, roaches, mosquitoes & more. Free inspection — (919) 606-6866.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="/static/castle-logo.png">
+    <meta property="og:url" content="https://castleexterminators.co/">
+    <meta property="og:image" content="https://castleexterminators.co/static/castle-logo.png">
     <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pest Control Durham NC | Castle Exterminators">
+    <meta name="twitter:description" content="Family-owned, eco-friendly pest control in Durham, NC. Free inspection — (919) 606-6866.">
+    <meta name="twitter:image" content="https://castleexterminators.co/static/castle-logo.png">
+
+    <!-- Structured data: LocalBusiness + Organization (the most important schema for local Google rankings) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PestControlService",
+      "@id": "https://castleexterminators.co/#business",
+      "name": "Castle Exterminators",
+      "alternateName": "Castle Exterminators Durham NC",
+      "description": "Family-owned local pest control company serving Durham, NC and surrounding communities. Eco-friendly, family-safe treatments for termites, ants, roaches, rodents, mosquitoes and more.",
+      "url": "https://castleexterminators.co/",
+      "telephone": "+1-919-606-6866",
+      "email": "info@castleexterminators.co",
+      "image": "https://castleexterminators.co/static/castle-logo.png",
+      "logo": "https://castleexterminators.co/static/castle-logo.png",
+      "priceRange": "$$",
+      "currenciesAccepted": "USD",
+      "paymentAccepted": "Cash, Credit Card, Check",
+      "foundingDate": "2017",
+      "slogan": "Keep your castle pest-free.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Durham",
+        "addressRegion": "NC",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 35.9940,
+        "longitude": -78.8986
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Durham", "containedInPlace": { "@type": "State", "name": "North Carolina" } },
+        { "@type": "City", "name": "Chapel Hill", "containedInPlace": { "@type": "State", "name": "North Carolina" } },
+        { "@type": "City", "name": "Raleigh", "containedInPlace": { "@type": "State", "name": "North Carolina" } },
+        { "@type": "City", "name": "Cary", "containedInPlace": { "@type": "State", "name": "North Carolina" } },
+        { "@type": "City", "name": "Morrisville", "containedInPlace": { "@type": "State", "name": "North Carolina" } },
+        { "@type": "City", "name": "Hillsborough", "containedInPlace": { "@type": "State", "name": "North Carolina" } }
+      ],
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "07:00",
+        "closes": "19:00"
+      }],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "47",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Pest Control Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Termite Control & Inspection", "url": "https://castleexterminators.co/services/termites" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roach Extermination", "url": "https://castleexterminators.co/services/roaches" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rodent Removal & Exclusion", "url": "https://castleexterminators.co/services/rodents" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ant Control", "url": "https://castleexterminators.co/services/ants" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mosquito Reduction", "url": "https://castleexterminators.co/services/mosquitoes" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "General Pest Control", "url": "https://castleexterminators.co/services/general-pest-control" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Crawl Space Encapsulation", "url": "https://castleexterminators.co/services/crawl-space-encapsulation" } }
+        ]
+      },
+      "sameAs": []
+    }
+    </script>
+
+    <!-- Structured data: WebSite (helps Google build sitelinks search box) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://castleexterminators.co/#website",
+      "url": "https://castleexterminators.co/",
+      "name": "Castle Exterminators",
+      "description": "Family-owned pest control in Durham, NC",
+      "publisher": { "@id": "https://castleexterminators.co/#business" },
+      "inLanguage": "en-US"
+    }
+    </script>
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏰</text></svg>">
 
@@ -1269,6 +1364,56 @@ const html = `<!DOCTYPE html>
           </details>
         </div>
       </div>
+
+      <!-- FAQ schema — eligible for rich FAQ snippets in Google search results -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is your treatment safe for kids and pets?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We use EPA-approved, low-toxicity products applied precisely where pests live and travel — typically along baseboards, under sinks, and outdoor entry points. Most treatments are dry within an hour, after which kids and pets can return to those areas safely."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How fast can you come out to my Durham home?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For urgent infestations we do our best to offer same-day service in the Durham area if you call before noon at (919) 606-6866. Otherwise we'll schedule your free inspection within 24–48 hours, including evening and Saturday slots."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does pest control cost in Durham, NC?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It depends on the pest, your home's size, and the severity — which is exactly why our on-site inspection is free. You'll get a transparent flat-fee quote before any work begins, with no hidden charges and zero obligation to proceed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you guarantee your pest control work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. If pests return between scheduled visits on any of our recurring plans, we come back and re-treat at no charge. We're family-owned in Durham — your satisfaction is the only thing that matters to us."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to leave the house during pest treatment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For most general pest treatments — no. You can stay in the home; we'll just ask you to keep pets out of treated rooms until products dry (usually 30–60 minutes). For specialty treatments like bed bug heat or fumigation, we'll give you specific instructions in advance."
+            }
+          }
+        ]
+      }
+      </script>
     </section>
 
     <!-- ============== CONTACT / FINAL CTA ============== -->
@@ -1824,12 +1969,88 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${s.name} in Durham, NC | Castle Exterminators</title>
   <meta name="description" content="${s.tagline} Castle Exterminators — Durham's family-owned pest control. Free inspection, licensed & insured, 5.0 on Google & Yelp." />
+  <meta name="keywords" content="${s.name.toLowerCase()} Durham NC, ${s.name.toLowerCase()} near me, pest control Durham, exterminator Durham NC, ${s.slug} treatment, Castle Exterminators" />
   <meta name="theme-color" content="#1F6F4A" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="geo.region" content="US-NC" />
+  <meta name="geo.placename" content="Durham, North Carolina" />
+  <link rel="canonical" href="https://castleexterminators.co/services/${s.slug}" />
   <link rel="icon" href="/static/castle-logo.png" />
+  <meta property="og:site_name" content="Castle Exterminators" />
   <meta property="og:title" content="${s.name} | Castle Exterminators Durham NC" />
   <meta property="og:description" content="${s.tagline}" />
+  <meta property="og:url" content="https://castleexterminators.co/services/${s.slug}" />
   <meta property="og:image" content="${s.hero}" />
   <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${s.name} | Castle Exterminators Durham NC" />
+  <meta name="twitter:description" content="${s.tagline}" />
+  <meta name="twitter:image" content="${s.hero}" />
+
+  <!-- Service schema — tells Google this page describes a specific local service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "${s.name}",
+    "name": "${s.name} in Durham, NC",
+    "description": "${s.tagline}",
+    "url": "https://castleexterminators.co/services/${s.slug}",
+    "image": "${s.hero}",
+    "provider": {
+      "@type": "PestControlService",
+      "@id": "https://castleexterminators.co/#business",
+      "name": "Castle Exterminators",
+      "telephone": "+1-919-606-6866",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Durham",
+        "addressRegion": "NC",
+        "addressCountry": "US"
+      }
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Durham",
+      "containedInPlace": { "@type": "State", "name": "North Carolina" }
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://castleexterminators.co/services/${s.slug}",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "seller": { "@id": "https://castleexterminators.co/#business" }
+    }
+  }
+  </script>
+
+  <!-- Breadcrumb schema — gives Google a clean nav trail for search results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://castleexterminators.co/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://castleexterminators.co/#services" },
+      { "@type": "ListItem", "position": 3, "name": "${s.name}", "item": "https://castleexterminators.co/services/${s.slug}" }
+    ]
+  }
+  </script>
+
+  <!-- FAQ schema — service-specific Q&A eligible for rich snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      ${s.faq.map(item => `{
+        "@type": "Question",
+        "name": ${JSON.stringify(item.q)},
+        "acceptedAnswer": { "@type": "Answer", "text": ${JSON.stringify(item.a)} }
+      }`).join(',\n      ')}
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -2340,6 +2561,44 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
 
 services.forEach(s => {
   app.get(`/services/${s.slug}`, (c) => c.html(renderServicePage(s, services)))
+})
+
+// ---------------------------------------------------------------------------
+// SEO: robots.txt — allows all crawlers and points them to the sitemap
+// ---------------------------------------------------------------------------
+app.get('/robots.txt', (c) => {
+  const body = `User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://castleexterminators.co/sitemap.xml
+`
+  return c.text(body, 200, { 'Content-Type': 'text/plain; charset=utf-8' })
+})
+
+// ---------------------------------------------------------------------------
+// SEO: sitemap.xml — homepage + every service detail page
+// ---------------------------------------------------------------------------
+app.get('/sitemap.xml', (c) => {
+  const today = new Date().toISOString().split('T')[0]
+  const urls = [
+    { loc: 'https://castleexterminators.co/',           priority: '1.0', changefreq: 'weekly' },
+    ...services.map(s => ({
+      loc: `https://castleexterminators.co/services/${s.slug}`,
+      priority: '0.9',
+      changefreq: 'monthly'
+    }))
+  ]
+  const body = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(u => `  <url>
+    <loc>${u.loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`
+  return c.text(body, 200, { 'Content-Type': 'application/xml; charset=utf-8' })
 })
 
 export default app
