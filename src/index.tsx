@@ -116,61 +116,8 @@ const html = `<!DOCTYPE html>
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏰</text></svg>">
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      // NATURE / ECO palette — deep forest emerald + warm sand + terracotta CTA + ink charcoal
-      // Inspired by Coolors / Happy Hues / Khroma nature palettes
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                // Primary trust color — deep forest emerald (replaces #067133)
-                green:        '#1F6F4A',
-                'green-dark': '#13502F',
-                'green-light':'#3FA372',
-                'green-mist': '#D7EBDF',  // subtle wash for backgrounds
-
-                // Replaces "navy" — deep charcoal-ink for serious typography
-                navy:        '#1E2A24',   // mossy ink
-                'navy-dark': '#0E1612',
-
-                // CTA — warm terracotta (replaces apricot orange)
-                orange:       '#C2663B',  // terracotta
-                'orange-dark':'#A0502C',
-                'orange-soft':'#F1C9A8',  // soft warm wash
-
-                // Cream + sand — warm earthy neutrals
-                cream: '#F7F2E7',   // warm parchment
-                sand:  '#EADFC7',   // deeper sand
-                bone:  '#FBF8F1',   // brightest, near-white
-
-                // Accent — pale leaf for tags & highlights
-                leaf:  '#A7C9A4',
-              }
-            },
-            fontFamily: {
-              // Fraunces serif for display headings (warm, organic, trust)
-              // Plus Jakarta Sans for body (clean modern)
-              display: ['"Fraunces"', '"Plus Jakarta Sans"', 'system-ui', 'serif'],
-              sans:    ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-              body:    ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-            },
-            boxShadow: {
-              'card':  '0 14px 36px -14px rgba(30,42,36,0.22)',
-              'card-hover': '0 22px 50px -16px rgba(30,42,36,0.30)',
-              'cta':   '0 14px 30px -8px rgba(194,102,59,0.45)',
-              'inset-leaf': 'inset 0 0 0 1px rgba(31,111,74,0.10)',
-            },
-            backgroundImage: {
-              // Subtle leaf hero-pattern (Hero Patterns style) — encoded SVG
-              'leaf-pattern': 'url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2780%27 height=%2780%27 viewBox=%270 0 80 80%27%3E%3Cg fill=%27%231F6F4A%27 fill-opacity=%270.06%27%3E%3Cpath d=%27M40 0c5 10 0 20-10 25 5 10 0 20-10 25C25 60 35 55 40 45c5 10 15 15 20 5-10-5-15-15-10-25-10-5-15-15-10-25z%27/%3E%3C/g%3E%3C/svg%3E")',
-            }
-          }
-        }
-      }
-    </script>
+    <!-- Tailwind (compiled at build time → fast on mobile) -->
+    <link rel="stylesheet" href="/static/tailwind.css">
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2041,44 +1988,10 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
     ]
   }
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind (compiled at build time → fast on mobile) -->
+  <link rel="stylesheet" href="/static/tailwind.css" />
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <script>
-    // Nature / Eco palette — must mirror homepage tokens
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['"Fraunces"', '"Plus Jakarta Sans"', 'Georgia', 'serif'],
-            sans:    ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              green:        '#1F6F4A',
-              'green-dark': '#13502F',
-              'green-light':'#3FA372',
-              'green-mist': '#D7EBDF',
-              navy:        '#1E2A24',
-              'navy-dark': '#0E1612',
-              orange:       '#C2663B',
-              'orange-dark':'#A0502C',
-              'orange-soft':'#F1C9A8',
-              cream: '#F7F2E7',
-              sand:  '#EADFC7',
-              bone:  '#FBF8F1',
-              leaf:  '#A7C9A4',
-            }
-          },
-          boxShadow: {
-            card:  '0 14px 36px -14px rgba(30,42,36,0.22)',
-            'card-hover': '0 22px 50px -16px rgba(30,42,36,0.30)',
-            cta:   '0 14px 30px -8px rgba(194,102,59,0.45)',
-          }
-        }
-      }
-    }
-  </script>
   <style>
     html { scroll-behavior: smooth; }
 
