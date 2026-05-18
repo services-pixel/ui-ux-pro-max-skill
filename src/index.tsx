@@ -79,10 +79,33 @@ const html = `<!DOCTYPE html>
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",
-        "reviewCount": "47",
+        "reviewCount": "3",
         "bestRating": "5",
         "worstRating": "1"
       },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Sarah J." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+          "reviewBody": "We had a really annoying ant problem in our kitchen here in Durham, and Castle Exterminators came to the rescue so fast! The technician arrived on time, was super friendly, and explained everything clearly. Our home is now ant-free — highly recommend!",
+          "itemReviewed": { "@id": "https://castleexterminators.co/#business" }
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Michael P." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+          "reviewBody": "When you invite someone into your home, trust is a big deal. The team at Castle Exterminators truly impressed us — professional, knowledgeable, and very respectful of our property. They took their time and inspected every corner. Fantastic job!",
+          "itemReviewed": { "@id": "https://castleexterminators.co/#business" }
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Emily R." },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+          "reviewBody": "We were dealing with persistent spiders and I was dreading the process. But Castle Exterminators made it so easy! Got the job done quickly and the results have been fantastic — no more spiders. For reliable, lasting pest solutions, they're the ones to call!",
+          "itemReviewed": { "@id": "https://castleexterminators.co/#business" }
+        }
+      ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Pest Control Services",
