@@ -15,37 +15,37 @@ const html = `<!DOCTYPE html>
     <meta name="author" content="Castle Exterminators">
     <meta name="geo.region" content="US-NC">
     <meta name="geo.placename" content="Durham, North Carolina">
-    <link rel="canonical" href="https://castleexterminators.co/">
+    <link rel="canonical" href="https://www.castleexterminators.co/">
 
     <!-- Open Graph -->
     <meta property="og:site_name" content="Castle Exterminators">
     <meta property="og:title" content="Pest Control Durham NC | Castle Exterminators">
     <meta property="og:description" content="Family-owned, eco-friendly pest control in Durham, NC. Termites, ants, roaches, mosquitoes & more. Free inspection — (919) 606-6866.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://castleexterminators.co/">
-    <meta property="og:image" content="https://castleexterminators.co/static/castle-logo.png">
+    <meta property="og:url" content="https://www.castleexterminators.co/">
+    <meta property="og:image" content="https://www.castleexterminators.co/static/castle-logo.png">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pest Control Durham NC | Castle Exterminators">
     <meta name="twitter:description" content="Family-owned, eco-friendly pest control in Durham, NC. Free inspection — (919) 606-6866.">
-    <meta name="twitter:image" content="https://castleexterminators.co/static/castle-logo.png">
+    <meta name="twitter:image" content="https://www.castleexterminators.co/static/castle-logo.png">
 
     <!-- Structured data: LocalBusiness + Organization (the most important schema for local Google rankings) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "PestControlService",
-      "@id": "https://castleexterminators.co/#business",
+      "@id": "https://www.castleexterminators.co/#business",
       "name": "Castle Exterminators",
       "alternateName": "Castle Exterminators Durham NC",
       "description": "Family-owned local pest control company serving Durham, NC and surrounding communities. Eco-friendly, family-safe treatments for termites, ants, roaches, rodents, mosquitoes and more.",
-      "url": "https://castleexterminators.co/",
+      "url": "https://www.castleexterminators.co/",
       "telephone": "+1-919-606-6866",
       "email": "services@castleexterminators.co",
-      "image": "https://castleexterminators.co/static/castle-logo.png",
-      "logo": "https://castleexterminators.co/static/castle-logo.png",
+      "image": "https://www.castleexterminators.co/static/castle-logo.png",
+      "logo": "https://www.castleexterminators.co/static/castle-logo.png",
       "priceRange": "$$",
       "currenciesAccepted": "USD",
       "paymentAccepted": "Cash, Credit Card, Check",
@@ -89,34 +89,34 @@ const html = `<!DOCTYPE html>
           "author": { "@type": "Person", "name": "Sarah J." },
           "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
           "reviewBody": "We had a really annoying ant problem in our kitchen here in Durham, and Castle Exterminators came to the rescue so fast! The technician arrived on time, was super friendly, and explained everything clearly. Our home is now ant-free — highly recommend!",
-          "itemReviewed": { "@id": "https://castleexterminators.co/#business" }
+          "itemReviewed": { "@id": "https://www.castleexterminators.co/#business" }
         },
         {
           "@type": "Review",
           "author": { "@type": "Person", "name": "Michael P." },
           "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
           "reviewBody": "When you invite someone into your home, trust is a big deal. The team at Castle Exterminators truly impressed us — professional, knowledgeable, and very respectful of our property. They took their time and inspected every corner. Fantastic job!",
-          "itemReviewed": { "@id": "https://castleexterminators.co/#business" }
+          "itemReviewed": { "@id": "https://www.castleexterminators.co/#business" }
         },
         {
           "@type": "Review",
           "author": { "@type": "Person", "name": "Emily R." },
           "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
           "reviewBody": "We were dealing with persistent spiders and I was dreading the process. But Castle Exterminators made it so easy! Got the job done quickly and the results have been fantastic — no more spiders. For reliable, lasting pest solutions, they're the ones to call!",
-          "itemReviewed": { "@id": "https://castleexterminators.co/#business" }
+          "itemReviewed": { "@id": "https://www.castleexterminators.co/#business" }
         }
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Pest Control Services",
         "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Termite Control & Inspection", "url": "https://castleexterminators.co/services/termites" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roach Extermination", "url": "https://castleexterminators.co/services/roaches" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rodent Removal & Exclusion", "url": "https://castleexterminators.co/services/rodents" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ant Control", "url": "https://castleexterminators.co/services/ants" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mosquito Reduction", "url": "https://castleexterminators.co/services/mosquitoes" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "General Pest Control", "url": "https://castleexterminators.co/services/general-pest-control" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Crawl Space Encapsulation", "url": "https://castleexterminators.co/services/crawl-space-encapsulation" } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Termite Control & Inspection", "url": "https://www.castleexterminators.co/services/termites" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roach Extermination", "url": "https://www.castleexterminators.co/services/roaches" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rodent Removal & Exclusion", "url": "https://www.castleexterminators.co/services/rodents" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ant Control", "url": "https://www.castleexterminators.co/services/ants" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mosquito Reduction", "url": "https://www.castleexterminators.co/services/mosquitoes" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "General Pest Control", "url": "https://www.castleexterminators.co/services/general-pest-control" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Crawl Space Encapsulation", "url": "https://www.castleexterminators.co/services/crawl-space-encapsulation" } }
         ]
       },
       "sameAs": []
@@ -128,11 +128,11 @@ const html = `<!DOCTYPE html>
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "@id": "https://castleexterminators.co/#website",
-      "url": "https://castleexterminators.co/",
+      "@id": "https://www.castleexterminators.co/#website",
+      "url": "https://www.castleexterminators.co/",
       "name": "Castle Exterminators",
       "description": "Family-owned pest control in Durham, NC",
-      "publisher": { "@id": "https://castleexterminators.co/#business" },
+      "publisher": { "@id": "https://www.castleexterminators.co/#business" },
       "inLanguage": "en-US"
     }
     </script>
@@ -1934,12 +1934,12 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="geo.region" content="US-NC" />
   <meta name="geo.placename" content="Durham, North Carolina" />
-  <link rel="canonical" href="https://castleexterminators.co/services/${s.slug}" />
+  <link rel="canonical" href="https://www.castleexterminators.co/services/${s.slug}" />
   <link rel="icon" href="/static/castle-logo.png" />
   <meta property="og:site_name" content="Castle Exterminators" />
   <meta property="og:title" content="${s.name} | Castle Exterminators Durham NC" />
   <meta property="og:description" content="${s.tagline}" />
-  <meta property="og:url" content="https://castleexterminators.co/services/${s.slug}" />
+  <meta property="og:url" content="https://www.castleexterminators.co/services/${s.slug}" />
   <meta property="og:image" content="${s.hero}" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -1955,11 +1955,11 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
     "serviceType": "${s.name}",
     "name": "${s.name} in Durham, NC",
     "description": "${s.tagline}",
-    "url": "https://castleexterminators.co/services/${s.slug}",
+    "url": "https://www.castleexterminators.co/services/${s.slug}",
     "image": "${s.hero}",
     "provider": {
       "@type": "PestControlService",
-      "@id": "https://castleexterminators.co/#business",
+      "@id": "https://www.castleexterminators.co/#business",
       "name": "Castle Exterminators",
       "telephone": "+1-919-606-6866",
       "address": {
@@ -1976,10 +1976,10 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
     },
     "offers": {
       "@type": "Offer",
-      "url": "https://castleexterminators.co/services/${s.slug}",
+      "url": "https://www.castleexterminators.co/services/${s.slug}",
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock",
-      "seller": { "@id": "https://castleexterminators.co/#business" }
+      "seller": { "@id": "https://www.castleexterminators.co/#business" }
     }
   }
   </script>
@@ -1990,9 +1990,9 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://castleexterminators.co/" },
-      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://castleexterminators.co/#services" },
-      { "@type": "ListItem", "position": 3, "name": "${s.name}", "item": "https://castleexterminators.co/services/${s.slug}" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.castleexterminators.co/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.castleexterminators.co/#services" },
+      { "@type": "ListItem", "position": 3, "name": "${s.name}", "item": "https://www.castleexterminators.co/services/${s.slug}" }
     ]
   }
   </script>
@@ -2497,7 +2497,7 @@ app.get('/robots.txt', (c) => {
 Allow: /
 
 # Sitemap
-Sitemap: https://castleexterminators.co/sitemap.xml
+Sitemap: https://www.castleexterminators.co/sitemap.xml
 `
   return c.text(body, 200, { 'Content-Type': 'text/plain; charset=utf-8' })
 })
@@ -2508,9 +2508,9 @@ Sitemap: https://castleexterminators.co/sitemap.xml
 app.get('/sitemap.xml', (c) => {
   const today = new Date().toISOString().split('T')[0]
   const urls = [
-    { loc: 'https://castleexterminators.co/',           priority: '1.0', changefreq: 'weekly' },
+    { loc: 'https://www.castleexterminators.co/',           priority: '1.0', changefreq: 'weekly' },
     ...services.map(s => ({
-      loc: `https://castleexterminators.co/services/${s.slug}`,
+      loc: `https://www.castleexterminators.co/services/${s.slug}`,
       priority: '0.9',
       changefreq: 'monthly'
     }))
