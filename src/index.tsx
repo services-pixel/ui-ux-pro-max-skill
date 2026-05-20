@@ -567,6 +567,170 @@ const html = `<!DOCTYPE html>
       }
 
       /* ---------------------------------------------------------------------------
+         SECTION HEADER — eyebrow letter-wipe + animated underline
+         The small uppercase label ("WHAT WE TREAT IN DURHAM", "HOW IT WORKS"...)
+         wipes in letter-by-letter using a clip-path technique. The H2 below it
+         gets a thin terracotta underline that draws from left to right.
+         --------------------------------------------------------------------------- */
+      .eyebrow {
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+      }
+      .eyebrow .eyebrow-inner {
+        display: inline-block;
+        transform: translateY(105%);
+        transition: transform .9s cubic-bezier(.22,1,.36,1) .1s;
+      }
+      .eyebrow.in .eyebrow-inner {
+        transform: translateY(0);
+      }
+      /* Decorative slim line beside the eyebrow text */
+      .eyebrow::before {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 1px;
+        background: currentColor;
+        vertical-align: middle;
+        margin-right: .8rem;
+        transition: width .8s cubic-bezier(.22,1,.36,1) .35s;
+      }
+      .eyebrow.in::before { width: 24px; }
+      @media (prefers-reduced-motion: reduce) {
+        .eyebrow .eyebrow-inner { transform: none; }
+        .eyebrow::before { width: 24px; }
+      }
+
+      /* Section H2 underline draw — the heading gets a 2px accent that draws on reveal */
+      .heading-underline {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 8px;
+      }
+      .heading-underline::after {
+        content: '';
+        position: absolute;
+        left: 0; bottom: 0;
+        width: 60px; height: 3px;
+        background: linear-gradient(90deg, #1F6F4A, #C2663B);
+        border-radius: 2px;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform .9s cubic-bezier(.22,1,.36,1) .25s;
+      }
+      .heading-underline.in::after { transform: scaleX(1); }
+      /* When the heading is in a center-aligned container, center the underline */
+      .text-center .heading-underline::after { left: 50%; transform: translateX(-50%) scaleX(0); transform-origin: center; }
+      .text-center .heading-underline.in::after { transform: translateX(-50%) scaleX(1); }
+      @media (prefers-reduced-motion: reduce) {
+        .heading-underline::after,
+        .text-center .heading-underline.in::after { transform: scaleX(1); }
+      }
+
+      /* ---------------------------------------------------------------------------
+         SERVICE CARDS — 3D TILT on hover (cursor-driven, JS sets --rx/--ry)
+         Subtle perspective tilt that follows the cursor for tactile depth.
+         The card itself is the transform target; --rx and --ry are CSS custom
+         properties that JS updates on pointermove.
+         --------------------------------------------------------------------------- */
+      .service-card {
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        transform:
+          translateY(var(--lift, 0px))
+          rotateX(calc(var(--ry, 0) * -1deg))
+          rotateY(calc(var(--rx, 0) * 1deg));
+        transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease, border-color .3s ease;
+        will-change: transform;
+      }
+      .service-card.is-tilting {
+        transition: transform .08s linear, box-shadow .4s ease;
+      }
+      .service-card:hover { --lift: -6px; }
+      /* Override the existing translateY hover from earlier in the file */
+      .service-card:hover { transform:
+        translateY(var(--lift, -6px))
+        rotateX(calc(var(--ry, 0) * -1deg))
+        rotateY(calc(var(--rx, 0) * 1deg));
+      }
+      /* Sheen sweep on hover — luxury feel */
+      .service-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .4s ease, transform .9s ease;
+        transform: translateX(-100%);
+        z-index: 2;
+        border-radius: inherit;
+      }
+      .service-card:hover::before { opacity: 1; transform: translateX(100%); }
+      @media (prefers-reduced-motion: reduce) {
+        .service-card { transform: none !important; }
+        .service-card::before { display: none; }
+      }
+
+      /* ---------------------------------------------------------------------------
+         PROCESS — scroll-linked connector line (replaces all-at-once trigger).
+         The line draws itself as the user scrolls through the section, and each
+         step card activates as the drawing reaches it.
+         --------------------------------------------------------------------------- */
+      .process-line {
+        background: linear-gradient(90deg, #1F6F4A 0%, #2E9B6A 35%, #C2663B 70%, #1F6F4A 100%);
+        transform: scaleX(var(--process-progress, 0));
+        transition: none;  /* JS-driven now, no CSS easing */
+      }
+      /* Step number badge — pulses when the line reaches it */
+      .process-step {
+        transition: transform .35s ease, box-shadow .35s ease;
+      }
+      .process-step .process-num {
+        position: absolute; top: -16px; left: -8px;
+        width: 40px; height: 40px;
+        border-radius: 12px;
+        background: #1E2A24;
+        color: #fff;
+        display: grid; place-items: center;
+        font-weight: 800;
+        font-family: 'Fraunces', serif;
+        box-shadow: 0 8px 16px -8px rgba(30,42,36,.35);
+        transition: background-color .5s ease, transform .5s cubic-bezier(.34,1.56,.64,1);
+      }
+      .process-step.is-active .process-num {
+        background: linear-gradient(135deg, #1F6F4A, #2E9B6A);
+        transform: scale(1.1);
+        box-shadow: 0 0 0 4px rgba(46,155,106,.18),
+                    0 12px 24px -8px rgba(31,111,74,.5);
+      }
+      .process-step.is-active {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 34px -12px rgba(30,42,36,.22);
+      }
+      .process-step .process-icon {
+        transition: transform .5s cubic-bezier(.34,1.56,.64,1), color .3s ease;
+      }
+      .process-step.is-active .process-icon {
+        transform: scale(1.15) rotate(-4deg);
+        color: #C2663B;
+      }
+
+      /* ---------------------------------------------------------------------------
+         STATS — scroll-linked count-up (progressive, tied to scroll position)
+         --------------------------------------------------------------------------- */
+      .stat-card { transition: transform .4s cubic-bezier(.22,1,.36,1); }
+      .stat-card.is-active { transform: translateY(-6px); }
+      .stat-card .stat-num {
+        background: linear-gradient(135deg, #1F6F4A 0%, #2E9B6A 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      /* ---------------------------------------------------------------------------
          GLOBAL — scroll reveal
          --------------------------------------------------------------------------- */
       .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
@@ -622,19 +786,20 @@ const html = `<!DOCTYPE html>
       }
 
       /* ---------------------------------------------------------------------------
-         PROCESS — animated connector line (Codrops style)
+         PROCESS — connector line positioning (the scroll-linked progress draw
+         is defined further up under the SERVICE/PROCESS section)
          --------------------------------------------------------------------------- */
       .process-wrap { position: relative; }
       .process-line {
-        position: absolute; left: 0; right: 0; top: 36px; height: 2px;
-        background: linear-gradient(90deg, transparent, #1F6F4A 15%, #C2663B 50%, #1F6F4A 85%, transparent);
-        transform-origin: left center; transform: scaleX(0); transition: transform 1.4s cubic-bezier(.22,1,.36,1) .2s;
+        position: absolute; left: 0; right: 0; top: 36px; height: 3px;
+        border-radius: 3px;
+        transform-origin: left center;
         z-index: 0;
+        opacity: .9;
       }
-      .process-line.in { transform: scaleX(1); }
       @media (max-width: 1023px) { .process-line { display: none; } }
-      .process-step { position: relative; z-index: 1; transition: transform .35s ease, box-shadow .35s ease; }
-      .process-step:hover { transform: translateY(-4px); box-shadow: 0 14px 34px -12px rgba(30,42,36,.22); }
+      .process-step { position: relative; z-index: 1; }
+      .process-step:hover { box-shadow: 0 14px 34px -12px rgba(30,42,36,.22); }
 
       /* ---------------------------------------------------------------------------
          TESTIMONIALS — glassmorphism cards over animated mesh backdrop
@@ -1247,10 +1412,12 @@ const html = `<!DOCTYPE html>
       <div class="absolute inset-0 bg-leaf-pattern opacity-60 pointer-events-none"></div>
       <div class="relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center mb-14 reveal">
-          <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">What We Treat in Durham</p>
-          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">Every common North Carolina pest — handled.</h2>
-          <p class="text-lg text-slate-600">From persistent termites to nuisance mosquitoes, Castle Exterminators' certified technicians eliminate infestations at the source and keep them from coming back — using treatments that are tough on pests and gentle on your family.</p>
+        <div class="max-w-3xl mx-auto text-center mb-14">
+          <p class="eyebrow text-brand-green font-bold uppercase tracking-wider text-sm mb-4">
+            <span class="eyebrow-inner">What We Treat in Durham</span>
+          </p>
+          <h2 class="heading-underline text-4xl lg:text-5xl font-extrabold mb-5 reveal">Every common North Carolina pest — handled.</h2>
+          <p class="text-lg text-slate-600 reveal reveal-delay-1">From persistent termites to nuisance mosquitoes, Castle Exterminators' certified technicians eliminate infestations at the source and keep them from coming back — using treatments that are tough on pests and gentle on your family.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1370,10 +1537,12 @@ const html = `<!DOCTYPE html>
       <div class="relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-12 gap-12 items-center">
-          <div class="lg:col-span-5 reveal">
-            <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">Why Castle Exterminators</p>
-            <h2 class="text-4xl lg:text-5xl font-extrabold mb-6">Durham's family-owned pest control</h2>
-            <p class="text-lg text-slate-600 mb-8">We're not a national franchise reading from a script — we're your Durham neighbors. Every home gets the same care we'd give our own, with eco-friendly treatments and certified, courteous technicians.</p>
+          <div class="lg:col-span-5">
+            <p class="eyebrow text-brand-green font-bold uppercase tracking-wider text-sm mb-4">
+              <span class="eyebrow-inner">Why Castle Exterminators</span>
+            </p>
+            <h2 class="heading-underline text-4xl lg:text-5xl font-extrabold mb-6 reveal">Durham's family-owned pest control</h2>
+            <p class="text-lg text-slate-600 mb-8 reveal reveal-delay-1">We're not a national franchise reading from a script — we're your Durham neighbors. Every home gets the same care we'd give our own, with eco-friendly treatments and certified, courteous technicians.</p>
             <a href="#contact" class="cta-elastic inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white font-bold px-6 py-3.5 rounded-xl">
               Schedule Inspection
               <i class="fa-solid fa-arrow-right text-sm"></i>
@@ -1410,35 +1579,37 @@ const html = `<!DOCTYPE html>
     <!-- ============== PROCESS ============== -->
     <section id="process" class="py-20 lg:py-28 bg-brand-bone">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center mb-14 reveal">
-          <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">How It Works</p>
-          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">A simple 4-step process</h2>
-          <p class="text-lg text-slate-600">From your first call to long-term protection of your Durham home — here's exactly what to expect.</p>
+        <div class="max-w-3xl mx-auto text-center mb-14">
+          <p class="eyebrow text-brand-green font-bold uppercase tracking-wider text-sm mb-4">
+            <span class="eyebrow-inner">How It Works</span>
+          </p>
+          <h2 class="heading-underline text-4xl lg:text-5xl font-extrabold mb-5 reveal">A simple 4-step process</h2>
+          <p class="text-lg text-slate-600 reveal reveal-delay-1">From your first call to long-term protection of your Durham home — here's exactly what to expect.</p>
         </div>
 
         <ol class="process-wrap grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5 relative">
           <span class="process-line" aria-hidden="true"></span>
-          <li class="process-step reveal relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
-            <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">1</div>
-            <i class="fa-solid fa-phone-volume text-2xl text-brand-green mb-4 mt-2 block"></i>
+          <li class="process-step reveal relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7" data-step="1">
+            <div class="process-num">1</div>
+            <i class="process-icon fa-solid fa-phone-volume text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Contact us</h3>
             <p class="text-sm text-slate-600">Call (919) 606-6866, text, or fill out the form. We'll get back to you within 2 business hours.</p>
           </li>
-          <li class="process-step reveal reveal-delay-1 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
-            <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">2</div>
-            <i class="fa-solid fa-magnifying-glass text-2xl text-brand-green mb-4 mt-2 block"></i>
+          <li class="process-step reveal reveal-delay-1 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7" data-step="2">
+            <div class="process-num">2</div>
+            <i class="process-icon fa-solid fa-magnifying-glass text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Free inspection</h3>
             <p class="text-sm text-slate-600">A certified Castle tech inspects your home and identifies the pest, source, and severity — no charge, no obligation.</p>
           </li>
-          <li class="process-step reveal reveal-delay-2 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
-            <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">3</div>
-            <i class="fa-solid fa-spray-can-sparkles text-2xl text-brand-green mb-4 mt-2 block"></i>
+          <li class="process-step reveal reveal-delay-2 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7" data-step="3">
+            <div class="process-num">3</div>
+            <i class="process-icon fa-solid fa-spray-can-sparkles text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Custom treatment</h3>
             <p class="text-sm text-slate-600">A tailored, family-safe treatment plan with transparent flat-fee pricing — no surprises.</p>
           </li>
-          <li class="process-step reveal reveal-delay-3 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7">
-            <div class="absolute -top-4 -left-2 w-10 h-10 rounded-xl bg-brand-navy text-white font-display font-extrabold grid place-items-center shadow-card">4</div>
-            <i class="fa-solid fa-shield-halved text-2xl text-brand-green mb-4 mt-2 block"></i>
+          <li class="process-step reveal reveal-delay-3 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7" data-step="4">
+            <div class="process-num">4</div>
+            <i class="process-icon fa-solid fa-shield-halved text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Ongoing protection</h3>
             <p class="text-sm text-slate-600">Optional quarterly visits keep your castle pest-free year-round through NC's changing seasons — cancel anytime.</p>
           </li>
@@ -1453,9 +1624,11 @@ const html = `<!DOCTYPE html>
       <span class="hero-blob b2" style="opacity:.25" aria-hidden="true"></span>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center mb-14 reveal">
-          <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">What Durham Homeowners Say</p>
-          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">Real reviews from real Durham neighbors</h2>
+        <div class="max-w-3xl mx-auto text-center mb-14">
+          <p class="eyebrow text-brand-leaf font-bold uppercase tracking-wider text-sm mb-4">
+            <span class="eyebrow-inner">What Durham Homeowners Say</span>
+          </p>
+          <h2 class="heading-underline text-4xl lg:text-5xl font-extrabold mb-5 reveal">Real reviews from real Durham neighbors</h2>
           <div class="flex items-center justify-center gap-2 text-brand-orange text-xl">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             <span class="ml-2 text-white font-bold">5.0 / 5</span>
@@ -1506,9 +1679,11 @@ const html = `<!DOCTYPE html>
     <!-- ============== FAQ ============== -->
     <section id="faq" class="py-20 lg:py-28 bg-brand-sand/40">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12 reveal">
-          <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">Common Questions</p>
-          <h2 class="text-4xl lg:text-5xl font-extrabold mb-5">Frequently asked by our Durham neighbors</h2>
+        <div class="text-center mb-12">
+          <p class="eyebrow text-brand-green font-bold uppercase tracking-wider text-sm mb-4">
+            <span class="eyebrow-inner">Common Questions</span>
+          </p>
+          <h2 class="heading-underline text-4xl lg:text-5xl font-extrabold mb-5 reveal">Frequently asked by our Durham neighbors</h2>
         </div>
 
         <div class="space-y-3">
@@ -1765,13 +1940,7 @@ const html = `<!DOCTYPE html>
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     // Animated process connector line — triggers when process section enters view
-    const processLine = document.querySelector('.process-line');
-    if (processLine) {
-      const lineIO = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); lineIO.unobserve(e.target); } });
-      }, { threshold: 0.3 });
-      lineIO.observe(processLine);
-    }
+    // (Process line drawing is now scroll-linked — see scroll handler below)
 
     // Animista-style count-up for the trust stat numbers
     function animateCount(el) {
@@ -1807,11 +1976,17 @@ const html = `<!DOCTYPE html>
     // 3. Hero photo parallax: translates upward as user scrolls (slower than content)
     // 4. Hero content sets --scroll-progress CSS var (0..1 over hero height) for
     //    the fade-out/lift CSS we wrote earlier
+    // 5. Process connector line — scroll-linked draw + step activation
+    // 6. Stats cards — active state while in viewport center
     const header = document.getElementById('site-header');
     const progressBar = document.getElementById('scroll-progress-bar');
     const heroSection = document.getElementById('hero');
     const heroPhoto = heroSection ? heroSection.querySelector('.hero-photo') : null;
     const heroContent = heroSection ? heroSection.querySelector('.hero-content') : null;
+    const processSection = document.getElementById('process');
+    const processLine = processSection ? processSection.querySelector('.process-line') : null;
+    const processSteps = processSection ? Array.from(processSection.querySelectorAll('.process-step')) : [];
+    const statsCards = Array.from(document.querySelectorAll('.stat-card'));
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     let scrollTicking = false;
@@ -1820,6 +1995,7 @@ const html = `<!DOCTYPE html>
       scrollTicking = true;
       requestAnimationFrame(() => {
         const y = window.scrollY;
+        const vh = window.innerHeight;
 
         // 1. Header state
         header.classList.toggle('nav-scrolled', y > 8);
@@ -1834,15 +2010,41 @@ const html = `<!DOCTYPE html>
         // 3. & 4. Hero parallax + fade — only while hero is in viewport
         if (heroSection && heroContent && !reduceMotion) {
           const heroHeight = heroSection.offsetHeight;
-          // progress: 0 at top of hero, 1 when bottom of hero meets top of viewport
           const progress = Math.max(0, Math.min(1, y / heroHeight));
           heroContent.style.setProperty('--scroll-progress', progress.toFixed(3));
           if (heroPhoto) {
-            // Photo translates up slower than scroll (parallax factor 0.4)
-            // Combined with the -10% inset, the photo never reveals its edges.
             heroPhoto.style.transform = 'translate3d(0,' + (y * 0.4).toFixed(1) + 'px, 0)';
           }
         }
+
+        // 5. Process section — scroll-linked connector line + step activation
+        // Line starts drawing when the section top hits 70% of viewport,
+        // completes when section bottom hits 30% of viewport.
+        if (processSection && processLine && !reduceMotion) {
+          const rect = processSection.getBoundingClientRect();
+          const sectionTop = rect.top;
+          const sectionHeight = rect.height;
+          const startTrigger = vh * 0.7;
+          const endTrigger = vh * 0.3;
+          const totalTravel = startTrigger + sectionHeight - endTrigger;
+          const traveled = startTrigger - sectionTop;
+          const lineProgress = Math.max(0, Math.min(1, traveled / totalTravel));
+          processLine.style.setProperty('--process-progress', lineProgress.toFixed(3));
+
+          // Activate each step when the line reaches its position (1/4, 2/4, 3/4, 4/4)
+          processSteps.forEach((step, i) => {
+            const threshold = (i + 0.5) / processSteps.length;
+            step.classList.toggle('is-active', lineProgress >= threshold);
+          });
+        }
+
+        // 6. Stats cards active state — when their center crosses viewport center
+        statsCards.forEach((card) => {
+          const r = card.getBoundingClientRect();
+          const center = r.top + r.height / 2;
+          const inActiveZone = center > vh * 0.2 && center < vh * 0.85;
+          card.classList.toggle('is-active', inActiveZone);
+        });
 
         scrollTicking = false;
       });
@@ -1850,9 +2052,7 @@ const html = `<!DOCTYPE html>
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // ── Wire up the blur-up reveal variant on the existing IntersectionObserver ──
-    // The existing 'reveal' observer below already handles .reveal — we extend it
-    // by adding .reveal-blur to the same observer pattern.
+    // ── Wire up the blur-up reveal variant on its own observer ──
     const blurReveal = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -1862,6 +2062,51 @@ const html = `<!DOCTYPE html>
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.reveal-blur').forEach(el => blurReveal.observe(el));
+
+    // ── Eyebrow + heading-underline reveal observer ──
+    // Reuses the .in class pattern so it pairs with the standard reveal system.
+    const headerReveal = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          headerReveal.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+    document.querySelectorAll('.eyebrow, .heading-underline').forEach(el => headerReveal.observe(el));
+
+    // ── Service card 3D tilt (cursor-driven) ──
+    // Reads pointer position relative to card, sets --rx/--ry custom props.
+    // Max tilt is intentionally subtle (~6deg) so it feels premium, not gimmicky.
+    if (!reduceMotion) {
+      const MAX_TILT = 6; // degrees
+      document.querySelectorAll('.service-card').forEach((card) => {
+        let rect = null;
+        const onEnter = () => {
+          rect = card.getBoundingClientRect();
+          card.classList.add('is-tilting');
+        };
+        const onMove = (e) => {
+          if (!rect) rect = card.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width;   // 0..1
+          const py = (e.clientY - rect.top) / rect.height;   // 0..1
+          // Normalize to -1..1 then scale to MAX_TILT
+          const rx = (px - 0.5) * 2 * MAX_TILT;
+          const ry = (py - 0.5) * 2 * MAX_TILT;
+          card.style.setProperty('--rx', rx.toFixed(2));
+          card.style.setProperty('--ry', ry.toFixed(2));
+        };
+        const onLeave = () => {
+          rect = null;
+          card.classList.remove('is-tilting');
+          card.style.setProperty('--rx', '0');
+          card.style.setProperty('--ry', '0');
+        };
+        card.addEventListener('pointerenter', onEnter);
+        card.addEventListener('pointermove', onMove);
+        card.addEventListener('pointerleave', onLeave);
+      });
+    }
 
     // ─── Live "Open today" status pill ─────────────────────────────────
     // Castle Exterminators hours: Mon–Fri 8am–5pm Eastern Time.
