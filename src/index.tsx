@@ -406,41 +406,165 @@ const html = `<!DOCTYPE html>
       .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
 
       /* ---------------------------------------------------------------------------
-         HERO — forest emerald gradient + Haikei organic blob shapes + grain
+         HERO — cinematic NC home photograph with layered emerald gradient overlay,
+         scroll-linked parallax, and progressive vignette. The photo lives in a
+         separate layer (.hero-photo) so we can transform it independently for
+         parallax without affecting the gradient or content positioning.
          --------------------------------------------------------------------------- */
       .hero-mesh {
         position: relative;
-        background:
-          radial-gradient(900px 600px at 12% 18%, rgba(63,163,114,0.40) 0%, transparent 60%),
-          radial-gradient(700px 500px at 88% 78%, rgba(194,102,59,0.30) 0%, transparent 60%),
-          radial-gradient(600px 400px at 60% 35%, rgba(167,201,164,0.22) 0%, transparent 65%),
-          linear-gradient(135deg, #0E1612 0%, #1E2A24 40%, #13502F 100%);
-        background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
-        animation: meshShift 22s ease-in-out infinite alternate;
+        overflow: hidden;
+        background: #0E1612;  /* fallback while photo loads */
+        min-height: clamp(620px, 88vh, 880px);
       }
-      @keyframes meshShift {
-        0%   { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 0%; }
-        100% { background-position: 100% 50%, 0% 0%, 30% 70%, 0% 0%; }
-      }
-      /* Grain overlay (Grainy Gradients style) */
-      .hero-mesh::before {
-        content: ''; position: absolute; inset: 0; pointer-events: none;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        opacity: .35; mix-blend-mode: overlay;
-      }
-      .hero-blob {
-        position: absolute; border-radius: 50%; filter: blur(70px); opacity: .38; pointer-events: none;
+
+      /* Photo layer — sits behind everything, gets translated via scroll JS */
+      .hero-photo {
+        position: absolute;
+        inset: -10% 0 -10% 0;  /* over-sized so parallax translate doesn't expose edges */
+        background-image: url('/static/hero-home.webp');
+        background-size: cover;
+        background-position: center 40%;
+        background-repeat: no-repeat;
+        z-index: 0;
         will-change: transform;
+        transform: translate3d(0, 0, 0);
       }
-      .hero-blob.b1 { width: 320px; height: 320px; background: #3FA372; top: -80px; left: -60px; animation: floatA 14s ease-in-out infinite; }
-      .hero-blob.b2 { width: 380px; height: 380px; background: #C2663B; bottom: -120px; right: -80px; animation: floatB 18s ease-in-out infinite; }
-      .hero-blob.b3 { width: 220px; height: 220px; background: #A7C9A4; top: 30%; right: 20%; opacity: .28; animation: floatA 20s ease-in-out infinite reverse; }
+      /* Fallback for browsers without WebP — JPG via image-set */
+      @supports not (background-image: url('a.webp')) {
+        .hero-photo { background-image: url('/static/hero-home.jpg'); }
+      }
+
+      /* Cinematic gradient overlay — emerald wash that fades to clearer on right.
+         This is the secret sauce: the photo stays visible enough to feel real,
+         but the brand colors dominate so the page reads as "Castle Exterminators"
+         not "stock photo of a house". */
+      .hero-overlay {
+        position: absolute; inset: 0; z-index: 1; pointer-events: none;
+        background:
+          /* Deep mossy ink wash from top-left (where headline sits) */
+          linear-gradient(115deg,
+            rgba(14,22,18,0.92) 0%,
+            rgba(30,42,36,0.82) 30%,
+            rgba(19,80,47,0.55) 60%,
+            rgba(14,22,18,0.45) 100%),
+          /* Subtle emerald color cast over the whole thing */
+          linear-gradient(180deg,
+            rgba(19,80,47,0.18) 0%,
+            transparent 50%,
+            rgba(14,22,18,0.40) 100%);
+      }
+
+      /* Floating organic accent blobs — kept from old hero, now layered above
+         the photo for depth. Reduced opacity since the photo already gives texture. */
+      .hero-blob {
+        position: absolute; z-index: 2;
+        border-radius: 50%; filter: blur(80px);
+        pointer-events: none; will-change: transform;
+      }
+      .hero-blob.b1 { width: 360px; height: 360px; background: #3FA372; top: -100px; left: -80px; opacity: .28; animation: floatA 16s ease-in-out infinite; }
+      .hero-blob.b2 { width: 420px; height: 420px; background: #C2663B; bottom: -140px; right: -100px; opacity: .22; animation: floatB 20s ease-in-out infinite; }
+      .hero-blob.b3 { width: 240px; height: 240px; background: #A7C9A4; top: 35%; right: 18%; opacity: .14; animation: floatA 22s ease-in-out infinite reverse; }
       @keyframes floatA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,30px) scale(1.08); } }
       @keyframes floatB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px,-40px) scale(1.12); } }
 
+      /* Grain overlay — Grainy Gradients style, now subtler since photo provides texture */
+      .hero-mesh::after {
+        content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.10 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        opacity: .55; mix-blend-mode: overlay;
+      }
+
+      /* Hero content sits above all overlays */
+      .hero-content { position: relative; z-index: 4; }
+
+      /* Scroll-linked fade-out — JS sets --scroll-progress (0..1) and we use it
+         to dim & lift the hero content as the user scrolls past it. */
+      .hero-content {
+        opacity: calc(1 - var(--scroll-progress, 0) * 1.1);
+        transform: translate3d(0, calc(var(--scroll-progress, 0) * -30px), 0);
+        transition: opacity .1s linear, transform .1s linear;
+      }
+
+      /* Scroll-down cue — animated chevron that nudges the user to scroll.
+         Disappears as soon as the user starts scrolling. */
+      .hero-scroll-cue {
+        position: absolute; left: 50%; bottom: 24px;
+        transform: translateX(-50%);
+        z-index: 5;
+        display: flex; flex-direction: column; align-items: center; gap: .4rem;
+        color: rgba(255,255,255,.65);
+        font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+        opacity: calc(1 - var(--scroll-progress, 0) * 3);  /* fades fast on scroll */
+        pointer-events: none;
+        animation: scrollCueFade 1.2s ease-out .6s both;
+      }
+      .hero-scroll-cue .cue-line {
+        width: 1px; height: 38px;
+        background: linear-gradient(to bottom, transparent, rgba(255,255,255,.6));
+        position: relative; overflow: hidden;
+      }
+      .hero-scroll-cue .cue-line::after {
+        content: ''; position: absolute; top: -50%; left: 0; right: 0; height: 50%;
+        background: linear-gradient(to bottom, transparent, #ffffff);
+        animation: scrollCueRun 1.8s cubic-bezier(.5,0,.5,1) infinite;
+      }
+      @keyframes scrollCueRun { 0% { top: -50%; } 100% { top: 100%; } }
+      @keyframes scrollCueFade { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-scroll-cue .cue-line::after { animation: none; }
+      }
+
       /* SVG wave divider sits at the bottom of the hero */
-      .wave-divider { position: absolute; left: 0; right: 0; bottom: -1px; line-height: 0; }
+      .wave-divider { position: absolute; left: 0; right: 0; bottom: -1px; line-height: 0; z-index: 4; }
       .wave-divider svg { display: block; width: 100%; height: 80px; }
+
+      /* ---------------------------------------------------------------------------
+         GLOBAL SCROLL PROGRESS BAR — sticks under the navbar, fills as the user
+         scrolls down the page. Tiny thing but it gives the whole site a more
+         premium "long-read" feel.
+         --------------------------------------------------------------------------- */
+      .scroll-progress {
+        position: fixed;
+        top: 56px;             /* sits flush below the 56px navbar */
+        left: 0; right: 0;
+        height: 2px;
+        z-index: 49;            /* under the header (z-50), over the content */
+        background: transparent;
+        pointer-events: none;
+      }
+      .scroll-progress .scroll-progress-bar {
+        height: 100%;
+        width: 0;               /* set by JS */
+        background: linear-gradient(90deg, #1F6F4A 0%, #2E9B6A 50%, #C2663B 100%);
+        box-shadow: 0 0 12px rgba(46,155,106,.6);
+        transition: width .08s linear;
+        will-change: width;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .scroll-progress .scroll-progress-bar { transition: none; }
+      }
+
+      /* ---------------------------------------------------------------------------
+         BLUR-UP REVEAL VARIANT — used for the hero card and key images so they
+         feel like they're "coming into focus" as the user scrolls them into view.
+         --------------------------------------------------------------------------- */
+      .reveal-blur {
+        opacity: 0;
+        transform: translateY(32px) scale(.97);
+        filter: blur(12px);
+        transition: opacity .9s cubic-bezier(.22,1,.36,1),
+                    transform .9s cubic-bezier(.22,1,.36,1),
+                    filter .9s cubic-bezier(.22,1,.36,1);
+      }
+      .reveal-blur.in {
+        opacity: 1;
+        transform: none;
+        filter: blur(0);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal-blur { opacity: 1; transform: none; filter: none; }
+      }
 
       /* ---------------------------------------------------------------------------
          GLOBAL — scroll reveal
@@ -998,34 +1122,43 @@ const html = `<!DOCTYPE html>
     </div>
   </header>
 
-  <main id="top" class="pt-16">
+  <!-- Global scroll progress bar — sits flush under the navbar -->
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+  </div>
 
-    <!-- ============== HERO ============== -->
-    <section class="hero-mesh text-white relative overflow-hidden">
-      <!-- Floating mesh blobs (Haikei-style) -->
+  <main id="top" class="pt-14">
+
+    <!-- ============== HERO — cinematic photo backdrop + scroll choreography ============== -->
+    <section id="hero" class="hero-mesh text-white relative">
+      <!-- Layer 1: photo backdrop (parallax target — JS translates this) -->
+      <div class="hero-photo" aria-hidden="true"></div>
+      <!-- Layer 2: brand-color gradient wash for legibility + brand identity -->
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <!-- Layer 3: floating accent blobs -->
       <span class="hero-blob b1" aria-hidden="true"></span>
       <span class="hero-blob b2" aria-hidden="true"></span>
       <span class="hero-blob b3" aria-hidden="true"></span>
-      <div class="absolute inset-0 opacity-[0.04]" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;);"></div>
 
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-12 gap-12 items-center">
+      <!-- Content (z-index:4 sits above all overlays) -->
+      <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 grid lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-7">
-          <div class="inline-flex items-center gap-2 bg-white/10 border border-brand-leaf/40 text-brand-leaf text-xs font-semibold px-3 py-1.5 rounded-full mb-6 backdrop-blur">
+          <div class="reveal inline-flex items-center gap-2 bg-white/10 border border-brand-leaf/40 text-brand-leaf text-xs font-semibold px-3 py-1.5 rounded-full mb-6 backdrop-blur">
             <span class="w-2 h-2 rounded-full bg-brand-leaf animate-pulse"></span>
             <i class="fa-solid fa-leaf text-[10px]"></i>
             Family-owned in Durham, NC • Eco-friendly & family-safe
           </div>
 
-          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6" style="font-weight:700;">
+          <h1 class="reveal font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6" style="font-weight:700; text-shadow: 0 2px 30px rgba(0,0,0,.35);">
             Protecting What <span class="serif-italic text-brand-orange-soft">Matters Most</span><br>
             <span class="block text-2xl sm:text-3xl lg:text-4xl font-medium text-white/60 mt-2 tracking-tight">Your Home &amp; Family</span>
           </h1>
 
-          <p class="text-lg sm:text-xl text-slate-100/90 max-w-xl mb-8 leading-relaxed">
+          <p class="reveal reveal-delay-1 text-lg sm:text-xl text-slate-100/90 max-w-xl mb-8 leading-relaxed" style="text-shadow: 0 1px 12px rgba(0,0,0,.3);">
             Protect your home from unwanted pests with Castle Exterminators, your trusted local pest control experts in Durham, NC. We provide effective, safe, and lasting solutions for a pest-free home.
           </p>
 
-          <div class="flex flex-wrap gap-3 mb-10">
+          <div class="reveal reveal-delay-2 flex flex-wrap gap-3 mb-10">
             <a href="#contact" class="cta-elastic pulse inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold px-7 py-4 rounded-xl shadow-cta text-base">
               <i class="fa-solid fa-clipboard-check"></i>
               Get Free Inspection
@@ -1037,7 +1170,7 @@ const html = `<!DOCTYPE html>
           </div>
 
           <!-- Trust strip -->
-          <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-100/90">
+          <div class="reveal reveal-delay-3 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-100/90">
             <div class="flex items-center gap-2"><i class="fa-solid fa-star text-brand-orange"></i><strong class="text-white">5.0★</strong> on Google & Yelp</div>
             <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-brand-green-light"></i> Licensed & Insured in NC</div>
             <div class="flex items-center gap-2"><i class="fa-solid fa-leaf text-brand-green-light"></i> Eco-friendly options</div>
@@ -1045,8 +1178,8 @@ const html = `<!DOCTYPE html>
           </div>
         </div>
 
-        <!-- Hero card -->
-        <aside class="lg:col-span-5">
+        <!-- Hero card — uses blur-up reveal for cinematic entrance -->
+        <aside class="lg:col-span-5 reveal-blur">
           <div class="bg-white/95 text-brand-navy rounded-2xl shadow-2xl p-6 sm:p-8 border border-white/60 backdrop-blur-sm">
             <div class="flex items-center gap-3 mb-5">
               <span class="w-10 h-10 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center">
@@ -1070,6 +1203,12 @@ const html = `<!DOCTYPE html>
             </a>
           </div>
         </aside>
+      </div>
+
+      <!-- Scroll-down cue — soft animated line + label, fades fast as user scrolls -->
+      <div class="hero-scroll-cue" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="cue-line"></span>
       </div>
 
       <!-- Getwaves.io-style SVG wave divider transitioning into the next section -->
@@ -1614,11 +1753,6 @@ const html = `<!DOCTYPE html>
     </footer>
   </main>
 
-  <!-- Floating call button (mobile) -->
-  <a href="tel:+19196066866" aria-label="Call us now" class="lg:hidden fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-brand-orange text-brand-navy grid place-items-center shadow-cta pulse">
-    <i class="fa-solid fa-phone-volume text-xl"></i>
-  </a>
-
   <!-- Page scripts -->
   <script>
     // Footer year
@@ -1667,13 +1801,67 @@ const html = `<!DOCTYPE html>
     }, { threshold: 0.4 });
     document.querySelectorAll('.stat-card').forEach(el => statIO.observe(el));
 
-    // Header — scroll-aware shadow/tint
+    // ─── Scroll choreography (orchestrated in a single rAF for performance) ───
+    // 1. Header gets a scrolled state (shadow + tint) past 8px
+    // 2. Global scroll progress bar fills based on doc scroll percentage
+    // 3. Hero photo parallax: translates upward as user scrolls (slower than content)
+    // 4. Hero content sets --scroll-progress CSS var (0..1 over hero height) for
+    //    the fade-out/lift CSS we wrote earlier
     const header = document.getElementById('site-header');
+    const progressBar = document.getElementById('scroll-progress-bar');
+    const heroSection = document.getElementById('hero');
+    const heroPhoto = heroSection ? heroSection.querySelector('.hero-photo') : null;
+    const heroContent = heroSection ? heroSection.querySelector('.hero-content') : null;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let scrollTicking = false;
     const onScroll = () => {
-      header.classList.toggle('nav-scrolled', window.scrollY > 8);
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+
+        // 1. Header state
+        header.classList.toggle('nav-scrolled', y > 8);
+
+        // 2. Scroll progress bar (0–100% of scrollable height)
+        if (progressBar) {
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = docHeight > 0 ? Math.min(100, (y / docHeight) * 100) : 0;
+          progressBar.style.width = pct + '%';
+        }
+
+        // 3. & 4. Hero parallax + fade — only while hero is in viewport
+        if (heroSection && heroContent && !reduceMotion) {
+          const heroHeight = heroSection.offsetHeight;
+          // progress: 0 at top of hero, 1 when bottom of hero meets top of viewport
+          const progress = Math.max(0, Math.min(1, y / heroHeight));
+          heroContent.style.setProperty('--scroll-progress', progress.toFixed(3));
+          if (heroPhoto) {
+            // Photo translates up slower than scroll (parallax factor 0.4)
+            // Combined with the -10% inset, the photo never reveals its edges.
+            heroPhoto.style.transform = 'translate3d(0,' + (y * 0.4).toFixed(1) + 'px, 0)';
+          }
+        }
+
+        scrollTicking = false;
+      });
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // ── Wire up the blur-up reveal variant on the existing IntersectionObserver ──
+    // The existing 'reveal' observer below already handles .reveal — we extend it
+    // by adding .reveal-blur to the same observer pattern.
+    const blurReveal = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          blurReveal.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal-blur').forEach(el => blurReveal.observe(el));
 
     // ─── Live "Open today" status pill ─────────────────────────────────
     // Castle Exterminators hours: Mon–Fri 8am–5pm Eastern Time.
@@ -2610,10 +2798,6 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
       </div>
     </div>
   </footer>
-
-  <a href="tel:+19196066866" class="md:hidden fixed bottom-5 right-5 z-50 bg-brand-orange hover:bg-brand-orange-dark text-white w-14 h-14 rounded-full grid place-items-center shadow-card">
-    <i class="fa-solid fa-phone-volume text-xl"></i>
-  </a>
 </body>
 </html>`
 
