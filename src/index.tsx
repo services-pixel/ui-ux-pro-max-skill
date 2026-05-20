@@ -447,17 +447,6 @@ const html = `<!DOCTYPE html>
          --------------------------------------------------------------------------- */
       .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
       .reveal.in { opacity: 1; transform: none; }
-
-      /* motion.dev — initial state for hero headline word-by-word entrance.
-         The motion.animate() call in the script below transitions these to
-         opacity:1, y:0 with a staggered timeline. */
-      .hero-word { opacity: 0; transform: translateY(24px); will-change: transform, opacity; }
-      /* Respect prefers-reduced-motion — fall back to instant visibility */
-      @media (prefers-reduced-motion: reduce) {
-        .hero-word { opacity: 1 !important; transform: none !important; }
-      }
-      /* Magnetic CTA needs to be a positioned element for smooth transforms */
-      [data-magnetic] { will-change: transform; }
       .reveal-delay-1 { transition-delay: .08s; }
       .reveal-delay-2 { transition-delay: .16s; }
       .reveal-delay-3 { transition-delay: .24s; }
@@ -947,9 +936,9 @@ const html = `<!DOCTYPE html>
             Family-owned in Durham, NC • Eco-friendly & family-safe
           </div>
 
-          <h1 id="hero-headline" class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6" style="font-weight:700;">
-            <span class="hero-word inline-block">Protecting</span> <span class="hero-word inline-block">What</span> <span class="hero-word inline-block serif-italic text-brand-orange-soft">Matters&nbsp;Most</span><br>
-            <span class="hero-word block text-2xl sm:text-3xl lg:text-4xl font-medium text-white/60 mt-2 tracking-tight">Your Home &amp; Family</span>
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] mb-6" style="font-weight:700;">
+            Protecting What <span class="serif-italic text-brand-orange-soft">Matters Most</span><br>
+            <span class="block text-2xl sm:text-3xl lg:text-4xl font-medium text-white/60 mt-2 tracking-tight">Your Home &amp; Family</span>
           </h1>
 
           <p class="text-lg sm:text-xl text-slate-100/90 max-w-xl mb-8 leading-relaxed">
@@ -957,7 +946,7 @@ const html = `<!DOCTYPE html>
           </p>
 
           <div class="flex flex-wrap gap-3 mb-10">
-            <a href="#contact" id="hero-cta-primary" data-magnetic class="cta-elastic pulse inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold px-7 py-4 rounded-xl shadow-cta text-base">
+            <a href="#contact" class="cta-elastic pulse inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold px-7 py-4 rounded-xl shadow-cta text-base">
               <i class="fa-solid fa-clipboard-check"></i>
               Get Free Inspection
             </a>
@@ -1740,107 +1729,6 @@ const html = `<!DOCTYPE html>
           : window.attachEvent
           ? window.attachEvent('onload', _gorillaInitPortal)
           : (window.onload = _gorillaInitPortal);
-  </script>
-
-  <!--
-    ─────────────────────────────────────────────────────────────────────────
-    motion.dev — spring-physics animations (loaded as native ES module from
-    CDN, ~18 KB gzipped). Three tasteful demonstrations:
-      1. Hero headline — staggered word-by-word entrance on load
-      2. Hero primary CTA — magnetic hover (button follows cursor when near)
-      3. Service cards — spring lift on hover (smoother than CSS easing)
-    All effects respect prefers-reduced-motion via the early-exit guard.
-    Docs: https://motion.dev/docs
-    ─────────────────────────────────────────────────────────────────────────
-  -->
-  <script type="module">
-    // Bail out completely if user prefers reduced motion — accessibility first.
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!reduce) {
-      try {
-        const { animate, inView, stagger } = await import('https://cdn.jsdelivr.net/npm/motion@12/+esm');
-
-        // ── 1. Hero headline — staggered word entrance ────────────────────
-        // animate() returns a controls object; stagger() generates a per-element
-        // delay so each word arrives slightly after the previous one.
-        const heroWords = document.querySelectorAll('#hero-headline .hero-word');
-        if (heroWords.length) {
-          animate(
-            heroWords,
-            { opacity: [0, 1], y: [24, 0] },
-            {
-              duration: 0.9,
-              delay: stagger(0.08, { startDelay: 0.15 }),
-              ease: [0.22, 1, 0.36, 1]
-            }
-          );
-        }
-
-        // ── 2. Magnetic hover on primary CTA ──────────────────────────────
-        // On pointer move within a radius, translate the button toward the
-        // cursor. Spring physics gives an organic, slightly bouncy return.
-        document.querySelectorAll('[data-magnetic]').forEach((btn) => {
-          const STRENGTH = 0.25;        // 0..1 — how much the button follows
-          const RADIUS = 90;            // px from button center where effect kicks in
-          let rect = null;
-
-          const onMove = (e) => {
-            if (!rect) rect = btn.getBoundingClientRect();
-            const cx = rect.left + rect.width / 2;
-            const cy = rect.top + rect.height / 2;
-            const dx = e.clientX - cx;
-            const dy = e.clientY - cy;
-            const dist = Math.hypot(dx, dy);
-            if (dist < RADIUS + Math.max(rect.width, rect.height) / 2) {
-              animate(btn, { x: dx * STRENGTH, y: dy * STRENGTH }, {
-                type: 'spring', stiffness: 200, damping: 15, mass: 0.5
-              });
-            }
-          };
-          const onLeave = () => {
-            rect = null;
-            animate(btn, { x: 0, y: 0 }, {
-              type: 'spring', stiffness: 150, damping: 12, mass: 0.6
-            });
-          };
-          // Listen on window so the effect feels "pulled" from a distance,
-          // not just on hover-over.
-          btn.addEventListener('pointerenter', () => { rect = btn.getBoundingClientRect(); });
-          btn.addEventListener('pointermove', onMove);
-          btn.addEventListener('pointerleave', onLeave);
-        });
-
-        // ── 3. Service-card spring lift on hover ──────────────────────────
-        // CSS handles the border/shadow change; motion handles the y-translate
-        // and slight scale-up with a satisfying spring instead of linear easing.
-        document.querySelectorAll('.service-card').forEach((card) => {
-          card.addEventListener('pointerenter', () => {
-            animate(card, { y: -6, scale: 1.015 }, {
-              type: 'spring', stiffness: 280, damping: 20
-            });
-          });
-          card.addEventListener('pointerleave', () => {
-            animate(card, { y: 0, scale: 1 }, {
-              type: 'spring', stiffness: 200, damping: 22
-            });
-          });
-        });
-      } catch (err) {
-        // If the CDN fails (offline / blocked), gracefully restore hero words
-        // so they aren't permanently invisible. CSS reveal continues to work.
-        document.querySelectorAll('.hero-word').forEach((el) => {
-          el.style.opacity = '1';
-          el.style.transform = 'none';
-        });
-        console.warn('[motion] CDN load failed — hero words restored:', err);
-      }
-    } else {
-      // Reduced-motion: skip animation entirely, just ensure words are visible.
-      document.querySelectorAll('.hero-word').forEach((el) => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-      });
-    }
   </script>
 </body>
 </html>`
