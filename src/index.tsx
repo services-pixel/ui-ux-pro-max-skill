@@ -583,15 +583,90 @@ const html = `<!DOCTYPE html>
       #site-header {
         transition: background-color .3s ease,
                     box-shadow .3s ease,
-                    backdrop-filter .3s ease;
+                    backdrop-filter .3s ease,
+                    border-color .3s ease;
       }
 
-      /* Scroll-aware shadow + tint */
+      /* Scroll-aware shadow + tint — stronger, more premium */
       #site-header.nav-scrolled {
-        background-color: rgba(251,248,241,.96);
-        backdrop-filter: saturate(180%) blur(12px);
-        -webkit-backdrop-filter: saturate(180%) blur(12px);
-        box-shadow: 0 4px 20px -8px rgba(30,42,36,.18);
+        background-color: rgba(251,248,241,.94);
+        backdrop-filter: saturate(180%) blur(16px);
+        -webkit-backdrop-filter: saturate(180%) blur(16px);
+        box-shadow: 0 8px 28px -12px rgba(30,42,36,.22),
+                    0 1px 0 0 rgba(31,111,74,.08);
+        border-bottom-color: transparent;
+      }
+
+      /* Logo — subtle scale on hover, never overdone */
+      .nav-logo img {
+        transition: transform .4s cubic-bezier(.22,1,.36,1);
+      }
+      .nav-logo:hover img { transform: scale(1.04); }
+
+      /* ─── Open-now status pill ─────────────────────────────────────── */
+      .nav-status {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        padding: .375rem .75rem;
+        border-radius: 999px;
+        font-size: .75rem;
+        font-weight: 600;
+        letter-spacing: .01em;
+        background: rgba(31,111,74,.08);
+        color: #155538;
+        border: 1px solid rgba(31,111,74,.18);
+        white-space: nowrap;
+        transition: background-color .25s ease, border-color .25s ease;
+      }
+      .nav-status:hover {
+        background: rgba(31,111,74,.12);
+        border-color: rgba(31,111,74,.28);
+      }
+      /* When closed — soft terracotta, communicates "call/email instead" */
+      .nav-status.is-closed {
+        background: rgba(194,102,59,.08);
+        color: #8a3f15;
+        border-color: rgba(194,102,59,.20);
+      }
+      .nav-status.is-closed .nav-status-dot {
+        background: #C2663B;
+        box-shadow: 0 0 0 0 rgba(194,102,59,.45);
+        animation: none;
+      }
+      .nav-status-dot {
+        width: 8px; height: 8px;
+        border-radius: 999px;
+        background: #2E9B6A;
+        box-shadow: 0 0 0 0 rgba(46,155,106,.55);
+        animation: nav-status-pulse 2.2s cubic-bezier(.4,0,.6,1) infinite;
+        flex-shrink: 0;
+      }
+      @keyframes nav-status-pulse {
+        0%   { box-shadow: 0 0 0 0 rgba(46,155,106,.55); }
+        70%  { box-shadow: 0 0 0 7px rgba(46,155,106,0); }
+        100% { box-shadow: 0 0 0 0 rgba(46,155,106,0); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .nav-status-dot { animation: none; }
+      }
+
+      /* CTA button — phone-led, with subtle ring animation on hover */
+      .nav-cta {
+        position: relative;
+        transition: transform .3s cubic-bezier(.22,1,.36,1),
+                    box-shadow .3s ease,
+                    background-color .25s ease;
+      }
+      .nav-cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px -6px rgba(194,102,59,.45);
+      }
+      .nav-cta .nav-cta-icon {
+        transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+      }
+      .nav-cta:hover .nav-cta-icon {
+        transform: rotate(-8deg) scale(1.1);
       }
 
       /* Top-level links — simple color + subtle underline on hover */
@@ -761,13 +836,13 @@ const html = `<!DOCTYPE html>
 
   <!-- ============== STICKY NAV — slide-out Services mega dropdown ============== -->
   <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-brand-bone/85 backdrop-blur border-b border-brand-green/10">
-    <nav class="nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative">
-      <a href="/" class="nav-logo flex items-center gap-3" aria-label="Castle Exterminators home">
-        <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-10 sm:h-11 w-auto" />
+    <nav class="nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between relative">
+      <a href="/" class="nav-logo flex items-center gap-3 shrink-0" aria-label="Castle Exterminators home">
+        <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 sm:h-10 w-auto" />
         <span class="sr-only">Castle Exterminators</span>
       </a>
 
-      <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+      <ul class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-700">
         <li class="nav-services" data-open="false">
           <a href="#services" class="nav-link inline-flex items-center gap-1.5" data-section="services" aria-haspopup="true" aria-expanded="false" aria-controls="services-dropdown">
             Services
@@ -780,16 +855,21 @@ const html = `<!DOCTYPE html>
         <li><a href="#faq" class="nav-link" data-section="faq">FAQ</a></li>
       </ul>
 
-      <div class="flex items-center gap-3">
-        <a href="tel:+19196066866" class="nav-phone hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
-          <span class="nav-phone-icon text-brand-green"><i class="fa-solid fa-phone-volume"></i></span>
-          <span>(919) 606-6866</span>
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <!-- Open-now status pill (live, computed in JS) -->
+        <span id="nav-status" class="nav-status hidden lg:inline-flex" role="status" aria-live="polite">
+          <span class="nav-status-dot" aria-hidden="true"></span>
+          <span class="nav-status-text">Open today &middot; 8–5</span>
+        </span>
+
+        <!-- Phone-led CTA — primary action shifts from generic 'Free Inspection' to a one-tap call -->
+        <a href="tel:+19196066866" class="nav-cta inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold text-sm px-3.5 sm:px-4 py-2 rounded-lg shadow-cta">
+          <span class="nav-cta-icon" aria-hidden="true"><i class="fa-solid fa-phone-volume"></i></span>
+          <span class="hidden sm:inline">(919) 606-6866</span>
+          <span class="sm:hidden">Call</span>
         </a>
-        <a href="#contact" class="nav-cta inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold text-sm px-4 py-2.5 rounded-lg shadow-cta transition-transform duration-300 hover:-translate-y-0.5">
-          <span>Free Inspection</span>
-          <span class="nav-cta-arrow"><i class="fa-solid fa-arrow-right text-xs"></i></span>
-        </a>
-        <button type="button" id="nav-burger" class="nav-burger md:hidden ml-1" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile">
+
+        <button type="button" id="nav-burger" class="nav-burger md:hidden ml-0.5" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile">
           <span></span>
           <span></span>
           <span></span>
@@ -1594,6 +1674,58 @@ const html = `<!DOCTYPE html>
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // ─── Live "Open today" status pill ─────────────────────────────────
+    // Castle Exterminators hours: Mon–Fri 8am–5pm Eastern Time.
+    // We compute status in ET regardless of the visitor's timezone so the
+    // pill always reflects the actual business state.
+    (function initStatusPill() {
+      const pill = document.getElementById('nav-status');
+      if (!pill) return;
+      const text = pill.querySelector('.nav-status-text');
+
+      function update() {
+        // Get current time in Eastern Time (handles DST automatically)
+        const et = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
+        const day = et.getDay();            // 0 = Sun, 1 = Mon, …, 6 = Sat
+        const hour = et.getHours();         // 0–23
+        const minute = et.getMinutes();
+        const minutesNow = hour * 60 + minute;
+        const openAt  = 8 * 60;             // 8:00 AM
+        const closeAt = 17 * 60;            // 5:00 PM
+        const isWeekday = day >= 1 && day <= 5;
+        const isOpen = isWeekday && minutesNow >= openAt && minutesNow < closeAt;
+
+        // Friendly weekday label for "next open" calculations
+        const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+        if (isOpen) {
+          pill.classList.remove('is-closed');
+          // Closing soon (< 60 min)? Make the messaging tighter.
+          const minsLeft = closeAt - minutesNow;
+          if (minsLeft <= 60) {
+            text.textContent = 'Open · closes in ' + minsLeft + ' min';
+          } else {
+            text.textContent = 'Open today · 8–5';
+          }
+        } else {
+          pill.classList.add('is-closed');
+          // Find next opening
+          if (isWeekday && minutesNow < openAt) {
+            text.textContent = 'Opens today at 8 AM';
+          } else {
+            // After-hours weekday or weekend — find next weekday
+            let nextDay = (day + 1) % 7;
+            while (nextDay === 0 || nextDay === 6) nextDay = (nextDay + 1) % 7;
+            const dayLabel = (nextDay === (day + 1) % 7) ? 'tomorrow' : dayNames[nextDay];
+            text.textContent = 'Opens ' + dayLabel + ' · 8 AM';
+          }
+        }
+      }
+      update();
+      // Refresh every minute so "closes in N min" stays accurate
+      setInterval(update, 60 * 1000);
+    })();
 
     // ---- Services mega-dropdown (desktop): hover-open + click-toggle ----
     const navServices = document.querySelector('.nav-services');
