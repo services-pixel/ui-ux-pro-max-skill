@@ -1063,12 +1063,16 @@ const html = `<!DOCTYPE html>
         transform: translateX(0);
       }
 
-      /* Mobile hamburger */
+      /* Mobile hamburger — hidden on desktop, flex on mobile */
       .nav-burger {
         position: relative;
         width: 26px; height: 20px;
-        display: flex; flex-direction: column; justify-content: space-between;
+        display: none;  /* hidden by default (desktop) */
+        flex-direction: column; justify-content: space-between;
         background: transparent; border: 0; padding: 0; cursor: pointer;
+      }
+      @media (max-width: 767px) {
+        .nav-burger { display: flex; }
       }
       .nav-burger span {
         display: block;
