@@ -1208,8 +1208,8 @@ const html = `<!DOCTYPE html>
             <i class="fa-solid fa-chevron-down text-[10px] opacity-70" aria-hidden="true"></i>
           </a>
         </li>
+        <li><a href="/about" class="nav-link">About</a></li>
         <li><a href="#why-us" class="nav-link" data-section="why-us">Why Us</a></li>
-        <li><a href="#process" class="nav-link" data-section="process">Process</a></li>
         <li><a href="#reviews" class="nav-link" data-section="reviews">Reviews</a></li>
         <li><a href="#faq" class="nav-link" data-section="faq">FAQ</a></li>
       </ul>
@@ -1344,8 +1344,8 @@ const html = `<!DOCTYPE html>
             <li><a href="/services/crawl-space-encapsulation" class="flex items-center gap-2.5 px-2 py-2 text-sm rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition"><i class="fa-solid fa-house-flag w-4 text-brand-green"></i> Crawl Space Encapsulation</a></li>
           </ul>
         </li>
+        <li><a href="/about" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">About</a></li>
         <li><a href="#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
-        <li><a href="#process" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Process</a></li>
         <li><a href="#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
         <li><a href="#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
         <li class="pt-2">
@@ -1967,9 +1967,9 @@ const html = `<!DOCTYPE html>
         <div>
           <h4 class="text-white font-bold mb-4">Quick Links</h4>
           <ul class="space-y-2 text-sm">
+            <li><a href="/about" class="hover:text-white">About Us</a></li>
             <li><a href="#services" class="hover:text-white">Services</a></li>
-            <li><a href="#why-us" class="hover:text-white">Why Choose Us</a></li>
-            <li><a href="#process" class="hover:text-white">Our Process</a></li>
+            <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
             <li><a href="#reviews" class="hover:text-white">Reviews</a></li>
             <li><a href="#faq" class="hover:text-white">FAQ</a></li>
           </ul>
@@ -3121,6 +3121,778 @@ services.forEach(s => {
 })
 
 // ---------------------------------------------------------------------------
+// SLUG REDIRECTS — friendly aliases people/search engines might guess.
+// 301 (permanent) so Google consolidates link equity onto the canonical URL.
+// ---------------------------------------------------------------------------
+const serviceSlugAliases: Record<string, string> = {
+  'roach-control':           'roaches',
+  'cockroach-control':       'roaches',
+  'cockroaches':             'roaches',
+  'termite-control':         'termites',
+  'termite-inspection':      'termites',
+  'rodent-control':          'rodents',
+  'mice-control':            'rodents',
+  'rat-control':             'rodents',
+  'ant-control':             'ants',
+  'mosquito-control':        'mosquitoes',
+  'pest-control':            'general-pest-control',
+  'crawlspace-encapsulation':'crawl-space-encapsulation',
+}
+Object.entries(serviceSlugAliases).forEach(([alias, canonical]) => {
+  app.get(`/services/${alias}`, (c) => c.redirect(`/services/${canonical}`, 301))
+})
+
+// ============================================================================
+// ABOUT PAGE
+// ============================================================================
+const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Castle Exterminators | Family-Owned Pest Control in Durham, NC</title>
+  <meta name="description" content="Meet Castle Exterminators — Durham's family-owned, locally-operated pest control company. Licensed in North Carolina, eco-friendly methods, 5.0 stars on Google & Yelp. Serving Durham since 2017." />
+  <meta name="keywords" content="about Castle Exterminators, family-owned pest control Durham, licensed exterminator NC, local pest control Durham NC, eco-friendly pest control" />
+  <meta name="theme-color" content="#1F6F4A" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="geo.region" content="US-NC" />
+  <meta name="geo.placename" content="Durham, North Carolina" />
+  <link rel="canonical" href="https://www.castleexterminators.co/about" />
+  <link rel="icon" href="/static/castle-logo.png" />
+  <meta property="og:site_name" content="Castle Exterminators" />
+  <meta property="og:title" content="About Castle Exterminators | Family-Owned Pest Control in Durham, NC" />
+  <meta property="og:description" content="Durham's family-owned, locally-operated pest control company. Licensed in NC, eco-friendly methods, 5.0 stars on Google & Yelp." />
+  <meta property="og:url" content="https://www.castleexterminators.co/about" />
+  <meta property="og:image" content="/static/hero-home.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "url": "https://www.castleexterminators.co/about",
+    "name": "About Castle Exterminators",
+    "description": "Family-owned, locally-operated pest control company serving Durham, NC since 2017.",
+    "mainEntity": {
+      "@type": "PestControlService",
+      "@id": "https://www.castleexterminators.co/#business",
+      "name": "Castle Exterminators",
+      "foundingDate": "2017",
+      "founder": { "@type": "Person", "name": "The Castle Family" },
+      "telephone": "+1-919-606-6866",
+      "email": "services@castleexterminators.co",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Durham",
+        "addressRegion": "NC",
+        "addressCountry": "US"
+      },
+      "areaServed": { "@type": "City", "name": "Durham", "containedInPlace": { "@type": "State", "name": "North Carolina" } },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "3", "bestRating": "5", "worstRating": "1" }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.castleexterminators.co/" },
+      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://www.castleexterminators.co/about" }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="/static/tailwind.css" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    :root { --ink: 30, 42, 36; --paper: 251, 248, 241; --emphasis-high: 0.87; --emphasis-medium: 0.60; --emphasis-disabled: 0.38; }
+    body { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; color: rgba(var(--ink), var(--emphasis-high)); background: #FBF8F1; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.015em; font-variation-settings: "opsz" 144, "SOFT" 50; }
+    .hero-grain h1, .hero-grain h2, footer h1, footer h2, footer h3, footer h4 { color: rgba(var(--paper), var(--emphasis-high)) !important; }
+    .hero-grain .text-white, footer .text-white { color: rgba(var(--paper), var(--emphasis-high)) !important; }
+    footer { color: rgba(var(--paper), var(--emphasis-medium)) !important; }
+    .font-display { font-family: 'Fraunces', 'Plus Jakarta Sans', Georgia, serif; font-variation-settings: "opsz" 144, "SOFT" 50; }
+    .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
+    .hero-overlay { background: linear-gradient(135deg, rgba(31,111,74,.92) 0%, rgba(14,22,18,.78) 55%, rgba(14,22,18,.45) 100%); }
+    .hero-grain::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: .35; mix-blend-mode: overlay; }
+
+    /* Nav (matches site) */
+    #site-header { transition: background-color .3s ease, box-shadow .3s ease, backdrop-filter .3s ease; }
+    #site-header.nav-scrolled { background-color: rgba(251,248,241,.96); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); box-shadow: 0 4px 20px -8px rgba(30,42,36,.18); }
+    .nav-link { position: relative; padding: .35rem 0; transition: color .25s ease; }
+    .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; border-radius: 2px; background: #1F6F4A; transform: scaleX(0); transform-origin: center; transition: transform .35s cubic-bezier(.65,.05,.36,1); }
+    .nav-link:hover, .nav-link:focus-visible, .nav-link.active { color: #1F6F4A; }
+    .nav-link:hover::after, .nav-link:focus-visible::after, .nav-link.active::after { transform: scaleX(1); }
+    .nav-burger { position: relative; width: 26px; height: 20px; display: none; flex-direction: column; justify-content: space-between; background: transparent; border: 0; padding: 0; cursor: pointer; }
+    @media (max-width: 767px) { .nav-burger { display: flex; } }
+    .nav-burger span { display: block; width: 100%; height: 2.5px; background: #1E2A24; border-radius: 4px; transition: transform .35s cubic-bezier(.65,.05,.36,1), opacity .25s ease, background-color .25s ease; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
+    #nav-mobile { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.22,1,.36,1), opacity .3s ease; }
+    #nav-mobile.open { max-height: 720px; opacity: 1; }
+
+    /* About-page–specific: timeline pill */
+    .timeline-item { position: relative; padding-left: 2.5rem; }
+    .timeline-item::before { content: ''; position: absolute; left: .6rem; top: .55rem; bottom: -1.5rem; width: 2px; background: linear-gradient(to bottom, #1F6F4A, rgba(31,111,74,.15)); }
+    .timeline-item:last-child::before { display: none; }
+    .timeline-dot { position: absolute; left: 0; top: 0; width: 1.4rem; height: 1.4rem; border-radius: 9999px; background: #1F6F4A; color: #fff; display: grid; place-items: center; font-size: .7rem; box-shadow: 0 0 0 4px rgba(31,111,74,.12); }
+
+    /* Value cards */
+    .value-card { transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; }
+    .value-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px -16px rgba(30,42,36,.22); }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; } }
+  </style>
+</head>
+<body class="bg-brand-bone antialiased text-brand-navy">
+
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-brand-bone/90 backdrop-blur border-b border-brand-green/10">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3" aria-label="Castle Exterminators home">
+        <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-10 sm:h-11 w-auto" />
+      </a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+        <li><a href="/#services" class="nav-link">Services</a></li>
+        <li><a href="/about" class="nav-link active">About</a></li>
+        <li><a href="/#why-us" class="nav-link">Why Us</a></li>
+        <li><a href="/#reviews" class="nav-link">Reviews</a></li>
+        <li><a href="/#faq" class="nav-link">FAQ</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <a href="tel:+19196066866" class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
+          <span class="text-brand-green"><i class="fa-solid fa-phone-volume"></i></span>
+          <span>(919) 606-6866</span>
+        </a>
+        <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white text-sm font-bold px-4 py-2 rounded-lg shadow-card transition-transform duration-300 hover:-translate-y-0.5">
+          <span>Free Inspection</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+        <button type="button" id="nav-burger" class="nav-burger md:hidden ml-1" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div id="nav-mobile" class="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur">
+      <ul class="px-4 sm:px-6 py-3 space-y-1 text-sm font-semibold text-slate-700">
+        <li><a href="/#services" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Services</a></li>
+        <li><a href="/about" class="block px-2 py-2.5 rounded-lg bg-brand-green/10 text-brand-green transition">About</a></li>
+        <li><a href="/#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
+        <li><a href="/#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
+        <li><a href="/#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
+        <li class="pt-2"><a href="tel:+19196066866" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold"><i class="fa-solid fa-phone-volume"></i> (919) 606-6866</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <script>
+    (function(){
+      var header = document.getElementById('site-header');
+      var onScroll = function(){ header.classList.toggle('nav-scrolled', window.scrollY > 8); };
+      window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+      var burger = document.getElementById('nav-burger');
+      var mobile = document.getElementById('nav-mobile');
+      if (burger && mobile) {
+        var close = function(){ burger.classList.remove('open'); mobile.classList.remove('open'); burger.setAttribute('aria-expanded','false'); };
+        burger.addEventListener('click', function(){
+          var open = burger.classList.toggle('open');
+          mobile.classList.toggle('open', open);
+          burger.setAttribute('aria-expanded', String(open));
+        });
+        mobile.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+        window.addEventListener('resize', function(){ if (window.innerWidth >= 768) close(); });
+      }
+    })();
+  </script>
+
+  <!-- HERO -->
+  <section class="relative pt-16">
+    <div class="hero-grain relative h-[44vh] min-h-[360px] max-h-[560px] overflow-hidden bg-brand-navy-dark">
+      <div class="absolute inset-0 hero-overlay"></div>
+      <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-12 text-white">
+        <nav class="text-xs sm:text-sm font-semibold mb-4 opacity-90">
+          <a href="/" class="hover:text-brand-green-light transition">Home</a>
+          <i class="fa-solid fa-chevron-right text-[10px] mx-2 opacity-60"></i>
+          <span class="text-brand-leaf">About</span>
+        </nav>
+        <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur border border-white/25 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider mb-4 w-fit">
+          <i class="fa-solid fa-house-shield"></i> Family-owned · Durham, NC
+        </div>
+        <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl max-w-3xl leading-tight">A neighbor first. <span class="serif-italic text-brand-leaf">An exterminator second.</span></h1>
+        <p class="mt-3 text-lg sm:text-xl max-w-2xl opacity-95">We're Castle Exterminators — Durham's family-owned, locally-operated pest control crew. We treat your home the way we'd treat our own.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+
+    <!-- Story -->
+    <section class="grid lg:grid-cols-12 gap-12 mb-20 lg:mb-28">
+      <div class="lg:col-span-7">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-brand-green mb-3">Our Story</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl mb-6 leading-tight">Built in Durham. <br/>For Durham.</h2>
+        <div class="space-y-5 text-lg leading-relaxed text-slate-700">
+          <p>Castle Exterminators started in 2017 with a simple frustration: too many pest control companies treat homeowners like a ticket number. We wanted to build the kind of company we'd want to call ourselves &mdash; one that picks up the phone, shows up when promised, and explains what's happening in plain English.</p>
+          <p>Eight years later, we're still family-owned, still based right here in Durham, and still answering our own phone. We've earned <strong>5.0 stars across Google and Yelp</strong> not because of slick marketing, but because every customer is a neighbor &mdash; and neighbors talk.</p>
+          <p>If a treatment doesn't work, we come back at no charge. If you have a question at 7pm, you'll usually still get a real person. That's just how we like to do it.</p>
+        </div>
+      </div>
+      <aside class="lg:col-span-5">
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-card p-7">
+          <p class="text-sm font-bold uppercase tracking-[0.18em] text-brand-green mb-4">By the numbers</p>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <div class="font-display font-extrabold text-4xl text-brand-navy">8<span class="text-brand-orange">+</span></div>
+              <div class="text-sm text-slate-500 mt-1">Years in Durham</div>
+            </div>
+            <div>
+              <div class="font-display font-extrabold text-4xl text-brand-navy">5.0<i class="fa-solid fa-star text-brand-orange text-lg ml-1"></i></div>
+              <div class="text-sm text-slate-500 mt-1">Google &amp; Yelp</div>
+            </div>
+            <div>
+              <div class="font-display font-extrabold text-4xl text-brand-navy">100<span class="text-brand-orange">%</span></div>
+              <div class="text-sm text-slate-500 mt-1">Family-owned</div>
+            </div>
+            <div>
+              <div class="font-display font-extrabold text-4xl text-brand-navy">NC</div>
+              <div class="text-sm text-slate-500 mt-1">Licensed &amp; Insured</div>
+            </div>
+          </div>
+          <div class="mt-6 pt-6 border-t border-slate-100">
+            <a href="tel:+19196066866" class="flex items-center gap-3 text-brand-green hover:text-brand-green-dark transition">
+              <span class="w-10 h-10 grid place-items-center rounded-full bg-brand-green/10"><i class="fa-solid fa-phone-volume"></i></span>
+              <span>
+                <span class="block text-xs uppercase tracking-wider text-slate-500 font-bold">Talk to a person</span>
+                <span class="block font-bold">(919) 606-6866</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Values -->
+    <section class="mb-20 lg:mb-28">
+      <div class="max-w-3xl mb-12">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-brand-green mb-3">What we believe</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">Four things we won't compromise on.</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="value-card bg-white rounded-2xl border border-slate-100 p-6 shadow-card">
+          <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4"><i class="fa-solid fa-leaf text-lg"></i></div>
+          <h3 class="font-display font-extrabold text-lg mb-2">Family-safe first</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">We use the lowest-impact methods that get the job done. Kids and pets back home the same day &mdash; not 48 hours later.</p>
+        </div>
+        <div class="value-card bg-white rounded-2xl border border-slate-100 p-6 shadow-card">
+          <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4"><i class="fa-solid fa-handshake text-lg"></i></div>
+          <h3 class="font-display font-extrabold text-lg mb-2">No surprise pricing</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">You'll know the price before we lift a finger. No upsells, no "discovered an extra issue" routine.</p>
+        </div>
+        <div class="value-card bg-white rounded-2xl border border-slate-100 p-6 shadow-card">
+          <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4"><i class="fa-solid fa-arrows-rotate text-lg"></i></div>
+          <h3 class="font-display font-extrabold text-lg mb-2">Free re-treatments</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">If the pests come back between visits, so do we &mdash; at no charge. Every plan is backed by our service guarantee.</p>
+        </div>
+        <div class="value-card bg-white rounded-2xl border border-slate-100 p-6 shadow-card">
+          <div class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center mb-4"><i class="fa-solid fa-location-dot text-lg"></i></div>
+          <h3 class="font-display font-extrabold text-lg mb-2">Hyper-local</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">We know Durham's bug seasons, soil types, and crawl-space layouts. National chains don't.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="mb-20 lg:mb-28 grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-4">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-brand-green mb-3">Milestones</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight mb-4">Eight years, one zip code at a time.</h2>
+        <p class="text-slate-600">From a single truck to Durham's most-trusted family-run pest control shop.</p>
+      </div>
+      <div class="lg:col-span-8 space-y-8">
+        <div class="timeline-item">
+          <span class="timeline-dot"><i class="fa-solid fa-seedling text-[10px]"></i></span>
+          <div class="text-xs font-bold uppercase tracking-wider text-brand-green mb-1">2017</div>
+          <h3 class="font-display font-extrabold text-xl mb-1">Castle Exterminators opens</h3>
+          <p class="text-slate-600 leading-relaxed">One truck, one phone, and a promise to treat every customer like a neighbor.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"><i class="fa-solid fa-house text-[10px]"></i></span>
+          <div class="text-xs font-bold uppercase tracking-wider text-brand-green mb-1">2019</div>
+          <h3 class="font-display font-extrabold text-xl mb-1">First 500 Durham homes protected</h3>
+          <p class="text-slate-600 leading-relaxed">Word-of-mouth from neighbors becomes our #1 source of new customers &mdash; and still is today.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"><i class="fa-solid fa-star text-[10px]"></i></span>
+          <div class="text-xs font-bold uppercase tracking-wider text-brand-green mb-1">2022</div>
+          <h3 class="font-display font-extrabold text-xl mb-1">Perfect 5.0 across Google &amp; Yelp</h3>
+          <p class="text-slate-600 leading-relaxed">We crossed dozens of five-star reviews without buying a single one. Just neighbors talking.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"><i class="fa-solid fa-shield-halved text-[10px]"></i></span>
+          <div class="text-xs font-bold uppercase tracking-wider text-brand-green mb-1">Today</div>
+          <h3 class="font-display font-extrabold text-xl mb-1">Seven specialized services, one local crew</h3>
+          <p class="text-slate-600 leading-relaxed">From termites to mosquitoes to crawl-space encapsulation &mdash; still family-owned, still picking up the phone ourselves.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service areas mini -->
+    <section class="mb-20 lg:mb-28">
+      <div class="bg-brand-cream rounded-3xl p-8 sm:p-12 border border-brand-green/10">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-5">
+            <p class="text-sm font-bold uppercase tracking-[0.18em] text-brand-green mb-3">Where we work</p>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight mb-4">Durham and the neighborhoods we call home.</h2>
+            <p class="text-slate-600 mb-5">We service every corner of Durham, NC &mdash; from historic downtown to the newer subdivisions on the edge of town.</p>
+            <a href="/locations/downtown-durham" class="inline-flex items-center gap-2 text-brand-green hover:text-brand-green-dark font-bold transition">
+              See our Downtown Durham coverage <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+          <div class="lg:col-span-7 grid sm:grid-cols-2 gap-3">
+            ${['Downtown Durham','Trinity Park','Old West Durham','Forest Hills','Hope Valley','Woodcroft','Southpoint','Duke Park'].map(n => `<div class="flex items-center gap-2.5 bg-white rounded-xl px-4 py-3 border border-slate-100"><i class="fa-solid fa-location-dot text-brand-green text-sm"></i><span class="font-semibold text-sm text-brand-navy">${n}</span></div>`).join('')}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service list -->
+    <section class="mb-20 lg:mb-28">
+      <div class="max-w-3xl mb-10">
+        <p class="text-sm font-bold uppercase tracking-[0.18em] text-brand-green mb-3">What we do</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight">Specialized for every Durham pest.</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        ${allServices.map(s => `<a href="/services/${s.slug}" class="value-card bg-white rounded-2xl border border-slate-100 p-5 shadow-card flex items-start gap-3">
+          <span class="w-11 h-11 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center flex-shrink-0"><i class="fa-solid ${s.icon} text-lg"></i></span>
+          <span class="flex-1 min-w-0">
+            <span class="block font-display font-extrabold text-base text-brand-navy">${s.name}</span>
+            <span class="block text-xs text-slate-500 leading-snug mt-1">${s.tagline}</span>
+          </span>
+        </a>`).join('')}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section>
+      <div class="bg-gradient-to-br from-brand-green to-brand-navy-dark rounded-3xl p-10 sm:p-14 text-center text-white relative overflow-hidden">
+        <div class="hero-grain absolute inset-0"></div>
+        <div class="relative">
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl mb-4 max-w-2xl mx-auto leading-tight">Ready to meet your new neighbors?</h2>
+          <p class="text-lg opacity-95 max-w-xl mx-auto mb-8">Free, no-pressure inspection. We'll show up, look around, and tell you exactly what's going on &mdash; whether you hire us or not.</p>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white font-bold px-6 py-3.5 rounded-xl shadow-card transition-transform duration-300 hover:-translate-y-0.5"><i class="fa-solid fa-calendar-check"></i> Request Free Inspection</a>
+            <a href="tel:+19196066866" class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-6 py-3.5 rounded-xl backdrop-blur border border-white/25 transition"><i class="fa-solid fa-phone-volume"></i> (919) 606-6866</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-brand-navy-dark text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8">
+      <div class="md:col-span-2">
+        <span class="inline-block bg-white rounded-xl p-2 shadow-card mb-4">
+          <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 w-auto" />
+        </span>
+        <p class="text-sm leading-relaxed max-w-md">Durham's family-owned pest control. Protecting homes across Durham, NC and surrounding communities since 2017 — with eco-friendly, family-safe treatments.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Services</h4>
+        <ul class="space-y-2 text-sm">
+          ${allServices.slice(0, 6).map(o => `<li><a href="/services/${o.slug}" class="hover:text-white">${o.name}</a></li>`).join('')}
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Company</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about" class="hover:text-white">About</a></li>
+          <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
+          <li><a href="/#reviews" class="hover:text-white">Reviews</a></li>
+          <li><a href="/#contact" class="hover:text-white">Contact</a></li>
+          <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196066866" class="hover:text-white">(919) 606-6866</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-slate-400 flex flex-col sm:flex-row justify-between gap-3">
+        <span>&copy; ${new Date().getFullYear()} Castle Exterminators. All rights reserved.</span>
+        <span>Licensed &amp; Insured in North Carolina</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>`
+
+app.get('/about', (c) => c.html(renderAboutPage(services)))
+
+// ============================================================================
+// LOCATION PAGES — local-SEO landing pages targeting specific Durham
+// neighborhoods. Designed as a template so we can add more neighborhoods later
+// (e.g. /locations/trinity-park, /locations/southpoint) with just a data entry.
+// ============================================================================
+type LocationDetail = {
+  slug: string
+  name: string                    // "Downtown Durham"
+  shortName: string               // "Downtown"
+  zipCodes: string[]              // ["27701", "27707"]
+  intro: string                   // Hero paragraph
+  about: string                   // Long-form description of the neighborhood
+  pests: { name: string; reason: string }[]  // Pests common to this area
+  nearby: string[]                // Nearby landmarks/streets we reference
+  testimonial?: { quote: string; author: string; street?: string }
+}
+
+const locations: LocationDetail[] = [
+  {
+    slug: 'downtown-durham',
+    name: 'Downtown Durham',
+    shortName: 'Downtown',
+    zipCodes: ['27701', '27707'],
+    intro: "Durham's downtown core packs century-old warehouses, modern lofts, restored bungalows, and busy restaurants into a few square miles — and every one of them comes with its own pest control challenges. Castle Exterminators has been protecting Downtown Durham homes and businesses since 2017.",
+    about: "From the American Tobacco Campus to the Brightleaf district, Durham's downtown buildings sit on some of the oldest brick foundations in the city. That charm comes with a downside: aging brick, shared walls, and warm subterranean utility corridors are an invitation for cockroaches, mice, ants, and termites to set up shop. Our crew knows these buildings — we've worked in the lofts above Mateo, the brownstones near Five Points, and the historic homes off Mangum Street. We tailor every treatment to the building, not the bug.",
+    pests: [
+      { name: 'German cockroaches', reason: 'Restaurants, shared walls, and aging plumbing make downtown a roach hot-spot — especially in older buildings with brick foundations.' },
+      { name: 'Mice & rats', reason: 'Construction projects, dumpsters behind restaurants, and proximity to railroad corridors keep rodent pressure high year-round.' },
+      { name: 'Argentine ants', reason: 'Brick mortar and stone foundations give ants an endless network of entry points into ground-floor units.' },
+      { name: 'Subterranean termites', reason: "Durham's red-clay soil and the age of many downtown structures mean termite damage often goes unnoticed for years." },
+    ],
+    nearby: ['American Tobacco Campus', 'Brightleaf Square', 'Five Points', 'Mangum Street', 'Trinity Park', 'Old West Durham', 'Durham Central Park'],
+    testimonial: {
+      quote: "We've used three different exterminators in our downtown loft over the years. Castle is the only one that actually solved the roach problem in our building's old brick walls. Friendly, on-time, no upsells.",
+      author: 'Michael P.',
+      street: 'W. Main Street loft, Downtown Durham',
+    },
+  },
+]
+
+const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) => `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pest Control in ${loc.name}, NC | Castle Exterminators</title>
+  <meta name="description" content="Local pest control in ${loc.name}, NC. Castle Exterminators serves ${loc.zipCodes.join(', ')} with family-owned, licensed, eco-friendly extermination for roaches, termites, ants, mice, and more. Free inspection. (919) 606-6866." />
+  <meta name="keywords" content="pest control ${loc.name}, exterminator ${loc.name} NC, ${loc.name} pest control near me, ${loc.zipCodes.join(' ')} pest control, Durham pest control, ${loc.name} roach control, ${loc.name} termite inspection" />
+  <meta name="theme-color" content="#1F6F4A" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="geo.region" content="US-NC" />
+  <meta name="geo.placename" content="${loc.name}, North Carolina" />
+  <link rel="canonical" href="https://www.castleexterminators.co/locations/${loc.slug}" />
+  <link rel="icon" href="/static/castle-logo.png" />
+  <meta property="og:site_name" content="Castle Exterminators" />
+  <meta property="og:title" content="Pest Control in ${loc.name}, NC | Castle Exterminators" />
+  <meta property="og:description" content="Local, family-owned pest control serving ${loc.name}, NC. ${loc.zipCodes.join(', ')}." />
+  <meta property="og:url" content="https://www.castleexterminators.co/locations/${loc.slug}" />
+  <meta property="og:image" content="/static/hero-home.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Pest Control in ${loc.name}, NC",
+    "description": "Family-owned, licensed pest control serving ${loc.name}, NC (${loc.zipCodes.join(', ')}).",
+    "url": "https://www.castleexterminators.co/locations/${loc.slug}",
+    "provider": {
+      "@type": "PestControlService",
+      "@id": "https://www.castleexterminators.co/#business",
+      "name": "Castle Exterminators",
+      "telephone": "+1-919-606-6866",
+      "email": "services@castleexterminators.co",
+      "address": { "@type": "PostalAddress", "addressLocality": "Durham", "addressRegion": "NC", "postalCode": "${loc.zipCodes[0]}", "addressCountry": "US" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "3", "bestRating": "5", "worstRating": "1" }
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "${loc.name}",
+      "address": { "@type": "PostalAddress", "addressLocality": "Durham", "addressRegion": "NC", "addressCountry": "US" },
+      "containedInPlace": { "@type": "City", "name": "Durham", "containedInPlace": { "@type": "State", "name": "North Carolina" } }
+    },
+    "offers": { "@type": "Offer", "url": "https://www.castleexterminators.co/locations/${loc.slug}", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.castleexterminators.co/" },
+      { "@type": "ListItem", "position": 2, "name": "Service Areas", "item": "https://www.castleexterminators.co/#contact" },
+      { "@type": "ListItem", "position": 3, "name": "${loc.name}", "item": "https://www.castleexterminators.co/locations/${loc.slug}" }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="/static/tailwind.css" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    :root { --ink: 30, 42, 36; --paper: 251, 248, 241; --emphasis-high: 0.87; --emphasis-medium: 0.60; --emphasis-disabled: 0.38; }
+    body { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; color: rgba(var(--ink), var(--emphasis-high)); background: #FBF8F1; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.015em; font-variation-settings: "opsz" 144, "SOFT" 50; }
+    .hero-grain h1, .hero-grain h2, footer h1, footer h2, footer h3, footer h4 { color: rgba(var(--paper), var(--emphasis-high)) !important; }
+    .hero-grain .text-white, footer .text-white { color: rgba(var(--paper), var(--emphasis-high)) !important; }
+    footer { color: rgba(var(--paper), var(--emphasis-medium)) !important; }
+    .font-display { font-family: 'Fraunces', 'Plus Jakarta Sans', Georgia, serif; font-variation-settings: "opsz" 144, "SOFT" 50; }
+    .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
+    .hero-overlay { background: linear-gradient(135deg, rgba(31,111,74,.92) 0%, rgba(14,22,18,.78) 55%, rgba(14,22,18,.45) 100%); }
+    .hero-grain::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: .35; mix-blend-mode: overlay; }
+
+    #site-header { transition: background-color .3s ease, box-shadow .3s ease, backdrop-filter .3s ease; }
+    #site-header.nav-scrolled { background-color: rgba(251,248,241,.96); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); box-shadow: 0 4px 20px -8px rgba(30,42,36,.18); }
+    .nav-link { position: relative; padding: .35rem 0; transition: color .25s ease; }
+    .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; border-radius: 2px; background: #1F6F4A; transform: scaleX(0); transform-origin: center; transition: transform .35s cubic-bezier(.65,.05,.36,1); }
+    .nav-link:hover, .nav-link:focus-visible, .nav-link.active { color: #1F6F4A; }
+    .nav-link:hover::after, .nav-link:focus-visible::after, .nav-link.active::after { transform: scaleX(1); }
+    .nav-burger { position: relative; width: 26px; height: 20px; display: none; flex-direction: column; justify-content: space-between; background: transparent; border: 0; padding: 0; cursor: pointer; }
+    @media (max-width: 767px) { .nav-burger { display: flex; } }
+    .nav-burger span { display: block; width: 100%; height: 2.5px; background: #1E2A24; border-radius: 4px; transition: transform .35s cubic-bezier(.65,.05,.36,1), opacity .25s ease, background-color .25s ease; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
+    #nav-mobile { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.22,1,.36,1), opacity .3s ease; }
+    #nav-mobile.open { max-height: 720px; opacity: 1; }
+
+    .pest-card { transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; }
+    .pest-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px -16px rgba(30,42,36,.22); }
+    .zip-pill { display: inline-flex; align-items: center; gap: .375rem; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); padding: .25rem .65rem; border-radius: 9999px; font-size: .75rem; font-weight: 700; }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; } }
+  </style>
+</head>
+<body class="bg-brand-bone antialiased text-brand-navy">
+
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 bg-brand-bone/90 backdrop-blur border-b border-brand-green/10">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3" aria-label="Castle Exterminators home">
+        <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-10 sm:h-11 w-auto" />
+      </a>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+        <li><a href="/#services" class="nav-link">Services</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
+        <li><a href="/#why-us" class="nav-link">Why Us</a></li>
+        <li><a href="/#reviews" class="nav-link">Reviews</a></li>
+        <li><a href="/#faq" class="nav-link">FAQ</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <a href="tel:+19196066866" class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
+          <span class="text-brand-green"><i class="fa-solid fa-phone-volume"></i></span>
+          <span>(919) 606-6866</span>
+        </a>
+        <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white text-sm font-bold px-4 py-2 rounded-lg shadow-card transition-transform duration-300 hover:-translate-y-0.5">
+          <span>Free Inspection</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+        <button type="button" id="nav-burger" class="nav-burger md:hidden ml-1" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div id="nav-mobile" class="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur">
+      <ul class="px-4 sm:px-6 py-3 space-y-1 text-sm font-semibold text-slate-700">
+        <li><a href="/#services" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Services</a></li>
+        <li><a href="/about" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">About</a></li>
+        <li><a href="/#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
+        <li><a href="/#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
+        <li><a href="/#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
+        <li class="pt-2"><a href="tel:+19196066866" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold"><i class="fa-solid fa-phone-volume"></i> (919) 606-6866</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <script>
+    (function(){
+      var header = document.getElementById('site-header');
+      var onScroll = function(){ header.classList.toggle('nav-scrolled', window.scrollY > 8); };
+      window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+      var burger = document.getElementById('nav-burger');
+      var mobile = document.getElementById('nav-mobile');
+      if (burger && mobile) {
+        var close = function(){ burger.classList.remove('open'); mobile.classList.remove('open'); burger.setAttribute('aria-expanded','false'); };
+        burger.addEventListener('click', function(){
+          var open = burger.classList.toggle('open');
+          mobile.classList.toggle('open', open);
+          burger.setAttribute('aria-expanded', String(open));
+        });
+        mobile.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+        window.addEventListener('resize', function(){ if (window.innerWidth >= 768) close(); });
+      }
+    })();
+  </script>
+
+  <!-- HERO -->
+  <section class="relative pt-16">
+    <div class="hero-grain relative h-[42vh] min-h-[340px] max-h-[520px] overflow-hidden bg-brand-navy-dark">
+      <div class="absolute inset-0 hero-overlay"></div>
+      <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-10 text-white">
+        <nav class="text-xs sm:text-sm font-semibold mb-4 opacity-90">
+          <a href="/" class="hover:text-brand-green-light transition">Home</a>
+          <i class="fa-solid fa-chevron-right text-[10px] mx-2 opacity-60"></i>
+          <span>Locations</span>
+          <i class="fa-solid fa-chevron-right text-[10px] mx-2 opacity-60"></i>
+          <span class="text-brand-leaf">${loc.name}</span>
+        </nav>
+        <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur border border-white/25 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider mb-4 w-fit">
+          <i class="fa-solid fa-location-dot"></i> Castle Exterminators · ${loc.name}, NC
+        </div>
+        <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl max-w-3xl leading-tight">Pest Control in <br class="hidden sm:inline" /><span class="serif-italic text-brand-leaf">${loc.name}</span>, NC</h1>
+        <p class="mt-3 text-lg sm:text-xl max-w-2xl opacity-95">${loc.intro}</p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          ${loc.zipCodes.map(z => `<span class="zip-pill"><i class="fa-solid fa-envelope-circle-check text-[10px]"></i> ${z}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+    <div class="grid lg:grid-cols-3 gap-12">
+
+      <article class="lg:col-span-2 space-y-14">
+
+        <!-- About this area -->
+        <section>
+          <p class="text-sm font-bold uppercase tracking-[0.18em] text-brand-green mb-3">Local pest control, by neighbors who know the area</p>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl mb-6 leading-tight">${loc.shortName}'s pest problems are different. We know why.</h2>
+          <p class="text-lg leading-relaxed text-slate-700">${loc.about}</p>
+        </section>
+
+        <!-- Pests common here -->
+        <section>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl mb-6">The pests we see most in ${loc.name}</h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            ${loc.pests.map(p => `<div class="pest-card bg-white rounded-2xl border border-slate-100 p-5 shadow-card">
+              <div class="flex items-start gap-3">
+                <span class="w-10 h-10 rounded-lg bg-brand-green/10 text-brand-green grid place-items-center flex-shrink-0"><i class="fa-solid fa-bug"></i></span>
+                <div>
+                  <h3 class="font-display font-extrabold text-lg mb-1">${p.name}</h3>
+                  <p class="text-sm text-slate-600 leading-relaxed">${p.reason}</p>
+                </div>
+              </div>
+            </div>`).join('')}
+          </div>
+        </section>
+
+        <!-- Services we offer here -->
+        <section>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl mb-6">Our ${loc.shortName} pest control services</h2>
+          <p class="text-slate-600 mb-6">Every Castle Exterminators service is available across ${loc.name}. Click any service to learn more, or call us for a free, no-pressure inspection.</p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            ${allServices.map(s => `<a href="/services/${s.slug}" class="pest-card flex items-center gap-3 bg-white rounded-xl border border-slate-100 p-4">
+              <span class="w-10 h-10 rounded-lg bg-brand-green/10 text-brand-green grid place-items-center flex-shrink-0"><i class="fa-solid ${s.icon}"></i></span>
+              <span class="flex-1 min-w-0">
+                <span class="block font-bold text-sm text-brand-navy">${s.name}</span>
+                <span class="block text-xs text-slate-500 leading-snug mt-0.5">${s.tagline}</span>
+              </span>
+              <i class="fa-solid fa-arrow-right text-xs text-brand-green"></i>
+            </a>`).join('')}
+          </div>
+        </section>
+
+        <!-- Nearby landmarks -->
+        <section>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl mb-4">${loc.name} areas we cover</h2>
+          <p class="text-slate-600 mb-5">Castle Exterminators serves every block of ${loc.name} &mdash; including the neighborhoods and landmarks below.</p>
+          <div class="flex flex-wrap gap-2">
+            ${loc.nearby.map(n => `<span class="inline-flex items-center gap-2 bg-brand-cream border border-brand-green/15 rounded-full px-4 py-2 text-sm font-semibold text-brand-navy"><i class="fa-solid fa-location-dot text-brand-green text-xs"></i> ${n}</span>`).join('')}
+          </div>
+        </section>
+
+        ${loc.testimonial ? `
+        <!-- Local testimonial -->
+        <section class="bg-brand-cream rounded-2xl p-8 border border-brand-green/10">
+          <div class="text-brand-green text-3xl mb-3"><i class="fa-solid fa-quote-left"></i></div>
+          <blockquote class="font-display text-xl sm:text-2xl leading-relaxed text-brand-navy serif-italic mb-4">${loc.testimonial.quote}</blockquote>
+          <footer class="text-sm text-slate-600">
+            <strong class="text-brand-navy">${loc.testimonial.author}</strong>${loc.testimonial.street ? ` &middot; ${loc.testimonial.street}` : ''}
+          </footer>
+        </section>` : ''}
+
+      </article>
+
+      <!-- Sidebar CTA -->
+      <aside class="lg:col-span-1 space-y-6">
+        <div class="bg-gradient-to-br from-brand-green to-brand-navy-dark text-white rounded-2xl p-6 shadow-card sticky top-24">
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-brand-leaf mb-3">${loc.name} · ${loc.zipCodes.join(' · ')}</p>
+          <h3 class="font-display font-extrabold text-2xl mb-3 leading-tight">Free inspection in ${loc.shortName}</h3>
+          <p class="text-sm opacity-90 mb-5">Same-day service available. Licensed, insured, and family-owned since 2017.</p>
+          <a href="/#contact" class="block text-center bg-brand-orange hover:bg-brand-orange-dark text-white font-bold py-3 px-4 rounded-xl transition shadow-card mb-3">
+            <i class="fa-solid fa-calendar-check mr-2"></i> Request Free Inspection
+          </a>
+          <a href="tel:+19196066866" class="block text-center bg-white/15 hover:bg-white/25 text-white font-bold py-3 px-4 rounded-xl transition backdrop-blur border border-white/25">
+            <i class="fa-solid fa-phone-volume mr-2"></i> (919) 606-6866
+          </a>
+          <div class="mt-5 pt-5 border-t border-white/20 grid grid-cols-2 gap-3 text-center">
+            <div><div class="font-display font-extrabold text-xl">5.0<i class="fa-solid fa-star text-brand-orange text-sm ml-1"></i></div><div class="text-[11px] opacity-80">Google &amp; Yelp</div></div>
+            <div><div class="font-display font-extrabold text-xl">8+</div><div class="text-[11px] opacity-80">Years in Durham</div></div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+          <h4 class="font-bold mb-4">Other services</h4>
+          <ul class="space-y-2 text-sm">
+            ${allServices.slice(0, 6).map(o => `<li><a href="/services/${o.slug}" class="flex items-center gap-2 text-slate-600 hover:text-brand-green transition"><i class="fa-solid ${o.icon} text-brand-green w-4"></i> ${o.name}</a></li>`).join('')}
+          </ul>
+          <a href="/about" class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-brand-green hover:text-brand-green-dark">About Castle Exterminators <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="bg-brand-navy-dark text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8">
+      <div class="md:col-span-2">
+        <span class="inline-block bg-white rounded-xl p-2 shadow-card mb-4">
+          <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 w-auto" />
+        </span>
+        <p class="text-sm leading-relaxed max-w-md">Durham's family-owned pest control. Protecting homes across Durham, NC and surrounding communities since 2017 — with eco-friendly, family-safe treatments.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Services</h4>
+        <ul class="space-y-2 text-sm">
+          ${allServices.slice(0, 6).map(o => `<li><a href="/services/${o.slug}" class="hover:text-white">${o.name}</a></li>`).join('')}
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Company</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about" class="hover:text-white">About</a></li>
+          <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
+          <li><a href="/#reviews" class="hover:text-white">Reviews</a></li>
+          <li><a href="/#contact" class="hover:text-white">Contact</a></li>
+          <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196066866" class="hover:text-white">(919) 606-6866</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-slate-400 flex flex-col sm:flex-row justify-between gap-3">
+        <span>&copy; ${new Date().getFullYear()} Castle Exterminators. All rights reserved.</span>
+        <span>Licensed &amp; Insured in North Carolina</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>`
+
+locations.forEach(loc => {
+  app.get(`/locations/${loc.slug}`, (c) => c.html(renderLocationPage(loc, services)))
+})
+
+// ---------------------------------------------------------------------------
 // SEO: robots.txt — allows all crawlers and points them to the sitemap
 // ---------------------------------------------------------------------------
 app.get('/robots.txt', (c) => {
@@ -3140,9 +3912,15 @@ app.get('/sitemap.xml', (c) => {
   const today = new Date().toISOString().split('T')[0]
   const urls = [
     { loc: 'https://www.castleexterminators.co/',           priority: '1.0', changefreq: 'weekly' },
+    { loc: 'https://www.castleexterminators.co/about',      priority: '0.8', changefreq: 'monthly' },
     ...services.map(s => ({
       loc: `https://www.castleexterminators.co/services/${s.slug}`,
       priority: '0.9',
+      changefreq: 'monthly'
+    })),
+    ...locations.map(l => ({
+      loc: `https://www.castleexterminators.co/locations/${l.slug}`,
+      priority: '0.8',
       changefreq: 'monthly'
     }))
   ]
