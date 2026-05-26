@@ -7,8 +7,8 @@ const html = `<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pest Control Durham NC | Castle Exterminators — Termites, Ants, Roaches & Mosquitoes</title>
-    <meta name="description" content="Local pest control in Durham, NC. Castle Exterminators eliminates termites, ants, roaches, mice, mosquitoes & more with eco-friendly, family-safe treatments. Free inspection · 5.0★ on Google · Licensed & insured. Call (919) 606-8686.">
+    <title>Pest Control Services in Durham & Chapel Hill | Castle Exterminators</title>
+    <meta name="description" content="Top pest control services in Durham & Chapel Hill by Castle Exterminators. We eliminate termites, bed bugs & rodents securely. Contact us now!">
     <meta name="keywords" content="pest control Durham NC, exterminator Durham, termite control Durham, ant control Durham, roach exterminator Durham, mosquito control Durham, rodent removal Durham, eco-friendly pest control, family-safe pest control">
     <meta name="theme-color" content="#1F6F4A">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -19,8 +19,8 @@ const html = `<!DOCTYPE html>
 
     <!-- Open Graph -->
     <meta property="og:site_name" content="Castle Exterminators">
-    <meta property="og:title" content="Pest Control Durham NC | Castle Exterminators">
-    <meta property="og:description" content="Family-owned, eco-friendly pest control in Durham, NC. Termites, ants, roaches, mosquitoes & more. Free inspection — (919) 606-8686.">
+    <meta property="og:title" content="Pest Control Services in Durham & Chapel Hill | Castle Exterminators">
+    <meta property="og:description" content="Top pest control services in Durham & Chapel Hill by Castle Exterminators. We eliminate termites, bed bugs & rodents securely. Contact us now!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.castleexterminators.co/">
     <meta property="og:image" content="https://www.castleexterminators.co/static/castle-logo.png">
@@ -28,8 +28,8 @@ const html = `<!DOCTYPE html>
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Pest Control Durham NC | Castle Exterminators">
-    <meta name="twitter:description" content="Family-owned, eco-friendly pest control in Durham, NC. Free inspection — (919) 606-8686.">
+    <meta name="twitter:title" content="Pest Control Services in Durham & Chapel Hill | Castle Exterminators">
+    <meta name="twitter:description" content="Top pest control services in Durham & Chapel Hill by Castle Exterminators. We eliminate termites, bed bugs & rodents securely. Contact us now!">
     <meta name="twitter:image" content="https://www.castleexterminators.co/static/castle-logo.png">
 
     <!-- Structured data: LocalBusiness + Organization (the most important schema for local Google rankings) -->
