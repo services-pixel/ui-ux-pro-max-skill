@@ -168,11 +168,75 @@ const html = `<!DOCTYPE html>
         --emphasis-disabled: 0.38;
       }
 
+      /* ---------------------------------------------------------------------------
+         FFFUEL-STYLE TEXTURES — inline SVG data URIs that apply organic, printed-
+         paper feel without any extra HTTP requests. Three textures available:
+           1. body grain      — fine fractal-noise tiled background, site-wide
+           2. .tex-spots      — voronoi-style organic specks (sections)
+           3. .tex-topo       — wavy topographic lines (watermark backgrounds)
+         All textures use the mossy-ink / brand green so they blend into the
+         natural palette without screaming "I'm a texture!".
+         --------------------------------------------------------------------------- */
+
+      /* (1) Site-wide grain — applied as a tiled background-image on the body
+         itself, so it's always behind every section without any z-index tricks.
+         Each section that wants its own bg (cream/sand/etc.) will override this
+         only where its bg-color is opaque. */
       body {
         font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
         color: rgba(var(--ink), var(--emphasis-high));  /* 87% — High emphasis baseline */
-        background: #FBF8F1;
+        background-color: #FBF8F1;
+        background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.118  0 0 0 0 0.165  0 0 0 0 0.141  0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-attachment: fixed;
+        background-size: 240px 240px;
         font-feature-settings: 'ss01', 'cv11';
+      }
+
+      /* Sections with their own bg color need a translucent variant so the body
+         grain shows through subtly. We use color-mix to fade the section color
+         down to ~96% opaque, letting 4% of the body grain bleed up. */
+      #services { background-color: rgba(251, 248, 241, 0.94) !important; }   /* bone w/ grain leak */
+      #why-us   { background-color: rgba(245, 240, 226, 0.94) !important; }   /* cream w/ grain leak */
+      #process  { background-color: rgba(251, 248, 241, 0.94) !important; }   /* bone w/ grain leak */
+      #faq      { background-color: rgba(232, 222, 197, 0.45) !important; }   /* sand/40 keeps its blend */
+      #contact  { /* gradient — leave alone */ }
+
+      /* (2) .tex-spots — Voronoi-flavored organic specks. Applied as a section
+         background overlay; ~6% opacity over the existing section bg color. */
+      .tex-spots {
+        position: relative;
+      }
+      .tex-spots::before {
+        content: '';
+        position: absolute; inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: .5;
+        background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cg fill='%231F6F4A' fill-opacity='0.07'%3E%3Ccircle cx='42' cy='58' r='2.4'/%3E%3Ccircle cx='118' cy='34' r='1.6'/%3E%3Ccircle cx='192' cy='82' r='3.1'/%3E%3Ccircle cx='268' cy='28' r='2.0'/%3E%3Ccircle cx='338' cy='66' r='1.5'/%3E%3Ccircle cx='412' cy='44' r='2.6'/%3E%3Ccircle cx='486' cy='76' r='1.8'/%3E%3Ccircle cx='552' cy='38' r='2.2'/%3E%3Ccircle cx='28' cy='128' r='1.9'/%3E%3Ccircle cx='96' cy='168' r='2.7'/%3E%3Ccircle cx='168' cy='138' r='1.4'/%3E%3Ccircle cx='244' cy='176' r='2.3'/%3E%3Ccircle cx='318' cy='142' r='3.0'/%3E%3Ccircle cx='392' cy='168' r='1.7'/%3E%3Ccircle cx='458' cy='132' r='2.5'/%3E%3Ccircle cx='528' cy='162' r='2.0'/%3E%3Ccircle cx='58' cy='232' r='2.8'/%3E%3Ccircle cx='128' cy='268' r='1.5'/%3E%3Ccircle cx='208' cy='242' r='2.1'/%3E%3Ccircle cx='282' cy='276' r='2.6'/%3E%3Ccircle cx='358' cy='244' r='1.8'/%3E%3Ccircle cx='426' cy='272' r='2.3'/%3E%3Ccircle cx='498' cy='238' r='1.6'/%3E%3Ccircle cx='568' cy='268' r='2.9'/%3E%3Ccircle cx='38' cy='338' r='1.6'/%3E%3Ccircle cx='112' cy='312' r='2.4'/%3E%3Ccircle cx='184' cy='358' r='1.9'/%3E%3Ccircle cx='256' cy='322' r='2.7'/%3E%3Ccircle cx='328' cy='362' r='1.4'/%3E%3Ccircle cx='404' cy='318' r='2.2'/%3E%3Ccircle cx='472' cy='352' r='3.0'/%3E%3Ccircle cx='546' cy='328' r='1.7'/%3E%3Ccircle cx='72' cy='418' r='2.5'/%3E%3Ccircle cx='148' cy='448' r='1.5'/%3E%3Ccircle cx='222' cy='412' r='2.0'/%3E%3Ccircle cx='296' cy='452' r='2.8'/%3E%3Ccircle cx='368' cy='422' r='1.8'/%3E%3Ccircle cx='442' cy='458' r='2.3'/%3E%3Ccircle cx='514' cy='418' r='1.6'/%3E%3Ccircle cx='584' cy='448' r='2.6'/%3E%3Ccircle cx='52' cy='518' r='2.1'/%3E%3Ccircle cx='124' cy='548' r='2.7'/%3E%3Ccircle cx='198' cy='512' r='1.4'/%3E%3Ccircle cx='272' cy='552' r='2.4'/%3E%3Ccircle cx='344' cy='522' r='1.9'/%3E%3Ccircle cx='418' cy='562' r='2.8'/%3E%3Ccircle cx='492' cy='528' r='1.7'/%3E%3Ccircle cx='562' cy='552' r='2.2'/%3E%3C/g%3E%3Cg fill='%23C2663B' fill-opacity='0.05'%3E%3Ccircle cx='82' cy='92' r='1.2'/%3E%3Ccircle cx='228' cy='114' r='1.4'/%3E%3Ccircle cx='372' cy='102' r='1.1'/%3E%3Ccircle cx='518' cy='118' r='1.3'/%3E%3Ccircle cx='62' cy='202' r='1.5'/%3E%3Ccircle cx='208' cy='198' r='1.2'/%3E%3Ccircle cx='352' cy='212' r='1.4'/%3E%3Ccircle cx='498' cy='196' r='1.1'/%3E%3Ccircle cx='102' cy='302' r='1.3'/%3E%3Ccircle cx='248' cy='292' r='1.5'/%3E%3Ccircle cx='392' cy='308' r='1.2'/%3E%3Ccircle cx='538' cy='298' r='1.4'/%3E%3Ccircle cx='82' cy='392' r='1.1'/%3E%3Ccircle cx='228' cy='398' r='1.3'/%3E%3Ccircle cx='372' cy='388' r='1.5'/%3E%3Ccircle cx='518' cy='402' r='1.2'/%3E%3Ccircle cx='102' cy='488' r='1.4'/%3E%3Ccircle cx='248' cy='482' r='1.1'/%3E%3Ccircle cx='392' cy='498' r='1.3'/%3E%3Ccircle cx='538' cy='488' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: 600px 600px;
+      }
+      .tex-spots > * { position: relative; z-index: 1; }
+
+      /* (3) .tex-topo — wavy topographic / field-guide lines, used as a subtle
+         watermark behind the FAQ. */
+      .tex-topo {
+        position: relative;
+      }
+      .tex-topo::before {
+        content: '';
+        position: absolute; inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: .6;
+        background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600' preserveAspectRatio='xMidYMid slice'%3E%3Cg fill='none' stroke='%231F6F4A' stroke-opacity='0.08' stroke-width='1'%3E%3Cpath d='M0 80 Q 200 40 400 80 T 800 80'/%3E%3Cpath d='M0 140 Q 200 100 400 140 T 800 140'/%3E%3Cpath d='M0 200 Q 200 160 400 200 T 800 200'/%3E%3Cpath d='M0 260 Q 200 220 400 260 T 800 260'/%3E%3Cpath d='M0 320 Q 200 280 400 320 T 800 320'/%3E%3Cpath d='M0 380 Q 200 340 400 380 T 800 380'/%3E%3Cpath d='M0 440 Q 200 400 400 440 T 800 440'/%3E%3Cpath d='M0 500 Q 200 460 400 500 T 800 500'/%3E%3Cpath d='M0 560 Q 200 520 400 560 T 800 560'/%3E%3C/g%3E%3Cg fill='none' stroke='%23C2663B' stroke-opacity='0.05' stroke-width='1'%3E%3Cpath d='M0 110 Q 200 70 400 110 T 800 110'/%3E%3Cpath d='M0 230 Q 200 190 400 230 T 800 230'/%3E%3Cpath d='M0 350 Q 200 310 400 350 T 800 350'/%3E%3Cpath d='M0 470 Q 200 430 400 470 T 800 470'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: 800px 600px;
+      }
+      .tex-topo > * { position: relative; z-index: 1; }
+
+      /* Respect users with low-end devices via the data-saver hint */
+      @media (prefers-reduced-data: reduce) {
+        body { background-image: none; }
+        .tex-spots::before, .tex-topo::before { display: none; }
       }
 
       /* Semantic emphasis helpers (work on any background by recomposing the ink color) */
@@ -468,11 +532,13 @@ const html = `<!DOCTYPE html>
       @keyframes floatA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,30px) scale(1.08); } }
       @keyframes floatB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px,-40px) scale(1.12); } }
 
-      /* Grain overlay — Grainy Gradients style, now subtler since photo provides texture */
+      /* Grain overlay — fffuel-style feTurbulence noise, tuned for the dark hero photo.
+         Higher frequency = finer grain; overlay blend lets the photo show through. */
       .hero-mesh::after {
         content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.10 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        opacity: .55; mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 320px 320px;
+        opacity: .6; mix-blend-mode: overlay;
       }
 
       /* Hero content sits above all overlays */
@@ -1581,7 +1647,7 @@ const html = `<!DOCTYPE html>
     </section>
 
     <!-- ============== PROCESS ============== -->
-    <section id="process" class="py-20 lg:py-28 bg-brand-bone">
+    <section id="process" class="tex-spots py-20 lg:py-28 bg-brand-bone">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto text-center mb-14">
           <p class="eyebrow text-brand-green font-bold uppercase tracking-wider text-sm mb-4">
@@ -1681,7 +1747,7 @@ const html = `<!DOCTYPE html>
     </section>
 
     <!-- ============== FAQ ============== -->
-    <section id="faq" class="py-20 lg:py-28 bg-brand-sand/40">
+    <section id="faq" class="tex-topo py-20 lg:py-28 bg-brand-sand/40">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <p class="eyebrow text-brand-green font-bold uppercase tracking-wider text-sm mb-4">
