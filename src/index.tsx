@@ -8,7 +8,7 @@ const html = `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pest Control Durham NC | Castle Exterminators — Termites, Ants, Roaches & Mosquitoes</title>
-    <meta name="description" content="Local pest control in Durham, NC. Castle Exterminators eliminates termites, ants, roaches, mice, mosquitoes & more with eco-friendly, family-safe treatments. Free inspection · 5.0★ on Google · Licensed & insured. Call (919) 606-6866.">
+    <meta name="description" content="Local pest control in Durham, NC. Castle Exterminators eliminates termites, ants, roaches, mice, mosquitoes & more with eco-friendly, family-safe treatments. Free inspection · 5.0★ on Google · Licensed & insured. Call (919) 606-8686.">
     <meta name="keywords" content="pest control Durham NC, exterminator Durham, termite control Durham, ant control Durham, roach exterminator Durham, mosquito control Durham, rodent removal Durham, eco-friendly pest control, family-safe pest control">
     <meta name="theme-color" content="#1F6F4A">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -20,7 +20,7 @@ const html = `<!DOCTYPE html>
     <!-- Open Graph -->
     <meta property="og:site_name" content="Castle Exterminators">
     <meta property="og:title" content="Pest Control Durham NC | Castle Exterminators">
-    <meta property="og:description" content="Family-owned, eco-friendly pest control in Durham, NC. Termites, ants, roaches, mosquitoes & more. Free inspection — (919) 606-6866.">
+    <meta property="og:description" content="Family-owned, eco-friendly pest control in Durham, NC. Termites, ants, roaches, mosquitoes & more. Free inspection — (919) 606-8686.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.castleexterminators.co/">
     <meta property="og:image" content="https://www.castleexterminators.co/static/castle-logo.png">
@@ -29,7 +29,7 @@ const html = `<!DOCTYPE html>
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pest Control Durham NC | Castle Exterminators">
-    <meta name="twitter:description" content="Family-owned, eco-friendly pest control in Durham, NC. Free inspection — (919) 606-6866.">
+    <meta name="twitter:description" content="Family-owned, eco-friendly pest control in Durham, NC. Free inspection — (919) 606-8686.">
     <meta name="twitter:image" content="https://www.castleexterminators.co/static/castle-logo.png">
 
     <!-- Structured data: LocalBusiness + Organization (the most important schema for local Google rankings) -->
@@ -42,7 +42,7 @@ const html = `<!DOCTYPE html>
       "alternateName": "Castle Exterminators Durham NC",
       "description": "Family-owned local pest control company serving Durham, NC and surrounding communities. Eco-friendly, family-safe treatments for termites, ants, roaches, rodents, mosquitoes and more.",
       "url": "https://www.castleexterminators.co/",
-      "telephone": "+1-919-606-6866",
+      "telephone": "+1-919-606-8686",
       "email": "services@castleexterminators.co",
       "image": "https://www.castleexterminators.co/static/castle-logo.png",
       "logo": "https://www.castleexterminators.co/static/castle-logo.png",
@@ -1222,9 +1222,9 @@ const html = `<!DOCTYPE html>
         </span>
 
         <!-- Phone-led CTA — primary action shifts from generic 'Free Inspection' to a one-tap call -->
-        <a href="tel:+19196066866" class="nav-cta inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold text-sm px-3.5 sm:px-4 py-2 rounded-lg shadow-cta">
+        <a href="tel:+19196068686" class="nav-cta inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-brand-navy font-bold text-sm px-3.5 sm:px-4 py-2 rounded-lg shadow-cta">
           <span class="nav-cta-icon" aria-hidden="true"><i class="fa-solid fa-phone-volume"></i></span>
-          <span class="hidden sm:inline">(919) 606-6866</span>
+          <span class="hidden sm:inline">(919) 606-8686</span>
           <span class="sm:hidden">Call</span>
         </a>
 
@@ -1349,8 +1349,8 @@ const html = `<!DOCTYPE html>
         <li><a href="#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
         <li><a href="#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
         <li class="pt-2">
-          <a href="tel:+19196066866" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold">
-            <i class="fa-solid fa-phone-volume"></i> (919) 606-6866
+          <a href="tel:+19196068686" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold">
+            <i class="fa-solid fa-phone-volume"></i> (919) 606-8686
           </a>
         </li>
       </ul>
@@ -1398,9 +1398,9 @@ const html = `<!DOCTYPE html>
               <i class="fa-solid fa-clipboard-check"></i>
               Get Free Inspection
             </a>
-            <a href="tel:+19196066866" class="cta-elastic inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold px-7 py-4 rounded-xl text-base backdrop-blur">
+            <a href="tel:+19196068686" class="cta-elastic inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold px-7 py-4 rounded-xl text-base backdrop-blur">
               <i class="fa-solid fa-phone-volume"></i>
-              Call (919) 606-6866
+              Call (919) 606-8686
             </a>
           </div>
 
@@ -1592,7 +1592,7 @@ const html = `<!DOCTYPE html>
 
         <div class="text-center mt-12 reveal">
           <a href="#contact" class="inline-flex items-center gap-2 text-brand-green font-bold hover:text-brand-green-dark">
-            Don't see your pest? Call (919) 606-6866 — we probably handle it.
+            Don't see your pest? Call (919) 606-8686 — we probably handle it.
             <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
@@ -1663,7 +1663,7 @@ const html = `<!DOCTYPE html>
             <div class="process-num">1</div>
             <i class="process-icon fa-solid fa-phone-volume text-2xl text-brand-green mb-4 mt-2 block"></i>
             <h3 class="font-bold text-lg mb-2">Contact us</h3>
-            <p class="text-sm text-slate-600">Call (919) 606-6866, text, or fill out the form. We'll get back to you within 2 business hours.</p>
+            <p class="text-sm text-slate-600">Call (919) 606-8686, text, or fill out the form. We'll get back to you within 2 business hours.</p>
           </li>
           <li class="process-step reveal reveal-delay-1 relative bg-white border border-slate-100 rounded-2xl p-6 lg:p-7" data-step="2">
             <div class="process-num">2</div>
@@ -1770,7 +1770,7 @@ const html = `<!DOCTYPE html>
               <h3 class="font-bold text-lg pr-4">How fast can you come out to my Durham home?</h3>
               <span class="chev w-9 h-9 rounded-full bg-brand-green/10 text-brand-green grid place-items-center transition-transform"><i class="fa-solid fa-chevron-down text-sm"></i></span>
             </summary>
-            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">For urgent infestations we do our best to offer same-day service in the Durham area if you call before noon at <a href="tel:+19196066866" class="text-brand-green font-bold">(919) 606-6866</a>. Otherwise we'll schedule your free inspection within 24–48 hours, including evening slots.</p></div>
+            <div class="faq-body"><p class="mt-4 text-slate-600 leading-relaxed">For urgent infestations we do our best to offer same-day service in the Durham area if you call before noon at <a href="tel:+19196068686" class="text-brand-green font-bold">(919) 606-8686</a>. Otherwise we'll schedule your free inspection within 24–48 hours, including evening slots.</p></div>
           </details>
 
           <details class="reveal group bg-white border border-slate-200 rounded-2xl p-6 open:shadow-card transition">
@@ -1818,7 +1818,7 @@ const html = `<!DOCTYPE html>
             "name": "How fast can you come out to my Durham home?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "For urgent infestations we do our best to offer same-day service in the Durham area if you call before noon at (919) 606-6866. Otherwise we'll schedule your free inspection within 24–48 hours, including evening slots."
+              "text": "For urgent infestations we do our best to offer same-day service in the Durham area if you call before noon at (919) 606-8686. Otherwise we'll schedule your free inspection within 24–48 hours, including evening slots."
             }
           },
           {
@@ -1861,11 +1861,11 @@ const html = `<!DOCTYPE html>
           <p class="text-lg text-slate-600 mb-8">Tell us a bit about your pest problem and a friendly Castle Exterminators expert will get back to you within <strong>2 business hours</strong> to schedule your free inspection — anywhere in Durham, NC and surrounding communities.</p>
 
           <div class="space-y-4 mb-8">
-            <a href="tel:+19196066866" class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
+            <a href="tel:+19196068686" class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
               <span class="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green grid place-items-center text-lg"><i class="fa-solid fa-phone-volume"></i></span>
               <div>
                 <p class="text-xs text-slate-500 font-semibold uppercase tracking-wide">Call or text</p>
-                <p class="font-bold text-brand-navy text-lg">(919) 606-6866</p>
+                <p class="font-bold text-brand-navy text-lg">(919) 606-8686</p>
               </div>
             </a>
             <a href="mailto:services@castleexterminators.co" class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
@@ -1978,7 +1978,7 @@ const html = `<!DOCTYPE html>
         <div>
           <h4 class="text-white font-bold mb-4">Get in Touch</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="tel:+19196066866" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-phone-volume text-brand-green-light"></i> (919) 606-6866</a></li>
+            <li><a href="tel:+19196068686" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-phone-volume text-brand-green-light"></i> (919) 606-8686</a></li>
             <li><a href="mailto:services@castleexterminators.co" class="hover:text-white flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-green-light"></i> services@castleexterminators.co</a></li>
             <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-green-light"></i> Durham, NC</li>
             <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-brand-green-light"></i> Mon–Fri 8am–5pm</li>
@@ -2596,7 +2596,7 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
       "@type": "PestControlService",
       "@id": "https://www.castleexterminators.co/#business",
       "name": "Castle Exterminators",
-      "telephone": "+1-919-606-6866",
+      "telephone": "+1-919-606-8686",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Durham",
@@ -2841,9 +2841,9 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
         <li><a href="/#faq" class="nav-link">FAQ</a></li>
       </ul>
       <div class="flex items-center gap-3">
-        <a href="tel:+19196066866" class="nav-phone hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
+        <a href="tel:+19196068686" class="nav-phone hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
           <span class="nav-phone-icon text-brand-green"><i class="fa-solid fa-phone-volume"></i></span>
-          <span>(919) 606-6866</span>
+          <span>(919) 606-8686</span>
         </a>
         <a href="/#contact" class="nav-cta inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white text-sm font-bold px-4 py-2 rounded-lg shadow-card transition-transform duration-300 hover:-translate-y-0.5">
           <span>Free Inspection</span>
@@ -2912,8 +2912,8 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
         <li><a href="/#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
         <li><a href="/#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
         <li class="pt-2">
-          <a href="tel:+19196066866" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold">
-            <i class="fa-solid fa-phone-volume"></i> (919) 606-6866
+          <a href="tel:+19196068686" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold">
+            <i class="fa-solid fa-phone-volume"></i> (919) 606-8686
           </a>
         </li>
       </ul>
@@ -3061,8 +3061,8 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
           <a href="/#contact" class="block text-center bg-brand-orange hover:bg-brand-orange-dark text-white font-bold py-3 px-4 rounded-xl transition shadow-card mb-3">
             <i class="fa-solid fa-calendar-check mr-2"></i> Request Free Inspection
           </a>
-          <a href="tel:+19196066866" class="block text-center bg-white/15 hover:bg-white/25 text-white font-bold py-3 px-4 rounded-xl transition backdrop-blur border border-white/25">
-            <i class="fa-solid fa-phone-volume mr-2"></i> (919) 606-6866
+          <a href="tel:+19196068686" class="block text-center bg-white/15 hover:bg-white/25 text-white font-bold py-3 px-4 rounded-xl transition backdrop-blur border border-white/25">
+            <i class="fa-solid fa-phone-volume mr-2"></i> (919) 606-8686
           </a>
           <div class="mt-5 pt-5 border-t border-white/20 grid grid-cols-2 gap-3 text-center">
             <div><div class="font-display font-extrabold text-xl">5.0<i class="fa-solid fa-star text-brand-orange text-sm ml-1"></i></div><div class="text-[11px] opacity-80">Google & Yelp</div></div>
@@ -3100,7 +3100,7 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
       <div>
         <h4 class="text-white font-bold mb-4">Contact</h4>
         <ul class="space-y-2 text-sm">
-          <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196066866" class="hover:text-white">(919) 606-6866</a></li>
+          <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196068686" class="hover:text-white">(919) 606-8686</a></li>
           <li><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:services@castleexterminators.co" class="hover:text-white">services@castleexterminators.co</a></li>
           <li><i class="fa-solid fa-location-dot mr-2"></i> Durham, NC</li>
         </ul>
@@ -3180,7 +3180,7 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
       "name": "Castle Exterminators",
       "foundingDate": "2017",
       "founder": { "@type": "Person", "name": "The Castle Family" },
-      "telephone": "+1-919-606-6866",
+      "telephone": "+1-919-606-8686",
       "email": "services@castleexterminators.co",
       "address": {
         "@type": "PostalAddress",
@@ -3267,9 +3267,9 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
         <li><a href="/#faq" class="nav-link">FAQ</a></li>
       </ul>
       <div class="flex items-center gap-3">
-        <a href="tel:+19196066866" class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
+        <a href="tel:+19196068686" class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
           <span class="text-brand-green"><i class="fa-solid fa-phone-volume"></i></span>
-          <span>(919) 606-6866</span>
+          <span>(919) 606-8686</span>
         </a>
         <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white text-sm font-bold px-4 py-2 rounded-lg shadow-card transition-transform duration-300 hover:-translate-y-0.5">
           <span>Free Inspection</span>
@@ -3287,7 +3287,7 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
         <li><a href="/#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
         <li><a href="/#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
         <li><a href="/#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
-        <li class="pt-2"><a href="tel:+19196066866" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold"><i class="fa-solid fa-phone-volume"></i> (919) 606-6866</a></li>
+        <li class="pt-2"><a href="tel:+19196068686" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold"><i class="fa-solid fa-phone-volume"></i> (919) 606-8686</a></li>
       </ul>
     </div>
   </header>
@@ -3367,11 +3367,11 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
             </div>
           </div>
           <div class="mt-6 pt-6 border-t border-slate-100">
-            <a href="tel:+19196066866" class="flex items-center gap-3 text-brand-green hover:text-brand-green-dark transition">
+            <a href="tel:+19196068686" class="flex items-center gap-3 text-brand-green hover:text-brand-green-dark transition">
               <span class="w-10 h-10 grid place-items-center rounded-full bg-brand-green/10"><i class="fa-solid fa-phone-volume"></i></span>
               <span>
                 <span class="block text-xs uppercase tracking-wider text-slate-500 font-bold">Talk to a person</span>
-                <span class="block font-bold">(919) 606-6866</span>
+                <span class="block font-bold">(919) 606-8686</span>
               </span>
             </a>
           </div>
@@ -3489,7 +3489,7 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
           <p class="text-lg opacity-95 max-w-xl mx-auto mb-8">Free, no-pressure inspection. We'll show up, look around, and tell you exactly what's going on &mdash; whether you hire us or not.</p>
           <div class="flex flex-wrap gap-3 justify-center">
             <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white font-bold px-6 py-3.5 rounded-xl shadow-card transition-transform duration-300 hover:-translate-y-0.5"><i class="fa-solid fa-calendar-check"></i> Request Free Inspection</a>
-            <a href="tel:+19196066866" class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-6 py-3.5 rounded-xl backdrop-blur border border-white/25 transition"><i class="fa-solid fa-phone-volume"></i> (919) 606-6866</a>
+            <a href="tel:+19196068686" class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-6 py-3.5 rounded-xl backdrop-blur border border-white/25 transition"><i class="fa-solid fa-phone-volume"></i> (919) 606-8686</a>
           </div>
         </div>
       </div>
@@ -3518,7 +3518,7 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
           <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
           <li><a href="/#reviews" class="hover:text-white">Reviews</a></li>
           <li><a href="/#contact" class="hover:text-white">Contact</a></li>
-          <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196066866" class="hover:text-white">(919) 606-6866</a></li>
+          <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196068686" class="hover:text-white">(919) 606-8686</a></li>
         </ul>
       </div>
     </div>
@@ -3580,7 +3580,7 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pest Control in ${loc.name}, NC | Castle Exterminators</title>
-  <meta name="description" content="Local pest control in ${loc.name}, NC. Castle Exterminators serves ${loc.zipCodes.join(', ')} with family-owned, licensed, eco-friendly extermination for roaches, termites, ants, mice, and more. Free inspection. (919) 606-6866." />
+  <meta name="description" content="Local pest control in ${loc.name}, NC. Castle Exterminators serves ${loc.zipCodes.join(', ')} with family-owned, licensed, eco-friendly extermination for roaches, termites, ants, mice, and more. Free inspection. (919) 606-8686." />
   <meta name="keywords" content="pest control ${loc.name}, exterminator ${loc.name} NC, ${loc.name} pest control near me, ${loc.zipCodes.join(' ')} pest control, Durham pest control, ${loc.name} roach control, ${loc.name} termite inspection" />
   <meta name="theme-color" content="#1F6F4A" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -3607,7 +3607,7 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
       "@type": "PestControlService",
       "@id": "https://www.castleexterminators.co/#business",
       "name": "Castle Exterminators",
-      "telephone": "+1-919-606-6866",
+      "telephone": "+1-919-606-8686",
       "email": "services@castleexterminators.co",
       "address": { "@type": "PostalAddress", "addressLocality": "Durham", "addressRegion": "NC", "postalCode": "${loc.zipCodes[0]}", "addressCountry": "US" },
       "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "3", "bestRating": "5", "worstRating": "1" }
@@ -3689,9 +3689,9 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
         <li><a href="/#faq" class="nav-link">FAQ</a></li>
       </ul>
       <div class="flex items-center gap-3">
-        <a href="tel:+19196066866" class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
+        <a href="tel:+19196068686" class="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-brand-navy">
           <span class="text-brand-green"><i class="fa-solid fa-phone-volume"></i></span>
-          <span>(919) 606-6866</span>
+          <span>(919) 606-8686</span>
         </a>
         <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white text-sm font-bold px-4 py-2 rounded-lg shadow-card transition-transform duration-300 hover:-translate-y-0.5">
           <span>Free Inspection</span>
@@ -3709,7 +3709,7 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
         <li><a href="/#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
         <li><a href="/#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
         <li><a href="/#faq" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">FAQ</a></li>
-        <li class="pt-2"><a href="tel:+19196066866" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold"><i class="fa-solid fa-phone-volume"></i> (919) 606-6866</a></li>
+        <li class="pt-2"><a href="tel:+19196068686" class="flex items-center gap-2 px-2 py-2.5 text-brand-green font-bold"><i class="fa-solid fa-phone-volume"></i> (919) 606-8686</a></li>
       </ul>
     </div>
   </header>
@@ -3832,8 +3832,8 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
           <a href="/#contact" class="block text-center bg-brand-orange hover:bg-brand-orange-dark text-white font-bold py-3 px-4 rounded-xl transition shadow-card mb-3">
             <i class="fa-solid fa-calendar-check mr-2"></i> Request Free Inspection
           </a>
-          <a href="tel:+19196066866" class="block text-center bg-white/15 hover:bg-white/25 text-white font-bold py-3 px-4 rounded-xl transition backdrop-blur border border-white/25">
-            <i class="fa-solid fa-phone-volume mr-2"></i> (919) 606-6866
+          <a href="tel:+19196068686" class="block text-center bg-white/15 hover:bg-white/25 text-white font-bold py-3 px-4 rounded-xl transition backdrop-blur border border-white/25">
+            <i class="fa-solid fa-phone-volume mr-2"></i> (919) 606-8686
           </a>
           <div class="mt-5 pt-5 border-t border-white/20 grid grid-cols-2 gap-3 text-center">
             <div><div class="font-display font-extrabold text-xl">5.0<i class="fa-solid fa-star text-brand-orange text-sm ml-1"></i></div><div class="text-[11px] opacity-80">Google &amp; Yelp</div></div>
@@ -3874,7 +3874,7 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
           <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
           <li><a href="/#reviews" class="hover:text-white">Reviews</a></li>
           <li><a href="/#contact" class="hover:text-white">Contact</a></li>
-          <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196066866" class="hover:text-white">(919) 606-6866</a></li>
+          <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196068686" class="hover:text-white">(919) 606-8686</a></li>
         </ul>
       </div>
     </div>
