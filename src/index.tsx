@@ -137,7 +137,14 @@ const html = `<!DOCTYPE html>
     }
     </script>
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏰</text></svg>">
+    <!-- Favicon: castle silhouette mark, brand emerald #1F6F4A -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/static/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+    <link rel="mask-icon" href="/static/castle-favicon.png" color="#1F6F4A">
 
     <!-- Tailwind (compiled at build time → fast on mobile) -->
     <link rel="stylesheet" href="/static/tailwind.css">
@@ -2570,7 +2577,7 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
   <meta name="geo.region" content="US-NC" />
   <meta name="geo.placename" content="Durham, North Carolina" />
   <link rel="canonical" href="https://www.castleexterminators.co/services/${s.slug}" />
-  <link rel="icon" href="/static/castle-logo.png" />
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico" /><link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" /><link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" /><link rel="manifest" href="/static/site.webmanifest" />
   <meta property="og:site_name" content="Castle Exterminators" />
   <meta property="og:title" content="${s.name} | Castle Exterminators Durham NC" />
   <meta property="og:description" content="${s.tagline}" />
@@ -3158,7 +3165,7 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
   <meta name="geo.region" content="US-NC" />
   <meta name="geo.placename" content="Durham, North Carolina" />
   <link rel="canonical" href="https://www.castleexterminators.co/about" />
-  <link rel="icon" href="/static/castle-logo.png" />
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico" /><link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" /><link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" /><link rel="manifest" href="/static/site.webmanifest" />
   <meta property="og:site_name" content="Castle Exterminators" />
   <meta property="og:title" content="About Castle Exterminators | Family-Owned Pest Control in Durham, NC" />
   <meta property="og:description" content="Durham's family-owned, locally-operated pest control company. Licensed in NC, eco-friendly methods, 5.0 stars on Google & Yelp." />
@@ -3587,7 +3594,7 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
   <meta name="geo.region" content="US-NC" />
   <meta name="geo.placename" content="${loc.name}, North Carolina" />
   <link rel="canonical" href="https://www.castleexterminators.co/locations/${loc.slug}" />
-  <link rel="icon" href="/static/castle-logo.png" />
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico" /><link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" /><link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" /><link rel="manifest" href="/static/site.webmanifest" />
   <meta property="og:site_name" content="Castle Exterminators" />
   <meta property="og:title" content="Pest Control in ${loc.name}, NC | Castle Exterminators" />
   <meta property="og:description" content="Local, family-owned pest control serving ${loc.name}, NC. ${loc.zipCodes.join(', ')}." />
