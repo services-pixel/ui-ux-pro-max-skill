@@ -1906,7 +1906,7 @@ const html = `<!DOCTYPE html>
 
         <!-- Right: GorillaDesk form -->
         <div class="lg:col-span-7 reveal">
-          <div class="bg-white rounded-3xl shadow-card border border-slate-100 p-6 sm:p-10">
+          <div id="inspection-form" class="bg-white rounded-3xl shadow-card border border-slate-100 p-6 sm:p-10 scroll-mt-24">
             <div class="flex items-center gap-3 mb-2">
               <span class="w-10 h-10 rounded-xl bg-brand-green-mist text-brand-green-dark grid place-items-center"><i class="fa-solid fa-clipboard-check"></i></span>
               <h3 class="font-extrabold text-2xl">Request Your Free Durham Inspection</h3>
@@ -2347,6 +2347,43 @@ const html = `<!DOCTYPE html>
     }
     const openBtn = document.getElementById('open-gd-form');
     if (openBtn) openBtn.addEventListener('click', openGorillaDeskForm);
+
+    /* -----------------------------------------------------------------
+       Smart Contact CTA routing
+       - On mobile (< 1024px, the lg: breakpoint), every CTA pointing at
+         #contact instead lands the user directly on the inspection form
+         card (#inspection-form), because the left intro column appears
+         ABOVE the form on small screens and would otherwise hide it.
+       - On desktop (>= 1024px) the two columns are side-by-side, so we
+         keep the default behavior and land at the top of #contact, which
+         shows both the intro and the form together.
+       ----------------------------------------------------------------- */
+    document.addEventListener('click', function(e) {
+      const a = e.target && e.target.closest && e.target.closest('a[href$="#contact"], a[href$="/#contact"]');
+      if (!a) return;
+      // Honor modified clicks (open in new tab, etc.)
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      const isMobile = window.matchMedia('(max-width: 1023.98px)').matches;
+      const targetId = isMobile ? 'inspection-form' : 'contact';
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Update the URL so back-button + share still work
+      try { history.pushState(null, '', '#' + targetId); } catch (err) { /* no-op */ }
+    });
+
+    /* If user lands on the page with #contact in the URL on mobile, jump
+       to the form card instead so the first thing they see is the form. */
+    (function adjustInitialHash() {
+      if (window.location.hash !== '#contact') return;
+      if (!window.matchMedia('(max-width: 1023.98px)').matches) return;
+      // Wait for layout to settle then scroll
+      setTimeout(function() {
+        const form = document.getElementById('inspection-form');
+        if (form) form.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }, 60);
+    })();
   </script>
 
   <!--
