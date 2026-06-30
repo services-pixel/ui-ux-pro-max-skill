@@ -1252,6 +1252,7 @@ const html = `<!DOCTYPE html>
             <i class="fa-solid fa-chevron-down text-[10px] opacity-70" aria-hidden="true"></i>
           </a>
         </li>
+        <li><a href="/pests" class="nav-link">Pest Library</a></li>
         <li><a href="/about" class="nav-link">About</a></li>
         <li><a href="#why-us" class="nav-link" data-section="why-us">Why Us</a></li>
         <li><a href="#reviews" class="nav-link" data-section="reviews">Reviews</a></li>
@@ -1388,6 +1389,7 @@ const html = `<!DOCTYPE html>
             <li><a href="/services/crawl-space-encapsulation" class="flex items-center gap-2.5 px-2 py-2 text-sm rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition"><i class="fa-solid fa-house-flag w-4 text-brand-green"></i> Crawl Space Encapsulation</a></li>
           </ul>
         </li>
+        <li><a href="/pests" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Pest Library</a></li>
         <li><a href="/about" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">About</a></li>
         <li><a href="#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
         <li><a href="#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
@@ -3058,6 +3060,7 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
             <i class="fa-solid fa-chevron-down text-[10px] opacity-70" aria-hidden="true"></i>
           </a>
         </li>
+        <li><a href="/pests" class="nav-link">Pest Library</a></li>
         <li><a href="/#why-us" class="nav-link">Why Us</a></li>
         <li><a href="/#process" class="nav-link">Process</a></li>
         <li><a href="/#reviews" class="nav-link">Reviews</a></li>
@@ -3130,6 +3133,7 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
             ${allServices.map(svc => `<li><a href="/services/${svc.slug}" class="flex items-center gap-2.5 px-2 py-2 text-sm rounded-lg ${svc.slug === s.slug ? 'bg-brand-green/10 text-brand-green' : 'hover:bg-brand-green/10 hover:text-brand-green'} transition"><i class="fa-solid ${svc.icon} w-4 text-brand-green"></i> ${svc.name}</a></li>`).join('')}
           </ul>
         </li>
+        <li><a href="/pests" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Pest Library</a></li>
         <li><a href="/#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
         <li><a href="/#process" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Process</a></li>
         <li><a href="/#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
@@ -3508,6 +3512,7 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
       </a>
       <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
         <li><a href="/#services" class="nav-link">Services</a></li>
+        <li><a href="/pests" class="nav-link">Pest Library</a></li>
         <li><a href="/about" class="nav-link active">About</a></li>
         <li><a href="/#why-us" class="nav-link">Why Us</a></li>
         <li><a href="/#reviews" class="nav-link">Reviews</a></li>
@@ -3530,6 +3535,7 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
     <div id="nav-mobile" class="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur">
       <ul class="px-4 sm:px-6 py-3 space-y-1 text-sm font-semibold text-slate-700">
         <li><a href="/#services" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Services</a></li>
+        <li><a href="/pests" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Pest Library</a></li>
         <li><a href="/about" class="block px-2 py-2.5 rounded-lg bg-brand-green/10 text-brand-green transition">About</a></li>
         <li><a href="/#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
         <li><a href="/#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
@@ -4048,6 +4054,7 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
       </a>
       <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
         <li><a href="/#services" class="nav-link">Services</a></li>
+        <li><a href="/pests" class="nav-link">Pest Library</a></li>
         <li><a href="/about" class="nav-link">About</a></li>
         <li><a href="/#why-us" class="nav-link">Why Us</a></li>
         <li><a href="/#reviews" class="nav-link">Reviews</a></li>
@@ -4070,6 +4077,7 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
     <div id="nav-mobile" class="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur">
       <ul class="px-4 sm:px-6 py-3 space-y-1 text-sm font-semibold text-slate-700">
         <li><a href="/#services" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Services</a></li>
+        <li><a href="/pests" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Pest Library</a></li>
         <li><a href="/about" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">About</a></li>
         <li><a href="/#why-us" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Why Us</a></li>
         <li><a href="/#reviews" class="block px-2 py-2.5 rounded-lg hover:bg-brand-green/10 hover:text-brand-green transition">Reviews</a></li>
@@ -4283,6 +4291,822 @@ locations.forEach(loc => {
   app.get(`/locations/${loc.slug}`, (c) => c.html(renderLocationPage(loc, services)))
 })
 
+// ============================================================================
+// PEST LIBRARY — identification pages for 48 common pests.
+// Each pest gets /pests/<slug> with infographic + intro + CTA + cross-links.
+// Hub page at /pests groups them by category.
+// ============================================================================
+type PestCategory = 'ants' | 'roaches' | 'rodents' | 'flying' | 'stinging' | 'spiders' | 'occasional' | 'wood-destroying' | 'fabric-pantry' | 'biting' | 'garden'
+
+type Pest = {
+  slug: string
+  name: string
+  scientific: string
+  category: PestCategory
+  size: string             // e.g., '2–6 mm'
+  threat: 'low' | 'medium' | 'high'
+  serviceSlug?: string     // related service for CTA
+  shortDesc: string        // 1-sentence card description (for hub page)
+  intro: string            // ~80-word intro paragraph
+  identify: string         // 1-sentence ID clue
+  whereInNc: string        // Triangle/NC context
+}
+
+const pestCategories: { id: PestCategory; name: string; description: string; icon: string }[] = [
+  { id: 'ants',             name: 'Ants',                description: 'Trail-followers, scavengers, and structural nesters — from sugar ants to fire ants.',                       icon: 'fa-bugs' },
+  { id: 'roaches',          name: 'Cockroaches',         description: 'Allergen-spreading, fast-breeding kitchen and bathroom invaders.',                                          icon: 'fa-bug' },
+  { id: 'rodents',          name: 'Rodents',             description: 'Mice that chew wires, contaminate food, and squeeze through dime-sized gaps.',                              icon: 'fa-mouse' },
+  { id: 'flying',           name: 'Flies & Flying Pests',description: 'Houseflies, fruit flies, mosquitoes, cluster flies, cicadas — anything with wings and a buzz.',             icon: 'fa-feather' },
+  { id: 'stinging',         name: 'Stinging Insects',    description: 'Yellow jackets, wasps, and hornets — painful, sometimes life-threatening.',                                  icon: 'fa-triangle-exclamation' },
+  { id: 'spiders',          name: 'Spiders',             description: 'From harmless cellar spiders to medically significant widows and recluses.',                                 icon: 'fa-spider' },
+  { id: 'biting',           name: 'Biting Pests',        description: 'Bed bugs, ticks, fleas — pests that feed on blood and cause itching, welts, or disease.',                    icon: 'fa-droplet' },
+  { id: 'occasional',       name: 'Occasional Invaders', description: 'Silverfish, earwigs, stink bugs, centipedes — sneak in when weather changes.',                              icon: 'fa-house-crack' },
+  { id: 'wood-destroying',  name: 'Wood-Destroying',     description: 'Subterranean termites, carpenter ants, and borer beetles — silent structural damage.',                      icon: 'fa-tree' },
+  { id: 'fabric-pantry',    name: 'Fabric & Pantry',     description: 'Clothes moths and pantry moths that ruin garments and contaminate dry goods.',                              icon: 'fa-shirt' },
+  { id: 'garden',           name: 'Garden & Outdoor',    description: 'Aphids, scale insects, leaf chewers, wood borers, grasshoppers, locusts — primarily landscape concerns.',   icon: 'fa-leaf' }
+]
+
+const pests: Pest[] = [
+  // ----- ANTS -----
+  { slug: 'fire-ant', name: 'Fire Ant', scientific: 'Solenopsis invicta', category: 'ants', size: '2–6 mm', threat: 'high', serviceSlug: 'ants',
+    shortDesc: 'Aggressive reddish-orange ants with a painful stinging bite that builds dome-shaped mounds.',
+    intro: "Fire ants are one of the most aggressive ant species in the southern US — and they're a growing problem in central North Carolina. Workers swarm and sting in numbers when their mound is disturbed, causing burning welts and pustules that can develop into severe allergic reactions for sensitive people. They build dome-shaped soil mounds with no central opening, often in lawns, pasture edges, and along sidewalk and driveway cracks where the soil stays warm.",
+    identify: 'Reddish-orange body with darker abdomen; workers come in varied sizes within the same mound.',
+    whereInNc: 'Common across the Triangle on sunny lawns, school fields, and the edges of driveways — especially South Durham, Cary, and Raleigh subdivisions.' },
+  { slug: 'pharaoh-ant', name: 'Pharaoh Ant', scientific: 'Monomorium pharaonis', category: 'ants', size: '1.5–2 mm', threat: 'medium', serviceSlug: 'ants',
+    shortDesc: 'Tiny pale yellow ants that bud into new colonies when sprayed — never use repellent insecticides.',
+    intro: "Pharaoh ants are one of the trickiest indoor ant species to control. They are tiny, pale yellow, almost translucent, and form colonies with multiple queens. If you spray them with a repellent insecticide, the colony 'buds' — splitting into several smaller colonies that spread further through your home. Pharaoh ants prefer warm, humid indoor spaces and are a notorious problem in hospitals, hotels, apartments, kitchens, and bathrooms where they can contaminate sterile surfaces and food.",
+    identify: '1.5–2 mm pale yellow to light tan body with darker abdomen; almost translucent.',
+    whereInNc: 'Encountered year-round indoors across the Triangle, especially in apartments, restaurants, and older buildings.' },
+  { slug: 'odorous-house-ant', name: 'Odorous House Ant', scientific: 'Tapinoma sessile', category: 'ants', size: '2.5–3 mm', threat: 'low', serviceSlug: 'ants',
+    shortDesc: 'Brown ants that smell like rotten coconut when crushed; love sweets and form wide foraging trails.',
+    intro: "Odorous house ants are one of the most common indoor ants in North Carolina homes. They're harmless — no bite, no sting, no disease — but they're a serious nuisance, forming wide foraging trails along countertops and baseboards in pursuit of sweets, dead insects, and crumbs. Their signature feature: a distinctive rotten-coconut smell when crushed. They nest under sinks, in wall voids, and behind appliances anywhere moisture is available.",
+    identify: '2.5–3 mm brown to black body; produces rotten-coconut odor when crushed.',
+    whereInNc: 'One of the most-reported indoor ants in Durham and Chapel Hill kitchens, especially after spring rains.' },
+  { slug: 'little-black-ant', name: 'Little Black Ant', scientific: 'Monomorium minimum', category: 'ants', size: '1.5–2 mm', threat: 'low', serviceSlug: 'ants',
+    shortDesc: 'Jet-black, smaller than most household ants; nests in masonry and wall cavities with multiple queens.',
+    intro: "Little black ants are among the smallest household ants you'll encounter — a tiny, shiny jet-black ant that forms long foraging trails between outdoor nests and indoor food sources. They're opportunistic omnivores: sugar, grease, meat, dead insects — anything available. Colonies have multiple queens, which makes them resilient and quick to re-establish if you only spray the workers you see. They typically nest in rotting wood, brickwork, masonry voids, wall cavities, and under stones.",
+    identify: '1.5–2 mm jet-black shiny body; among the smallest household ants.',
+    whereInNc: 'Frequently found nesting in older Durham brick foundations and stone garden walls.' },
+  { slug: 'thief-ant', name: 'Thief Ant', scientific: 'Solenopsis molesta', category: 'ants', size: '1.5–2 mm', threat: 'low', serviceSlug: 'ants',
+    shortDesc: 'Tiny pale ants that nest beside other ant colonies and steal their brood; easy to confuse with pharaoh ants.',
+    intro: "Thief ants get their name from their unusual habit: they nest right next to other ant colonies and 'steal' the larvae and pupae to feed their own brood. They're tiny — easy to mistake for pharaoh ants — but they tend to prefer greasy and high-protein foods over sweets, which is one way to tell them apart. Indoors they're a kitchen nuisance that contaminates food; outdoors they nest in wall voids, soil, and masonry.",
+    identify: '1.5–2 mm pale yellow to light brown body; very small with two-segment waist.',
+    whereInNc: 'Less common than odorous house ants but show up in older Triangle homes with mixed ant pressure.' },
+  { slug: 'raspberry-crazy-ant', name: 'Raspberry Crazy Ant', scientific: 'Nylanderia fulva', category: 'ants', size: '2–3 mm', threat: 'medium', serviceSlug: 'ants',
+    shortDesc: 'Erratic-running reddish-brown ants that displace native ants, form supercolonies, and short out electronics.',
+    intro: "Raspberry crazy ants are a Gulf-coast invasive species that has been steadily expanding north. They earn their name from the erratic, jerky way they run — no defined trails like other ants. They form massive supercolonies that displace native ant species and notoriously short-circuit electrical equipment by nesting inside outlets, breaker boxes, and HVAC units. They're not strongly attracted to typical ant baits, which makes them especially hard to control.",
+    identify: '2–3 mm reddish-brown ant with long legs and antennae; moves erratically.',
+    whereInNc: 'Mostly a Gulf-coast pest; rare in the Triangle, but worth identifying if you see ants behaving unusually.' },
+  { slug: 'carpenter-ant', name: 'Carpenter Ant', scientific: 'Camponotus pennsylvanicus', category: 'wood-destroying', size: '6–13 mm', threat: 'high', serviceSlug: 'ants',
+    shortDesc: 'Large black ants that excavate smooth galleries in moisture-damaged wood — a sign of structural issues.',
+    intro: "Carpenter ants don't actually eat wood — they excavate smooth galleries inside moist, damaged wood for nesting. That makes them a secondary indicator of a moisture problem somewhere in your home: a leaky roof, a sweating pipe, a damp crawl space. Left alone, an established colony can do significant structural damage to window frames, decks, roofs, and tree stumps. The tell-tale sign is coarse sawdust (frass) piling up below tiny holes.",
+    identify: '6–13 mm large black (or red-and-black) ants with smooth, rounded thorax.',
+    whereInNc: 'Common in older Durham homes, especially around chimneys, decks, and crawl spaces where moisture issues hide.' },
+  { slug: 'pavement-ant', name: 'Pavement Ant', scientific: 'Tetramorium immigrans', category: 'ants', size: '2.5–3 mm', threat: 'low', serviceSlug: 'ants',
+    shortDesc: 'Dark brown ants that pile soil at sidewalk cracks; forage indoors for grease, sweets, and meats.',
+    intro: "Pavement ants are the small dark ants you see leaving little piles of soil at the cracks of sidewalks, driveways, and foundation slabs. They forage indoors aggressively for grease, sweets, and meats — basically anything they can carry back to the nest. They're also known for territorial 'ant wars' with rival colonies, sometimes leaving small piles of dead workers on pavement.",
+    identify: '2.5–3 mm dark brown to black body with parallel grooves on head and thorax.',
+    whereInNc: 'Extremely common in Triangle driveways and foundations; one of the top reasons homeowners call about ants on patios.' },
+  { slug: 'acrobat-ant', name: 'Acrobat Ant', scientific: 'Crematogaster spp.', category: 'ants', size: '2.5–4 mm', threat: 'low', serviceSlug: 'ants',
+    shortDesc: 'Heart-shaped abdomen raised over the head when threatened; nests in moist wood and foam insulation.',
+    intro: "Acrobat ants get their name from their habit of raising their heart-shaped abdomen up over their head when alarmed. They nest in moist or damaged wood — often in old termite or carpenter ant galleries — and increasingly in foam insulation behind siding. They can bite mildly and emit a faint musky odor. While usually a nuisance pest, finding them inside your walls can signal underlying moisture damage worth investigating.",
+    identify: '2.5–4 mm light brown to black with heart-shaped abdomen raised when disturbed.',
+    whereInNc: 'Occasional in Triangle homes, especially houses with EIFS / foam-insulated exteriors.' },
+  { slug: 'harvester-ant', name: 'Harvester Ant', scientific: 'Pogonomyrmex spp.', category: 'ants', size: '5–10 mm', threat: 'high', serviceSlug: 'ants',
+    shortDesc: 'Large red ants of the western US with one of the most painful insect stings known to science.',
+    intro: "Harvester ants are large, robust red-to-dark-brown ants known for collecting seeds and clearing the vegetation in a wide circle around their nest entrance — making their mounds easy to spot. They deliver one of the most painful stings of any North American insect, and reactions can be severe in allergic individuals. They're primarily a western US species and rarely encountered in North Carolina.",
+    identify: '5–10 mm robust red to dark-brown body with prominent square head and beard-like hairs.',
+    whereInNc: 'Not native to the Triangle; included for identification reference if you encounter one while traveling west.' },
+  { slug: 'argentine-ant', name: 'Argentine Ant', scientific: 'Linepithema humile', category: 'ants', size: '2.5–3 mm', threat: 'medium', serviceSlug: 'ants',
+    shortDesc: 'Light-brown invasive ants that form vast supercolonies and displace native species.',
+    intro: "Argentine ants are an invasive species that has spread across the southern US. They form enormous supercolonies that can stretch across entire neighborhoods, displacing nearly all native ant species along the way. They follow distinct foraging trails to sweets indoors and tend aphid populations outdoors (which makes plant pests worse). Controlling them requires slow-acting sugar-based baits and persistent perimeter treatment — quick sprays don't work.",
+    identify: '2.5–3 mm uniform light-brown body, single waist segment, no stinger.',
+    whereInNc: 'Present in southern NC; in the Triangle they appear sporadically but can establish in landscaping mulch beds.' },
+
+  // ----- ROACHES -----
+  { slug: 'german-cockroach', name: 'German Cockroach', scientific: 'Blattella germanica', category: 'roaches', size: '13–16 mm', threat: 'high', serviceSlug: 'roaches',
+    shortDesc: 'The #1 indoor roach — light brown with two dark stripes; triggers asthma, breeds explosively.',
+    intro: "German cockroaches are the most common — and most problematic — indoor cockroach in North Carolina. A single female can produce thousands of offspring in a year, and infestations escalate fast. They trigger asthma and allergy attacks, spread salmonella and E. coli, and contaminate food. They prefer warm, humid spaces near food: kitchens, bathrooms, behind appliances. DIY sprays usually make infestations worse by scattering the population. Professional gel baits and IGRs are the proven solution.",
+    identify: '13–16 mm light brown body with two dark parallel stripes behind the head.',
+    whereInNc: 'Extremely common across the Triangle in apartments, rentals, restaurants, and any home with consistent humidity issues.' },
+  { slug: 'american-cockroach', name: 'American Cockroach', scientific: 'Periplaneta americana', category: 'roaches', size: '35–50 mm', threat: 'high', serviceSlug: 'roaches',
+    shortDesc: 'Large reddish-brown roach (a.k.a. "palmetto bug") from sewers, drains, and commercial basements.',
+    intro: "American cockroaches — often called 'water bugs' or 'palmetto bugs' — are the large reddish-brown roaches that show up unexpectedly from drains, basements, and sewers. They're long-lived, can fly short distances, and prefer warm damp commercial buildings, though they invade homes through plumbing and crawl spaces. They spread bacteria, parasites, and allergens. The fix is moisture control + sealing entry points + targeted baits and pro treatments.",
+    identify: '35–50 mm reddish-brown body with a yellow figure-8 marking on the pronotum; fully winged.',
+    whereInNc: 'Frequent in Triangle restaurants, basements, and older downtown commercial buildings.' },
+  { slug: 'smokybrown-cockroach', name: 'Smokybrown Cockroach', scientific: 'Periplaneta fuliginosa', category: 'roaches', size: '32–38 mm', threat: 'medium', serviceSlug: 'roaches',
+    shortDesc: 'Glossy mahogany-brown roach common in southern climates; strong flier, attracted to lights.',
+    intro: "Smokybrown cockroaches are large, glossy mahogany-brown roaches that thrive in the humid southern US. Unlike German roaches, they prefer to live outdoors — in gutters, tree holes, mulch, attic vents — and fly into homes attracted to lights at night, often in large numbers. They contribute to indoor allergens and can mechanically transmit pathogens. Effective control combines gutter cleaning, reduced outdoor lighting, perimeter treatments, and sealing entry points.",
+    identify: '32–38 mm uniformly dark mahogany-brown body; pronotum is solid dark brown; fully winged.',
+    whereInNc: "Common Triangle outdoor roach — especially in wooded properties around Duke Forest, Chapel Hill, and Hope Valley." },
+
+  // ----- RODENTS -----
+  { slug: 'house-mouse', name: 'House Mouse', scientific: 'Mus musculus', category: 'rodents', size: '7–10 cm body', threat: 'high', serviceSlug: 'rodents',
+    shortDesc: 'Small greyish-brown mouse that squeezes through quarter-inch gaps; chews wires, spreads disease.',
+    intro: "The house mouse is the most common indoor rodent in North Carolina. Adults can squeeze through gaps as small as a quarter-inch, climb walls and pipes, and breed rapidly — a single pair can produce dozens of offspring in a year. They contaminate food with droppings and urine, chew electrical wires (a leading cause of mystery house fires), and spread salmonella, hantavirus, and allergens. Effective control requires sealing entry points + traps + bait stations + sanitation.",
+    identify: '7–10 cm body plus equally long tail; greyish-brown fur, large ears, pointed snout.',
+    whereInNc: 'Universal in Triangle homes during fall and winter when temperatures drop — especially in homes with attached garages or older crawl spaces.' },
+
+  // ----- FLIES & FLYING -----
+  { slug: 'house-fly', name: 'House Fly', scientific: 'Musca domestica', category: 'flying', size: '6–7 mm', threat: 'medium', serviceSlug: 'general-pest-control',
+    shortDesc: 'Grey fly with four dark thoracic stripes; mechanical vector for salmonella, E. coli, and dysentery.',
+    intro: "House flies are the everyday grey fly you see around garbage, manure, and decaying matter. They feed by regurgitating saliva onto food, which is exactly how they mechanically transfer salmonella, E. coli, dysentery, and other pathogens onto your kitchen surfaces. They breed in days, not weeks, so even one or two ignored flies become an infestation quickly. Sanitation, sealing trash, screens on doors and windows, and fly traps are the foundation of control.",
+    identify: '6–7 mm grey body with four dark thorax stripes, red eyes, single pair of wings.',
+    whereInNc: 'Year-round across the Triangle; peak in summer.' },
+  { slug: 'fruit-fly', name: 'Fruit Fly', scientific: 'Drosophila melanogaster', category: 'flying', size: '3 mm', threat: 'low', serviceSlug: 'general-pest-control',
+    shortDesc: 'Tiny tan-brown flies with red eyes that breed in overripe produce, fermenting liquids, and drains.',
+    intro: "Fruit flies are the tiny tan-brown flies with bright red eyes that appear seemingly out of nowhere around bowls of fruit, recycling bins, and kitchen drains. Their lifecycle is just 8–10 days, so a small population becomes a swarm in under two weeks. They contaminate food and spread yeasts and bacteria. Control is mostly sanitation: discard overripe produce, clean drains, empty recycling bins, and use apple-cider vinegar traps to catch what's already flying.",
+    identify: '3 mm tan-brown body with distinctive red eyes and slow, hovering flight.',
+    whereInNc: 'Universal nuisance year-round; especially bad in late summer when fruit ripens fast.' },
+  { slug: 'cluster-fly', name: 'Cluster Fly', scientific: 'Pollenia rudis', category: 'flying', size: '8–10 mm', threat: 'medium', serviceSlug: 'general-pest-control',
+    shortDesc: 'Sluggish dark-grey flies that overwinter inside attics and walls in large clusters.',
+    intro: "Cluster flies are larger and slower than house flies, with distinctive golden-yellow crinkled hairs on the thorax. They don't breed indoors — instead, large numbers overwinter inside attics, wall voids, and around window frames, emerging on warm winter days to crawl on sunny windows. They're a major nuisance pest, and their clusters can leave dark fecal spots on walls and curtains. Prevention is exterior sealing in late summer before they move in for the season.",
+    identify: '8–10 mm dark grey body with golden-yellow crinkled thorax hairs; wings overlap at rest.',
+    whereInNc: 'Common in older Triangle homes with attics and rural / wooded properties.' },
+  { slug: 'mosquito', name: 'Mosquito', scientific: 'Culicidae family', category: 'biting', size: '3–9 mm', threat: 'high', serviceSlug: 'mosquitoes',
+    shortDesc: 'Slender biting flies that vector West Nile, Zika, and other diseases; breed in standing water.',
+    intro: "Mosquitoes are the #1 reason summer evenings in North Carolina get cut short. Only the females bite — they need a blood meal to lay eggs — and they're most active at dawn and dusk. They breed in any standing water: gutters, plant saucers, bird baths, old tires, kid's toys. Beyond the itchy welts, they're vectors for West Nile virus, Zika, Eastern Equine Encephalitis, and dog heartworm. Eliminating standing water is the single highest-impact control step.",
+    identify: 'Slender 3–9 mm body with long proboscis and scaled wings.',
+    whereInNc: 'Triangle mosquito season runs roughly April through October; worst near creeks, ponds, and wooded areas.' },
+  { slug: 'cicada', name: 'Cicada', scientific: 'Cicadidae family', category: 'flying', size: '25–50 mm', threat: 'low',
+    shortDesc: 'Large stout-bodied insects with transparent veined wings; males produce the famous buzzing song.',
+    intro: "Cicadas are harmless to humans, despite their large size and the dramatic buzzing chorus the males produce in summer. Nymphs spend years underground feeding on tree root sap, then emerge in synchronized broods every 13 or 17 years for periodical species, or annually for 'dog-day' species. The only real damage comes from females laying eggs in pencil-thick young tree branches, which can cause flagging. Netting young trees during emergence is the main control if you want one.",
+    identify: '25–50 mm stout body with transparent veined wings and prominent red eyes.',
+    whereInNc: 'Annual cicadas every summer; major periodical broods (Brood XIV, XIX) emerge across parts of NC on cycles.' },
+
+  // ----- STINGING -----
+  { slug: 'yellow-jacket', name: 'Yellow Jacket', scientific: 'Vespula spp.', category: 'stinging', size: '10–16 mm', threat: 'high', serviceSlug: 'general-pest-control',
+    shortDesc: 'Aggressive yellow-and-black scavenger wasps; sharp bands, smooth body, painful repeated stings.',
+    intro: "Yellow jackets are the aggressive yellow-and-black wasps that crash your summer picnic and pursue you when you walk near their nest. They scavenge sweets and meats — which is why they're attracted to outdoor dining — and they sting repeatedly without dying. Nests are typically underground in old rodent burrows, but also in wall voids and attics. Sting allergies can be life-threatening. Never try to remove a mature nest yourself; call a licensed professional for treatment at dusk.",
+    identify: '10–16 mm sleek (not hairy) body with sharp yellow-and-black bands.',
+    whereInNc: 'Peaks August through October across the Triangle; old chipmunk and groundhog burrows are common nest sites.' },
+  { slug: 'wasp', name: 'Paper Wasp', scientific: 'Polistes spp.', category: 'stinging', size: '15–25 mm', threat: 'high', serviceSlug: 'general-pest-control',
+    shortDesc: 'Slender brown-yellow wasps with long dangling legs; build umbrella-shaped paper nests under eaves.',
+    intro: "Paper wasps are less aggressive than yellow jackets — they typically only sting when their nest is threatened — but their sting is just as painful and can cause allergic reactions. They build the recognizable open umbrella-shaped paper nests under eaves, decks, branches, and inside light fixtures and grills. Early-season nests with just one or two queens can be knocked down safely; mature colonies need a licensed professional.",
+    identify: '15–25 mm slender brown-yellow body; long legs dangle in flight.',
+    whereInNc: 'Common across Triangle porches, decks, and patios all summer; check under eaves before grilling season.' },
+  { slug: 'hornet', name: 'Hornet (Bald-Faced)', scientific: 'Dolichovespula maculata', category: 'stinging', size: '18–20 mm', threat: 'high', serviceSlug: 'general-pest-control',
+    shortDesc: 'Black with ivory-white markings; build large grey papery aerial nests in trees and eaves.',
+    intro: "Bald-faced hornets are actually a type of large aerial yellowjacket, despite the name. They're black with distinctive ivory-white facial and abdominal markings, and they build the basketball-sized grey papery aerial nests you sometimes see hanging from tree branches or building eaves. They are extremely defensive of their nest and can sting repeatedly. Never approach a hornet nest — call a licensed pro to treat it at dusk when the colony is inside.",
+    identify: '18–20 mm black body with ivory-white facial and abdominal markings.',
+    whereInNc: 'Common across the Triangle, especially in wooded properties; nests grow noticeable mid-to-late summer.' },
+
+  // ----- SPIDERS -----
+  { slug: 'black-widow', name: 'Black Widow', scientific: 'Latrodectus mactans', category: 'spiders', size: '8–13 mm', threat: 'high', serviceSlug: 'general-pest-control',
+    shortDesc: 'Glossy black female with red hourglass on underside; neurotoxic venom — seek medical care if bitten.',
+    intro: "Black widows are reclusive spiders that rarely bite humans — only when pressed against skin. The female is the medically significant one: 8–13 mm, glossy black, with the unmistakable red hourglass mark on her underside. Their venom is neurotoxic and bites cause severe pain, cramping, and sweating; seek medical care promptly. They prefer undisturbed dark spaces: wood piles, sheds, garages, outdoor furniture corners, under porch steps.",
+    identify: '8–13 mm glossy black female with red hourglass marking on underside of abdomen.',
+    whereInNc: 'Present across the Triangle, especially in older wood piles, garden sheds, and rarely-used garages.' },
+  { slug: 'brown-recluse', name: 'Brown Recluse', scientific: 'Loxosceles reclusa', category: 'spiders', size: '6–20 mm', threat: 'high', serviceSlug: 'general-pest-control',
+    shortDesc: 'Uniform light-brown spider with dark violin shape on back; necrotic venom can cause open ulcers.',
+    intro: "Brown recluses are reclusive nocturnal hunters that bite humans only when accidentally pressed against skin — putting on a shoe they crawled into, slipping into bedding, reaching into a stored box. Their venom is necrotic, which means a bite can develop into an open ulcer requiring medical treatment. They have a distinctive dark violin shape on the back of the body and six eyes arranged in pairs (most spiders have eight). Always shake out shoes and clothes from storage, and declutter.",
+    identify: '6–20 mm uniform light brown with dark violin shape on back; six eyes in pairs.',
+    whereInNc: 'Present in NC but less established in the Triangle than the deep South; concentrate inspections in attics, garages, and storage boxes.' },
+  { slug: 'cellar-spider', name: 'Cellar Spider', scientific: 'Pholcus phalangioides', category: 'spiders', size: '7–10 mm body', threat: 'low',
+    shortDesc: 'Pale tan body with extremely long thin legs; harmless and actually preys on other spiders.',
+    intro: "Cellar spiders — sometimes called 'daddy long-legs spiders' — are the harmless pale spiders with the impossibly long thin legs that build messy tangled webs in basements, garage corners, and ceiling corners. They're actually beneficial: they prey on other spiders, including some medically significant ones. The 'cellar spider venom is the deadliest' myth has been thoroughly debunked. If population is unsightly, just vacuum the webs and reduce indoor humidity.",
+    identify: '7–10 mm pale tan body with extremely long thin legs spanning up to 50 mm.',
+    whereInNc: 'Universal in Triangle basements, crawl spaces, and garage ceilings.' },
+  { slug: 'house-spider', name: 'Common House Spider', scientific: 'Parasteatoda tepidariorum', category: 'spiders', size: '5–8 mm', threat: 'low',
+    shortDesc: 'Mottled tan-brown spider that builds tangled cobwebs in corners; harmless beneficial predator.',
+    intro: "The common house spider is the tan-brown spider you most often see in corners of rooms, garages, and sheds — the one responsible for most of the cobwebs you spot. They're harmless to humans, build messy tangled webs to ambush flies and small insects, and are sedentary by nature. If you tolerate them, they help keep indoor flying pests down. If you don't, vacuum the webs and egg sacs and reduce indoor flying insect populations.",
+    identify: '5–8 mm mottled tan-brown body with rounded abdomen and chevron pattern.',
+    whereInNc: 'Universal across Triangle homes; one of the most-encountered indoor spiders.' },
+  { slug: 'wolf-spider', name: 'Wolf Spider', scientific: 'Lycosidae family', category: 'spiders', size: '10–35 mm', threat: 'low',
+    shortDesc: 'Robust hairy brown-grey spider that hunts on the ground instead of building webs; not medically significant.',
+    intro: "Wolf spiders are the large hairy brown-grey spiders that startle you when they sprint across a basement floor or garage. They don't build webs — they're active hunters with excellent eyesight (a distinctive eye arrangement with two large forward-facing eyes). Females carry an egg sac attached to their spinnerets. Bites are uncommon and not medically significant, usually causing only localized redness and itching for 24 hours. Sealing cracks and reducing outdoor lighting helps keep them outside.",
+    identify: '10–35 mm robust hairy brown-grey body; two large eyes facing forward; carries egg sac on spinnerets.',
+    whereInNc: 'Common throughout the Triangle, especially in basements, garages, mulched landscapes, and leaf litter.' },
+
+  // ----- BITING -----
+  { slug: 'bed-bug', name: 'Bed Bug', scientific: 'Cimex lectularius', category: 'biting', size: '4–5 mm', threat: 'high', serviceSlug: 'general-pest-control',
+    shortDesc: 'Flat reddish-brown blood feeders that hide in mattress seams; requires professional heat treatment.',
+    intro: "Bed bugs are flat oval reddish-brown insects that feed on human blood — usually at night — and hide in the tiniest crevices of mattresses, headboards, baseboards, luggage, and upholstered furniture. They don't transmit known diseases, but the itchy welts, anxiety, and sleep loss they cause are real. Bed bugs can survive months without a meal, which is why DIY treatments usually fail. Professional heat treatment, mattress encasements, and thorough vacuuming are the proven approach.",
+    identify: '4–5 mm flat oval reddish-brown body that swells and darkens after feeding.',
+    whereInNc: 'Rising problem across the Triangle — especially in apartments, hotels, and homes after travel.' },
+  { slug: 'tick', name: 'Deer Tick', scientific: 'Ixodes scapularis', category: 'biting', size: '2–3 mm', threat: 'high', serviceSlug: 'mosquitoes',
+    shortDesc: 'Tiny reddish-brown tick with black legs; primary Lyme disease vector in the eastern US.',
+    intro: "Deer ticks (also called black-legged ticks) are the primary vector of Lyme disease in the eastern US, along with anaplasmosis and babesiosis. They quest on tall grass and leaf litter, latch onto people or pets passing by, and slowly feed for days as they engorge. Prevention is everything: DEET or permethrin repellent, long sleeves and pants on hikes, prompt tick checks after coming inside, and treating yard edges if you live near woods.",
+    identify: '2–3 mm flat oval reddish-brown body with distinctly black legs; engorges to grape-size when feeding.',
+    whereInNc: "The Triangle is solidly in NC's Lyme range; expect ticks anywhere there's tall grass, leaf litter, or deer pressure." },
+
+  // ----- OCCASIONAL INVADERS -----
+  { slug: 'silverfish', name: 'Silverfish', scientific: 'Lepisma saccharinum', category: 'occasional', size: '12–19 mm', threat: 'low', serviceSlug: 'general-pest-control',
+    shortDesc: 'Metallic silver teardrop-shaped insects that eat paper, glue, and starches in damp dark spaces.',
+    intro: "Silverfish are the silver-grey teardrop-shaped insects you sometimes find in bathrooms, basements, attics, and behind wallpaper. They're nocturnal, surprisingly fast, and feed on starches, glue, paper, fabric, and dead skin — which means they can damage books, wallpaper, clothing, and dry goods over time. They're not a disease vector. The single most effective control is reducing humidity (dehumidifier in basements, fix bathroom ventilation) plus residual treatments in cracks.",
+    identify: '12–19 mm metallic silver teardrop body with three long bristles at the rear.',
+    whereInNc: 'Common in older Triangle homes with damp basements, crawl spaces, and poorly ventilated bathrooms.' },
+  { slug: 'earwig', name: 'Earwig', scientific: 'Forficula auricularia', category: 'occasional', size: '12–25 mm', threat: 'low', serviceSlug: 'general-pest-control',
+    shortDesc: 'Dark reddish-brown insects with rear pincers; nocturnal, harmless to humans, despite the old myth.',
+    intro: "Earwigs are the small dark reddish-brown insects with the distinctive curved pincers (cerci) at their rear. Despite the old folk legend, they do NOT crawl into ears — that's pure myth. They're nocturnal omnivores that eat plants, insects, and decaying matter, and they can damage seedlings and soft fruit in gardens. Indoors they're a nuisance only. Reducing moisture and mulch right against the foundation, plus sealing entry points, keeps them outside where they belong.",
+    identify: '12–25 mm dark reddish-brown body with distinctive curved pincers at the rear.',
+    whereInNc: 'Very common in Triangle mulch beds, basements, and crawl spaces during wet weather.' },
+  { slug: 'boxelder-bug', name: 'Boxelder Bug', scientific: 'Boisea trivittata', category: 'occasional', size: '11–14 mm', threat: 'low', serviceSlug: 'general-pest-control',
+    shortDesc: 'Black with three red-orange thorax stripes; clusters on sunny walls in fall trying to overwinter inside.',
+    intro: "Boxelder bugs are the striking black-and-red-orange bugs that gather in large numbers on sunny exterior walls in fall, looking for somewhere warm to overwinter. They feed on boxelder, maple, and ash trees — harmless plant feeders — but they're a nuisance pest when they cluster by the dozens and try to push inside through cracks. They can stain fabrics and curtains with droppings. The fix is sealing exterior cracks before fall and vacuuming any clusters that appear.",
+    identify: '11–14 mm black body with three red-orange stripes on thorax and red wing veins.',
+    whereInNc: "A predictable fall nuisance across Triangle neighborhoods with boxelder and maple trees." },
+  { slug: 'stink-bug', name: 'Stink Bug (BMSB)', scientific: 'Halyomorpha halys', category: 'occasional', size: '12–17 mm', threat: 'medium', serviceSlug: 'general-pest-control',
+    shortDesc: 'Shield-shaped mottled brown bug; major agricultural pest, indoor nuisance, releases pungent odor when crushed.',
+    intro: "The brown marmorated stink bug (BMSB) is an invasive shield-shaped bug that has become a major nuisance across the eastern US. They feed on fruit and vegetable crops outdoors during summer, then cluster on sunny south-facing walls in fall and push inside walls, attics, and crevices to overwinter. When crushed they release a famously pungent odor — which is why you should vacuum them up instead. Seal cracks and exterior gaps before fall, and treat the perimeter.",
+    identify: '12–17 mm shield-shaped mottled brown body with distinctive white bands on antennae and legs.',
+    whereInNc: 'Major fall nuisance across the Triangle — particularly noticeable in homes near orchards and farmland.' },
+  { slug: 'centipede', name: 'House Centipede', scientific: 'Scutigera coleoptrata', category: 'occasional', size: '25–50 mm', threat: 'low', serviceSlug: 'general-pest-control',
+    shortDesc: 'Fast yellow-grey predator with 15 pairs of long banded legs; preys on roaches and silverfish.',
+    intro: "House centipedes are the unsettling fast-moving yellow-grey arthropods with 15 pairs of long banded legs that you sometimes find in basements and bathrooms. As alarming as they look, they're actually beneficial predators that hunt roaches, silverfish, and spiders. They rarely bite humans, and if they do, the venom is mild. The real fix is reducing the prey they're chasing: control humidity, seal cracks, and treat the underlying pest population.",
+    identify: '25–50 mm flattened yellow-grey body with 15 pairs of long banded legs.',
+    whereInNc: 'Common in Triangle basements, crawl spaces, and damp bathrooms.' },
+  { slug: 'millipede', name: 'Millipede', scientific: 'Diplopoda class', category: 'occasional', size: '25–100 mm', threat: 'low', serviceSlug: 'general-pest-control',
+    shortDesc: 'Cylindrical dark brown segmented arthropod with two pairs of legs per segment; harmless detritivore.',
+    intro: "Millipedes are the dark brown segmented arthropods that curl into a spiral when disturbed. They're slow-moving detritivores that eat decaying plant matter — completely harmless to humans, though they can secrete a mild skin irritant if handled directly. After heavy rain they sometimes migrate indoors in surprising numbers. The fix is reducing mulch and leaf litter against your foundation, sealing exterior cracks, and running a dehumidifier in basements.",
+    identify: '25–100 mm cylindrical dark brown segmented body with two pairs of legs per segment.',
+    whereInNc: "Common Triangle migration events after heavy rain, especially spring and fall." },
+  { slug: 'cricket', name: 'House Cricket', scientific: 'Acheta domesticus', category: 'occasional', size: '16–21 mm', threat: 'low', serviceSlug: 'general-pest-control',
+    shortDesc: 'Light yellow-brown crickets that chirp at night; chew fabric and paper, attracted to warmth.',
+    intro: "House crickets are the light yellow-brown crickets that get inside during cooler weather and keep you up at night with rhythmic chirping (males rubbing their forewings together to attract females). They're attracted to warmth — furnaces, water heaters, appliances — and they can chew wool, cotton, silk, paper, and plant matter. Sealing cracks and crevices, reducing basement and crawl space humidity, and placing sticky traps near entry points usually solves the problem.",
+    identify: '16–21 mm light yellow-brown body with long thread-like antennae, large jumping hind legs, and three dark bands on the head.',
+    whereInNc: 'Common indoor invader across the Triangle in late summer and fall as nights cool off.' },
+
+  // ----- WOOD-DESTROYING -----
+  { slug: 'subterranean-termite', name: 'Subterranean Termite', scientific: 'Reticulitermes spp.', category: 'wood-destroying', size: '3–10 mm', threat: 'high', serviceSlug: 'termites',
+    shortDesc: "The #1 wood-destroying pest in the US — colonies of millions silently consume structural timber.",
+    intro: "Subterranean termites are the most economically destructive wood-destroying pest in the United States — responsible for billions in damage annually. Colonies of millions live in the soil, building characteristic mud tubes from ground level up into the wood of homes, where they silently consume cellulose 24/7. By the time you see damage, significant structural loss has usually occurred. Annual professional inspection + soil termiticide barrier or baiting system is the standard of care in North Carolina.",
+    identify: '3–10 mm cream-white workers; soldiers have darker heads and large mandibles. Mud tubes on foundations are the #1 sign.',
+    whereInNc: 'NC is in the high-pressure termite zone; the Triangle sees year-round termite activity.' },
+  { slug: 'borer-beetle', name: 'Powderpost / Borer Beetle', scientific: 'Lyctus / Anobium spp.', category: 'wood-destroying', size: '2–7 mm', threat: 'high', serviceSlug: 'termites',
+    shortDesc: 'Small reddish-brown beetles whose larvae tunnel through hardwood floors and structural timber for years.',
+    intro: "Powderpost beetles and related borer beetles are small reddish-brown to black beetles whose larvae tunnel through hardwood for years before emerging as adults through tiny round exit holes. They damage hardwood floors, furniture, structural timber, attic rafters, and firewood. The tell-tale sign is fine powdery frass (sawdust) sifting out of those exit holes. Control combines moisture control, kiln-dried wood for repairs, borate treatments on bare wood, and professional fumigation for serious infestations.",
+    identify: '2–7 mm elongated reddish-brown to black beetles; larvae are creamy C-shaped grubs.',
+    whereInNc: 'Less common than termites in the Triangle but significant in older homes with original hardwood floors and exposed crawl-space timber.' },
+
+  // ----- FABRIC & PANTRY -----
+  { slug: 'clothes-moth', name: 'Clothes Moth', scientific: 'Tineola bisselliella', category: 'fabric-pantry', size: '6–8 mm', threat: 'medium', serviceSlug: 'general-pest-control',
+    shortDesc: 'Small straw-yellow moth whose larvae chew irregular holes in wool, cashmere, silk, and fur.',
+    intro: "Clothes moths are small, straw-yellow moths that avoid light — which is why they thrive undisturbed in the back of closets, dresser drawers, and attics. The adults don't actually feed; the damage comes from the cream-white larvae, which chew irregular holes through wool, cashmere, silk, fur, feathers, and even taxidermy. Vacuuming thoroughly, dry cleaning or freezing affected items, and using cedar blocks and pheromone traps are the proven control combo.",
+    identify: '6–8 mm uniform straw-yellow body, narrow wings with golden hairs; avoids light.',
+    whereInNc: 'A real risk in Triangle homes with stored woolens, vintage clothing, and rarely-opened closets.' },
+  { slug: 'pantry-moth', name: 'Indian Meal Moth (Pantry Moth)', scientific: 'Plodia interpunctella', category: 'fabric-pantry', size: '8–10 mm', threat: 'medium', serviceSlug: 'general-pest-control',
+    shortDesc: 'Small two-toned moth that contaminates flour, cereal, dried fruit, and pet food in pantries.',
+    intro: "Indian meal moths — commonly called pantry moths — are the small two-toned moths (pale grey near the body, coppery-bronze at the wing tips) that flutter through your kitchen at night. The larvae spin silken webbing inside grain bags, flour, cereal, dried fruit, birdseed, and pet food, contaminating it with larvae and frass. Once they're established, you have to discard infested goods, deep-clean the pantry, switch to airtight containers, and use pheromone traps to catch surviving adults.",
+    identify: '8–10 mm with two-tone wings: pale grey near the body, coppery-bronze at the wing tips.',
+    whereInNc: 'Very common in Triangle pantries; often arrives hidden inside a single contaminated bag of birdseed or flour.' },
+
+  // ----- GARDEN / OUTDOOR (informational only) -----
+  { slug: 'grasshopper', name: 'Grasshopper', scientific: 'Caelifera suborder', category: 'garden', size: '25–75 mm', threat: 'low',
+    shortDesc: 'Green or brown jumpers that chew garden plants and crops during high-population years.',
+    intro: "Grasshoppers are the familiar large jumping insects of meadows, lawns, and agricultural fields. They feed on a wide variety of plants — leaves, stems, flowers — and can cause significant damage to gardens and crops during outbreak years. They're not a household pest, but if you garden in the Triangle, knowing how to recognize them and protect young plants with row covers matters.",
+    identify: '25–75 mm green or brown body, short antennae, very large jumping hind legs.',
+    whereInNc: 'Common in Triangle meadows, gardens, and farm edges; rarely a structural concern.' },
+  { slug: 'locust', name: 'Locust', scientific: 'Locusta migratoria', category: 'garden', size: '35–60 mm', threat: 'low',
+    shortDesc: 'Grasshopper that swarms into massive migratory flocks during outbreak years; not present in NC.',
+    intro: "Locusts are grasshoppers that, under crowded conditions, transform into a 'gregarious phase' and form the massive migratory swarms famous from history. They're a devastating agricultural pest globally — a single swarm can devour tons of crops per day — but they're not present in North Carolina. Included here for identification only.",
+    identify: '35–60 mm grasshopper-like body that shifts to bright yellow-brown in the gregarious phase.',
+    whereInNc: 'Not present in NC. Native to Africa, Asia, and southern Europe.' },
+  { slug: 'aphid', name: 'Aphid', scientific: 'Aphidoidea superfamily', category: 'garden', size: '1–4 mm', threat: 'low',
+    shortDesc: 'Tiny soft pear-shaped sap-suckers on leaf undersides; tended by ants for their honeydew.',
+    intro: "Aphids are the tiny soft-bodied pear-shaped insects you find clustered on the undersides of leaves and on new plant growth, sucking sap and secreting sticky honeydew. They reproduce asexually and explosively in spring — a single aphid can become hundreds in a week. They stunt plant growth, transmit plant viruses, and their honeydew grows sooty mold. Encourage ladybugs and lacewings, blast them off with water, or use insecticidal soap or neem oil.",
+    identify: '1–4 mm pear-shaped soft body in green, black, or yellow; a pair of cornicles (small tubes) at the rear.',
+    whereInNc: 'Universal Triangle garden pest from spring through fall.' },
+  { slug: 'scale-insects', name: 'Scale Insects', scientific: 'Coccoidea superfamily', category: 'garden', size: '1–5 mm', threat: 'low',
+    shortDesc: 'Immobile waxy bumps on stems and leaves that suck sap and produce honeydew like aphids.',
+    intro: "Scale insects are weird little immobile bumps in tan, brown, white, or grey that you find permanently attached to plant stems, leaves (especially veins), and bark of ornamentals, citrus, and houseplants. They look like small scabs, but they're alive — piercing the plant and feeding on sap. They secrete honeydew or wax, cause yellowing leaves, branch dieback, and sooty mold. Horticultural oil, systemic insecticide, pruning heavily infested branches, and introducing beneficial ladybugs are the standard controls.",
+    identify: '1–5 mm immobile bumps in tan, brown, white, or grey; look like small scabs on stems.',
+    whereInNc: 'Common on Triangle ornamentals, especially azaleas, camellias, and houseplants brought outside in summer.' },
+  { slug: 'borers', name: 'Wood Borers (Tree)', scientific: 'Wood-boring beetle larvae', category: 'garden', size: '6–14 mm adults', threat: 'high',
+    shortDesc: 'Larvae of metallic green and bronze beetles that tunnel under bark, killing ash, fruit, and ornamental trees.',
+    intro: "Wood borers are the larvae of metallic-colored beetles (like the emerald ash borer) that tunnel under tree bark, severing the nutrient flow and killing trees from the inside out. Adults emerge through D-shaped exit holes. They primarily attack stressed, declining, or recently planted trees — including ash, birch, locust, fruit trees, and many ornamentals. Keeping trees healthy, prompt removal of infested wood, and systemic injections for high-value trees are the main defenses.",
+    identify: 'Adults 6–14 mm shiny metallic beetles; D-shaped exit holes in bark; serpentine galleries under bark.',
+    whereInNc: 'Emerald ash borer is established in NC and killing ash trees across the Triangle.' },
+  { slug: 'leaf-chewers', name: 'Leaf Chewers', scientific: 'Caterpillars / beetles / sawflies', category: 'garden', size: 'Varies', threat: 'low',
+    shortDesc: 'Caterpillars, beetle larvae, and sawflies that chew irregular holes in garden and ornamental leaves.',
+    intro: "Leaf chewers is a catch-all for caterpillars, leaf-feeding beetles, and sawfly larvae that visibly damage plant leaves — irregular holes, notched edges, skeletonized leaves. Most cause only cosmetic damage, but heavy populations weaken plants, reduce yields, and create entry points for plant diseases. Hand-picking, row covers, Bt (Bacillus thuringiensis) for caterpillars, and targeted insecticides for serious outbreaks are the typical responses.",
+    identify: 'Visible feeding damage: irregular holes, notched leaf edges, or skeletonized leaves.',
+    whereInNc: 'Universal across Triangle vegetable gardens and ornamental beds.' },
+  { slug: 'beetles', name: 'Beetles (Coleoptera)', scientific: 'Coleoptera order', category: 'garden', size: '12–25 mm', threat: 'low', serviceSlug: 'general-pest-control',
+    shortDesc: 'Largest insect order — huge variety; some are pantry pests, some lawn pests, some structural.',
+    intro: "Beetles are the largest order of insects on Earth — over 350,000 known species — and they fill every ecological niche imaginable. Some beetles are pantry pests (flour beetles, grain weevils), some are lawn pests (Japanese beetle grubs), some are structural (powderpost beetles), and some are beneficial (ladybugs, ground beetles). Effective control starts with correct identification: get the species first, then target it with the appropriate bait, beneficial nematodes, sanitation, or perimeter spray.",
+    identify: '12–25 mm hardened wing covers (elytra); huge variety of shapes, colors, sizes.',
+    whereInNc: 'Universally present in the Triangle; identification is key to deciding whether action is needed.' }
+]
+
+// ============================================================================
+// CATEGORY -> PEST INDEX
+// ============================================================================
+const pestsByCategory = (cat: PestCategory) => pests.filter(p => p.category === cat)
+const findService = (slug?: string) => slug ? services.find(s => s.slug === slug) : undefined
+
+const threatColors: Record<Pest['threat'], { bg: string; text: string; label: string }> = {
+  low:    { bg: 'bg-emerald-50',  text: 'text-emerald-700', label: 'Low concern' },
+  medium: { bg: 'bg-amber-50',    text: 'text-amber-700',   label: 'Moderate concern' },
+  high:   { bg: 'bg-rose-50',     text: 'text-rose-700',    label: 'High concern' }
+}
+
+// ============================================================================
+// INDIVIDUAL PEST PAGE: /pests/:slug
+// ============================================================================
+const renderPestPage = (pest: Pest, allPests: Pest[]) => {
+  const service = findService(pest.serviceSlug)
+  const sameCategory = allPests.filter(p => p.category === pest.category && p.slug !== pest.slug).slice(0, 6)
+  const threat = threatColors[pest.threat]
+  const cat = pestCategories.find(c => c.id === pest.category)!
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${pest.name} (${pest.scientific}) — Identification &amp; Control | Castle Exterminators</title>
+  <meta name="description" content="${pest.name} identification, habitat, behavior, and control. ${pest.shortDesc} Free inspection across Durham &amp; the Triangle. Castle Exterminators." />
+  <meta name="keywords" content="${pest.name.toLowerCase()}, ${pest.scientific.toLowerCase()}, ${pest.name.toLowerCase()} identification, ${pest.name.toLowerCase()} in NC, ${pest.name.toLowerCase()} Durham, pest control" />
+  <meta name="theme-color" content="#1F6F4A" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://www.castleexterminators.co/pests/${pest.slug}" />
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico" /><link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" /><link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" /><link rel="manifest" href="/static/site.webmanifest" />
+  <meta property="og:site_name" content="Castle Exterminators" />
+  <meta property="og:title" content="${pest.name} (${pest.scientific}) — Identification &amp; Control" />
+  <meta property="og:description" content="${pest.shortDesc}" />
+  <meta property="og:url" content="https://www.castleexterminators.co/pests/${pest.slug}" />
+  <meta property="og:image" content="https://www.castleexterminators.co/static/pests/${pest.slug}.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="1600" />
+  <meta property="og:image:alt" content="${pest.name} identification infographic" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.castleexterminators.co/static/pests/${pest.slug}.webp" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "${pest.name} (${pest.scientific}) — Identification & Control",
+    "description": "${pest.shortDesc.replace(/"/g,'\\"')}",
+    "image": "https://www.castleexterminators.co/static/pests/${pest.slug}.webp",
+    "author": { "@type": "Organization", "name": "Castle Exterminators" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Castle Exterminators",
+      "logo": { "@type": "ImageObject", "url": "https://www.castleexterminators.co/static/castle-logo.png" }
+    },
+    "mainEntityOfPage": "https://www.castleexterminators.co/pests/${pest.slug}"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.castleexterminators.co/" },
+      { "@type": "ListItem", "position": 2, "name": "Pest Library", "item": "https://www.castleexterminators.co/pests" },
+      { "@type": "ListItem", "position": 3, "name": "${pest.name}", "item": "https://www.castleexterminators.co/pests/${pest.slug}" }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="/static/tailwind.css" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; color: #1E2A24; background: #FBF8F1; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.015em; font-variation-settings: "opsz" 144, "SOFT" 50; }
+    .font-display { font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 144, "SOFT" 50; }
+    .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
+  </style>
+</head>
+<body class="bg-brand-bone">
+
+  <!-- HEADER -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-700">
+        <a href="/" class="hover:text-brand-green">Home</a>
+        <a href="/#services" class="hover:text-brand-green">Services</a>
+        <a href="/pests" class="text-brand-green">Pest Library</a>
+        <a href="/about" class="hover:text-brand-green">About</a>
+        <a href="/#contact" class="hover:text-brand-green">Contact</a>
+      </nav>
+      <a href="/#contact" class="hidden sm:inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white font-bold text-sm px-4 py-2 rounded-xl transition shadow-card">
+        <i class="fa-solid fa-calendar-check"></i> Free Inspection
+      </a>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 text-xs text-slate-500" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5">
+      <li><a href="/" class="hover:text-brand-green">Home</a></li>
+      <li class="text-slate-400"><i class="fa-solid fa-chevron-right text-[8px]"></i></li>
+      <li><a href="/pests" class="hover:text-brand-green">Pest Library</a></li>
+      <li class="text-slate-400"><i class="fa-solid fa-chevron-right text-[8px]"></i></li>
+      <li class="text-slate-700 font-semibold">${pest.name}</li>
+    </ol>
+  </nav>
+
+  <!-- HERO -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="grid lg:grid-cols-12 gap-10">
+
+      <!-- LEFT: Infographic -->
+      <div class="lg:col-span-7">
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-card p-4 sm:p-6">
+          <img src="/static/pests/${pest.slug}.webp"
+               alt="${pest.name} (${pest.scientific}) identification infographic showing size, habitat, behavior, risk, and control"
+               class="w-full h-auto rounded-2xl"
+               loading="eager"
+               fetchpriority="high"
+               width="768" height="1024" />
+        </div>
+      </div>
+
+      <!-- RIGHT: Content -->
+      <article class="lg:col-span-5">
+        <div class="inline-flex items-center gap-2 ${threat.bg} ${threat.text} text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-4">
+          <i class="fa-solid fa-circle text-[8px]"></i> ${threat.label}
+        </div>
+
+        <h1 class="font-display font-extrabold text-4xl sm:text-5xl leading-tight text-brand-navy mb-2">${pest.name}</h1>
+        <p class="serif-italic text-xl text-slate-500 mb-6">${pest.scientific}</p>
+
+        <div class="grid grid-cols-2 gap-3 mb-6">
+          <div class="bg-white border border-slate-200 rounded-xl px-4 py-3">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Size</div>
+            <div class="font-semibold text-brand-navy text-sm">${pest.size}</div>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-xl px-4 py-3">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-1">Category</div>
+            <div class="font-semibold text-brand-navy text-sm">${cat.name}</div>
+          </div>
+        </div>
+
+        <h2 class="font-display font-bold text-lg text-brand-navy mb-2">About the ${pest.name.toLowerCase()}</h2>
+        <p class="text-slate-700 leading-relaxed mb-5">${pest.intro}</p>
+
+        <div class="bg-brand-cream border border-brand-green/15 rounded-xl p-5 mb-5">
+          <div class="flex items-start gap-3">
+            <span class="w-9 h-9 bg-brand-green/15 text-brand-green rounded-lg flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <div>
+              <h3 class="font-bold text-sm text-brand-navy mb-1">Quick ID</h3>
+              <p class="text-sm text-slate-700 leading-relaxed">${pest.identify}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-5 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="w-9 h-9 bg-brand-green/15 text-brand-green rounded-lg flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-location-dot"></i></span>
+            <div>
+              <h3 class="font-bold text-sm text-brand-navy mb-1">In the Triangle</h3>
+              <p class="text-sm text-slate-700 leading-relaxed">${pest.whereInNc}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="bg-gradient-to-br from-brand-green to-brand-navy-dark text-white rounded-2xl p-6 shadow-card">
+          <h3 class="font-display font-extrabold text-2xl mb-2 leading-tight">Think you have ${pest.name.toLowerCase()}s?</h3>
+          <p class="text-sm opacity-90 mb-5">Free inspection from a licensed Castle Exterminators technician — Durham, Chapel Hill, Raleigh, Cary &amp; the Triangle. We'll confirm the species and recommend a treatment plan.</p>
+          <a href="/#contact" class="block text-center bg-brand-orange hover:bg-brand-orange-dark text-white font-bold py-3 px-4 rounded-xl transition shadow-card mb-3">
+            <i class="fa-solid fa-calendar-check mr-2"></i> Request Free Inspection
+          </a>
+          <a href="tel:+19196068686" class="block text-center bg-white/15 hover:bg-white/25 text-white font-bold py-3 px-4 rounded-xl transition backdrop-blur border border-white/25">
+            <i class="fa-solid fa-phone-volume mr-2"></i> (919) 606-8686
+          </a>
+        </div>
+
+        ${service ? `
+        <div class="mt-5 bg-white border border-slate-200 rounded-xl p-5">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-brand-green mb-2">Related service</div>
+          <a href="/services/${service.slug}" class="group flex items-center gap-3 hover:text-brand-green transition">
+            <span class="w-10 h-10 bg-brand-green/15 text-brand-green rounded-lg flex items-center justify-center"><i class="fa-solid ${service.icon}"></i></span>
+            <span class="flex-1">
+              <span class="block font-bold text-brand-navy group-hover:text-brand-green">${service.name}</span>
+              <span class="block text-xs text-slate-500">${service.tagline}</span>
+            </span>
+            <i class="fa-solid fa-arrow-right text-xs text-brand-green"></i>
+          </a>
+        </div>` : ''}
+      </article>
+    </div>
+
+    <!-- SAME-CATEGORY CROSS-LINKS -->
+    ${sameCategory.length ? `
+    <section class="mt-16 pt-10 border-t border-slate-200">
+      <div class="flex items-end justify-between mb-6 flex-wrap gap-3">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-brand-green mb-2">Related pests</p>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-brand-navy">More in ${cat.name.toLowerCase()}</h2>
+        </div>
+        <a href="/pests" class="text-sm font-bold text-brand-green hover:text-brand-green-dark inline-flex items-center gap-1.5">Browse all pests <i class="fa-solid fa-arrow-right text-xs"></i></a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        ${sameCategory.map(p => `
+          <a href="/pests/${p.slug}" class="group bg-white border border-slate-200 hover:border-brand-green/40 hover:shadow-card rounded-2xl p-4 transition flex gap-4 items-center">
+            <img src="/static/pests/${p.slug}.webp" alt="${p.name}" class="w-20 h-20 object-cover rounded-xl flex-shrink-0" loading="lazy" width="120" height="120" />
+            <div class="flex-1 min-w-0">
+              <div class="font-bold text-brand-navy group-hover:text-brand-green transition truncate">${p.name}</div>
+              <div class="serif-italic text-xs text-slate-500 truncate">${p.scientific}</div>
+              <div class="text-xs text-slate-600 mt-1 line-clamp-2">${p.shortDesc}</div>
+            </div>
+          </a>`).join('')}
+      </div>
+    </section>` : ''}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-navy-dark text-slate-300 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-5 gap-8">
+      <div class="md:col-span-2">
+        <span class="inline-block bg-white rounded-xl p-2 shadow-card mb-4">
+          <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 w-auto" />
+        </span>
+        <p class="text-sm leading-relaxed max-w-md">Durham's family-owned pest control. Protecting homes across Durham, NC and surrounding communities since 2017 — with eco-friendly, family-safe treatments.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Services</h4>
+        <ul class="space-y-2 text-sm">
+          ${services.slice(0, 6).map(o => `<li><a href="/services/${o.slug}" class="hover:text-white">${o.name}</a></li>`).join('')}
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Pest Library</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/pests" class="hover:text-white">All pests</a></li>
+          <li><a href="/pests#ants" class="hover:text-white">Ants</a></li>
+          <li><a href="/pests#roaches" class="hover:text-white">Cockroaches</a></li>
+          <li><a href="/pests#rodents" class="hover:text-white">Rodents</a></li>
+          <li><a href="/pests#spiders" class="hover:text-white">Spiders</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Service Areas</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
+          <li><a href="/locations/chapel-hill" class="hover:text-white">Chapel Hill</a></li>
+          <li><a href="/locations/raleigh" class="hover:text-white">Raleigh</a></li>
+          <li><a href="/locations/cary" class="hover:text-white">Cary</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-slate-400 flex flex-col sm:flex-row justify-between gap-3">
+        <span>&copy; ${new Date().getFullYear()} Castle Exterminators. All rights reserved.</span>
+        <span>Licensed &amp; Insured in North Carolina</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>`
+}
+
+// ============================================================================
+// PEST LIBRARY HUB: /pests
+// ============================================================================
+const renderPestLibraryPage = () => `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pest Library — Identify ${pests.length}+ Common Pests | Castle Exterminators</title>
+  <meta name="description" content="Identify ${pests.length}+ common pests with our visual pest library. Photos, scientific names, habitat, behavior, and control tips for ants, roaches, rodents, spiders, termites &amp; more. Durham, NC." />
+  <meta name="keywords" content="pest identification, pest library, pest guide, what bug is this, pest control Durham NC, identify ants, identify roaches, identify spiders" />
+  <meta name="theme-color" content="#1F6F4A" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://www.castleexterminators.co/pests" />
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico" /><link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" /><link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" /><link rel="manifest" href="/static/site.webmanifest" />
+  <meta property="og:site_name" content="Castle Exterminators" />
+  <meta property="og:title" content="Pest Library — Identify ${pests.length}+ Common Pests" />
+  <meta property="og:description" content="Identify ${pests.length}+ common pests with our visual pest library. Photos, scientific names, habitat, behavior, and control tips." />
+  <meta property="og:url" content="https://www.castleexterminators.co/pests" />
+  <meta property="og:image" content="https://www.castleexterminators.co/static/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Pest Library",
+    "description": "Visual identification guide to ${pests.length}+ common pests found in Durham, NC and the Triangle.",
+    "url": "https://www.castleexterminators.co/pests",
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": ${pests.length},
+      "itemListElement": [
+        ${pests.map((p, i) => `{ "@type": "ListItem", "position": ${i + 1}, "url": "https://www.castleexterminators.co/pests/${p.slug}", "name": "${p.name}" }`).join(',\n        ')}
+      ]
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="/static/tailwind.css" />
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; color: #1E2A24; background: #FBF8F1; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.015em; font-variation-settings: "opsz" 144, "SOFT" 50; }
+    .font-display { font-family: 'Fraunces', Georgia, serif; font-variation-settings: "opsz" 144, "SOFT" 50; }
+    .serif-italic { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
+    .pest-card img { transition: transform .4s ease; }
+    .pest-card:hover img { transform: scale(1.03); }
+    /* Search */
+    .pest-card[data-hidden="true"] { display: none; }
+  </style>
+</head>
+<body class="bg-brand-bone">
+
+  <!-- HEADER -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 w-auto" />
+      </a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-700">
+        <a href="/" class="hover:text-brand-green">Home</a>
+        <a href="/#services" class="hover:text-brand-green">Services</a>
+        <a href="/pests" class="text-brand-green">Pest Library</a>
+        <a href="/about" class="hover:text-brand-green">About</a>
+        <a href="/#contact" class="hover:text-brand-green">Contact</a>
+      </nav>
+      <a href="/#contact" class="hidden sm:inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white font-bold text-sm px-4 py-2 rounded-xl transition shadow-card">
+        <i class="fa-solid fa-calendar-check"></i> Free Inspection
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-br from-brand-green via-brand-navy-dark to-brand-navy-dark text-white py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-xs text-white/60 mb-4" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-1.5">
+          <li><a href="/" class="hover:text-white">Home</a></li>
+          <li><i class="fa-solid fa-chevron-right text-[8px]"></i></li>
+          <li class="text-white font-semibold">Pest Library</li>
+        </ol>
+      </nav>
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-brand-leaf mb-3">Pest Identification Library</p>
+      <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight mb-5 text-white">What bug is that?</h1>
+      <p class="text-lg sm:text-xl text-white/85 max-w-3xl leading-relaxed mb-8">A visual guide to ${pests.length}+ pests we encounter across Durham, Chapel Hill, Raleigh, and the Triangle. Photos, scientific names, habits, threat levels &mdash; and what to do about each one.</p>
+
+      <!-- Search -->
+      <div class="max-w-xl">
+        <div class="relative">
+          <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+          <input id="pest-search" type="search" placeholder="Search by name (e.g. roach, ant, spider)…"
+                 class="w-full pl-11 pr-4 py-3.5 rounded-2xl border-0 bg-white text-brand-navy placeholder:text-slate-400 focus:ring-4 focus:ring-brand-leaf/40 focus:outline-none shadow-card" />
+        </div>
+        <p id="pest-search-empty" class="text-sm text-white/70 mt-3 hidden">No pests match — try a different search.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY NAV -->
+  <nav class="sticky top-[60px] z-30 bg-brand-bone/95 backdrop-blur border-b border-slate-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-2 overflow-x-auto scrollbar-hide">
+      ${pestCategories.map(c => `<a href="#${c.id}" class="flex-shrink-0 inline-flex items-center gap-2 bg-white hover:bg-brand-green hover:text-white border border-slate-200 hover:border-brand-green text-sm font-semibold text-brand-navy px-4 py-2 rounded-full transition"><i class="fa-solid ${c.icon} text-xs"></i> ${c.name} <span class="text-xs opacity-60">${pestsByCategory(c.id).length}</span></a>`).join('')}
+    </div>
+  </nav>
+
+  <!-- CATEGORIES & GRID -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    ${pestCategories.map(cat => {
+      const catPests = pestsByCategory(cat.id)
+      if (catPests.length === 0) return ''
+      return `
+      <section id="${cat.id}" class="mb-16 scroll-mt-32">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="w-10 h-10 bg-brand-green/15 text-brand-green rounded-xl flex items-center justify-center"><i class="fa-solid ${cat.icon}"></i></span>
+          <h2 class="font-display font-extrabold text-3xl text-brand-navy">${cat.name}</h2>
+          <span class="text-sm text-slate-500 font-semibold">${catPests.length} ${catPests.length === 1 ? 'pest' : 'pests'}</span>
+        </div>
+        <p class="text-slate-600 mb-6 max-w-3xl">${cat.description}</p>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          ${catPests.map(p => {
+            const t = threatColors[p.threat]
+            return `
+            <a href="/pests/${p.slug}" class="pest-card group block bg-white border border-slate-200 hover:border-brand-green/40 hover:shadow-card rounded-2xl overflow-hidden transition"
+               data-name="${p.name.toLowerCase()}" data-scientific="${p.scientific.toLowerCase()}" data-category="${p.category}">
+              <div class="aspect-[3/4] bg-brand-cream overflow-hidden">
+                <img src="/static/pests/${p.slug}.webp" alt="${p.name} identification" class="w-full h-full object-cover" loading="lazy" width="400" height="533" />
+              </div>
+              <div class="p-4">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="inline-block w-2 h-2 rounded-full ${p.threat === 'high' ? 'bg-rose-500' : p.threat === 'medium' ? 'bg-amber-500' : 'bg-emerald-500'}"></span>
+                  <span class="text-[10px] font-bold uppercase tracking-wider ${t.text}">${t.label}</span>
+                </div>
+                <div class="font-bold text-brand-navy group-hover:text-brand-green transition leading-tight">${p.name}</div>
+                <div class="serif-italic text-xs text-slate-500 mt-0.5 truncate">${p.scientific}</div>
+                <div class="text-xs text-slate-600 mt-2 line-clamp-2">${p.shortDesc}</div>
+              </div>
+            </a>`
+          }).join('')}
+        </div>
+      </section>`
+    }).join('')}
+
+    <!-- Final CTA -->
+    <section class="mt-20 bg-gradient-to-br from-brand-green to-brand-navy-dark text-white rounded-3xl p-8 sm:p-12">
+      <div class="max-w-3xl">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-brand-leaf mb-3">Can't ID it?</p>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl mb-4 leading-tight">Send us a photo &mdash; we'll identify it free.</h2>
+        <p class="text-lg opacity-90 mb-7">Castle Exterminators is family-owned and based in Durham. We've been identifying and treating Triangle pests since 2017. Get a free in-person inspection or just text us a clear photo.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/#contact" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white font-bold px-6 py-3.5 rounded-xl transition shadow-card">
+            <i class="fa-solid fa-calendar-check"></i> Request Free Inspection
+          </a>
+          <a href="tel:+19196068686" class="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white font-bold px-6 py-3.5 rounded-xl transition backdrop-blur border border-white/25">
+            <i class="fa-solid fa-phone-volume"></i> (919) 606-8686
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-navy-dark text-slate-300 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-5 gap-8">
+      <div class="md:col-span-2">
+        <span class="inline-block bg-white rounded-xl p-2 shadow-card mb-4">
+          <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 w-auto" />
+        </span>
+        <p class="text-sm leading-relaxed max-w-md">Durham's family-owned pest control. Protecting homes across Durham, NC and surrounding communities since 2017 &mdash; with eco-friendly, family-safe treatments.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Services</h4>
+        <ul class="space-y-2 text-sm">
+          ${services.slice(0, 6).map(o => `<li><a href="/services/${o.slug}" class="hover:text-white">${o.name}</a></li>`).join('')}
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Pest Library</h4>
+        <ul class="space-y-2 text-sm">
+          ${pestCategories.slice(0, 5).map(c => `<li><a href="/pests#${c.id}" class="hover:text-white">${c.name}</a></li>`).join('')}
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Service Areas</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
+          <li><a href="/locations/chapel-hill" class="hover:text-white">Chapel Hill</a></li>
+          <li><a href="/locations/raleigh" class="hover:text-white">Raleigh</a></li>
+          <li><a href="/locations/cary" class="hover:text-white">Cary</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-slate-400 flex flex-col sm:flex-row justify-between gap-3">
+        <span>&copy; ${new Date().getFullYear()} Castle Exterminators. All rights reserved.</span>
+        <span>Licensed &amp; Insured in North Carolina</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Pest library search — filters cards live based on name/scientific.
+    (function() {
+      const input = document.getElementById('pest-search');
+      const empty = document.getElementById('pest-search-empty');
+      if (!input) return;
+      const cards = Array.from(document.querySelectorAll('.pest-card'));
+      const sections = Array.from(document.querySelectorAll('section[id]'));
+      input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        let anyVisible = false;
+        cards.forEach(c => {
+          const name = c.dataset.name || '';
+          const sci = c.dataset.scientific || '';
+          const cat = c.dataset.category || '';
+          const hit = !q || name.includes(q) || sci.includes(q) || cat.includes(q);
+          c.dataset.hidden = hit ? 'false' : 'true';
+          if (hit) anyVisible = true;
+        });
+        // Hide sections that have no visible pests
+        sections.forEach(s => {
+          const visible = s.querySelectorAll('.pest-card[data-hidden="false"]').length;
+          s.style.display = visible === 0 ? 'none' : '';
+        });
+        empty.classList.toggle('hidden', anyVisible);
+      });
+    })();
+  </script>
+</body>
+</html>`
+
+// ============================================================================
+// ROUTES
+// ============================================================================
+app.get('/pests', (c) => c.html(renderPestLibraryPage()))
+pests.forEach(p => {
+  app.get(`/pests/${p.slug}`, (c) => c.html(renderPestPage(p, pests)))
+})
+
+
+
 // ---------------------------------------------------------------------------
 // SEO: robots.txt — allows all crawlers and points them to the sitemap
 // ---------------------------------------------------------------------------
@@ -4304,6 +5128,7 @@ app.get('/sitemap.xml', (c) => {
   const urls = [
     { loc: 'https://www.castleexterminators.co/',           priority: '1.0', changefreq: 'weekly' },
     { loc: 'https://www.castleexterminators.co/about',      priority: '0.8', changefreq: 'monthly' },
+    { loc: 'https://www.castleexterminators.co/pests',      priority: '0.8', changefreq: 'monthly' },
     ...services.map(s => ({
       loc: `https://www.castleexterminators.co/services/${s.slug}`,
       priority: '0.9',
@@ -4312,6 +5137,11 @@ app.get('/sitemap.xml', (c) => {
     ...locations.map(l => ({
       loc: `https://www.castleexterminators.co/locations/${l.slug}`,
       priority: '0.8',
+      changefreq: 'monthly'
+    })),
+    ...pests.map(p => ({
+      loc: `https://www.castleexterminators.co/pests/${p.slug}`,
+      priority: '0.7',
       changefreq: 'monthly'
     }))
   ]
