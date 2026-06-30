@@ -23,14 +23,18 @@ const html = `<!DOCTYPE html>
     <meta property="og:description" content="Top pest control services in Durham & Chapel Hill by Castle Exterminators. We eliminate termites, bed bugs & rodents securely. Contact us now!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.castleexterminators.co/">
-    <meta property="og:image" content="https://www.castleexterminators.co/static/castle-logo.png">
+    <meta property="og:image" content="https://www.castleexterminators.co/static/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Castle Exterminators — Family-Owned Pest Control · Durham, NC">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pest Control Services in Durham & Chapel Hill | Castle Exterminators">
     <meta name="twitter:description" content="Top pest control services in Durham & Chapel Hill by Castle Exterminators. We eliminate termites, bed bugs & rodents securely. Contact us now!">
-    <meta name="twitter:image" content="https://www.castleexterminators.co/static/castle-logo.png">
+    <meta name="twitter:image" content="https://www.castleexterminators.co/static/og-image.jpg">
+    <meta name="twitter:image:alt" content="Castle Exterminators — Family-Owned Pest Control · Durham, NC">
 
     <!-- Structured data: LocalBusiness + Organization (the most important schema for local Google rankings) -->
     <script type="application/ld+json">
@@ -158,6 +162,15 @@ const html = `<!DOCTYPE html>
          This shaves ~300-600ms off the perceived form load time. -->
     <link rel="preconnect" href="https://portal-embed-v3.gorilladesk.com" crossorigin>
     <link rel="dns-prefetch" href="https://portal-embed-v3.gorilladesk.com">
+
+    <!-- Preload hero image so it appears as soon as possible (LCP boost).
+         Mobile gets the small 1024w version, desktop gets the 1920w. -->
+    <link rel="preload" as="image"
+          href="/static/hero-home-mobile.webp"
+          imagesrcset="/static/hero-home-mobile.webp 1024w, /static/hero-home.webp 1920w"
+          imagesizes="(max-width: 1023px) 100vw, 100vw"
+          type="image/webp"
+          fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
 
@@ -495,11 +508,19 @@ const html = `<!DOCTYPE html>
         min-height: clamp(620px, 88vh, 880px);
       }
 
-      /* Photo layer — sits behind everything, gets translated via scroll JS */
+      /* Photo layer — sits behind everything, gets translated via scroll JS.
+         Uses image-set() to serve the smallest format the browser supports:
+         AVIF (50% smaller than JPEG) → WebP (35% smaller) → JPEG fallback.
+         Mobile gets the smaller 1024w variant via media query (saves ~85% on phones). */
       .hero-photo {
         position: absolute;
         inset: -10% 0 -10% 0;  /* over-sized so parallax translate doesn't expose edges */
-        background-image: url('/static/hero-home.webp');
+        /* Mobile-first: load the small 1024w variant by default */
+        background-image: image-set(
+          url('/static/hero-home-mobile.avif') type('image/avif'),
+          url('/static/hero-home-mobile.webp') type('image/webp'),
+          url('/static/hero-home-mobile.jpg') type('image/jpeg')
+        );
         background-size: cover;
         background-position: center 40%;
         background-repeat: no-repeat;
@@ -507,8 +528,18 @@ const html = `<!DOCTYPE html>
         will-change: transform;
         transform: translate3d(0, 0, 0);
       }
-      /* Fallback for browsers without WebP — JPG via image-set */
-      @supports not (background-image: url('a.webp')) {
+      /* Desktop: load the full 1920w variant */
+      @media (min-width: 1024px) {
+        .hero-photo {
+          background-image: image-set(
+            url('/static/hero-home.avif') type('image/avif'),
+            url('/static/hero-home.webp') type('image/webp'),
+            url('/static/hero-home.jpg') type('image/jpeg')
+          );
+        }
+      }
+      /* Last-resort fallback for browsers without image-set() (rare) */
+      @supports not (background-image: image-set(url('a.webp') type('image/webp'))) {
         .hero-photo { background-image: url('/static/hero-home.jpg'); }
       }
 
@@ -1863,6 +1894,67 @@ const html = `<!DOCTYPE html>
       </script>
     </section>
 
+    <!-- ============== SERVICE AREAS ============== -->
+    <section id="service-areas" class="py-20 lg:py-28 bg-brand-bone">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 reveal">
+          <p class="text-brand-green font-bold uppercase tracking-wider text-sm mb-3">Where We Work</p>
+          <h2 class="text-4xl lg:text-5xl font-extrabold mb-4 leading-tight">Pest control across the Triangle</h2>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto">Locally owned in Durham, NC — proudly serving Durham, Chapel Hill, Raleigh, Cary, and the surrounding Triangle communities.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
+          <a href="/locations/downtown-durham" class="group block bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-10 h-10 bg-brand-green/10 text-brand-green rounded-xl flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></span>
+              <h3 class="font-display font-extrabold text-xl text-brand-navy group-hover:text-brand-green transition">Downtown Durham</h3>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">Brightleaf, Trinity Park, American Tobacco — pre-war homes and historic blocks.</p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-green">View coverage <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+          </a>
+          <a href="/locations/hope-valley" class="group block bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-10 h-10 bg-brand-green/10 text-brand-green rounded-xl flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></span>
+              <h3 class="font-display font-extrabold text-xl text-brand-navy group-hover:text-brand-green transition">Hope Valley</h3>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">South Durham's tree-canopy neighborhood — crawl spaces, ants, and seasonal pests.</p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-green">View coverage <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+          </a>
+          <a href="/locations/chapel-hill" class="group block bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-10 h-10 bg-brand-green/10 text-brand-green rounded-xl flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></span>
+              <h3 class="font-display font-extrabold text-xl text-brand-navy group-hover:text-brand-green transition">Chapel Hill</h3>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">UNC neighborhoods, Meadowmont, Southern Village — student rentals and family homes.</p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-green">View coverage <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+          </a>
+          <a href="/locations/raleigh" class="group block bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-10 h-10 bg-brand-green/10 text-brand-green rounded-xl flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></span>
+              <h3 class="font-display font-extrabold text-xl text-brand-navy group-hover:text-brand-green transition">Raleigh</h3>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">North Hills, Five Points, Cameron Village — full residential and small commercial coverage.</p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-green">View coverage <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+          </a>
+          <a href="/locations/cary" class="group block bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-green/40 hover:shadow-card transition">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-10 h-10 bg-brand-green/10 text-brand-green rounded-xl flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></span>
+              <h3 class="font-display font-extrabold text-xl text-brand-navy group-hover:text-brand-green transition">Cary</h3>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">Preston, Lochmere, Amberly — newer construction and HOA-managed communities.</p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-green">View coverage <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+          </a>
+          <a href="#contact" class="group block bg-gradient-to-br from-brand-green to-brand-navy-dark text-white rounded-2xl p-6 border border-brand-green hover:shadow-card transition">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="w-10 h-10 bg-white/15 text-white rounded-xl flex items-center justify-center"><i class="fa-solid fa-plus"></i></span>
+              <h3 class="font-display font-extrabold text-xl">Outside these areas?</h3>
+            </div>
+            <p class="text-sm opacity-90 mb-3">We also serve Morrisville, Hillsborough, and parts of Wake & Orange counties. Just ask.</p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold">Request inspection <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- ============== CONTACT / FINAL CTA ============== -->
     <section id="contact" class="py-20 lg:py-28 bg-gradient-to-b from-brand-cream via-brand-bone to-brand-bone">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10 items-start">
@@ -1965,7 +2057,7 @@ const html = `<!DOCTYPE html>
 
     <!-- ============== FOOTER ============== -->
     <footer class="bg-brand-navy-dark text-slate-300">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-4 gap-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-5 gap-8">
         <div class="md:col-span-2">
           <a href="/" class="inline-flex items-center gap-2.5 mb-4">
             <span class="inline-block bg-white rounded-xl p-2 shadow-card">
@@ -1982,9 +2074,20 @@ const html = `<!DOCTYPE html>
           <ul class="space-y-2 text-sm">
             <li><a href="/about" class="hover:text-white">About Us</a></li>
             <li><a href="#services" class="hover:text-white">Services</a></li>
-            <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
             <li><a href="#reviews" class="hover:text-white">Reviews</a></li>
             <li><a href="#faq" class="hover:text-white">FAQ</a></li>
+            <li><a href="#contact" class="hover:text-white">Free Inspection</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-4">Service Areas</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
+            <li><a href="/locations/hope-valley" class="hover:text-white">Hope Valley</a></li>
+            <li><a href="/locations/chapel-hill" class="hover:text-white">Chapel Hill</a></li>
+            <li><a href="/locations/raleigh" class="hover:text-white">Raleigh</a></li>
+            <li><a href="/locations/cary" class="hover:text-white">Cary</a></li>
           </ul>
         </div>
 
@@ -3197,6 +3300,18 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
           </ul>
           <a href="/#services" class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-brand-green hover:text-brand-green-dark">View all services <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
         </div>
+
+        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+          <h4 class="font-bold mb-4">${s.name} near you</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/locations/downtown-durham" class="flex items-center gap-2 text-slate-600 hover:text-brand-green transition"><i class="fa-solid fa-location-dot text-brand-green w-4"></i> Downtown Durham</a></li>
+            <li><a href="/locations/hope-valley" class="flex items-center gap-2 text-slate-600 hover:text-brand-green transition"><i class="fa-solid fa-location-dot text-brand-green w-4"></i> Hope Valley</a></li>
+            <li><a href="/locations/chapel-hill" class="flex items-center gap-2 text-slate-600 hover:text-brand-green transition"><i class="fa-solid fa-location-dot text-brand-green w-4"></i> Chapel Hill</a></li>
+            <li><a href="/locations/raleigh" class="flex items-center gap-2 text-slate-600 hover:text-brand-green transition"><i class="fa-solid fa-location-dot text-brand-green w-4"></i> Raleigh</a></li>
+            <li><a href="/locations/cary" class="flex items-center gap-2 text-slate-600 hover:text-brand-green transition"><i class="fa-solid fa-location-dot text-brand-green w-4"></i> Cary</a></li>
+          </ul>
+          <a href="/#service-areas" class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-brand-green hover:text-brand-green-dark">All service areas <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        </div>
       </aside>
 
     </div>
@@ -3204,7 +3319,7 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
 
   <!-- FOOTER -->
   <footer class="bg-brand-navy-dark text-slate-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-5 gap-8">
       <div class="md:col-span-2">
         <span class="inline-block bg-white rounded-xl p-2 shadow-card mb-4">
           <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 w-auto" />
@@ -3215,6 +3330,16 @@ const renderServicePage = (s: ServiceDetail, allServices: ServiceDetail[]) => `<
         <h4 class="text-white font-bold mb-4">Services</h4>
         <ul class="space-y-2 text-sm">
           ${allServices.slice(0, 6).map(o => `<li><a href="/services/${o.slug}" class="hover:text-white">${o.name}</a></li>`).join('')}
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Service Areas</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
+          <li><a href="/locations/hope-valley" class="hover:text-white">Hope Valley</a></li>
+          <li><a href="/locations/chapel-hill" class="hover:text-white">Chapel Hill</a></li>
+          <li><a href="/locations/raleigh" class="hover:text-white">Raleigh</a></li>
+          <li><a href="/locations/cary" class="hover:text-white">Cary</a></li>
         </ul>
       </div>
       <div>
@@ -3283,7 +3408,9 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
   <meta property="og:title" content="About Castle Exterminators | Family-Owned Pest Control in Durham, NC" />
   <meta property="og:description" content="Durham's family-owned, locally-operated pest control company. Licensed in NC, eco-friendly methods, 5.0 stars on Google & Yelp." />
   <meta property="og:url" content="https://www.castleexterminators.co/about" />
-  <meta property="og:image" content="/static/hero-home.jpg" />
+  <meta property="og:image" content="https://www.castleexterminators.co/static/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -3570,14 +3697,19 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
         <div class="grid lg:grid-cols-12 gap-10 items-center">
           <div class="lg:col-span-5">
             <p class="text-sm font-bold uppercase tracking-[0.18em] text-brand-green mb-3">Where we work</p>
-            <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight mb-4">Durham and the neighborhoods we call home.</h2>
-            <p class="text-slate-600 mb-5">We service every corner of Durham, NC &mdash; from historic downtown to the newer subdivisions on the edge of town.</p>
-            <a href="/locations/downtown-durham" class="inline-flex items-center gap-2 text-brand-green hover:text-brand-green-dark font-bold transition">
-              See our Downtown Durham coverage <i class="fa-solid fa-arrow-right text-xs"></i>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl leading-tight mb-4">Durham, Chapel Hill, Raleigh &amp; the Triangle.</h2>
+            <p class="text-slate-600 mb-5">We service every corner of Durham, NC &mdash; plus Chapel Hill, Raleigh, and Cary &mdash; from historic downtown blocks to the newer subdivisions on the edge of town.</p>
+            <a href="#contact" class="inline-flex items-center gap-2 text-brand-green hover:text-brand-green-dark font-bold transition">
+              Schedule a free inspection <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
           </div>
           <div class="lg:col-span-7 grid sm:grid-cols-2 gap-3">
-            ${['Downtown Durham','Trinity Park','Old West Durham','Forest Hills','Hope Valley','Woodcroft','Southpoint','Duke Park'].map(n => `<div class="flex items-center gap-2.5 bg-white rounded-xl px-4 py-3 border border-slate-100"><i class="fa-solid fa-location-dot text-brand-green text-sm"></i><span class="font-semibold text-sm text-brand-navy">${n}</span></div>`).join('')}
+            <a href="/locations/downtown-durham" class="flex items-center gap-2.5 bg-white rounded-xl px-4 py-3 border border-slate-100 hover:border-brand-green/40 hover:shadow-sm transition"><i class="fa-solid fa-location-dot text-brand-green text-sm"></i><span class="font-semibold text-sm text-brand-navy">Downtown Durham</span></a>
+            <a href="/locations/hope-valley" class="flex items-center gap-2.5 bg-white rounded-xl px-4 py-3 border border-slate-100 hover:border-brand-green/40 hover:shadow-sm transition"><i class="fa-solid fa-location-dot text-brand-green text-sm"></i><span class="font-semibold text-sm text-brand-navy">Hope Valley</span></a>
+            <a href="/locations/chapel-hill" class="flex items-center gap-2.5 bg-white rounded-xl px-4 py-3 border border-slate-100 hover:border-brand-green/40 hover:shadow-sm transition"><i class="fa-solid fa-location-dot text-brand-green text-sm"></i><span class="font-semibold text-sm text-brand-navy">Chapel Hill</span></a>
+            <a href="/locations/raleigh" class="flex items-center gap-2.5 bg-white rounded-xl px-4 py-3 border border-slate-100 hover:border-brand-green/40 hover:shadow-sm transition"><i class="fa-solid fa-location-dot text-brand-green text-sm"></i><span class="font-semibold text-sm text-brand-navy">Raleigh</span></a>
+            <a href="/locations/cary" class="flex items-center gap-2.5 bg-white rounded-xl px-4 py-3 border border-slate-100 hover:border-brand-green/40 hover:shadow-sm transition"><i class="fa-solid fa-location-dot text-brand-green text-sm"></i><span class="font-semibold text-sm text-brand-navy">Cary</span></a>
+            <div class="flex items-center gap-2.5 bg-white rounded-xl px-4 py-3 border border-slate-100"><i class="fa-solid fa-plus text-brand-green/60 text-sm"></i><span class="font-semibold text-sm text-slate-500">Morrisville &amp; Hillsborough</span></div>
           </div>
         </div>
       </div>
@@ -3618,7 +3750,7 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
   </main>
 
   <footer class="bg-brand-navy-dark text-slate-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-5 gap-8">
       <div class="md:col-span-2">
         <span class="inline-block bg-white rounded-xl p-2 shadow-card mb-4">
           <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 w-auto" />
@@ -3632,10 +3764,19 @@ const renderAboutPage = (allServices: ServiceDetail[]) => `<!DOCTYPE html>
         </ul>
       </div>
       <div>
+        <h4 class="text-white font-bold mb-4">Service Areas</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
+          <li><a href="/locations/hope-valley" class="hover:text-white">Hope Valley</a></li>
+          <li><a href="/locations/chapel-hill" class="hover:text-white">Chapel Hill</a></li>
+          <li><a href="/locations/raleigh" class="hover:text-white">Raleigh</a></li>
+          <li><a href="/locations/cary" class="hover:text-white">Cary</a></li>
+        </ul>
+      </div>
+      <div>
         <h4 class="text-white font-bold mb-4">Company</h4>
         <ul class="space-y-2 text-sm">
           <li><a href="/about" class="hover:text-white">About</a></li>
-          <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
           <li><a href="/#reviews" class="hover:text-white">Reviews</a></li>
           <li><a href="/#contact" class="hover:text-white">Contact</a></li>
           <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196068686" class="hover:text-white">(919) 606-8686</a></li>
@@ -3664,6 +3805,14 @@ type LocationDetail = {
   name: string                    // "Downtown Durham"
   shortName: string               // "Downtown"
   zipCodes: string[]              // ["27701", "27707"]
+  /**
+   * The city this location belongs to (for schema.org).
+   * - For Durham neighborhoods: 'Durham'
+   * - For separate cities: 'Chapel Hill', 'Raleigh', 'Cary', etc.
+   */
+  city: string
+  /** Whether this is a neighborhood within a larger city, or a city itself. */
+  type: 'neighborhood' | 'city'
   intro: string                   // Hero paragraph
   about: string                   // Long-form description of the neighborhood
   pests: { name: string; reason: string }[]  // Pests common to this area
@@ -3677,6 +3826,8 @@ const locations: LocationDetail[] = [
     name: 'Downtown Durham',
     shortName: 'Downtown',
     zipCodes: ['27701', '27707'],
+    city: 'Durham',
+    type: 'neighborhood',
     intro: "Durham's downtown core packs century-old warehouses, modern lofts, restored bungalows, and busy restaurants into a few square miles — and every one of them comes with its own pest control challenges. Castle Exterminators has been protecting Downtown Durham homes and businesses since 2017.",
     about: "From the American Tobacco Campus to the Brightleaf district, Durham's downtown buildings sit on some of the oldest brick foundations in the city. That charm comes with a downside: aging brick, shared walls, and warm subterranean utility corridors are an invitation for cockroaches, mice, ants, and termites to set up shop. Our crew knows these buildings — we've worked in the lofts above Mateo, the brownstones near Five Points, and the historic homes off Mangum Street. We tailor every treatment to the building, not the bug.",
     pests: [
@@ -3690,6 +3841,94 @@ const locations: LocationDetail[] = [
       quote: "We've used three different exterminators in our downtown loft over the years. Castle is the only one that actually solved the roach problem in our building's old brick walls. Friendly, on-time, no upsells.",
       author: 'Michael P.',
       street: 'W. Main Street loft, Downtown Durham',
+    },
+  },
+  {
+    slug: 'chapel-hill',
+    name: 'Chapel Hill',
+    shortName: 'Chapel Hill',
+    zipCodes: ['27514', '27516', '27517'],
+    city: 'Chapel Hill',
+    type: 'city',
+    intro: "From the historic homes of Franklin Street to the wooded subdivisions off Mount Carmel Church Road, Chapel Hill's mix of UNC student housing, established neighborhoods, and rural-edge properties calls for a pest control approach that treats every home like it's the only one we'll see today. Castle Exterminators serves the entire Chapel Hill area with eco-friendly, family-safe treatments.",
+    about: "Chapel Hill sits at the edge of where Durham's red clay meets Orange County's deeper hardwoods — and that ecology brings a unique pest profile. Older homes off Estes Drive and Franklin Street wrestle with carpenter ants in aging wood siding; the wooded neighborhoods near Meadowmont and Southern Village deal with rodent pressure from surrounding forest; and the apartment complexes that ring the UNC campus see a constant rotation of cockroach and bed bug issues as tenants come and go. We've worked all of these — and we know the difference between the bug you can spot-treat and the one you have to chase to the source.",
+    pests: [
+      { name: 'Carpenter ants', reason: "Chapel Hill's older homes — especially the bungalows and craftsmen off Franklin Street — are prime targets for carpenter ants that nest in damp, aging wood siding and trim." },
+      { name: 'Termites', reason: "The deeper hardwoods around Meadowmont, Carrboro line, and southern Chapel Hill keep subterranean termite pressure high year-round." },
+      { name: 'Mice & deer mice', reason: "Wooded neighborhoods near Mount Carmel, Lake Hogan Farms, and Briar Chapel see persistent rodent activity from the surrounding forest." },
+      { name: 'Bed bugs', reason: "High-turnover student rentals near UNC and along Estes Drive mean bed bugs travel between units more easily than in other parts of the Triangle." },
+    ],
+    nearby: ['Franklin Street', 'UNC campus', 'Meadowmont', 'Southern Village', 'Carrboro', 'Estes Drive', 'Mount Carmel Church Road', 'Briar Chapel'],
+    testimonial: {
+      quote: "Castle handled a carpenter ant problem in our 1940s Franklin Street home that two other companies told us would require tearing out siding. They found the real nest in the crawl space and solved it in one visit. We're customers for life.",
+      author: 'Sarah J.',
+      street: 'Franklin Street, Chapel Hill',
+    },
+  },
+  {
+    slug: 'raleigh',
+    name: 'Raleigh',
+    shortName: 'Raleigh',
+    zipCodes: ['27601', '27603', '27604', '27605', '27606', '27607', '27608', '27609', '27612', '27613', '27614', '27615', '27616', '27617'],
+    city: 'Raleigh',
+    type: 'city',
+    intro: "From historic Oakwood to North Hills, Five Points to West Raleigh — North Carolina's capital is one of the fastest-growing metros in the country, and that growth comes with pest pressure most homeowners don't expect. Castle Exterminators brings family-owned, Durham-based service to Raleigh homes with the same care we'd give our own.",
+    about: "Raleigh's neighborhoods cover everything from century-old craftsman homes downtown to new construction in North Raleigh — and every era of home has its own bug problems. Older homes in Five Points and Oakwood deal with termites and carpenter ants in aging wood; newer subdivisions in North Hills, Brier Creek, and Wakefield see rodent and ant pressure as construction continues to push into formerly wooded areas; and the inner-belt apartments around NC State keep us busy with German roach work. We service all of Raleigh — most jobs scheduled within 48 hours.",
+    pests: [
+      { name: 'Subterranean termites', reason: "Raleigh's red-clay soil and warm, humid summers make it one of the most termite-active areas in the Carolinas — especially for homes 20+ years old." },
+      { name: 'Argentine ants', reason: "Newer subdivisions in North Raleigh and Brier Creek see massive Argentine ant supercolonies that take coordinated bait treatments — not just spray — to eliminate." },
+      { name: 'German cockroaches', reason: "Apartments and rentals near NC State and downtown Raleigh see persistent German roach activity that requires multi-visit treatment cycles." },
+      { name: 'Roof rats', reason: "Older neighborhoods like Five Points and Hayes Barton with mature trees and attached garages see roof rats — a different problem than the Norway rats most companies are used to treating." },
+    ],
+    nearby: ['Downtown Raleigh', 'Five Points', 'North Hills', 'Brier Creek', 'Wakefield', 'Oakwood', 'NC State', 'Hayes Barton', 'Cameron Village'],
+    testimonial: {
+      quote: "We had Terminix on a quarterly plan for three years and still saw roaches every few months. Castle came out, found a hidden nest in the dishwasher cabinet our previous tech had never looked at, and we haven't seen a roach since.",
+      author: 'David M.',
+      street: 'North Hills, Raleigh',
+    },
+  },
+  {
+    slug: 'cary',
+    name: 'Cary',
+    shortName: 'Cary',
+    zipCodes: ['27511', '27513', '27518', '27519'],
+    city: 'Cary',
+    type: 'city',
+    intro: "Cary is one of the most-loved towns in the Triangle — and one of the most demanding when it comes to pest control. Manicured lawns, careful HOAs, and homeowners who notice the smallest detail. Castle Exterminators meets that standard with discreet, family-safe, treatment-grade-only service across all Cary zip codes.",
+    about: "Cary's pest control challenges come from its success: rapid residential growth into formerly wooded areas brings persistent contact between homes and the local wildlife, and the mature, well-irrigated neighborhoods around Lochmere, Preston, and Macgregor Downs are exactly the kind of environment termites and carpenter ants thrive in. Newer parts of Cary near RTP and Morrisville see mosquito and ant pressure from drainage and humidity. We treat every Cary home with the precision the town's standard demands — no signs left in the yard, no overspray on landscaping, no upsells.",
+    pests: [
+      { name: 'Subterranean termites', reason: "Cary's mature subdivisions, irrigated lawns, and wooded edges create year-round termite activity — most homes never see the damage until a routine inspection finds it." },
+      { name: 'Carpenter bees', reason: "Decks, fascia boards, and pergolas in older Cary neighborhoods are favorite nesting sites for carpenter bees, which return to the same wood year after year." },
+      { name: 'Mosquitoes', reason: "Cary's well-watered lawns, stormwater ponds, and wooded greenways breed mosquitoes from April through October — we treat the source, not just the air." },
+      { name: 'Pavement & Argentine ants', reason: "Mulched flower beds, decorative borders, and brick walkways throughout Cary's HOAs are textbook ant superhighways." },
+    ],
+    nearby: ['Lochmere', 'Preston', 'Macgregor Downs', 'Downtown Cary', 'Crossroads', 'Amberly', 'Carpenter Village', 'Cary Park'],
+    testimonial: {
+      quote: "What I appreciated most: their tech showed up in a clean shirt, no clipboard full of upsells, and explained exactly what they were doing and why. The mosquitoes were gone within a week. They earn their reviews.",
+      author: 'Emily R.',
+      street: 'Preston, Cary',
+    },
+  },
+  {
+    slug: 'hope-valley',
+    name: 'Hope Valley',
+    shortName: 'Hope Valley',
+    zipCodes: ['27707'],
+    city: 'Durham',
+    type: 'neighborhood',
+    intro: "Hope Valley is one of Durham's most established neighborhoods — and its mature trees, manicured lawns, and stately homes create their own pest control story. Castle Exterminators has been serving Hope Valley homeowners with discreet, treatment-grade pest control since 2017.",
+    about: "Built around the Hope Valley Country Club starting in the 1920s, this neighborhood's beauty — mature hardwoods, hilly terrain, deep yards, century-old oaks — also makes it one of the more pest-active corners of Durham. Carpenter ants love the aging wood trim of these elegant homes; termites work the moist soil under deep landscape beds; squirrels and roof rats find easy entry through attached gables and shake-shingle roofs. We've been inside these homes — we know which brand of caulk matches their trim, where the crawl space access usually hides, and how to leave the place spotless. Hope Valley jobs are typically scheduled within 24-48 hours.",
+    pests: [
+      { name: 'Carpenter ants', reason: "Mature wood trim, fascia, and soffits on Hope Valley's older homes are favorite carpenter ant territory — especially after wet springs." },
+      { name: 'Subterranean termites', reason: "Heavy mulch beds, mature landscaping, and deep root systems create ideal termite conditions in nearly every Hope Valley yard." },
+      { name: 'Squirrels & roof rats', reason: "Shake-shingle and slate roofs, attached garages, and overhanging branches let squirrels and roof rats enter attics easily." },
+      { name: 'Yellow jackets & wasps', reason: "Soffits, eaves, and ground burrows on Hope Valley's hilly lots see annual wasp activity that needs careful, family-safe removal." },
+    ],
+    nearby: ['Hope Valley Country Club', 'Forest Hills', 'Lakewood', 'Woodcroft', 'University Drive', 'NC-751', 'Erwin Road'],
+    testimonial: {
+      quote: "Three other companies wouldn't touch our wasp problem because the nest was in the attic gable. Castle handled it in one careful visit — no damage to our shake roof, no chemical smell inside, and they came back free a week later to make sure they were gone.",
+      author: 'Linda W.',
+      street: 'Hope Valley',
     },
   },
 ]
@@ -3712,7 +3951,9 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
   <meta property="og:title" content="Pest Control in ${loc.name}, NC | Castle Exterminators" />
   <meta property="og:description" content="Local, family-owned pest control serving ${loc.name}, NC. ${loc.zipCodes.join(', ')}." />
   <meta property="og:url" content="https://www.castleexterminators.co/locations/${loc.slug}" />
-  <meta property="og:image" content="/static/hero-home.jpg" />
+  <meta property="og:image" content="https://www.castleexterminators.co/static/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -3729,15 +3970,19 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
       "name": "Castle Exterminators",
       "telephone": "+1-919-606-8686",
       "email": "services@castleexterminators.co",
-      "address": { "@type": "PostalAddress", "addressLocality": "Durham", "addressRegion": "NC", "postalCode": "${loc.zipCodes[0]}", "addressCountry": "US" },
+      "address": { "@type": "PostalAddress", "addressLocality": "${loc.city}", "addressRegion": "NC", "postalCode": "${loc.zipCodes[0]}", "addressCountry": "US" },
       "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "3", "bestRating": "5", "worstRating": "1" }
     },
-    "areaServed": {
+    "areaServed": ${loc.type === 'city' ? `{
+      "@type": "City",
+      "name": "${loc.name}",
+      "containedInPlace": { "@type": "State", "name": "North Carolina" }
+    }` : `{
       "@type": "Place",
       "name": "${loc.name}",
-      "address": { "@type": "PostalAddress", "addressLocality": "Durham", "addressRegion": "NC", "addressCountry": "US" },
-      "containedInPlace": { "@type": "City", "name": "Durham", "containedInPlace": { "@type": "State", "name": "North Carolina" } }
-    },
+      "address": { "@type": "PostalAddress", "addressLocality": "${loc.city}", "addressRegion": "NC", "addressCountry": "US" },
+      "containedInPlace": { "@type": "City", "name": "${loc.city}", "containedInPlace": { "@type": "State", "name": "North Carolina" } }
+    }`},
     "offers": { "@type": "Offer", "url": "https://www.castleexterminators.co/locations/${loc.slug}", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
   }
   </script>
@@ -3931,6 +4176,23 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
           </div>
         </section>
 
+        <!-- Other service areas (internal cross-linking) -->
+        <section>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl mb-4">Also serving the Triangle</h2>
+          <p class="text-slate-600 mb-5">Looking for pest control elsewhere in the area? We cover these Triangle communities too:</p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            ${locations.filter(o => o.slug !== loc.slug).map(o => `
+              <a href="/locations/${o.slug}" class="group flex items-start gap-3 bg-white border border-slate-200 hover:border-brand-green/40 hover:shadow-sm rounded-xl px-4 py-3 transition">
+                <i class="fa-solid fa-location-dot text-brand-green text-sm mt-1"></i>
+                <span class="flex-1">
+                  <span class="block font-bold text-sm text-brand-navy group-hover:text-brand-green transition">Pest Control in ${o.name}</span>
+                  <span class="block text-xs text-slate-500 leading-snug mt-0.5">${o.zipCodes.slice(0, 3).join(' · ')}${o.zipCodes.length > 3 ? '…' : ''}</span>
+                </span>
+                <i class="fa-solid fa-arrow-right text-xs text-brand-green/70 mt-1.5"></i>
+              </a>`).join('')}
+          </div>
+        </section>
+
         ${loc.testimonial ? `
         <!-- Local testimonial -->
         <section class="bg-brand-cream rounded-2xl p-8 border border-brand-green/10">
@@ -3974,7 +4236,7 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
   </main>
 
   <footer class="bg-brand-navy-dark text-slate-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-4 gap-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-5 gap-8">
       <div class="md:col-span-2">
         <span class="inline-block bg-white rounded-xl p-2 shadow-card mb-4">
           <img src="/static/castle-logo.png" alt="Castle Exterminators" class="h-9 w-auto" />
@@ -3988,10 +4250,19 @@ const renderLocationPage = (loc: LocationDetail, allServices: ServiceDetail[]) =
         </ul>
       </div>
       <div>
+        <h4 class="text-white font-bold mb-4">Service Areas</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
+          <li><a href="/locations/hope-valley" class="hover:text-white">Hope Valley</a></li>
+          <li><a href="/locations/chapel-hill" class="hover:text-white">Chapel Hill</a></li>
+          <li><a href="/locations/raleigh" class="hover:text-white">Raleigh</a></li>
+          <li><a href="/locations/cary" class="hover:text-white">Cary</a></li>
+        </ul>
+      </div>
+      <div>
         <h4 class="text-white font-bold mb-4">Company</h4>
         <ul class="space-y-2 text-sm">
           <li><a href="/about" class="hover:text-white">About</a></li>
-          <li><a href="/locations/downtown-durham" class="hover:text-white">Downtown Durham</a></li>
           <li><a href="/#reviews" class="hover:text-white">Reviews</a></li>
           <li><a href="/#contact" class="hover:text-white">Contact</a></li>
           <li><i class="fa-solid fa-phone-volume mr-2"></i> <a href="tel:+19196068686" class="hover:text-white">(919) 606-8686</a></li>
@@ -4054,6 +4325,39 @@ ${urls.map(u => `  <url>
   </url>`).join('\n')}
 </urlset>`
   return c.text(body, 200, { 'Content-Type': 'application/xml; charset=utf-8' })
+})
+
+// ---------------------------------------------------------------------------
+// SEO: IndexNow — let Bing, Yandex, and other engines discover updates quickly.
+// Key file must be served at /{key}.txt so search engines can verify ownership.
+// ---------------------------------------------------------------------------
+const INDEXNOW_KEY = 'af93643ffe9c72db168e469d05a122a1'
+app.get(`/${INDEXNOW_KEY}.txt`, (c) => c.text(INDEXNOW_KEY, 200, { 'Content-Type': 'text/plain; charset=utf-8' }))
+
+// Manual ping endpoint — visit /api/indexnow-ping to submit all URLs to IndexNow.
+// Safe to call anytime; IndexNow rate-limits and dedupes on their side.
+app.get('/api/indexnow-ping', async (c) => {
+  const urlList = [
+    'https://www.castleexterminators.co/',
+    'https://www.castleexterminators.co/about',
+    ...services.map(s => `https://www.castleexterminators.co/services/${s.slug}`),
+    ...locations.map(l => `https://www.castleexterminators.co/locations/${l.slug}`)
+  ]
+  try {
+    const res = await fetch('https://api.indexnow.org/IndexNow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify({
+        host: 'www.castleexterminators.co',
+        key: INDEXNOW_KEY,
+        keyLocation: `https://www.castleexterminators.co/${INDEXNOW_KEY}.txt`,
+        urlList
+      })
+    })
+    return c.json({ ok: res.ok, status: res.status, submitted: urlList.length })
+  } catch (e: any) {
+    return c.json({ ok: false, error: String(e?.message || e) }, 500)
+  }
 })
 
 export default app
